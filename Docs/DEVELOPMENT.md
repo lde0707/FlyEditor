@@ -48,7 +48,7 @@ FlyEditor/Assets/
 |---|---|
 | Company / Product | lde0707 / FlyEditor |
 | 버전 / PC 식별자 | 0.1.0 / com.lde0707.flyeditor |
-| PC 초기 실행 | 1280×720, 창 모드, 창 크기 조절 가능 |
+| PC 초기 실행 | 1920×1080, 창 모드, 창 크기 조절 가능 |
 | 백그라운드 실행 | 끔 |
 | 직렬화 / 버전 관리 | Force Text / Visible Meta Files |
 | 새 C# 줄바꿈 / 기본 네임스페이스 | LF / FlyEditor |
@@ -89,3 +89,9 @@ Unity 상단 `Tools > FlyEditor`:
 
 - [Unity 특수 폴더와 Editor 코드](https://docs.unity.com/en-us/engine/6000.0/manual/get-started/project-configuration/special-folders)
 - [Unity 어셈블리 개요](https://docs.unity.com/en-us/engine/6000.3/manual/programming-environment/script-compilation/assembly-definition-files/assembly-definitions-intro)
+
+## 스크립트 설계 및 최적화 원칙
+
+앞으로 작성하는 상태 기반 게임 로직은 유한상태머신(FSM)을 기본으로 사용합니다. 상태의 진입·갱신·물리 갱신·종료는 `Enter`, `Tick`, `FixedTick`, `Exit`로 구분하고 전이는 한 경로에서 관리합니다. 상태 객체를 재사용하고, 반복 참조를 캐싱하며, 매 프레임 불필요한 연산과 GC 할당을 줄입니다. 최적화 효과는 Unity Profiler로 확인합니다.
+
+상태 전이가 없는 순수 계산·데이터·Editor 명령은 독립 함수로 유지합니다. 상세 기준은 [FSM 및 최적화 규칙](../.cursor/rules/unity-fsm.mdc)에 기록하며, 저장소의 `AGENTS.md`에서도 같은 규칙을 참조합니다.
