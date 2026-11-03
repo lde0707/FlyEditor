@@ -26,3 +26,8 @@
 *.mp4 binary
 *.ttf binary
 *.otf binary
+
+.editorconfig text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+*.inputactions text eol=lf
