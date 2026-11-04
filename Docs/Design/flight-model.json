@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "designStatus": "prototype-proposal",
+  "gravity": 3.0,
+  "launchHeight": 3.0,
+  "speedCap": 25.0,
+  "pitchHeld": 8.0,
+  "pitchReleased": -2.0,
+  "recoveryPitch": -12.0,
+  "recoveryDelay": 0.6,
+  "recoveryExitMargin": 0.5,
+  "materials": {
+    "standard": {
+      "name": "기본 종이",
+      "density": 1.0,
+      "launch": 1.0,
+      "drag": 1.0,
+      "sink": 1.0,
+      "response": 1.0,
+      "durability": 1.0,
+      "wind": 1.0
+    },
+    "thin": {
+      "name": "얇은 종이",
+      "density": 0.8,
+      "launch": 0.98,
+      "drag": 1.05,
+      "sink": 0.88,
+      "response": 0.85,
+      "durability": 0.75,
+      "wind": 1.12
+    },
+    "stiff": {
+      "name": "단단한 종이",
+      "density": 1.25,
+      "launch": 1.04,
+      "drag": 1.08,
+      "sink": 1.12,
+      "response": 1.1,
+      "durability": 1.3,
+      "wind": 0.9
+    }
+  },
+  "syntheticExamples": {
+    "넓은 활공형": {
+      "A": 0.85,
+      "R": 0.75,
+      "T": 0.25,
+      "S": 1.0,
+      "B": 0.85,
+      "D": 0.6,
+      "O": 0.2
+    },
+    "좁은 속도형": {
+      "A": 0.3,
+      "R": 0.25,
+      "T": 0.9,
+      "S": 1.0,
+      "B": 0.75,
+      "D": 0.25,
+      "O": 0.5
+    },
+    "안정 균형형": {
+      "A": 0.55,
+      "R": 0.45,
+      "T": 0.55,
+      "S": 1.0,
+      "B": 0.95,
+      "D": 0.9,
+      "O": 0.35
+    },
+    "비대칭 실험형": {
+      "A": 0.55,
+      "R": 0.45,
+      "T": 0.55,
+      "S": 0.65,
+      "B": 0.65,
+      "D": 0.4,
+      "O": 0.35
+    }
+  }
+}

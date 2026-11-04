@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "designStatus": "prototype-proposal",
+  "currency": "research",
+  "prerequisites": "all",
+  "initialFreeFolds": 8,
+  "purchaseValidation": "atomic: valid id, next rank, all prerequisites, balance >= cost; deduct once",
+  "refund": "full refund of recorded purchase costs; recursively refund dependents whose prerequisites fail; existing locked-paper blueprints stay saved but cannot launch with that paper",
+  "nodes": [
+    {
+      "id": "F1",
+      "name": "접기 여유",
+      "branch": "fold",
+      "rankCosts": [
+        45,
+        120
+      ],
+      "prerequisites": [],
+      "prerequisiteMode": "all",
+      "effect": "+2 free folds per rank; 8 -> 10 -> 12",
+      "phase": "prototype"
+    },
+    {
+      "id": "F2",
+      "name": "몸통 폭 조절",
+      "branch": "fold",
+      "rankCosts": [
+        100
+      ],
+      "prerequisites": [
+        {
+          "id": "F1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "body half-width b: 0.06 W0 -> selectable 0.04..0.10 W0",
+      "phase": "prototype"
+    },
+    {
+      "id": "F3",
+      "name": "날개 끝 세우기",
+      "branch": "fold",
+      "rankCosts": [
+        180
+      ],
+      "prerequisites": [
+        {
+          "id": "F2",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "outer 15% of each wing: 0..25 degree upward tip hinge",
+      "phase": "expansion"
+    },
+    {
+      "id": "F4",
+      "name": "비대칭 펼치기",
+      "branch": "fold",
+      "rankCosts": [
+        220
+      ],
+      "prerequisites": [
+        {
+          "id": "F2",
+          "minRank": 1
+        },
+        {
+          "id": "C2",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "independent left/right dihedral 0..20 degrees; linked mode remains available",
+      "phase": "expansion"
+    },
+    {
+      "id": "M1",
+      "name": "섬유 정돈",
+      "branch": "material",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "prerequisiteMode": "all",
+      "effect": "+5% max durability per rank; +15% cap",
+      "phase": "prototype"
+    },
+    {
+      "id": "M2",
+      "name": "얇은 종이",
+      "branch": "material",
+      "rankCosts": [
+        90
+      ],
+      "prerequisites": [
+        {
+          "id": "M1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "unlock thin paper; infinite free use after unlock",
+      "phase": "prototype"
+    },
+    {
+      "id": "M3",
+      "name": "단단한 종이",
+      "branch": "material",
+      "rankCosts": [
+        90
+      ],
+      "prerequisites": [
+        {
+          "id": "M1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "unlock stiff paper; infinite free use after unlock",
+      "phase": "prototype"
+    },
+    {
+      "id": "M4",
+      "name": "표면 정리",
+      "branch": "material",
+      "rankCosts": [
+        100,
+        180,
+        300
+      ],
+      "prerequisites": [
+        {
+          "id": "M1",
+          "minRank": 2
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "drag coefficient -3% per rank; -9% cap",
+      "phase": "expansion"
+    },
+    {
+      "id": "G1",
+      "name": "활공 연습",
+      "branch": "glide",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "prerequisiteMode": "all",
+      "effect": "passive sink coefficient -4% per rank; -12% cap",
+      "phase": "prototype"
+    },
+    {
+      "id": "G2",
+      "name": "기류 읽기",
+      "branch": "glide",
+      "rankCosts": [
+        90
+      ],
+      "prerequisites": [
+        {
+          "id": "G1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "show approaching updraft direction up to 1.5 seconds earlier; base wind stays visible",
+      "phase": "prototype"
+    },
+    {
+      "id": "G3",
+      "name": "바람 감응",
+      "branch": "glide",
+      "rankCosts": [
+        110,
+        190,
+        320
+      ],
+      "prerequisites": [
+        {
+          "id": "G2",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "updraft acceleration +5% per rank; +15% cap",
+      "phase": "expansion"
+    },
+    {
+      "id": "G4",
+      "name": "낮은 속도 활공",
+      "branch": "glide",
+      "rankCosts": [
+        230
+      ],
+      "prerequisites": [
+        {
+          "id": "G1",
+          "minRank": 2
+        },
+        {
+          "id": "C3",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "low-speed extra sink coefficient x0.8; recovery thresholds unchanged",
+      "phase": "expansion"
+    },
+    {
+      "id": "C1",
+      "name": "손목 감각",
+      "branch": "control",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "prerequisiteMode": "all",
+      "effect": "initial launch speed +3% per rank; +9% cap",
+      "phase": "prototype"
+    },
+    {
+      "id": "C2",
+      "name": "자세 안정",
+      "branch": "control",
+      "rankCosts": [
+        75,
+        130,
+        220
+      ],
+      "prerequisites": [
+        {
+          "id": "C1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "response rate +5% per rank: tau divided by 1+0.05*rank",
+      "phase": "prototype"
+    },
+    {
+      "id": "C3",
+      "name": "상승 조절",
+      "branch": "control",
+      "rankCosts": [
+        100,
+        180,
+        300
+      ],
+      "prerequisites": [
+        {
+          "id": "C1",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "aerodynamic drag during positive pitch -4% per rank; -12% cap; gravity cost unchanged",
+      "phase": "expansion"
+    },
+    {
+      "id": "C4",
+      "name": "자세 회복",
+      "branch": "control",
+      "rankCosts": [
+        140
+      ],
+      "prerequisites": [
+        {
+          "id": "C2",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "Space: remove collision disturbance smoothly over 0.25s; one charge per run; no speed/altitude/HP gain",
+      "phase": "prototype"
+    },
+    {
+      "id": "X1",
+      "name": "맞춤 트림",
+      "branch": "cross",
+      "rankCosts": [
+        240
+      ],
+      "prerequisites": [
+        {
+          "id": "F2",
+          "minRank": 1
+        },
+        {
+          "id": "C2",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "preflight pitch trim -2..+2 degrees; release target capped at 0 degrees",
+      "phase": "prototype"
+    },
+    {
+      "id": "X2",
+      "name": "충격 분산",
+      "branch": "cross",
+      "rankCosts": [
+        280
+      ],
+      "prerequisites": [
+        {
+          "id": "M3",
+          "minRank": 1
+        },
+        {
+          "id": "C2",
+          "minRank": 2
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "weak-hit durability damage x0.8; no change to medium/heavy hits",
+      "phase": "expansion"
+    },
+    {
+      "id": "X3",
+      "name": "기류 체류",
+      "branch": "cross",
+      "rankCosts": [
+        320
+      ],
+      "prerequisites": [
+        {
+          "id": "F3",
+          "minRank": 1
+        },
+        {
+          "id": "G3",
+          "minRank": 1
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "additional updraft bonus +0.10*A; total G3+X3 bonus <=25%",
+      "phase": "expansion"
+    },
+    {
+      "id": "X4",
+      "name": "겹침 정리",
+      "branch": "cross",
+      "rankCosts": [
+        320
+      ],
+      "prerequisites": [
+        {
+          "id": "F1",
+          "minRank": 2
+        },
+        {
+          "id": "M4",
+          "minRank": 2
+        }
+      ],
+      "prerequisiteMode": "all",
+      "effect": "reduce only overlap drag contribution by 30%; area and mass unchanged",
+      "phase": "expansion"
+    }
+  ]
+}

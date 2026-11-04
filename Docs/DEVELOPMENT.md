@@ -95,3 +95,8 @@ Unity 상단 `Tools > FlyEditor`:
 앞으로 작성하는 상태 기반 게임 로직은 유한상태머신(FSM)을 기본으로 사용합니다. 상태의 진입·갱신·물리 갱신·종료는 `Enter`, `Tick`, `FixedTick`, `Exit`로 구분하고 전이는 한 경로에서 관리합니다. 상태 객체를 재사용하고, 반복 참조를 캐싱하며, 매 프레임 불필요한 연산과 GC 할당을 줄입니다. 최적화 효과는 Unity Profiler로 확인합니다.
 
 상태 전이가 없는 순수 계산·데이터·Editor 명령은 독립 함수로 유지합니다. 상세 기준은 [FSM 및 최적화 규칙](../.cursor/rules/unity-fsm.mdc)에 기록하며, 저장소의 `AGENTS.md`에서도 같은 규칙을 참조합니다.
+## 게임 시스템 설계
+
+[종이 접기·비행·웹 업그레이드 설계](Design/PAPER_FLIGHT_DESIGN.md)에 접기 조작, 형상 판정식, 20개 연구 노드, 비용·해금 조건, FSM·저장 규칙과 첫 시제품 범위를 정리했습니다. 수치와 제한은 구현 전 제안값입니다.
+
+노드 원본은 `Docs/Design/upgrade-nodes.json`, 비행 설정과 합성 입력은 `Docs/Design/flight-model.json`입니다. `python Docs/Design/verify_design.py`로 그래프 및 오프라인 수식을 검사하고 `verification-results.json`을 갱신합니다. 이 검사는 실제 Unity 접기 메시·충돌·바람·플레이 테스트를 대신하지 않습니다.

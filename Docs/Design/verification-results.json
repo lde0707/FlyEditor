@@ -1,0 +1,148 @@
+{
+  "status": "passed",
+  "upgradeNodeCount": 20,
+  "prototypeNodeCount": 11,
+  "totalResearchCost": 5345,
+  "coefficientBoundaryCases": 768,
+  "calmAirRuns": 12,
+  "timestepDistanceDifferencePercent": 0.0786,
+  "limitations": "Synthetic scalar input only; no Unity runtime, folding mesh, collisions, wind, or human playtest verified.",
+  "examples": {
+    "넓은 활공형": {
+      "metrics": {
+        "launch": 9.62,
+        "drag": 0.007799999999999999,
+        "sink": 0.14750000000000002,
+        "response": 0.43500000000000005,
+        "sway": 0.0,
+        "durability": 100.0,
+        "wind": 1.0,
+        "climbDragMultiplier": 1.0,
+        "recoverySpeed": 3.2,
+        "lowSpeedSinkMultiplier": 1.0
+      },
+      "runs": {
+        "손을 놓고 활공": {
+          "seconds": 7.41,
+          "meters": 58.63,
+          "maxEnergyDerivative": -2.779028578756972,
+          "maxEnergyStep": -0.027787296645698234
+        },
+        "2초 상승 후 4초 활공 반복": {
+          "seconds": 22.88,
+          "meters": 115.85,
+          "maxEnergyDerivative": -1.1693125436563372,
+          "maxEnergyStep": -0.011679044930012594
+        },
+        "계속 누르기": {
+          "seconds": 25.75,
+          "meters": 108.36,
+          "maxEnergyDerivative": -1.169314700436657,
+          "maxEnergyStep": -0.01167793526183658
+        }
+      }
+    },
+    "좁은 속도형": {
+      "metrics": {
+        "launch": 10.84,
+        "drag": 0.00642,
+        "sink": 0.214375,
+        "response": 0.335,
+        "sway": 0.125,
+        "durability": 100.0,
+        "wind": 1.0,
+        "climbDragMultiplier": 1.0,
+        "recoverySpeed": 3.2,
+        "lowSpeedSinkMultiplier": 1.0
+      },
+      "runs": {
+        "손을 놓고 활공": {
+          "seconds": 5.8,
+          "meters": 54.07,
+          "maxEnergyDerivative": -4.121500625418638,
+          "maxEnergyStep": -0.04120970909985289
+        },
+        "2초 상승 후 4초 활공 반복": {
+          "seconds": 26.05,
+          "meters": 143.95,
+          "maxEnergyDerivative": -1.2677858831011282,
+          "maxEnergyStep": -0.01267172667193961
+        },
+        "계속 누르기": {
+          "seconds": 29.45,
+          "meters": 130.4,
+          "maxEnergyDerivative": -1.2677875376232768,
+          "maxEnergyStep": -0.01266350390456239
+        }
+      }
+    },
+    "안정 균형형": {
+      "metrics": {
+        "launch": 10.22,
+        "drag": 0.0070799999999999995,
+        "sink": 0.185,
+        "response": 0.365,
+        "sway": 0.0,
+        "durability": 100.0,
+        "wind": 1.0,
+        "climbDragMultiplier": 1.0,
+        "recoverySpeed": 3.2,
+        "lowSpeedSinkMultiplier": 1.0
+      },
+      "runs": {
+        "손을 놓고 활공": {
+          "seconds": 6.43,
+          "meters": 55.48,
+          "maxEnergyDerivative": -3.467484418967227,
+          "maxEnergyStep": -0.03467072828613027
+        },
+        "2초 상승 후 4초 활공 반복": {
+          "seconds": 23.57,
+          "meters": 127.21,
+          "maxEnergyDerivative": -1.2295437712193904,
+          "maxEnergyStep": -0.01228085116580857
+        },
+        "계속 누르기": {
+          "seconds": 28.46,
+          "meters": 122.09,
+          "maxEnergyDerivative": -1.2295447380637783,
+          "maxEnergyStep": -0.012280727725155316
+        }
+      }
+    },
+    "비대칭 실험형": {
+      "metrics": {
+        "launch": 10.22,
+        "drag": 0.007604999999999999,
+        "sink": 0.198125,
+        "response": 0.44749999999999995,
+        "sway": 1.4999999999999996,
+        "durability": 100.0,
+        "wind": 1.0,
+        "climbDragMultiplier": 1.0,
+        "recoverySpeed": 3.2,
+        "lowSpeedSinkMultiplier": 1.0
+      },
+      "runs": {
+        "손을 놓고 활공": {
+          "seconds": 6.52,
+          "meters": 55.32,
+          "maxEnergyDerivative": -3.466630402052437,
+          "maxEnergyStep": -0.034663111887958564
+        },
+        "2초 상승 후 4초 활공 반복": {
+          "seconds": 22.29,
+          "meters": 119.23,
+          "maxEnergyDerivative": -1.3072442932532766,
+          "maxEnergyStep": -0.013056476874858447
+        },
+        "계속 누르기": {
+          "seconds": 25.85,
+          "meters": 112.29,
+          "maxEnergyDerivative": -1.307243402883739,
+          "maxEnergyStep": -0.013057487131590051
+        }
+      }
+    }
+  }
+}
