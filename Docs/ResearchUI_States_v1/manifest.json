@@ -1,0 +1,551 @@
+{
+  "spriteCount": 49,
+  "sprites": [
+    {
+      "name": "Frame_Square_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Square_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Square_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Square_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Square_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Square_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Diamond_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Hexagon_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Upgrade_0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Upgrade_1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Upgrade_2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Action_Ready",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Pressed",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Success",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Max",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    }
+  ],
+  "selectionIndependentOfRank": true,
+  "feedbackFrameSeconds": [
+    0.07,
+    0.07,
+    0.07
+  ],
+  "runtimeWired": false
+}

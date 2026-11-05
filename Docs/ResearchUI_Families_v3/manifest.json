@@ -1,0 +1,2669 @@
+{
+  "spriteCount": 235,
+  "sprites": [
+    {
+      "name": "Frame_Speed_Square_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Square_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Square_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Square_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Square_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Square_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Diamond_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Speed_Hexagon_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Action_Speed_Ready",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Speed_Pressed",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Speed_Success",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Speed_Max",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Feedback_Speed_0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Speed_1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Speed_2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Square_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Diamond_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Glide_Hexagon_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Action_Glide_Ready",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Glide_Pressed",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Glide_Success",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Glide_Max",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Feedback_Glide_0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Glide_1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Glide_2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Square_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Diamond_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Control_Hexagon_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Action_Control_Ready",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Control_Pressed",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Control_Success",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Control_Max",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Feedback_Control_0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Control_1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Control_2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Square_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Diamond_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_Available",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_Owned",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_OwnedSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_Max",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Frame_Survival_Hexagon_MaxSelected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Action_Survival_Ready",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Survival_Pressed",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Survival_Success",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Action_Survival_Max",
+      "width": 512,
+      "height": 96,
+      "border": [
+        14,
+        14,
+        14,
+        14
+      ]
+    },
+    {
+      "name": "Feedback_Survival_0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Survival_1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Survival_2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A2_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_A3_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_G3_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C2_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_C3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank3",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S1_Rank3_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S2_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank2",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_S3_Rank2_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X4",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X4_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X4_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X4_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X4_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X5",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X5_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X5_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X5_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_X5_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P1",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P1_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P1_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P1_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P1_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P2",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P2_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P2_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P2_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P2_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P3",
+      "width": 128,
+      "height": 128,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P3_Rank0",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P3_Rank0_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P3_Rank1",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_P3_Rank1_Selected",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Root",
+      "width": 160,
+      "height": 192,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "palettes": {
+    "Speed": {
+      "label": "속도",
+      "accent": "#8c654f",
+      "dark": "#654534",
+      "light": "#fbf3ec",
+      "mid": "#f1dfd0",
+      "strong": "#d8ae92"
+    },
+    "Glide": {
+      "label": "활공",
+      "accent": "#52788f",
+      "dark": "#365468",
+      "light": "#eff5fa",
+      "mid": "#dceaf3",
+      "strong": "#afcbdd"
+    },
+    "Control": {
+      "label": "조종",
+      "accent": "#74618d",
+      "dark": "#514163",
+      "light": "#f4f0f9",
+      "mid": "#e6ddf0",
+      "strong": "#c7bbdd"
+    },
+    "Survival": {
+      "label": "생존",
+      "accent": "#61795c",
+      "dark": "#435a40",
+      "light": "#f1f6ef",
+      "mid": "#dfeadc",
+      "strong": "#b6cdb3"
+    }
+  },
+  "familyByNode": {
+    "A1": "Speed",
+    "A2": "Speed",
+    "A3": "Speed",
+    "G1": "Glide",
+    "G2": "Glide",
+    "G3": "Glide",
+    "C1": "Control",
+    "C2": "Control",
+    "C3": "Control",
+    "S1": "Survival",
+    "S2": "Survival",
+    "S3": "Survival",
+    "X1": "Glide",
+    "X2": "Speed",
+    "X3": "Glide",
+    "X4": "Control",
+    "X5": "Survival",
+    "P1": "Glide",
+    "P2": "Speed",
+    "P3": "Survival"
+  },
+  "maxRankByNode": {
+    "A1": 3,
+    "A2": 2,
+    "A3": 3,
+    "G1": 3,
+    "G2": 1,
+    "G3": 3,
+    "C1": 3,
+    "C2": 3,
+    "C3": 1,
+    "S1": 3,
+    "S2": 2,
+    "S3": 2,
+    "X1": 1,
+    "X2": 1,
+    "X3": 1,
+    "X4": 1,
+    "X5": 1,
+    "P1": 1,
+    "P2": 1,
+    "P3": 1
+  },
+  "runtimeWired": false
+}

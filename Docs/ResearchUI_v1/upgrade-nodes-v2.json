@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 2,
+  "designStatus": "proposal-not-runtime",
+  "supersedes": "v0.1 upgrade graph and folding unlock conditions",
+  "foldingOptional": true,
+  "prerequisiteMode": "AND",
+  "specializationActiveLimit": 1,
+  "freeSpecializationSwitchAtWorkbench": true,
+  "shapeBonusFormula": "0.10 * (1 + cap * clamp01(fit)); cap=0.30 normally or 0.60 for matching active specialization",
+  "nodes": [
+    {
+      "id": "A1",
+      "name": "던지기 강화",
+      "branch": "speed",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "effect": "초기 속도 단계당 +3%, 최대 +9%"
+    },
+    {
+      "id": "A2",
+      "name": "가속 아이템",
+      "branch": "speed",
+      "rankCosts": [
+        90,
+        160
+      ],
+      "prerequisites": [
+        {
+          "id": "A1",
+          "minRank": 1
+        }
+      ],
+      "effect": "가속 아이템의 속도 증가량 단계당 +10%, 최대 +20%"
+    },
+    {
+      "id": "A3",
+      "name": "표면 저항",
+      "branch": "speed",
+      "rankCosts": [
+        90,
+        160,
+        260
+      ],
+      "prerequisites": [
+        {
+          "id": "A1",
+          "minRank": 1
+        }
+      ],
+      "effect": "기본 저항 계수 단계당 -3%, 최대 -9%"
+    },
+    {
+      "id": "G1",
+      "name": "활공 연습",
+      "branch": "glide",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "effect": "기본 침하 단계당 -4%, 최대 -12%; 저속 추가 침하 제외"
+    },
+    {
+      "id": "G2",
+      "name": "기류 읽기",
+      "branch": "glide",
+      "rankCosts": [
+        90
+      ],
+      "prerequisites": [
+        {
+          "id": "G1",
+          "minRank": 1
+        }
+      ],
+      "effect": "접근하는 기류를 최대 1.5초 먼저 표시; 기본 기류 표시는 항상 무료"
+    },
+    {
+      "id": "G3",
+      "name": "바람 타기",
+      "branch": "glide",
+      "rankCosts": [
+        90,
+        160,
+        260
+      ],
+      "prerequisites": [
+        {
+          "id": "G2",
+          "minRank": 1
+        }
+      ],
+      "effect": "상승기류 수직 효과 단계당 +5%, 최대 +15%"
+    },
+    {
+      "id": "C1",
+      "name": "조종 반응",
+      "branch": "control",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "effect": "자세 반응률 단계당 +5%, 최대 +15%; 반응 시간은 해당 배율로 나눔"
+    },
+    {
+      "id": "C2",
+      "name": "상승 효율",
+      "branch": "control",
+      "rankCosts": [
+        90,
+        160,
+        260
+      ],
+      "prerequisites": [
+        {
+          "id": "C1",
+          "minRank": 1
+        }
+      ],
+      "effect": "상승 자세에서 저항 단계당 -4%, 최대 -12%; 중력 비용 유지"
+    },
+    {
+      "id": "C3",
+      "name": "자세 회복",
+      "branch": "control",
+      "rankCosts": [
+        140
+      ],
+      "prerequisites": [
+        {
+          "id": "C1",
+          "minRank": 1
+        }
+      ],
+      "effect": "Space로 충돌 자세 교란을 0.25초 동안 제거, 비행당 1회; 속도/HP 생성 없음"
+    },
+    {
+      "id": "S1",
+      "name": "기체 내구",
+      "branch": "survival",
+      "rankCosts": [
+        30,
+        65,
+        130
+      ],
+      "prerequisites": [],
+      "effect": "최대 내구도 단계당 +5%, 최대 +15%"
+    },
+    {
+      "id": "S2",
+      "name": "충돌 보호",
+      "branch": "survival",
+      "rankCosts": [
+        90,
+        160
+      ],
+      "prerequisites": [
+        {
+          "id": "S1",
+          "minRank": 1
+        }
+      ],
+      "effect": "약한 충돌 HP 피해 단계당 -10%, 최대 -20%; 속도 손실은 그대로"
+    },
+    {
+      "id": "S3",
+      "name": "아이템 지속",
+      "branch": "survival",
+      "rankCosts": [
+        90,
+        160
+      ],
+      "prerequisites": [
+        {
+          "id": "S1",
+          "minRank": 1
+        }
+      ],
+      "effect": "시간제 아이템 지속시간 단계당 +10%, 최대 +20%; 즉시 가속/회복은 제외"
+    },
+    {
+      "id": "X1",
+      "name": "날개 활공",
+      "branch": "shape",
+      "rankCosts": [
+        180
+      ],
+      "prerequisites": [
+        {
+          "id": "G1",
+          "minRank": 1
+        },
+        {
+          "id": "C2",
+          "minRank": 1
+        }
+      ],
+      "effect": "기본 침하 10~13% 추가 감소; 적합도=(A+R)/2"
+    },
+    {
+      "id": "X2",
+      "name": "기수 가속",
+      "branch": "shape",
+      "rankCosts": [
+        180
+      ],
+      "prerequisites": [
+        {
+          "id": "A2",
+          "minRank": 1
+        },
+        {
+          "id": "C1",
+          "minRank": 1
+        }
+      ],
+      "effect": "초기 속도 및 가속 아이템 속도 증가량 +10~13%; 적합도=(T+1-A)/2"
+    },
+    {
+      "id": "X3",
+      "name": "기류 동조",
+      "branch": "shape",
+      "rankCosts": [
+        220
+      ],
+      "prerequisites": [
+        {
+          "id": "G3",
+          "minRank": 1
+        },
+        {
+          "id": "S3",
+          "minRank": 1
+        }
+      ],
+      "effect": "상승기류 수직 효과 +10~13%; 적합도=A"
+    },
+    {
+      "id": "X4",
+      "name": "민첩 제어",
+      "branch": "shape",
+      "rankCosts": [
+        180
+      ],
+      "prerequisites": [
+        {
+          "id": "C1",
+          "minRank": 1
+        },
+        {
+          "id": "G1",
+          "minRank": 1
+        }
+      ],
+      "effect": "자세 반응률 +10~13%; 적합도=1-A"
+    },
+    {
+      "id": "X5",
+      "name": "안정 복원",
+      "branch": "shape",
+      "rankCosts": [
+        180
+      ],
+      "prerequisites": [
+        {
+          "id": "S2",
+          "minRank": 1
+        },
+        {
+          "id": "C3",
+          "minRank": 1
+        }
+      ],
+      "effect": "충돌 자세 교란의 자연 회복률 +10~13%; 적합도=D"
+    },
+    {
+      "id": "P1",
+      "name": "활공 전문화",
+      "branch": "specialization",
+      "rankCosts": [
+        300
+      ],
+      "prerequisites": [
+        {
+          "id": "X1",
+          "minRank": 1
+        },
+        {
+          "id": "X3",
+          "minRank": 1
+        }
+      ],
+      "effect": "X1/X3 형태 보너스 한도 30%→60%, 각 노드 효과 10~16%; 기본 침하 추가 -3%"
+    },
+    {
+      "id": "P2",
+      "name": "속도 전문화",
+      "branch": "specialization",
+      "rankCosts": [
+        300
+      ],
+      "prerequisites": [
+        {
+          "id": "X2",
+          "minRank": 1
+        },
+        {
+          "id": "X4",
+          "minRank": 1
+        }
+      ],
+      "effect": "X2/X4 형태 보너스 한도 30%→60%, 각 노드 효과 10~16%; 초기 속도 추가 +3%"
+    },
+    {
+      "id": "P3",
+      "name": "안정 전문화",
+      "branch": "specialization",
+      "rankCosts": [
+        300
+      ],
+      "prerequisites": [
+        {
+          "id": "X5",
+          "minRank": 1
+        },
+        {
+          "id": "S3",
+          "minRank": 1
+        }
+      ],
+      "effect": "X5 형태 보너스 한도 30%→60%, 효과 10~16%; 최대 내구도 추가 +5%"
+    }
+  ]
+}
+

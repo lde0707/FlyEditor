@@ -1,0 +1,3021 @@
+{
+  "nodes": [
+    {
+      "id": "Launch_1",
+      "group": "Launch",
+      "title": "던지기 강화",
+      "summary": "초기 발사 속도 +3%.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 128,
+      "requiredRank": 1,
+      "runtimeIndex": 0,
+      "cost": 30,
+      "parent": "Root",
+      "position": [
+        -230,
+        -80
+      ]
+    },
+    {
+      "id": "Launch_2",
+      "group": "Launch",
+      "title": "힘 전달",
+      "summary": "초기 발사 속도 추가 +3%. 누적 +6%.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": 0,
+      "cost": 65,
+      "parent": "Launch_1",
+      "position": [
+        -460,
+        -200
+      ]
+    },
+    {
+      "id": "Launch_3",
+      "group": "Launch",
+      "title": "긴 팔로스루",
+      "summary": "초기 발사 속도 추가 +3%. 누적 +9%.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": 0,
+      "cost": 130,
+      "parent": "Launch_2",
+      "position": [
+        -680,
+        -330
+      ]
+    },
+    {
+      "id": "Drag_1",
+      "group": "Drag",
+      "title": "표면 저항 감소",
+      "summary": "기본 공기 저항 감소.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Launch_1",
+      "position": [
+        -460,
+        0
+      ]
+    },
+    {
+      "id": "Drag_2",
+      "group": "Drag",
+      "title": "매끈한 날개",
+      "summary": "기본 공기 저항 추가 감소.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Drag_1",
+      "position": [
+        -680,
+        -40
+      ]
+    },
+    {
+      "id": "Drag_3",
+      "group": "Drag",
+      "title": "공기 가르기",
+      "summary": "기본 공기 저항 추가 감소.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Drag_2",
+      "position": [
+        -870,
+        -140
+      ]
+    },
+    {
+      "id": "Boost_1",
+      "group": "Boost",
+      "title": "가속 아이템 강화",
+      "summary": "가속 아이템의 추진력 증가.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Launch_1",
+      "position": [
+        -250,
+        -300
+      ]
+    },
+    {
+      "id": "Boost_2",
+      "group": "Boost",
+      "title": "추진력 집중",
+      "summary": "가속 아이템의 추진력 추가 증가.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Boost_1",
+      "position": [
+        -450,
+        -440
+      ]
+    },
+    {
+      "id": "Boost_3",
+      "group": "Boost",
+      "title": "강한 추진",
+      "summary": "가속 아이템의 추진력 추가 증가.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Boost_2",
+      "position": [
+        -650,
+        -560
+      ]
+    },
+    {
+      "id": "Dive_1",
+      "group": "Dive",
+      "title": "하강 가속",
+      "summary": "고도를 속도로 바꾸는 추가 하강 가속 능력을 해금합니다.",
+      "family": "Speed",
+      "unlocksAbility": true,
+      "frameSize": 144,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Boost_1",
+      "position": [
+        -70,
+        -320
+      ]
+    },
+    {
+      "id": "Dive_2",
+      "group": "Dive",
+      "title": "하강 전환",
+      "summary": "하강 가속을 시작하기까지 필요한 시간을 줄입니다.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Dive_1",
+      "position": [
+        -90,
+        -520
+      ]
+    },
+    {
+      "id": "Dive_3",
+      "group": "Dive",
+      "title": "가속 유지",
+      "summary": "하강으로 얻은 속도를 더 오래 유지합니다.",
+      "family": "Speed",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Dive_2",
+      "position": [
+        -280,
+        -650
+      ]
+    },
+    {
+      "id": "Glide_1",
+      "group": "Glide",
+      "title": "활공 효율",
+      "summary": "기본 침하량 -4%.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 128,
+      "requiredRank": 1,
+      "runtimeIndex": 1,
+      "cost": 30,
+      "parent": "Root",
+      "position": [
+        200,
+        -100
+      ]
+    },
+    {
+      "id": "Glide_2",
+      "group": "Glide",
+      "title": "날개 균형",
+      "summary": "기본 침하량 추가 -4%. 누적 -8%.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": 1,
+      "cost": 65,
+      "parent": "Glide_1",
+      "position": [
+        340,
+        -250
+      ]
+    },
+    {
+      "id": "Glide_3",
+      "group": "Glide",
+      "title": "장거리 활공",
+      "summary": "기본 침하량 추가 -4%. 누적 -12%.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": 1,
+      "cost": 130,
+      "parent": "Glide_2",
+      "position": [
+        520,
+        -400
+      ]
+    },
+    {
+      "id": "Climb_1",
+      "group": "Climb",
+      "title": "상승 효율",
+      "summary": "상승 시 속도 손실 감소.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Glide_1",
+      "position": [
+        380,
+        -40
+      ]
+    },
+    {
+      "id": "Climb_2",
+      "group": "Climb",
+      "title": "부드러운 상승",
+      "summary": "상승 시 속도 손실 추가 감소.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Climb_1",
+      "position": [
+        540,
+        -180
+      ]
+    },
+    {
+      "id": "Climb_3",
+      "group": "Climb",
+      "title": "고도 전환",
+      "summary": "상승 시 속도 손실 추가 감소.",
+      "family": "Flight",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Climb_2",
+      "position": [
+        720,
+        -320
+      ]
+    },
+    {
+      "id": "Recover_1",
+      "group": "Recover",
+      "title": "자세 회복",
+      "summary": "충돌 후 흐트러진 자세를 회복하는 능력을 해금합니다.",
+      "family": "Handling",
+      "unlocksAbility": true,
+      "frameSize": 144,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Root",
+      "position": [
+        230,
+        160
+      ]
+    },
+    {
+      "id": "Recover_2",
+      "group": "Recover",
+      "title": "빠른 복원",
+      "summary": "자세 회복에 필요한 시간을 줄입니다.",
+      "family": "Handling",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Recover_1",
+      "position": [
+        430,
+        210
+      ]
+    },
+    {
+      "id": "Recover_3",
+      "group": "Recover",
+      "title": "재정비",
+      "summary": "자세 회복을 다시 사용할 수 있는 기회를 늘립니다.",
+      "family": "Handling",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Recover_2",
+      "position": [
+        610,
+        160
+      ]
+    },
+    {
+      "id": "Durability_1",
+      "group": "Durability",
+      "title": "기체 내구",
+      "summary": "최대 내구도 증가.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 128,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Root",
+      "position": [
+        -180,
+        180
+      ]
+    },
+    {
+      "id": "Durability_2",
+      "group": "Durability",
+      "title": "동체 보강",
+      "summary": "최대 내구도 추가 증가.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Durability_1",
+      "position": [
+        -350,
+        320
+      ]
+    },
+    {
+      "id": "Durability_3",
+      "group": "Durability",
+      "title": "접힘 보강",
+      "summary": "최대 내구도 추가 증가.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Durability_2",
+      "position": [
+        -530,
+        450
+      ]
+    },
+    {
+      "id": "Impact_1",
+      "group": "Impact",
+      "title": "충격 분산",
+      "summary": "충돌할 때 잃는 속도 감소. 내구도와 구분되는 효과입니다.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Durability_1",
+      "position": [
+        -400,
+        170
+      ]
+    },
+    {
+      "id": "Impact_2",
+      "group": "Impact",
+      "title": "완충 구조",
+      "summary": "충돌 감속 추가 감소.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Impact_1",
+      "position": [
+        -600,
+        250
+      ]
+    },
+    {
+      "id": "Impact_3",
+      "group": "Impact",
+      "title": "속도 보호",
+      "summary": "충돌 감속 추가 감소.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Impact_2",
+      "position": [
+        -800,
+        390
+      ]
+    },
+    {
+      "id": "Shield_1",
+      "group": "Shield",
+      "title": "종이 방패",
+      "summary": "첫 장애물 충돌의 내구도 피해를 한 번 차단합니다. 지면 충돌에는 적용되지 않습니다.",
+      "family": "Protection",
+      "unlocksAbility": true,
+      "frameSize": 144,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Durability_1",
+      "position": [
+        -120,
+        390
+      ]
+    },
+    {
+      "id": "Shield_2",
+      "group": "Shield",
+      "title": "방패 보강",
+      "summary": "방패가 막을 수 있는 피해 범위를 확장합니다.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Shield_1",
+      "position": [
+        -260,
+        530
+      ]
+    },
+    {
+      "id": "Shield_3",
+      "group": "Shield",
+      "title": "예비 방패",
+      "summary": "한 비행에서 방패를 사용할 수 있는 횟수를 늘립니다.",
+      "family": "Protection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Shield_2",
+      "position": [
+        -450,
+        650
+      ]
+    },
+    {
+      "id": "Magnet_1",
+      "group": "Magnet",
+      "title": "수집 끌어당김",
+      "summary": "가까운 수집물을 끌어당기는 능력을 해금합니다.",
+      "family": "Collection",
+      "unlocksAbility": true,
+      "frameSize": 144,
+      "requiredRank": 1,
+      "runtimeIndex": -1,
+      "cost": 30,
+      "parent": "Root",
+      "position": [
+        160,
+        410
+      ]
+    },
+    {
+      "id": "Magnet_2",
+      "group": "Magnet",
+      "title": "넓은 수집",
+      "summary": "수집물을 끌어당기는 범위를 늘립니다.",
+      "family": "Collection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 2,
+      "runtimeIndex": -1,
+      "cost": 65,
+      "parent": "Magnet_1",
+      "position": [
+        360,
+        460
+      ]
+    },
+    {
+      "id": "Magnet_3",
+      "group": "Magnet",
+      "title": "빠른 수집",
+      "summary": "범위 안의 수집물을 끌어당기는 속도를 높입니다.",
+      "family": "Collection",
+      "unlocksAbility": false,
+      "frameSize": 104,
+      "requiredRank": 3,
+      "runtimeIndex": -1,
+      "cost": 130,
+      "parent": "Magnet_2",
+      "position": [
+        550,
+        400
+      ]
+    }
+  ],
+  "palettes": {
+    "Speed": {
+      "label": "속도",
+      "fill": "#EBC7AF",
+      "accent": "#98674A",
+      "dark": "#704A36"
+    },
+    "Flight": {
+      "label": "비행",
+      "fill": "#C9DFEB",
+      "accent": "#557B92",
+      "dark": "#3C5B6E"
+    },
+    "Handling": {
+      "label": "조종",
+      "fill": "#DCD2EA",
+      "accent": "#7B668F",
+      "dark": "#574567"
+    },
+    "Protection": {
+      "label": "보호",
+      "fill": "#D0DDC7",
+      "accent": "#687E5E",
+      "dark": "#485940"
+    },
+    "Collection": {
+      "label": "수집",
+      "fill": "#EEE1AA",
+      "accent": "#948143",
+      "dark": "#6D5D2F"
+    }
+  },
+  "sprites": [
+    {
+      "name": "Button_Speed_Ready",
+      "path": "Sprites/Button_Speed_Ready.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Speed_Pressed",
+      "path": "Sprites/Button_Speed_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Speed_Success",
+      "path": "Sprites/Button_Speed_Success.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Speed_Max",
+      "path": "Sprites/Button_Speed_Max.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Panel_Speed",
+      "path": "Sprites/Panel_Speed.png",
+      "width": 400,
+      "height": 900,
+      "alpha": true,
+      "border": [
+        44,
+        32,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "Feedback_Speed_0",
+      "path": "Sprites/Feedback_Speed_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Speed_1",
+      "path": "Sprites/Feedback_Speed_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Speed_2",
+      "path": "Sprites/Feedback_Speed_2.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Button_Flight_Ready",
+      "path": "Sprites/Button_Flight_Ready.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Flight_Pressed",
+      "path": "Sprites/Button_Flight_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Flight_Success",
+      "path": "Sprites/Button_Flight_Success.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Flight_Max",
+      "path": "Sprites/Button_Flight_Max.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Panel_Flight",
+      "path": "Sprites/Panel_Flight.png",
+      "width": 400,
+      "height": 900,
+      "alpha": true,
+      "border": [
+        44,
+        32,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "Feedback_Flight_0",
+      "path": "Sprites/Feedback_Flight_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Flight_1",
+      "path": "Sprites/Feedback_Flight_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Flight_2",
+      "path": "Sprites/Feedback_Flight_2.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Button_Handling_Ready",
+      "path": "Sprites/Button_Handling_Ready.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Handling_Pressed",
+      "path": "Sprites/Button_Handling_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Handling_Success",
+      "path": "Sprites/Button_Handling_Success.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Handling_Max",
+      "path": "Sprites/Button_Handling_Max.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Panel_Handling",
+      "path": "Sprites/Panel_Handling.png",
+      "width": 400,
+      "height": 900,
+      "alpha": true,
+      "border": [
+        44,
+        32,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "Feedback_Handling_0",
+      "path": "Sprites/Feedback_Handling_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Handling_1",
+      "path": "Sprites/Feedback_Handling_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Handling_2",
+      "path": "Sprites/Feedback_Handling_2.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Button_Protection_Ready",
+      "path": "Sprites/Button_Protection_Ready.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Protection_Pressed",
+      "path": "Sprites/Button_Protection_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Protection_Success",
+      "path": "Sprites/Button_Protection_Success.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Protection_Max",
+      "path": "Sprites/Button_Protection_Max.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Panel_Protection",
+      "path": "Sprites/Panel_Protection.png",
+      "width": 400,
+      "height": 900,
+      "alpha": true,
+      "border": [
+        44,
+        32,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "Feedback_Protection_0",
+      "path": "Sprites/Feedback_Protection_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Protection_1",
+      "path": "Sprites/Feedback_Protection_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Protection_2",
+      "path": "Sprites/Feedback_Protection_2.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Button_Collection_Ready",
+      "path": "Sprites/Button_Collection_Ready.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Collection_Pressed",
+      "path": "Sprites/Button_Collection_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Collection_Success",
+      "path": "Sprites/Button_Collection_Success.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Button_Collection_Max",
+      "path": "Sprites/Button_Collection_Max.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        40,
+        20,
+        40,
+        20
+      ]
+    },
+    {
+      "name": "Panel_Collection",
+      "path": "Sprites/Panel_Collection.png",
+      "width": 400,
+      "height": 900,
+      "alpha": true,
+      "border": [
+        44,
+        32,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "Feedback_Collection_0",
+      "path": "Sprites/Feedback_Collection_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Collection_1",
+      "path": "Sprites/Feedback_Collection_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Feedback_Collection_2",
+      "path": "Sprites/Feedback_Collection_2.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Launch",
+      "path": "Sprites/Icon_Launch.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Drag",
+      "path": "Sprites/Icon_Drag.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Boost",
+      "path": "Sprites/Icon_Boost.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Dive",
+      "path": "Sprites/Icon_Dive.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Glide",
+      "path": "Sprites/Icon_Glide.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Climb",
+      "path": "Sprites/Icon_Climb.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Recover",
+      "path": "Sprites/Icon_Recover.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Durability",
+      "path": "Sprites/Icon_Durability.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Impact",
+      "path": "Sprites/Icon_Impact.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Shield",
+      "path": "Sprites/Icon_Shield.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Magnet",
+      "path": "Sprites/Icon_Magnet.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_1_0",
+      "path": "Sprites/Node_Launch_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_1_0_Selected",
+      "path": "Sprites/Node_Launch_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_1_1",
+      "path": "Sprites/Node_Launch_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_1_1_Selected",
+      "path": "Sprites/Node_Launch_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_2_0",
+      "path": "Sprites/Node_Launch_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_2_0_Selected",
+      "path": "Sprites/Node_Launch_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_2_1",
+      "path": "Sprites/Node_Launch_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_2_1_Selected",
+      "path": "Sprites/Node_Launch_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_3_0",
+      "path": "Sprites/Node_Launch_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_3_0_Selected",
+      "path": "Sprites/Node_Launch_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_3_1",
+      "path": "Sprites/Node_Launch_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Launch_3_1_Selected",
+      "path": "Sprites/Node_Launch_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_1_0",
+      "path": "Sprites/Node_Drag_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_1_0_Selected",
+      "path": "Sprites/Node_Drag_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_1_1",
+      "path": "Sprites/Node_Drag_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_1_1_Selected",
+      "path": "Sprites/Node_Drag_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_2_0",
+      "path": "Sprites/Node_Drag_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_2_0_Selected",
+      "path": "Sprites/Node_Drag_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_2_1",
+      "path": "Sprites/Node_Drag_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_2_1_Selected",
+      "path": "Sprites/Node_Drag_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_3_0",
+      "path": "Sprites/Node_Drag_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_3_0_Selected",
+      "path": "Sprites/Node_Drag_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_3_1",
+      "path": "Sprites/Node_Drag_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Drag_3_1_Selected",
+      "path": "Sprites/Node_Drag_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_1_0",
+      "path": "Sprites/Node_Boost_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_1_0_Selected",
+      "path": "Sprites/Node_Boost_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_1_1",
+      "path": "Sprites/Node_Boost_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_1_1_Selected",
+      "path": "Sprites/Node_Boost_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_2_0",
+      "path": "Sprites/Node_Boost_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_2_0_Selected",
+      "path": "Sprites/Node_Boost_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_2_1",
+      "path": "Sprites/Node_Boost_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_2_1_Selected",
+      "path": "Sprites/Node_Boost_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_3_0",
+      "path": "Sprites/Node_Boost_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_3_0_Selected",
+      "path": "Sprites/Node_Boost_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_3_1",
+      "path": "Sprites/Node_Boost_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Boost_3_1_Selected",
+      "path": "Sprites/Node_Boost_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_1_0",
+      "path": "Sprites/Node_Dive_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_1_0_Selected",
+      "path": "Sprites/Node_Dive_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_1_1",
+      "path": "Sprites/Node_Dive_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_1_1_Selected",
+      "path": "Sprites/Node_Dive_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_2_0",
+      "path": "Sprites/Node_Dive_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_2_0_Selected",
+      "path": "Sprites/Node_Dive_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_2_1",
+      "path": "Sprites/Node_Dive_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_2_1_Selected",
+      "path": "Sprites/Node_Dive_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_3_0",
+      "path": "Sprites/Node_Dive_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_3_0_Selected",
+      "path": "Sprites/Node_Dive_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_3_1",
+      "path": "Sprites/Node_Dive_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Dive_3_1_Selected",
+      "path": "Sprites/Node_Dive_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_1_0",
+      "path": "Sprites/Node_Glide_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_1_0_Selected",
+      "path": "Sprites/Node_Glide_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_1_1",
+      "path": "Sprites/Node_Glide_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_1_1_Selected",
+      "path": "Sprites/Node_Glide_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_2_0",
+      "path": "Sprites/Node_Glide_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_2_0_Selected",
+      "path": "Sprites/Node_Glide_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_2_1",
+      "path": "Sprites/Node_Glide_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_2_1_Selected",
+      "path": "Sprites/Node_Glide_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_3_0",
+      "path": "Sprites/Node_Glide_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_3_0_Selected",
+      "path": "Sprites/Node_Glide_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_3_1",
+      "path": "Sprites/Node_Glide_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Glide_3_1_Selected",
+      "path": "Sprites/Node_Glide_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_1_0",
+      "path": "Sprites/Node_Climb_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_1_0_Selected",
+      "path": "Sprites/Node_Climb_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_1_1",
+      "path": "Sprites/Node_Climb_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_1_1_Selected",
+      "path": "Sprites/Node_Climb_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_2_0",
+      "path": "Sprites/Node_Climb_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_2_0_Selected",
+      "path": "Sprites/Node_Climb_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_2_1",
+      "path": "Sprites/Node_Climb_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_2_1_Selected",
+      "path": "Sprites/Node_Climb_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_3_0",
+      "path": "Sprites/Node_Climb_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_3_0_Selected",
+      "path": "Sprites/Node_Climb_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_3_1",
+      "path": "Sprites/Node_Climb_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Climb_3_1_Selected",
+      "path": "Sprites/Node_Climb_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_1_0",
+      "path": "Sprites/Node_Recover_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_1_0_Selected",
+      "path": "Sprites/Node_Recover_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_1_1",
+      "path": "Sprites/Node_Recover_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_1_1_Selected",
+      "path": "Sprites/Node_Recover_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_2_0",
+      "path": "Sprites/Node_Recover_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_2_0_Selected",
+      "path": "Sprites/Node_Recover_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_2_1",
+      "path": "Sprites/Node_Recover_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_2_1_Selected",
+      "path": "Sprites/Node_Recover_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_3_0",
+      "path": "Sprites/Node_Recover_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_3_0_Selected",
+      "path": "Sprites/Node_Recover_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_3_1",
+      "path": "Sprites/Node_Recover_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Recover_3_1_Selected",
+      "path": "Sprites/Node_Recover_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_1_0",
+      "path": "Sprites/Node_Durability_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_1_0_Selected",
+      "path": "Sprites/Node_Durability_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_1_1",
+      "path": "Sprites/Node_Durability_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_1_1_Selected",
+      "path": "Sprites/Node_Durability_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_2_0",
+      "path": "Sprites/Node_Durability_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_2_0_Selected",
+      "path": "Sprites/Node_Durability_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_2_1",
+      "path": "Sprites/Node_Durability_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_2_1_Selected",
+      "path": "Sprites/Node_Durability_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_3_0",
+      "path": "Sprites/Node_Durability_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_3_0_Selected",
+      "path": "Sprites/Node_Durability_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_3_1",
+      "path": "Sprites/Node_Durability_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Durability_3_1_Selected",
+      "path": "Sprites/Node_Durability_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_1_0",
+      "path": "Sprites/Node_Impact_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_1_0_Selected",
+      "path": "Sprites/Node_Impact_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_1_1",
+      "path": "Sprites/Node_Impact_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_1_1_Selected",
+      "path": "Sprites/Node_Impact_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_2_0",
+      "path": "Sprites/Node_Impact_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_2_0_Selected",
+      "path": "Sprites/Node_Impact_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_2_1",
+      "path": "Sprites/Node_Impact_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_2_1_Selected",
+      "path": "Sprites/Node_Impact_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_3_0",
+      "path": "Sprites/Node_Impact_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_3_0_Selected",
+      "path": "Sprites/Node_Impact_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_3_1",
+      "path": "Sprites/Node_Impact_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Impact_3_1_Selected",
+      "path": "Sprites/Node_Impact_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_1_0",
+      "path": "Sprites/Node_Shield_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_1_0_Selected",
+      "path": "Sprites/Node_Shield_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_1_1",
+      "path": "Sprites/Node_Shield_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_1_1_Selected",
+      "path": "Sprites/Node_Shield_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_2_0",
+      "path": "Sprites/Node_Shield_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_2_0_Selected",
+      "path": "Sprites/Node_Shield_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_2_1",
+      "path": "Sprites/Node_Shield_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_2_1_Selected",
+      "path": "Sprites/Node_Shield_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_3_0",
+      "path": "Sprites/Node_Shield_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_3_0_Selected",
+      "path": "Sprites/Node_Shield_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_3_1",
+      "path": "Sprites/Node_Shield_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Shield_3_1_Selected",
+      "path": "Sprites/Node_Shield_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_1_0",
+      "path": "Sprites/Node_Magnet_1_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_1_0_Selected",
+      "path": "Sprites/Node_Magnet_1_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_1_1",
+      "path": "Sprites/Node_Magnet_1_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_1_1_Selected",
+      "path": "Sprites/Node_Magnet_1_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_2_0",
+      "path": "Sprites/Node_Magnet_2_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_2_0_Selected",
+      "path": "Sprites/Node_Magnet_2_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_2_1",
+      "path": "Sprites/Node_Magnet_2_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_2_1_Selected",
+      "path": "Sprites/Node_Magnet_2_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_3_0",
+      "path": "Sprites/Node_Magnet_3_0.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_3_0_Selected",
+      "path": "Sprites/Node_Magnet_3_0_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_3_1",
+      "path": "Sprites/Node_Magnet_3_1.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Magnet_3_1_Selected",
+      "path": "Sprites/Node_Magnet_3_1_Selected.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Root",
+      "path": "Sprites/Node_Root.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Currency",
+      "path": "Sprites/Icon_Currency.png",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Background_Research",
+      "path": "Sprites/Background_Research.png",
+      "width": 1920,
+      "height": 1080,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "count": 33,
+  "onePurchasePerNode": true,
+  "runtimeNodes": 6,
+  "pendingNodes": 27
+}

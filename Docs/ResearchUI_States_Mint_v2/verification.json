@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "sprites": 49,
+  "svg": 49,
+  "transparentBackground": true,
+  "newGuidsDistinct": true,
+  "pastelStageColorsVerified": true,
+  "runtimeWired": false
+}

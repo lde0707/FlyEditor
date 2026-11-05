@@ -1,0 +1,814 @@
+{
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "positions": {
+    "Root": [
+      700,
+      545
+    ],
+    "A1": [
+      460,
+      410
+    ],
+    "A2": [
+      300,
+      280
+    ],
+    "A3": [
+      490,
+      245
+    ],
+    "G1": [
+      965,
+      405
+    ],
+    "G2": [
+      1120,
+      405
+    ],
+    "G3": [
+      1280,
+      405
+    ],
+    "C1": [
+      460,
+      690
+    ],
+    "C2": [
+      300,
+      845
+    ],
+    "C3": [
+      525,
+      845
+    ],
+    "S1": [
+      950,
+      690
+    ],
+    "S2": [
+      1090,
+      785
+    ],
+    "S3": [
+      1290,
+      690
+    ],
+    "X1": [
+      965,
+      230
+    ],
+    "X2": [
+      195,
+      185
+    ],
+    "X3": [
+      1310,
+      235
+    ],
+    "X4": [
+      205,
+      605
+    ],
+    "X5": [
+      1100,
+      910
+    ],
+    "P1": [
+      1140,
+      165
+    ],
+    "P2": [
+      95,
+      310
+    ],
+    "P3": [
+      1310,
+      910
+    ]
+  },
+  "primaryParent": {
+    "A1": "Root",
+    "G1": "Root",
+    "C1": "Root",
+    "S1": "Root",
+    "A2": "A1",
+    "A3": "A1",
+    "G2": "G1",
+    "G3": "G2",
+    "C2": "C1",
+    "C3": "C1",
+    "S2": "S1",
+    "S3": "S1",
+    "X1": "G1",
+    "X2": "A2",
+    "X3": "G3",
+    "X4": "C1",
+    "X5": "S2",
+    "P1": "X1",
+    "P2": "X2",
+    "P3": "X5"
+  },
+  "prerequisites": {
+    "A1": [],
+    "A2": [
+      {
+        "id": "A1",
+        "minRank": 1
+      }
+    ],
+    "A3": [
+      {
+        "id": "A1",
+        "minRank": 1
+      }
+    ],
+    "G1": [],
+    "G2": [
+      {
+        "id": "G1",
+        "minRank": 1
+      }
+    ],
+    "G3": [
+      {
+        "id": "G2",
+        "minRank": 1
+      }
+    ],
+    "C1": [],
+    "C2": [
+      {
+        "id": "C1",
+        "minRank": 1
+      }
+    ],
+    "C3": [
+      {
+        "id": "C1",
+        "minRank": 1
+      }
+    ],
+    "S1": [],
+    "S2": [
+      {
+        "id": "S1",
+        "minRank": 1
+      }
+    ],
+    "S3": [
+      {
+        "id": "S1",
+        "minRank": 1
+      }
+    ],
+    "X1": [
+      {
+        "id": "G1",
+        "minRank": 1
+      },
+      {
+        "id": "C2",
+        "minRank": 1
+      }
+    ],
+    "X2": [
+      {
+        "id": "A2",
+        "minRank": 1
+      },
+      {
+        "id": "C1",
+        "minRank": 1
+      }
+    ],
+    "X3": [
+      {
+        "id": "G3",
+        "minRank": 1
+      },
+      {
+        "id": "S3",
+        "minRank": 1
+      }
+    ],
+    "X4": [
+      {
+        "id": "C1",
+        "minRank": 1
+      },
+      {
+        "id": "G1",
+        "minRank": 1
+      }
+    ],
+    "X5": [
+      {
+        "id": "S2",
+        "minRank": 1
+      },
+      {
+        "id": "C3",
+        "minRank": 1
+      }
+    ],
+    "P1": [
+      {
+        "id": "X1",
+        "minRank": 1
+      },
+      {
+        "id": "X3",
+        "minRank": 1
+      }
+    ],
+    "P2": [
+      {
+        "id": "X2",
+        "minRank": 1
+      },
+      {
+        "id": "X4",
+        "minRank": 1
+      }
+    ],
+    "P3": [
+      {
+        "id": "X5",
+        "minRank": 1
+      },
+      {
+        "id": "S3",
+        "minRank": 1
+      }
+    ]
+  },
+  "runtimeCurrentlyImplemented": [
+    "A1",
+    "G1",
+    "C1"
+  ],
+  "sprites": [
+    {
+      "name": "Icon_Root",
+      "path": "Sprites/Icon_Root.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A1",
+      "path": "Sprites/Icon_A1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A2",
+      "path": "Sprites/Icon_A2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_A3",
+      "path": "Sprites/Icon_A3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G1",
+      "path": "Sprites/Icon_G1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G2",
+      "path": "Sprites/Icon_G2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_G3",
+      "path": "Sprites/Icon_G3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C1",
+      "path": "Sprites/Icon_C1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C2",
+      "path": "Sprites/Icon_C2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_C3",
+      "path": "Sprites/Icon_C3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S1",
+      "path": "Sprites/Icon_S1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S2",
+      "path": "Sprites/Icon_S2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_S3",
+      "path": "Sprites/Icon_S3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X1",
+      "path": "Sprites/Icon_X1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X2",
+      "path": "Sprites/Icon_X2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X3",
+      "path": "Sprites/Icon_X3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X4",
+      "path": "Sprites/Icon_X4.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_X5",
+      "path": "Sprites/Icon_X5.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P1",
+      "path": "Sprites/Icon_P1.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P2",
+      "path": "Sprites/Icon_P2.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_P3",
+      "path": "Sprites/Icon_P3.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Check",
+      "path": "Sprites/Icon_Check.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Close",
+      "path": "Sprites/Icon_Close.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Icon_Currency",
+      "path": "Sprites/Icon_Currency.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Button_Normal",
+      "path": "Sprites/Button_Normal.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "name": "Button_Hover",
+      "path": "Sprites/Button_Hover.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "name": "Button_Pressed",
+      "path": "Sprites/Button_Pressed.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "name": "Button_Disabled",
+      "path": "Sprites/Button_Disabled.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "name": "Button_Primary",
+      "path": "Sprites/Button_Primary.png",
+      "width": 512,
+      "height": 96,
+      "alpha": true,
+      "border": [
+        12,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "name": "Panel_Background",
+      "path": "Sprites/Panel_Background.png",
+      "width": 408,
+      "height": 984,
+      "alpha": true,
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "name": "Panel_Dividers",
+      "path": "Sprites/Panel_Dividers.png",
+      "width": 408,
+      "height": 984,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Square",
+      "path": "Sprites/Node_Square.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Square_Selected",
+      "path": "Sprites/Node_Square_Selected.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Diamond",
+      "path": "Sprites/Node_Diamond.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Diamond_Selected",
+      "path": "Sprites/Node_Diamond_Selected.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Hexagon",
+      "path": "Sprites/Node_Hexagon.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Node_Hexagon_Selected",
+      "path": "Sprites/Node_Hexagon_Selected.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rank_0",
+      "path": "Sprites/Rank_0.png",
+      "width": 60,
+      "height": 12,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rank_1",
+      "path": "Sprites/Rank_1.png",
+      "width": 60,
+      "height": 12,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rank_2",
+      "path": "Sprites/Rank_2.png",
+      "width": 60,
+      "height": 12,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rank_3",
+      "path": "Sprites/Rank_3.png",
+      "width": 60,
+      "height": 12,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Plane_Preview",
+      "path": "Sprites/Plane_Preview.png",
+      "width": 256,
+      "height": 128,
+      "alpha": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Background_Research",
+      "path": "Sprites/Background_Research.png",
+      "width": 1672,
+      "height": 941,
+      "alpha": false,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

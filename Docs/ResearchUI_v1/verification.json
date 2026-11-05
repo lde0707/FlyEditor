@@ -1,0 +1,193 @@
+{
+  "status": "passed",
+  "pngSprites": 43,
+  "svgSources": 42,
+  "fullWebNodes": 21,
+  "currentPrototypeNodes": 4,
+  "previewsResolution": [
+    1920,
+    1080
+  ],
+  "unityInspectorChecked": [
+    "Sprite",
+    "Single",
+    "Full Rect",
+    "Alpha Is Transparency",
+    "Mipmap off"
+  ],
+  "runtimeUISwapped": false,
+  "files": [
+    {
+      "file": "Sprites/Icon_Root.png",
+      "sha256": "bbc5a5d3aa1d59ffa4b9b05d2e971be0fa47fb5a187f2880fe2627f3f4231e54"
+    },
+    {
+      "file": "Sprites/Icon_A1.png",
+      "sha256": "13ce7ec8bd856f070a72ac7368bba00239af5982f1190168a155de052074464a"
+    },
+    {
+      "file": "Sprites/Icon_A2.png",
+      "sha256": "bc279eb77c797d8416e8925640f57e50a805f0e4b62febf959a449ada34850c4"
+    },
+    {
+      "file": "Sprites/Icon_A3.png",
+      "sha256": "d4c0c6818f381c7cf94e540fd61e7e3f8fc2e1827acca329890e97d0a1ef7250"
+    },
+    {
+      "file": "Sprites/Icon_G1.png",
+      "sha256": "b68ab699d3fc7d82fb728a5973a6ffbe9bd528d93eab20a9a5503376e3a4a17d"
+    },
+    {
+      "file": "Sprites/Icon_G2.png",
+      "sha256": "d661d7e9e3aa1bd46925150516a6211e1d7783fb4681afadeb8929276b0c24a8"
+    },
+    {
+      "file": "Sprites/Icon_G3.png",
+      "sha256": "d4161e7f9733e2e66712736800b253fc50878c645fe59a1e592e30de0bf46798"
+    },
+    {
+      "file": "Sprites/Icon_C1.png",
+      "sha256": "9a2e295b7e659875a190d307ca05d0e55419548004dcc9fab210769084f11426"
+    },
+    {
+      "file": "Sprites/Icon_C2.png",
+      "sha256": "6fd7447157474a20c5d47ccb91b530bac53eff7156e11d6365bf0826e00f738e"
+    },
+    {
+      "file": "Sprites/Icon_C3.png",
+      "sha256": "685d3dd682dac82d8328a974dfd5f75fa1b86f1ad352579aa5c5075f1fcf0a73"
+    },
+    {
+      "file": "Sprites/Icon_S1.png",
+      "sha256": "2275945e195d06b2ae1d806d5324b957a658423658f2df8a0fd7c5b80ef70ced"
+    },
+    {
+      "file": "Sprites/Icon_S2.png",
+      "sha256": "8a1cf19a528d45d9ff60e7ad1b76b1be24c8d5f9a6ae1b31f3ea921f21dcce54"
+    },
+    {
+      "file": "Sprites/Icon_S3.png",
+      "sha256": "ca88e04589197672f16965bb90620cd2a3411b9b7a62e93172a418e20d9dbe76"
+    },
+    {
+      "file": "Sprites/Icon_X1.png",
+      "sha256": "498e9df2b46e250fc3ecc76b8616baaaed9ad36db78adb5b37a17aa6d0282328"
+    },
+    {
+      "file": "Sprites/Icon_X2.png",
+      "sha256": "64ac43a94c4571b64bf2cf5339a5dec9a756cc47d939c2b3ee3e3b8498c2e3c5"
+    },
+    {
+      "file": "Sprites/Icon_X3.png",
+      "sha256": "90f693d65fc4fca335802b03f0ea4ade2c0cdc80b6c599b6778c693fb640d50f"
+    },
+    {
+      "file": "Sprites/Icon_X4.png",
+      "sha256": "a7c73cd245de28c3dcaa286cb00d0261c0e36908ee8988006dca0e153eed7d1e"
+    },
+    {
+      "file": "Sprites/Icon_X5.png",
+      "sha256": "f2be857658f48dd9167edb02ad7b8e121eff990578bb1c8b01239fc190eb53ba"
+    },
+    {
+      "file": "Sprites/Icon_P1.png",
+      "sha256": "dba1d8d8d4a8673161891f0cdf98e4e8d198597c4abd49eb4f66cf51ecddf7d8"
+    },
+    {
+      "file": "Sprites/Icon_P2.png",
+      "sha256": "39c27b6a97f6d8d56f1ad6d05f06f2465245c384019f415c0c3b9be9da0071bc"
+    },
+    {
+      "file": "Sprites/Icon_P3.png",
+      "sha256": "66d9ded606311ba6bed1a1ee3534ca7342fe2fcb91b7448391592ff4bbdd34dc"
+    },
+    {
+      "file": "Sprites/Icon_Check.png",
+      "sha256": "9631c501439f885dc98b4c3e793425fd06c3d8adf9836ddf92c4260311c8a570"
+    },
+    {
+      "file": "Sprites/Icon_Close.png",
+      "sha256": "fca7e10bf155a35031cda4d7fecf6e768f20e865fc504e23326cb3862d2648e1"
+    },
+    {
+      "file": "Sprites/Icon_Currency.png",
+      "sha256": "6a9f4de9f341fa3f40ffccc57ed8c45ef61f98d913279541d87969374ebae881"
+    },
+    {
+      "file": "Sprites/Button_Normal.png",
+      "sha256": "519555ca2f348773f86773d63336f204eb02213cb6242f91bda598924593a358"
+    },
+    {
+      "file": "Sprites/Button_Hover.png",
+      "sha256": "9b52c00b7cc40713e28da54c41c472f2d1e6afd35b51a02f9cd3a402f6324c98"
+    },
+    {
+      "file": "Sprites/Button_Pressed.png",
+      "sha256": "23d9d040dc7206d5afc4ba6ee88209e6292c193bdd12effea166c4af62735c99"
+    },
+    {
+      "file": "Sprites/Button_Disabled.png",
+      "sha256": "2dcf696d730d7421af312730772e2df89cfb524d6d2399ceed6cd8f64084139c"
+    },
+    {
+      "file": "Sprites/Button_Primary.png",
+      "sha256": "23d9d040dc7206d5afc4ba6ee88209e6292c193bdd12effea166c4af62735c99"
+    },
+    {
+      "file": "Sprites/Panel_Background.png",
+      "sha256": "9145970ff82e7d64382a3bc2ead59eb707cd2d6f1a20262bfcb525f9f70137e9"
+    },
+    {
+      "file": "Sprites/Panel_Dividers.png",
+      "sha256": "fefdeb29eb3463af1ed90574d9d3af15ac73a7f7a55207f71a3b627ab22c33c0"
+    },
+    {
+      "file": "Sprites/Node_Square.png",
+      "sha256": "76988b1e3da582d799c6d588773cf41d0cafafd4a58c408061d415cc87b57854"
+    },
+    {
+      "file": "Sprites/Node_Square_Selected.png",
+      "sha256": "40207821cf1ccfa583b226dc8df384832b11e28825f76f0c6e2da09e728a2549"
+    },
+    {
+      "file": "Sprites/Node_Diamond.png",
+      "sha256": "5892828e6578680caf1ad778e12aa8751627f4a263591a80ea2b03b493687037"
+    },
+    {
+      "file": "Sprites/Node_Diamond_Selected.png",
+      "sha256": "3d1ce7dd2aa47b9bf033dc72908c90e71a4819eaf53735dee63e26062527e190"
+    },
+    {
+      "file": "Sprites/Node_Hexagon.png",
+      "sha256": "a5ac8d8872b15e4d82ece79b98c2180b85a01dd231bad9b4b91daed2ea0bd906"
+    },
+    {
+      "file": "Sprites/Node_Hexagon_Selected.png",
+      "sha256": "fed2988fb0b58ed44660c13e6352e3fcb5b8209df79ed72d3159aa4b4a2b19a4"
+    },
+    {
+      "file": "Sprites/Rank_0.png",
+      "sha256": "0ba288e8857320101e7a54f49855499305167437b1cc6a130ad7acd213e0ec00"
+    },
+    {
+      "file": "Sprites/Rank_1.png",
+      "sha256": "779c13e0859b1e9f795200f1b40227b7ca07a25baa1c78ba7630ab1a915e43ec"
+    },
+    {
+      "file": "Sprites/Rank_2.png",
+      "sha256": "dd17dad4a83a68451fc1ad90cef90e8d158dc0dbbdd16feef9a98f3589b22b9a"
+    },
+    {
+      "file": "Sprites/Rank_3.png",
+      "sha256": "90267b78b20c2f5a421859f05890bfdc5ae08b38a679c564b33579ec4757595e"
+    },
+    {
+      "file": "Sprites/Plane_Preview.png",
+      "sha256": "8e84f4eec086a12a51147cccf89d8a6b5084ed146e0c3b3ac3dc92e024c54636"
+    },
+    {
+      "file": "Sprites/Background_Research.png",
+      "sha256": "8fa4f281ea19a7e39a51b77f1b967c8cea87775befab38eef8b3f451c4afd4df"
+    }
+  ]
+}

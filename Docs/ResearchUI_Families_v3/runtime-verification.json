@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "checks": [
+    "[ResearchWeb] ASSET CHECKS PASSED",
+    "MODEL CHECKS PASSED",
+    "RESEARCH CHECKS PASSED",
+    "SAVED SCENE CHECKS PASSED",
+    "RESEARCH PLAY CHECKS PASSED",
+    "PLAY CHECKS PASSED"
+  ],
+  "runtimeCandidates": [
+    "A1",
+    "G1",
+    "C1"
+  ],
+  "previewNodes": 20,
+  "previewReadOnly": true,
+  "isolatedSave": true,
+  "windowsBuildRun": false,
+  "sourceHashes": {
+    "PaperFlightController.cs": "adec81bcd6e1601930fa7ebcc1f9527d5dfe69ae46caf4cce21fad8275a05a52",
+    "ResearchWebView.cs": "105bf432e731cc245dd4ff12032519b55d672a26fafac56980f12c1cb4b11a20",
+    "ResearchWebAssets.cs": "82c1a28c407e8891de8b9eadfc34e7f5f6342c1a150cf038c9f9a2b3571dabb2",
+    "FlightVerification.cs": "b6dd27ee6f062bfe78745b7d01cb153c9f578d47d4bff5039036810a833a4f96",
+    "ResearchWebVerification.cs": "e7f52748e6a3fce69476a7b0d5e6584c5dadf232fa069cc27725b881e78abe50"
+  }
+}

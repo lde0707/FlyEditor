@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-05",
+  "unityVersion": "6000.5.3f1",
+  "isolatedEditorExitCode": 0,
+  "log": "../validation/unity-web-v5-clipping.log",
+  "nodeCount": 33,
+  "runtimeNodes": 6,
+  "futurePreviewOnlyNodes": 27,
+  "saveSchemaChanged": false,
+  "sourceHashesMatchedInstalledProject": true,
+  "automated": [
+    "Existing save ranks 0 through 3 map to distinct owned nodes",
+    "Duplicate and out-of-order purchases rejected",
+    "Only owned nodes and next candidates visible",
+    "Preview blocks purchases and keeps research points unchanged",
+    "Purchase costs, atomic save failure, disk reload and flight effects",
+    "Cursor-anchored zoom, 35%-150% limits, pan FSM, fit and reset",
+    "33 node assets, five families, square icons, owned and selected textures",
+    "Flight input gate, energy, landing, reward, restart and relaunch"
+  ],
+  "manualUnityUI": [
+    "Existing purchases appear as separate completed nodes; points remained 26",
+    "Mouse wheel zoomed normal web from 100% to 53%",
+    "Selected Glide_3 at 53%, correct title and insufficient-funds state shown",
+    "Full 33-node preview fits at approximately 50%",
+    "Wheel over the fixed detail panel does not zoom the graph",
+    "Revised cached connection textures stay clipped within the graph",
+    "Title text remains readable on hover"
+  ],
+  "manualPanDragVerified": false,
+  "notes": "Pan FSM verified automatically; native automation drag API only offers left-button dragging, so right/middle drag was not physically exercised. Actual Unity left in full-web preview, purchase disabled. No manual purchase or flight was performed."
+}

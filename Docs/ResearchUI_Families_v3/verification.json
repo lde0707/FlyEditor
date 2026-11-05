@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "sprites": 235,
+  "svg": 235,
+  "families": 4,
+  "upgradeNodes": 20,
+  "alphaVerified": true,
+  "guidCount": 235,
+  "actualRankCapsVerified": true,
+  "maxFillColorsVerified": true,
+  "runtimeWired": false
+}

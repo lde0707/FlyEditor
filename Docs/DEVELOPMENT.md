@@ -100,3 +100,5 @@ Unity 상단 `Tools > FlyEditor`:
 [종이 접기·비행·웹 업그레이드 설계](Design/PAPER_FLIGHT_DESIGN.md)에 접기 조작, 형상 판정식, 20개 연구 노드, 비용·해금 조건, FSM·저장 규칙과 첫 시제품 범위를 정리했습니다. 수치와 제한은 구현 전 제안값입니다.
 
 노드 원본은 `Docs/Design/upgrade-nodes.json`, 비행 설정과 합성 입력은 `Docs/Design/flight-model.json`입니다. `python Docs/Design/verify_design.py`로 그래프 및 오프라인 수식을 검사하고 `verification-results.json`을 갱신합니다. 이 검사는 실제 Unity 접기 메시·충돌·바람·플레이 테스트를 대신하지 않습니다.
+
+현재 InGame의 계열별 연구 웹 사용법은 [연구 웹 적용 안내](RESEARCH_WEB_IMPLEMENTATION.md)를 참고합니다.
