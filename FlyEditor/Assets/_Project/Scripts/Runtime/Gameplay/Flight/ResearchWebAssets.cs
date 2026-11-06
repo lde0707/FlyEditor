@@ -16,11 +16,14 @@ namespace FlyEditor.Flight
         [Serializable]
         public sealed class Node
         {
-            public string id, title, summary;
+            public string id, title, benefit, summary;
             public int runtimeIndex = -1;
             public bool unlocksAbility;
             public float frameSize = 104;
             public Texture2D icon;
+            public Texture2D selection;
+            public Vector2[] outline;
+            public bool anyPrerequisite;
             public int family, parent = -1;
             public int[] prerequisiteIndices;
             public Vector2 position;
@@ -30,6 +33,8 @@ namespace FlyEditor.Flight
         public Texture2D background, panel, plane, root, currency, backButton;
         public Family[] families;
         public Node[] nodes;
+        public float rootFrameSize = 160;
+        public Vector2[] rootOutline;
 
         public static bool IsOwned(Node n, FlightResearch research) => research != null && research.Owns(n.id);
 
@@ -39,13 +44,16 @@ namespace FlyEditor.Flight
             var n = nodes[index];
             if (!research.Unlocked || n.runtimeIndex < 0) return false;
             if (IsOwned(n, research)) return true;
-            if (n.prerequisiteIndices != null)
+            bool hasParents = n.prerequisiteIndices != null && n.prerequisiteIndices.Length > 0;
+            if (hasParents)
                 for (int i = 0; i < n.prerequisiteIndices.Length; i++)
                 {
                     int p = n.prerequisiteIndices[i];
-                    if (p < 0 || p >= nodes.Length || !IsOwned(nodes[p], research)) return false;
+                    bool owns = p >= 0 && p < nodes.Length && IsOwned(nodes[p], research);
+                    if (n.anyPrerequisite && owns) return true;
+                    if (!n.anyPrerequisite && !owns) return false;
                 }
-            return true;
+            return !hasParents || !n.anyPrerequisite;
         }
         public bool CanBuy(int index, FlightResearch research)
         {

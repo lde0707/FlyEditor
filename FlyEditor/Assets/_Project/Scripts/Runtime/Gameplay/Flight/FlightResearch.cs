@@ -85,6 +85,20 @@ namespace FlyEditor.Flight
         public float BestDistance => data.bestDistance;
         public string LastError { get; private set; } = "";
         private readonly HashSet<string> owned;
+        private static readonly int[] GrowthThresholds = { 8, 22, 42, 68, 90 };
+        private static readonly float[] GrowthSpeeds = { 1f, 1.45f, 2.45f, 3.8f, 5.2f, 6.5f };
+        public int OwnedCount => owned.Count;
+        public int GrowthTier
+        {
+            get
+            {
+                int tier = 0;
+                while (tier < GrowthThresholds.Length && OwnedCount >= GrowthThresholds[tier]) tier++;
+                return tier;
+            }
+        }
+        public int NextGrowthCount => GrowthTier < GrowthThresholds.Length ? GrowthThresholds[GrowthTier] : 0;
+        public float NextGrowthSpeed => GrowthSpeeds[Mathf.Min(GrowthTier + 1, GrowthSpeeds.Length - 1)];
         private static readonly string[] LaunchIds = { "Launch_1", "Launch_2", "Launch_3" };
         private static readonly string[] GlideIds = { "Glide_1", "Glide_2", "Glide_3" };
         public FlightResearch(IResearchStore storage)
@@ -189,13 +203,14 @@ namespace FlyEditor.Flight
             var next = data.Copy(); next.activeRunId = 0;
             return Commit(next);
         }
-        public bool CompleteRun(long runId, float maxForwardDistance, out int reward)
+        public bool CompleteRun(long runId, float maxForwardDistance, out int reward, int bonus = 0)
         {
             reward = 0;
             if (runId <= 0 || runId != ActiveRunId || runId <= data.lastPaidRunId
                 || float.IsNaN(maxForwardDistance) || float.IsInfinity(maxForwardDistance) || maxForwardDistance < 0f)
                 return false;
-            int earned = (int)Math.Min(int.MaxValue, Math.Floor((double)maxForwardDistance / 5d));
+            double baseReward = Math.Floor((double)maxForwardDistance / 5d);
+            int earned = (int)Math.Min(int.MaxValue, baseReward + Math.Min(Math.Max(0, bonus), Math.Floor(baseReward * .5)));
             var next = data.Copy();
             next.points = (int)Math.Min(int.MaxValue, (long)next.points + earned);
             next.completedFlights = (int)Math.Min(int.MaxValue, (long)next.completedFlights + 1);
@@ -208,15 +223,34 @@ namespace FlyEditor.Flight
         {
             var result = baseline.Copy();
             result.effects = new FlightEffects(this);
-            result.launchSpeed *= 1f + 0.03f * data.a1;
-            result.sink *= 1f - 0.04f * data.g1;
-            result.drag *= 1f - .03f * CountOwned("Drag_1", "Drag_2", "Drag_3");
-            result.climbDrag *= 1f - .04f * CountOwned("Climb_1", "Climb_2", "Climb_3");
+            result.launchSpeed *= 1f + Bonus("Launch_1", .12f) + Bonus("Launch_2", .20f) + Bonus("Launch_3", .30f);
+            result.sink *= 1f - Bonus("Glide_1", .04f) - Bonus("Glide_2", .10f) - Bonus("Glide_3", .18f);
+            result.drag *= 1f - Bonus("Drag_1", .06f) - Bonus("Drag_2", .12f) - Bonus("Drag_3", .18f);
+            result.climbDrag *= 1f - Bonus("Climb_1", .10f) - Bonus("Climb_2", .18f) - Bonus("Climb_3", .25f);
             result.pitchResponse *= 1f + 0.05f * data.c1;
             result.flightPathResponse *= 1f + 0.05f * data.c1;
+            var extra = result.effects.extra;
+            result.launchSpeed *= 1f + extra.launch;
+            result.drag *= Mathf.Max(.5f, 1f - extra.drag);
+            result.sink *= Mathf.Max(.5f, 1f - extra.sink);
+            result.climbDrag *= Mathf.Max(.5f, 1f - extra.climb);
+            result.pitchResponse *= 1f + extra.response;
+            result.flightPathResponse *= 1f + extra.path;
+            result.releasePitchDuration += extra.release;
+            int tier = GrowthTier;
+            float speedScale = GrowthSpeeds[tier];
+            result.launchSpeed *= speedScale;
+            result.speedCap = Mathf.Max(result.speedCap * speedScale, result.launchSpeed);
+            // Higher launch speeds lose energy faster to cubic drag. Reduce drag
+            // with each milestone so the additional launch energy carries into a climb.
+            float dragScale = speedScale * Mathf.Sqrt(speedScale);
+            result.drag /= dragScale;
+            result.climbDrag /= dragScale;
+            result.climbPitch += 2f * tier;
             result.Sanitize();
             return result;
         }
+        private float Bonus(string id, float amount) => Owns(id) ? amount : 0f;
         internal int CountOwned(string first, string second, string third) =>
             (Owns(first) ? 1 : 0) + (Owns(second) ? 1 : 0) + (Owns(third) ? 1 : 0);
     }
@@ -267,6 +301,15 @@ namespace FlyEditor.Flight
             if (Model.State == FlightModel.Phase.Ready) Prepare();
             return true;
         }
+        public bool TryLaunch(float angle,float releaseHeight)
+        {
+            if (Model.State != FlightModel.Phase.Ready || !Research.BeginRun()) return false;
+            Model.SetLaunchPose(angle,releaseHeight);
+            InitialEnergy = Model.Energy;
+            LastReward = 0;
+            Model.Tick(true,false,false);
+            return true;
+        }
         public void Tick(bool pressed, bool held, bool restart)
         {
             if (SettlementPending) return;
@@ -277,24 +320,24 @@ namespace FlyEditor.Flight
             }
             if (Model.State == FlightModel.Phase.Ready && pressed)
             {
-                if (!Research.BeginRun()) return;
-                LastReward = 0;
+                TryLaunch(Model.Pitch,Model.Height);
+                return;
             }
             Model.Tick(pressed, held, false);
         }
         public void FixedTick(float dt)
         {
             var previous = Model.State;
-            Vector2 from = new Vector2(Model.Distance, Model.Height);
-            Model.FixedTick(dt);
-            if (previous == FlightModel.Phase.Flying) Course.Tick(Model, from, dt);
+            Course.Step(Model, dt);
             maxForwardDistance = Mathf.Max(maxForwardDistance, Model.Distance);
             if (previous == FlightModel.Phase.Flying && Model.State == FlightModel.Phase.Landed) TrySettle();
         }
         public bool TrySettle()
         {
             if (!SettlementPending) return false;
-            if (!Research.CompleteRun(Research.ActiveRunId, maxForwardDistance, out int reward)) return false;
+            int bonus = Model.Effects.extra.Reward(maxForwardDistance, Research.BestDistance,
+                Model.PickupsCollected, Model.HighPickups, Course.LongestChain, Model.Durability <= 0);
+            if (!Research.CompleteRun(Research.ActiveRunId, maxForwardDistance, out int reward, bonus)) return false;
             LastReward = reward; return true;
         }
     }

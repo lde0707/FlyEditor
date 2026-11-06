@@ -58,7 +58,7 @@ namespace FlyEditor.Flight
     }
 
     // Ready --new click--> Flying --ground contact--> Landed --R/new click--> Ready.
-    // Launch and collected items provide energy. Steering exchanges kinetic and potential energy.
+    // Launch supplies flight energy. A pickup adds ground speed only.
     public sealed class FlightModel
     {
         public enum Phase { Ready, Flying, Landed }
@@ -71,14 +71,21 @@ namespace FlyEditor.Flight
         public Attitude Posture { get; private set; }
         public bool DiveBoostActive { get; private set; }
         private float attitudeRemaining, divingTime, carryRemaining;
+        public int PickupsCollected { get; private set; }
+        public int HighPickups { get; private set; }
+        private bool lowGuardUsed, criticalGuardUsed, criticalRepairUsed, autoRecoveryUsed;
         public float Distance { get; private set; }
         public float Height { get; private set; }
         public float Clearance => Mathf.Max(0f, Height - PaperPlaneGeometry.ContactHeight(Pitch));
         public float Speed { get; private set; }
+        public const float BoostDuration = 2f;
+        private float boostRemaining, boostAmount;
+        public float ForwardBoost => boostRemaining > 0f ? boostAmount : 0f;
+        public float HorizontalSpeed => Speed * Mathf.Cos(FlightPathPitch * Mathf.Deg2Rad) + ForwardBoost;
         public float Pitch { get; private set; }
         public float FlightPathPitch { get; private set; }
         public Vector2 Velocity => State != Phase.Flying ? Vector2.zero :
-            new Vector2(Speed * Mathf.Cos(FlightPathPitch * Mathf.Deg2Rad),
+            new Vector2(HorizontalSpeed,
                 Speed * Mathf.Sin(FlightPathPitch * Mathf.Deg2Rad) - tuning.sink);
         public float Energy { get; private set; }
         public float Elapsed { get; private set; }
@@ -98,6 +105,7 @@ namespace FlyEditor.Flight
         private bool releasePitchActive;
         private float releaseStartPitch;
         private float releasePitchElapsed;
+        private float underhandLift, underhandRiseTime;
 
         public FlightModel(FlightTuning settings, float bestDistance = 0f)
         {
@@ -123,6 +131,31 @@ namespace FlyEditor.Flight
         private void TickReady(bool pressed)
         {
             if (pressed) ChangeState(Phase.Flying);
+        }
+
+        public const float MinLaunchAngle = -12f, MaxLaunchAngle = 35f;
+        internal static float UnderhandWeight(float angle)
+            => Mathf.SmoothStep(0f,1f,Mathf.InverseLerp(6f,-6f,angle));
+        public void SetLaunchAngle(float angle)
+            => SetLaunchPose(angle,Height);
+
+        public void SetLaunchPose(float angle,float releaseHeight)
+        {
+            if (State != Phase.Ready) return;
+            Pitch = FlightPathPitch = Mathf.Clamp(angle, MinLaunchAngle, MaxLaunchAngle);
+            underhandLift = UnderhandWeight(Pitch) * (22f-Pitch);
+            // Keep the turn within the first few metres even on upgraded aircraft.
+            underhandRiseTime = Mathf.Min(Mathf.Min(.85f,tuning.releasePitchDuration*.5f),13f / Mathf.Max(1f,Speed));
+            Height = Mathf.Max(PaperPlaneGeometry.ContactHeight(Pitch)+.1f,releaseHeight);
+            Energy = .5f * Speed * Speed + tuning.gravity * Height;
+        }
+        internal FlightModel CreatePreviewModel() => new FlightModel(tuning.Copy(), BestDistance);
+        internal void RestartPreview(float angle,float releaseHeight)
+        {
+            ChangeState(Phase.Ready);
+            SetLaunchPose(angle,releaseHeight);
+            Tick(true, false, false);
+            Tick(false, false, false);
         }
 
         private void TickFlying(bool isHeld, bool restart)
@@ -154,13 +187,21 @@ namespace FlyEditor.Flight
             if (Posture == Attitude.Normal) UpdatePitch(dt);
             else TickDisturbance(dt);
             // The travel direction carries through release/exhaustion instead of snapping to the nose.
-            FlightPathPitch = Mathf.Lerp(FlightPathPitch, Pitch, 1f - Mathf.Exp(-tuning.flightPathResponse * dt));
+            float pathResponse = tuning.flightPathResponse;
+            if (underhandLift > 0f) pathResponse = Mathf.Max(pathResponse, 8f/underhandRiseTime);
+            FlightPathPitch = Mathf.Lerp(FlightPathPitch, Pitch, 1f - Mathf.Exp(-pathResponse * dt));
             float angle = FlightPathPitch * Mathf.Deg2Rad;
-            float dx = Speed * Mathf.Cos(angle) * dt;
+            float forwardSpeed = Speed * Mathf.Cos(angle);
+            float step = dt;
             float sinkDrop = tuning.sink * dt;
             float dy = Speed * Mathf.Sin(angle) * dt - sinkDrop;
             // E/m = v^2/2 + gh. Passive sink is dissipative, not a propulsion source.
             float effectiveDrag = tuning.drag + (Climbing ? tuning.climbDrag : 0f);
+            var extra = Effects.extra;
+            if (Height < 3f) effectiveDrag *= 1f - extra.lowDrag;
+            if (Speed >= 12f) effectiveDrag *= 1f - extra.fastDrag;
+            if (Height >= 6f && Climbing) effectiveDrag -= tuning.climbDrag * extra.highClimb;
+            effectiveDrag = Mathf.Max(0f, effectiveDrag);
             effectiveDrag *= DiveDragMultiplier(dy, dt);
             float nextEnergy = Mathf.Max(0f, Energy - effectiveDrag * Speed * Speed * Speed * dt
                 - tuning.gravity * sinkDrop);
@@ -169,22 +210,40 @@ namespace FlyEditor.Flight
             if (nextHeight <= contactHeight)
             {
                 float contactFraction = previousClearance / Mathf.Max(0.000001f, previousClearance - (nextHeight - contactHeight));
-                Distance += dx * Mathf.Clamp01(contactFraction);
-                Elapsed += dt * Mathf.Clamp01(contactFraction);
+                step *= Mathf.Clamp01(contactFraction);
+                AdvanceDistance(forwardSpeed, step);
                 Height = contactHeight;
                 ChangeState(Phase.Landed);
                 return;
             }
             Height = nextHeight;
-            Distance += dx;
-            Elapsed += dt;
+            AdvanceDistance(forwardSpeed, step);
             Speed = Mathf.Min(tuning.speedCap,
                 Mathf.Sqrt(Mathf.Max(0f, 2f * (nextEnergy - tuning.gravity * Height))));
             Energy = 0.5f * Speed * Speed + tuning.gravity * Height;
         }
 
+        private void AdvanceDistance(float forwardSpeed, float step)
+        {
+            float previous = Distance;
+            Distance += forwardSpeed * step + boostAmount * Mathf.Min(step, boostRemaining);
+            boostRemaining = Mathf.Max(0f, boostRemaining - step);
+            Elapsed += step;
+            var extra = Effects.extra;
+            if (extra.routeRepair == 0 && extra.intervalRepair == 0) return;
+            float repair = previous < 80f && Distance >= 80f ? extra.routeRepair : 0f;
+            int crossed = Mathf.Min(3, Mathf.FloorToInt(Distance / 40f))
+                - Mathf.Min(3, Mathf.FloorToInt(previous / 40f));
+            Durability = Mathf.Min(Effects.durability, Durability + repair + crossed * extra.intervalRepair);
+        }
+
         private void UpdatePitch(float dt)
         {
+            if (underhandLift > 0f && (held || recovering))
+            {
+                underhandLift = 0f;
+                releasePitchActive = false;
+            }
             if (Climbing)
             {
                 releasePitchActive = false;
@@ -206,6 +265,13 @@ namespace FlyEditor.Flight
             // recovering must not restart its timer; only an eligible climb cancels it.
             float eased = progress * progress * (3f - 2f * progress);
             Pitch = Mathf.Lerp(releaseStartPitch, tuning.divePitch, eased);
+            if (underhandLift > 0f)
+            {
+                float rise = Mathf.SmoothStep(0f,1f,releasePitchElapsed/underhandRiseTime);
+                float fade = Mathf.InverseLerp(underhandRiseTime,tuning.releasePitchDuration,releasePitchElapsed);
+                Pitch += underhandLift * rise * Mathf.SmoothStep(1f,0f,fade);
+                if (progress >= 1f) underhandLift = 0f;
+            }
         }
 
         private float DiveDragMultiplier(float dy, float dt)
@@ -228,6 +294,7 @@ namespace FlyEditor.Flight
         private void ChangePosture(Attitude next, float duration)
         {
             Posture = next;
+            underhandLift = 0f;
             attitudeRemaining = duration;
             releasePitchActive = false;
         }
@@ -254,19 +321,36 @@ namespace FlyEditor.Flight
         }
         public void CollectBoost()
         {
-            if (State == Phase.Flying) SetFlightSpeed(Speed + Effects.boostSpeed);
+            if (State != Phase.Flying) return;
+            PickupsCollected++;
+            if (Height >= 5f) HighPickups++;
+            float express = PickupsCollected <= 4 && PickupsCollected % 2 == 0 ? Effects.extra.expressBoost : 0;
+            boostAmount = Effects.boostSpeed + express;
+            boostRemaining = BoostDuration;
         }
         public void StrikeObstacle(float damage)
         {
             if (State != Phase.Flying || damage <= 0) return;
-            bool blocked = ShieldUses > 0;
-            if (blocked) ShieldUses--;
-            else Durability = Mathf.Max(0, Durability - damage);
+            var extra = Effects.extra;
+            damage *= 1f - extra.damageReduction;
+            bool blocked;
+            if (extra.lowGuard > 0 && Height < 3f && !lowGuardUsed)
+            { lowGuardUsed = true; blocked = true; }
+            else if (ShieldUses > 0)
+            { ShieldUses--; blocked = true; }
+            else if (extra.criticalGuard > 0 && damage >= Durability && !criticalGuardUsed)
+            { criticalGuardUsed = true; blocked = true; }
+            else
+            { blocked = false; Durability = Mathf.Max(0, Durability - damage); }
+            if (Durability > 0 && Durability <= Effects.durability * .35f && extra.criticalRepair > 0 && !criticalRepairUsed)
+            { criticalRepairUsed = true; Durability = Mathf.Min(Effects.durability, Durability + extra.criticalRepair); }
             float loss = Effects.collisionSpeedLoss * (blocked && Effects.reinforcedShield ? .5f : 1f);
             SetFlightSpeed(Speed * (1f - loss));
             if (Durability <= 0) { ChangeState(Phase.Landed); return; }
             Pitch = Mathf.Max(tuning.divePitch, Pitch - 8);
-            ChangePosture(Attitude.Disturbed, .85f);
+            if (extra.autoRecovery > 0 && !autoRecoveryUsed)
+            { autoRecoveryUsed = true; ChangePosture(Attitude.Restoring, .2f); }
+            else ChangePosture(Attitude.Disturbed, Mathf.Max(.2f, .85f - extra.disturbance));
         }
 
         private void ChangeState(Phase next)
@@ -298,7 +382,10 @@ namespace FlyEditor.Flight
             Durability = Effects.durability;
             ShieldUses = Effects.shieldUses;
             RecoveryUses = Effects.recoveryUses;
+            PickupsCollected = HighPickups = 0;
+            lowGuardUsed = criticalGuardUsed = criticalRepairUsed = autoRecoveryUsed = false;
             divingTime = carryRemaining = 0;
+            boostAmount = boostRemaining = 0f;
             DiveBoostActive = false;
             ChangePosture(Attitude.Normal, 0);
             Distance = Elapsed = Pitch = FlightPathPitch = 0f;
@@ -315,6 +402,7 @@ namespace FlyEditor.Flight
 
         private void EnterLanded()
         {
+            boostAmount = boostRemaining = 0f;
             Speed = Energy = 0f;
             ControlArmed = false;
             BestDistance = Mathf.Max(BestDistance, Distance);

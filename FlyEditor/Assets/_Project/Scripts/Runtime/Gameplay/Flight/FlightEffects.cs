@@ -8,9 +8,11 @@ namespace FlyEditor.Flight
         public readonly float durability, collisionSpeedLoss, magnetRadius, magnetPull;
         public readonly int recoveryUses, shieldUses;
         public readonly bool diveEnabled, reinforcedShield;
+        public readonly ExtendedResearchStats extra;
 
         public FlightEffects(FlightResearch research)
         {
+            extra = new ExtendedResearchStats(research);
             boostSpeed = 2f * (1f + .15f * (research?.CountOwned("Boost_1", "Boost_2", "Boost_3") ?? 0));
             diveEnabled = research?.Owns("Dive_1") == true;
             diveDelay = research?.Owns("Dive_2") == true ? .2f : .6f;
@@ -23,6 +25,13 @@ namespace FlyEditor.Flight
             reinforcedShield = research?.Owns("Shield_2") == true;
             magnetRadius = research?.Owns("Magnet_1") == true ? (research.Owns("Magnet_2") ? 5f : 3f) : 0f;
             magnetPull = research?.Owns("Magnet_3") == true ? 18f : 9f;
+            boostSpeed += extra.boost;
+            diveCarry += extra.carry;
+            recoveryTime = UnityEngine.Mathf.Max(.06f, recoveryTime - extra.recoveryTime);
+            durability += extra.durability;
+            collisionSpeedLoss = UnityEngine.Mathf.Max(.04f, collisionSpeedLoss - extra.impact);
+            if (shieldUses > 0) shieldUses += (int)extra.shield;
+            if (magnetRadius > 0) magnetRadius += extra.magnetRadius;
         }
     }
 }

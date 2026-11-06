@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace FlyEditor.Flight
 {
@@ -12,11 +14,15 @@ namespace FlyEditor.Flight
         private int selectedIndex = -1, feedbackIndex = -1, panControl;
         private float feedbackStarted;
         private GUIStyle heading, body, small, value, button;
-        private string title, stateText, description, currentValue, costText, buttonText, pointsText;
+        private string title, stateText, description, currentValue, costText, buttonText, pointsText, growthText;
         private string zoomText = "100%";
         private bool previewAll;
         private readonly Texture2D[] edgeTextures;
         private readonly Rect[] edgeBounds;
+        private readonly int[] edgeParents, edgeChildren;
+        private Texture2D focusMask;
+        private Color32[] focusPixels;
+        private Vector2[] focusOutline;
         private static readonly Color Ink = new Color(.20f, .23f, .20f);
         private const float CandidateOpacity = .5f;
         private static readonly Rect Viewport = new Rect(32, 164, 1408, 790);
@@ -28,16 +34,35 @@ namespace FlyEditor.Flight
         {
             owner = controller; assets = skin;
             int count = assets != null && assets.nodes != null ? assets.nodes.Length : 0;
-            edgeTextures = new Texture2D[count]; edgeBounds = new Rect[count];
-            for (int i = 0; i < count; i++) BuildEdge(i);
+            var parents = new List<int>(); var children = new List<int>();
+            for (int i = 0; i < count; i++)
+            {
+                var prerequisites = assets.nodes[i].prerequisiteIndices;
+                if (prerequisites == null || prerequisites.Length == 0)
+                { parents.Add(-1); children.Add(i); }
+                else foreach (int parent in prerequisites)
+                { parents.Add(parent); children.Add(i); }
+            }
+            edgeParents = parents.ToArray(); edgeChildren = children.ToArray();
+            edgeTextures = new Texture2D[children.Count]; edgeBounds = new Rect[children.Count];
+            for (int i = 0; i < children.Count; i++) BuildEdge(i);
             Refresh(); FitVisible();
         }
         // Axis-aligned textures remain inside GUI.BeginGroup clipping at every pan/zoom.
         // Build once instead of rotating GUI.matrix inside a clipped group.
         private void BuildEdge(int index)
         {
-            var n = assets.nodes[index];
-            Vector2 from = n.parent < 0 ? Vector2.zero : assets.nodes[n.parent].position, to = n.position;
+            var n = assets.nodes[edgeChildren[index]];
+            int parentIndex = edgeParents[index];
+            var parent = parentIndex < 0 ? null : assets.nodes[parentIndex];
+            Vector2 parentCenter = parent == null ? Vector2.zero : parent.position;
+            float parentSize = parent == null ? assets.rootFrameSize : parent.frameSize;
+            var parentOutline = parent == null ? assets.rootOutline : parent.outline;
+            Vector2 from = ResearchWebGeometry.Attachment(parentCenter, n.position, parentSize, parentOutline);
+            Vector2 to = ResearchWebGeometry.Attachment(n.position, parentCenter, n.frameSize, n.outline);
+            bool dashed = parent != null && parent.family != n.family;
+            int dashCount = Mathf.Max(1, Mathf.RoundToInt(Vector2.Distance(from, to) / 22f));
+            float dashUnits = 2 * dashCount - 1;
             Vector2 delta = to - from;
             float left = Mathf.Min(from.x, to.x) - 4, top = Mathf.Min(from.y, to.y) - 4;
             int width = Mathf.CeilToInt(Mathf.Abs(delta.x)) + 8, height = Mathf.CeilToInt(Mathf.Abs(delta.y)) + 8;
@@ -49,7 +74,14 @@ namespace FlyEditor.Flight
                     Vector2 point = new Vector2(left + x + .5f, top + y + .5f);
                     float t = lengthSquared > 0 ? Mathf.Clamp01(Vector2.Dot(point - from, delta) / lengthSquared) : 0;
                     float distance = Vector2.Distance(point, from + delta * t);
-                    byte alpha = (byte)(Mathf.Clamp01(2f - distance) * 255);
+                    float coverage = Mathf.Clamp01(2f - distance);
+                    if (coverage > 0 && (ResearchWebGeometry.Contains(parentOutline,
+                        (point - parentCenter) / ResearchWebGeometry.TextureSize(parentSize))
+                        || ResearchWebGeometry.Contains(n.outline,
+                            (point - n.position) / ResearchWebGeometry.TextureSize(n.frameSize))))
+                        coverage = 0;
+                    if (dashed && Mathf.FloorToInt(t * dashUnits) % 2 != 0) coverage = 0;
+                    byte alpha = (byte)(coverage * 255);
                     pixels[(height - 1 - y) * width + x] = new Color32(255, 255, 255, alpha);
                 }
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
@@ -59,6 +91,7 @@ namespace FlyEditor.Flight
         public void Dispose()
         {
             CancelPan();
+            if (focusMask != null) Object.Destroy(focusMask);
             for (int i = 0; i < edgeTextures.Length; i++) if (edgeTextures[i] != null) Object.Destroy(edgeTextures[i]);
         }
         public bool IsVisible(int index) => assets != null && assets.nodes != null
@@ -79,8 +112,47 @@ namespace FlyEditor.Flight
             if (assets == null || assets.nodes == null) return false;
             for (int i = 0; i < assets.nodes.Length; i++)
                 if (assets.nodes[i].id == id && IsVisible(i))
-                { selectedIndex = i; ChangePhase(Phase.Browsing); Refresh(); return true; }
+                { SelectIndex(i); return true; }
             return false;
+        }
+        private void SelectIndex(int index)
+        {
+            selectedIndex = index;
+            ChangePhase(Phase.Browsing);
+            Refresh();
+        }
+        internal void HandleKeyboard(Keyboard keyboard)
+        {
+            if (keyboard == null || assets == null || assets.nodes == null) return;
+            Vector2 direction = Vector2.zero;
+            if (keyboard.upArrowKey.wasPressedThisFrame) direction = Vector2.down; // GUI y grows downward.
+            else if (keyboard.downArrowKey.wasPressedThisFrame) direction = Vector2.up;
+            else if (keyboard.leftArrowKey.wasPressedThisFrame) direction = Vector2.left;
+            else if (keyboard.rightArrowKey.wasPressedThisFrame) direction = Vector2.right;
+            if (direction != Vector2.zero) MoveSelection(direction);
+            if ((keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame)
+                && phase == Phase.Browsing && IsVisible(selectedIndex))
+                TryPurchase(assets.nodes[selectedIndex].id);
+        }
+        private void MoveSelection(Vector2 direction)
+        {
+            Vector2 origin = IsVisible(selectedIndex) ? assets.nodes[selectedIndex].position : Vector2.zero;
+            int best = -1;
+            float bestScore = float.PositiveInfinity;
+            for (int i=0;i<assets.nodes.Length;i++)
+            {
+                if (i == selectedIndex || !IsVisible(i)) continue;
+                Vector2 delta = assets.nodes[i].position - origin;
+                float forward = Vector2.Dot(delta,direction);
+                if (forward <= 0f) continue;
+                // Prefer nearby nodes along the requested heading.
+                float score = delta.sqrMagnitude / forward;
+                if (score < bestScore) { best = i; bestScore = score; }
+            }
+            if (best < 0) return;
+            SelectIndex(best);
+            var node = assets.nodes[best];
+            Navigation.EnsureVisible(node.position,ResearchWebGeometry.TextureSize(node.frameSize)*.5f,Viewport.size);
         }
         public bool TryPurchase(string id)
         {
@@ -105,7 +177,7 @@ namespace FlyEditor.Flight
             for (int i = 0; i < assets.nodes.Length; i++)
             {
                 var child = assets.nodes[i];
-                if (child.parent != parent || !IsVisible(i) || ResearchWebAssets.IsOwned(child, owner.Session.Research)) continue;
+                if (System.Array.IndexOf(child.prerequisiteIndices, parent) < 0 || !IsVisible(i) || ResearchWebAssets.IsOwned(child, owner.Session.Research)) continue;
                 Vector2 point = Navigation.WorldToView(child.position, Viewport.size);
                 float margin = child.frameSize * (128f / 192f) * Navigation.Zoom;
                 if (point.x - margin < 0 || point.y - margin < 0
@@ -146,31 +218,17 @@ namespace FlyEditor.Flight
         {
             if (assets == null || assets.nodes == null || assets.nodes.Length == 0 || owner.Session == null) return;
             pointsText = "연구점  " + owner.Session.Research.Points;
+            var research = owner.Session.Research;
+            growthText = "기체 " + (research.GrowthTier + 1) + "단계   ·   "
+                + (research.NextGrowthCount > 0 ? "다음 성장 " + research.OwnedCount + " / " + research.NextGrowthCount
+                    + "개   ·   다음 발사 배율 ×" + research.NextGrowthSpeed.ToString("0.##") : "최종 단계");
             if (!IsVisible(selectedIndex)) { selectedIndex = -1; return; }
             var n = assets.nodes[selectedIndex];
             bool owned = ResearchWebAssets.IsOwned(n, owner.Session.Research);
             title = n.title; description = n.summary;
             stateText = previewAll ? "전체 설계 미리보기 · 각 노드 1회 구매"
                 : owned ? "구매 완료" : "구매 후보 · 1회 구매";
-            currentValue = n.unlocksAbility ? "새 능력 해금" : "수치 강화";
-            if (!previewAll && n.runtimeIndex >= 0)
-            {
-                var effective = owner.GetResearchTuning();
-                switch (n.runtimeIndex)
-                {
-                    case 0: currentValue = "현재 발사 속도  " + effective.launchSpeed.ToString("F2") + " m/s"; break;
-                    case 1: currentValue = "현재 침하  " + effective.sink.ToString("F4") + " m/s"; break;
-                    case 3: currentValue = "현재 공기 저항  " + effective.drag.ToString("F5"); break;
-                    case 4: currentValue = "현재 상승 저항  " + effective.climbDrag.ToString("F5"); break;
-                    case 5: currentValue = "아이템 가속  +" + effective.effects.boostSpeed.ToString("F1") + " m/s"; break;
-                    case 6: currentValue = effective.effects.diveEnabled ? "하강 가속  " + effective.effects.diveDelay.ToString("F2") + "초 후" : "하강 가속 해금"; break;
-                    case 7: currentValue = "자세 회복  " + effective.effects.recoveryUses + "회 / 비행"; break;
-                    case 8: currentValue = "최대 내구  " + effective.effects.durability; break;
-                    case 9: currentValue = "충돌 감속  " + effective.effects.collisionSpeedLoss.ToString("P0"); break;
-                    case 10: currentValue = "종이 방패  " + effective.effects.shieldUses + "회 / 비행"; break;
-                    case 11: currentValue = "수집 반경  " + effective.effects.magnetRadius.ToString("F1") + " m"; break;
-                }
-            }
+            currentValue = n.benefit;
             costText = owned && !previewAll ? "구매 완료" : n.costs[0] + " 연구점";
             buttonText = previewAll ? "미리보기 · 구매 불가" : owned ? "구매 완료"
                 : assets.CanBuy(selectedIndex, owner.Session.Research) ? "해금하기" : "연구점 부족";
@@ -181,7 +239,7 @@ namespace FlyEditor.Flight
             heading = MakeStyle(font, 32, FontStyle.Bold); heading.wordWrap = true;
             body = MakeStyle(font, 22); body.wordWrap = true;
             small = MakeStyle(font, 18); small.wordWrap = true;
-            value = MakeStyle(font, 24, FontStyle.Bold);
+            value = MakeStyle(font, 24, FontStyle.Bold); value.wordWrap = true;
             button = MakeStyle(font, 23, FontStyle.Bold); button.alignment = TextAnchor.MiddleCenter;
         }
         private static GUIStyle MakeStyle(Font font, int size, FontStyle weight = FontStyle.Normal)
@@ -193,7 +251,9 @@ namespace FlyEditor.Flight
         }
         public void FitVisible()
         {
-            Rect bounds = new Rect(-112, -112, 224, 224);
+            if (assets == null) return;
+            float rootHalf = ResearchWebGeometry.TextureSize(assets.rootFrameSize) * .5f;
+            Rect bounds = new Rect(-rootHalf, -rootHalf, rootHalf * 2, rootHalf * 2);
             if (assets != null && assets.nodes != null)
                 for (int i = 0; i < assets.nodes.Length; i++)
                 {
@@ -233,6 +293,11 @@ namespace FlyEditor.Flight
         {
             EnsureStyles(font);
             if (assets == null || assets.nodes == null || assets.nodes.Length == 0) return;
+            // Update handles these keys. Keep IMGUI buttons from activating a second action.
+            var e = Event.current;
+            if (e.isKey && (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter ||
+                e.keyCode == KeyCode.LeftArrow || e.keyCode == KeyCode.RightArrow ||
+                e.keyCode == KeyCode.UpArrow || e.keyCode == KeyCode.DownArrow)) e.Use();
             Matrix4x4 previous = GUI.matrix; Color previousColor = GUI.color;
             float scale = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1920f * scale) * .5f,
@@ -241,7 +306,7 @@ namespace FlyEditor.Flight
             Texture(new Rect(0, 0, 1920, 1080), assets.background);
             heading.normal.textColor = Ink;
             GUI.Label(new Rect(48, 32, 700, 56), "FlyEditor / 비행 연구", heading);
-            GUI.Label(new Rect(48, 100, 1300, 38), previewAll ? "전체 33개 노드 · 설계 미리보기 · 구매 불가"
+            GUI.Label(new Rect(48, 100, 1300, 38), previewAll ? "전체 98개 노드 · 설계 미리보기 · 구매 불가"
                 : "연결된 후보 중 원하는 갈래를 선택하세요.", small);
             if (previewAll && GUI.Button(new Rect(1090, 94, 326, 44), "실제 구매 후보만 보기", button)) SetPreview(false);
             Texture(new Rect(1500, 42, 28, 28), assets.currency);
@@ -255,37 +320,112 @@ namespace FlyEditor.Flight
         private void DrawGraph()
         {
             float zoom = Navigation.Zoom;
-            for (int i = 0; i < assets.nodes.Length; i++)
+            for (int i = 0; i < edgeTextures.Length; i++)
             {
-                if (!IsVisible(i)) continue;
-                var n = assets.nodes[i];
-                if (n.parent >= 0 && !IsVisible(n.parent)) continue;
-                Color color = Color.Lerp(assets.families[n.family].accent, Color.white, i == selectedIndex ? .05f : .40f);
+                int child = edgeChildren[i], parent = edgeParents[i];
+                if (!IsVisible(child)) continue;
+                if (parent >= 0 && (!IsVisible(parent) || (!previewAll &&
+                    !ResearchWebAssets.IsOwned(assets.nodes[parent], owner.Session.Research)))) continue;
+                var n = assets.nodes[child];
+                Color color = Color.Lerp(assets.families[n.family].accent, Color.white, child == selectedIndex ? .05f : .25f);
                 color.a = ResearchWebAssets.IsOwned(n, owner.Session.Research) ? 1f : CandidateOpacity;
                 Rect bounds = edgeBounds[i]; Vector2 topLeft = Navigation.WorldToView(bounds.position, Viewport.size);
                 GUI.color = color;
                 GUI.DrawTexture(new Rect(topLeft, bounds.size * zoom), edgeTextures[i], ScaleMode.StretchToFill, true);
                 GUI.color = Color.white;
             }
-            DrawTile(Vector2.zero, 160, assets.root);
+            string hoverTitle = null;
+            DrawTile(Vector2.zero, assets.rootFrameSize, assets.root);
             for (int i = 0; i < assets.nodes.Length; i++)
             {
                 if (!IsVisible(i)) continue;
                 var n = assets.nodes[i];
                 int state = ResearchWebAssets.IsOwned(n, owner.Session.Research) ? 1 : 0;
-                var sprite = i == selectedIndex ? n.selected[state] : n.normal[state];
                 // Opacity communicates ownership; it never disables the node's hit target.
                 GUI.color = new Color(1, 1, 1, state == 1 ? 1f : CandidateOpacity);
-                Rect tile = DrawTile(n.position, n.frameSize, sprite);
+                Rect tile = DrawTile(n.position, n.frameSize, n.normal[state]);
                 GUI.color = Color.white;
-                if (state == 0 && i == selectedIndex) Texture(tile, assets.families[n.family].feedback[0]);
                 if (phase == Phase.PurchasedFeedback && feedbackIndex == i && Time.unscaledTime - feedbackStarted < .21f)
-                    Texture(tile, assets.families[n.family].feedback[Mathf.Clamp((int)((Time.unscaledTime - feedbackStarted) / .07f), 0, 2)]);
-                Vector2 center = Navigation.WorldToView(n.position, Viewport.size);
-                float size = n.frameSize * zoom;
-                if (Navigation.State == ResearchWebNavigation.Phase.Idle
-                    && GUI.Button(new Rect(center.x - size * .5f, center.y - size * .5f, size, size), GUIContent.none, GUIStyle.none))
-                { selectedIndex = i; ChangePhase(Phase.Browsing); Refresh(); }
+                    Texture(tile, n.selection);
+                Event e = Event.current;
+                Vector2 local = (e.mousePosition - tile.center) / tile.width;
+                if (Navigation.State != ResearchWebNavigation.Phase.Idle || !tile.Contains(e.mousePosition)
+                    || !ResearchWebGeometry.Contains(n.outline, local)) continue;
+                hoverTitle = n.title;
+                if (e.type == EventType.MouseDown && e.button == 0)
+                { SelectIndex(i); e.Use(); }
+            }
+            if (Event.current.type == EventType.Repaint && IsVisible(selectedIndex))
+                DrawFocus(assets.nodes[selectedIndex]);
+            if (hoverTitle != null && Event.current.type == EventType.Repaint)
+            {
+                Vector2 mouse = Event.current.mousePosition;
+                Rect label = new Rect(Mathf.Clamp(mouse.x + 16f, 0, Viewport.width - 310),
+                    Mathf.Clamp(mouse.y + 16f, 0, Viewport.height - 36), 310, 36);
+                GUI.DrawTexture(label, Texture2D.whiteTexture);
+                GUI.Label(new Rect(label.x + 8,label.y + 4,294,28), hoverTitle, small);
+            }
+        }
+        private void DrawFocus(ResearchWebAssets.Node node)
+        {
+            int size = Mathf.RoundToInt(ResearchWebGeometry.TextureSize(node.frameSize)*Navigation.Zoom);
+            UpdateFocusMask(node,size);
+            // Keep line weights and corner spacing independent of web zoom.
+            Vector2 center=Navigation.WorldToView(node.position,Viewport.size);
+            float width=focusMask.width;
+            GUI.color=assets.families[node.family].dark;
+            GUI.DrawTexture(new Rect(center.x-width*.5f,center.y-width*.5f,width,width),focusMask);
+            GUI.color=Color.white;
+        }
+        private void UpdateFocusMask(ResearchWebAssets.Node node,int size)
+        {
+            int width = size + 22;
+            var outline = node.outline != null && node.outline.Length >= 3 ? node.outline : ResearchWebGeometry.Square;
+            if (focusMask == null || focusMask.width != width)
+            {
+                if (focusMask != null) Object.Destroy(focusMask);
+                focusMask = new Texture2D(width,width,TextureFormat.RGBA32,false)
+                    { name = "Research focus", filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp };
+                focusPixels = new Color32[width*width];
+                focusOutline = null;
+            }
+            if (focusOutline != outline)
+            {
+                focusOutline = outline;
+                System.Array.Clear(focusPixels,0,focusPixels.Length);
+                Vector2 middle = Vector2.one*(width*.5f);
+                for (int i=0;i<outline.Length;i++)
+                {
+                    Vector2 a=outline[i], b=outline[(i+1)%outline.Length];
+                    FocusStroke(middle+a*(size+4),middle+b*(size+4),1.25f);
+                    Vector2 start=middle+a*(size+17), end=middle+b*(size+17);
+                    Vector2 leg=Vector2.ClampMagnitude((end-start)*.32f,14f);
+                    FocusStroke(start,start+leg,2.2f);
+                    FocusStroke(end-leg,end,2.2f);
+                }
+                focusMask.SetPixels32(focusPixels);
+                focusMask.Apply(false);
+            }
+        }
+        private void FocusStroke(Vector2 from,Vector2 to,float radius)
+        {
+            int width=focusMask.width;
+            Vector2 delta=to-from;
+            float lengthSquared=delta.sqrMagnitude;
+            if (lengthSquared<=0f) return;
+            float pad=radius+1f;
+            int x0=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(from.x,to.x)-pad));
+            int x1=Mathf.Min(width-1,Mathf.CeilToInt(Mathf.Max(from.x,to.x)+pad));
+            int y0=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(from.y,to.y)-pad));
+            int y1=Mathf.Min(width-1,Mathf.CeilToInt(Mathf.Max(from.y,to.y)+pad));
+            for(int y=y0;y<=y1;y++) for(int x=x0;x<=x1;x++)
+            {
+                Vector2 point=new Vector2(x+.5f,y+.5f);
+                float t=Mathf.Clamp01(Vector2.Dot(point-from,delta)/lengthSquared);
+                float distance=Vector2.Distance(point,from+t*delta);
+                byte alpha=(byte)(255*Mathf.Clamp01(radius+.5f-distance));
+                int index=(width-1-y)*width+x;
+                if (alpha>focusPixels[index].a) focusPixels[index]=new Color32(255,255,255,alpha);
             }
         }
         private Rect DrawTile(Vector2 world, float frameSize, Texture2D texture)
@@ -305,7 +445,10 @@ namespace FlyEditor.Flight
             { Navigation.ZoomAt(Navigation.Zoom * 1.2f, Viewport.size * .5f, Viewport.size); CacheZoom(); }
             if (GUI.Button(new Rect(264, 980, 130, 44), "전체 보기", button)) FitVisible();
             if (GUI.Button(new Rect(408, 980, 110, 44), "100%", button)) { Navigation.Reset(); CacheZoom(); }
-            GUI.Label(new Rect(48, 1032, 1050, 35), "휠: 확대/축소   ·   오른쪽/가운데 버튼 드래그: 이동", small);
+            GUI.Label(new Rect(48, 1032, 1360, 35), previewAll
+                ? "방향키로 선택   ·   휠로 확대/축소   ·   오른쪽/가운데 드래그로 이동"
+                : "방향키로 선택   ·   Enter로 해금   ·   휠로 확대/축소   ·   오른쪽/가운데 드래그로 이동", small);
+            GUI.Label(new Rect(556,986,570,40),growthText,small);
             var back = new Rect(1150, 980, 266, 50);
             Texture(back, assets.backButton);
             if (GUI.Button(back, "비행으로 [Esc]", button)) owner.CloseResearch();

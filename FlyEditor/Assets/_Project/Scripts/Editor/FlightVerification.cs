@@ -14,6 +14,7 @@ namespace FlyEditor.Editor
         private const string SessionKey = "FlyEditor.FlightVerification.Play";
         private static PaperFlightController controller;
         private static Mouse mouse;
+        private static Keyboard researchKeyboard;
         private static int stage;
         private static float startHeight;
         private static bool failed;
@@ -92,9 +93,296 @@ namespace FlyEditor.Editor
             if (type == LogType.Exception || type == LogType.Error || type == LogType.Assert) failed = true;
         }
 
-        private static void Press(bool down)
+        private static void Press(bool down,float mouseY=0f)
         {
-            InputSystem.QueueStateEvent(mouse, new MouseState().WithButton(MouseButton.Left, down));
+            var input = new MouseState { position = new Vector2(120f,mouseY) };
+            InputSystem.QueueStateEvent(mouse,input.WithButton(MouseButton.Left, down));
+        }
+
+        // Contact points of the sole region, in shoe-local Unity units.
+        private static readonly Vector3 SoleToe=new Vector3(.15f,-.03f,0f);
+        private static readonly Vector3 SoleHeel=new Vector3(-.06f,-.03f,0f);
+
+        private static void VerifyThrowRig(PaperFlightController game)
+        {
+            var rig = game.Thrower;
+            Require(rig != null && rig.HoldingPlane, "Thrower missing at start.");
+            var fore = rig.Grip.parent;
+            var upper = fore.parent;
+            var foot = rig.transform.Find("root/hip/front-thigh/front-shin/front-shoe");
+            var hip = rig.transform.Find("root/hip");
+            var rearFoot = hip.Find("rear-thigh/rear-shin/rear-shoe");
+            Vector3 rearPlanted = rearFoot.TransformPoint(SoleToe);
+            float hipStart = hip.position.x;
+            var farHand = hip.Find("torso/rear-upper/rear-fore/far-arm").GetComponent<SpriteRenderer>();
+            Require(farHand.sortingOrder < hip.Find("rear-thigh/rear-trousers").GetComponent<SpriteRenderer>().sortingOrder
+                && farHand.sortingOrder < hip.Find("front-thigh/front-trousers").GetComponent<SpriteRenderer>().sortingOrder,
+                "The far arm must draw behind both legs.");
+            Vector3 planted = foot.position;
+            float arm = Vector3.Distance(upper.position,fore.position);
+            float forearm = Vector3.Distance(fore.position,rig.Grip.position);
+            Vector3 start = rig.Grip.position;
+            rig.Begin();
+            for (int i=0;i<38;i++) Require(!rig.Advance(.01f),"Throw released during windup.");
+            Require(rig.Grip.position.x < start.x && hip.position.x < hipStart-.1f && rig.State == LaunchThrower.Phase.Windup,
+                "Windup should take the hand backward.");
+            rig.Prepare(new Vector3(0,game.Model.Height,0));
+            Require(Vector3.Distance(start,rig.Grip.position)<.0001f,"Canceled windup changed the next start.");
+            int releases = 0;
+            rig.Begin();
+            for(int i=0;i<360;i++)
+            {
+                rig.Begin();
+                if(rig.Advance(1f/240f))
+                {
+                    releases++;
+                    Require(hip.position.x>hipStart+.2f,"Release must transfer weight toward the lead foot.");
+                    Require(Vector3.Distance(rig.Grip.position,new Vector3(0,game.Model.Height,0))<.0001f,
+                        "Release hand does not meet the flight origin.");
+                }
+                Require(Mathf.Abs(Vector3.Distance(upper.position,fore.position)-arm)<.0001f
+                    && Mathf.Abs(Vector3.Distance(fore.position,rig.Grip.position)-forearm)<.0001f
+                    && Vector3.Distance(foot.position,planted)<.0005f
+                    && Vector3.Distance(rearFoot.TransformPoint(SoleToe),rearPlanted)<.0005f,"A limb stretched or a foot slid.");
+            }
+            Require(releases==1 && rig.State==LaunchThrower.Phase.Resting,"Throw release count or final pose.");
+            VerifyDirectionalThrow(rig,new Vector3(0,game.Model.Height,0));
+            rig.Prepare(new Vector3(0,game.Model.Height,0));
+            Debug.Log("[Thrower] PASS: Spine-baked windup, fixed limb lengths, planted foot, one release at flight origin and reset.");
+        }
+
+        private static void VerifyDirectionalThrow(LaunchThrower rig,Vector3 launch)
+        {
+            var fore=rig.Grip.parent;
+            var upper=fore.parent;
+            var torso=upper.parent;
+            var hip=torso.parent;
+            var front=hip.Find("front-thigh/front-shin/front-shoe");
+            var rear=hip.Find("rear-thigh/rear-shin/rear-shoe");
+            rig.Prepare(launch);
+            float arm=Vector3.Distance(upper.position,fore.position);
+            float lower=Vector3.Distance(fore.position,rig.Grip.position);
+            Vector3 frontPlant=front.position,rearPlant=rear.TransformPoint(SoleToe);
+            Quaternion frontFlat=front.rotation;
+            float flatHeelY=rear.TransformPoint(SoleHeel).y;
+            rig.StartAiming();
+            rig.SetAim(FlightModel.MinLaunchAngle);
+            rig.Advance(.24f);
+            Vector3 lowHand=rig.Grip.position,lowElbow=fore.position,lowBody=torso.up;
+            rig.Advance(2f);
+            Require(lowHand.x>hip.position.x && Vector3.Distance(lowHand,rig.Grip.position)<.0001f,
+                "Holding aim must keep the hand forward in the ready stance.");
+            rig.SetAim(FlightModel.MaxLaunchAngle);rig.Advance(0);
+            Require(rig.Grip.position.y>lowHand.y+.35f && Vector3.Distance(fore.position,lowElbow)>.2f
+                && Vector3.Angle(lowBody,torso.up)>10,"Drag on held pose should change hand, elbow and torso.");
+            rig.SetAim(FlightModel.MinLaunchAngle);rig.Advance(0);
+            Require(Vector3.Distance(rig.Grip.position,lowHand)<.0001f,"Aim offsets accumulated.");
+            float lastExit=-180;
+            var freeArm=torso.Find("rear-upper");
+            var freeForearm=freeArm.Find("rear-fore");
+            var handTip=new Vector3(.28f,0f,0f);
+            foreach(float angle in new[]{FlightModel.MinLaunchAngle,0f,10f,22f,FlightModel.MaxLaunchAngle})
+            {
+                rig.Prepare(launch);rig.StartAiming();rig.SetAim(angle);rig.Advance(.24f);
+                Vector3 readyHand=rig.Grip.position;
+                float readyReach=freeForearm.TransformPoint(handTip).x-freeArm.position.x;
+                float readyHipX=hip.position.x;
+                rig.Begin();
+                Require(!rig.Advance(.38f),"Backswing released the plane early.");
+                Vector3 drawn=rig.Grip.position;
+                float forwardReach=freeForearm.TransformPoint(handTip).x-freeArm.position.x;
+                Require(forwardReach>.4f && forwardReach>readyReach+.25f,
+                    "Free hand should swing ahead of the shoulder during the draw at "+angle);
+                Require(drawn.x<hip.position.x && drawn.x<readyHand.x-1f && hip.position.x<readyHipX,
+                    "Mouse-up must draw the hand back and shift weight onto the rear foot at "+angle);
+                if (angle==FlightModel.MinLaunchAngle)
+                    Require(drawn.y<hip.position.y,"Low backswing should pass below the hip.");
+                if (angle==FlightModel.MinLaunchAngle || angle>=LaunchThrower.NeutralAim)
+                    Require(Vector3.Distance(upper.position,drawn)>(arm+lower)*.9f,
+                        "The arm should open out on the backswing at "+angle);
+                Vector3 drawnHip=hip.position;
+                Quaternion loadedArm=upper.rotation, loadedForearm=fore.rotation;
+                var rearShin=rear.parent;
+                float drawnBend=Quaternion.Angle(rearShin.localRotation,Quaternion.identity);
+                Require(!rig.Advance(.12f) && hip.position.y<drawnHip.y-.05f
+                    && Quaternion.Angle(rearShin.localRotation,Quaternion.identity)>drawnBend+4f
+                    && Vector3.Distance(rear.TransformPoint(SoleToe),rearPlant)<.0005f && Vector3.Distance(front.position,frontPlant)<.0005f
+                    && Mathf.Abs(rear.TransformPoint(SoleHeel).y-flatHeelY)<.0005f
+                    && Quaternion.Angle(loadedArm,upper.rotation)<.1f && Quaternion.Angle(loadedForearm,fore.rotation)<.1f,
+                    "Gather should bend the rear knee under a held throwing arm with both feet planted.");
+                Vector3 loadedHip=hip.position, loadedShoulder=upper.position;
+                Require(!rig.Advance(.09f) && hip.position.x>loadedHip.x+.05f && upper.position.x>loadedShoulder.x+.05f
+                    && Quaternion.Angle(loadedArm,upper.rotation)<.1f && Quaternion.Angle(loadedForearm,fore.rotation)<.1f,
+                    "Hips and shoulder must move forward before the throwing arm at "+angle);
+                Require(!rig.Advance(.06f) && (Quaternion.Angle(loadedArm,upper.rotation)>1f ||
+                    Quaternion.Angle(loadedForearm,fore.rotation)>1f),"Arm failed to follow the body drive.");
+                int released=0;
+                int releaseFrame=-1;
+                float releaseHipX=0f;
+                Quaternion exitForearm=Quaternion.identity;
+                for(int i=0;i<240;i++)
+                {
+                    if (rig.Advance(1f/240f))
+                    {
+                        released++;
+                        releaseFrame=i;
+                        releaseHipX=hip.position.x;
+                        Require(freeForearm.position.x<freeArm.position.x &&
+                            freeForearm.TransformPoint(handTip).x<hip.position.x,
+                            "Free elbow and hand should sweep behind the body at release at "+angle);
+                        Require(rear.TransformPoint(SoleHeel).y>flatHeelY+.06f,"Back heel did not lift during the drive.");
+                        exitForearm=fore.rotation;
+                        float elapsed=.65f+(i+1)/240f;
+                        Require(Mathf.Abs(elapsed-.75f)<=1.01f/240f,"Unexpected body-led release timing.");
+                        float exit=Mathf.Atan2(fore.right.y,fore.right.x)*Mathf.Rad2Deg;
+                        var releasePoint=new Vector3(launch.x,rig.ReleaseHeight,launch.z);
+                        Require(exit>lastExit+1 && Vector3.Distance(rig.Grip.position,releasePoint)<.0002f
+                            && Mathf.Abs(Mathf.DeltaAngle(rig.Grip.eulerAngles.z,angle))<.01f,"Directional release mismatch.");
+                        if (angle == FlightModel.MinLaunchAngle)
+                            Require(rig.Grip.position.x>hip.position.x && rig.Grip.position.y<hip.position.y+.2f,
+                                "Underhand release must pass forward at waist height.");
+                        lastExit=exit;
+                    }
+                    if (releaseFrame>=0 && i==releaseFrame+48)
+                    {
+                        Require(Mathf.Abs(front.position.x-hip.position.x)<Mathf.Abs(front.position.x-releaseHipX)-.15f,
+                            "Follow-through should carry the pelvis toward the front foot.");
+                        float roll=-Mathf.DeltaAngle(0f,rear.eulerAngles.z);
+                        Require(freeForearm.TransformPoint(handTip).x<hip.position.x,"Free hand should trail through follow-through.");
+                        Require(roll>13f && roll<=14.1f,"Rear heel should rise slightly as weight passes forward.");
+                        if (angle==FlightModel.MinLaunchAngle || angle==FlightModel.MaxLaunchAngle)
+                            Require(Quaternion.Angle(exitForearm,fore.rotation)>15f,"Arm stopped at release.");
+                    }
+                    Require(Mathf.Abs(Vector3.Distance(upper.position,fore.position)-arm)<.0001f
+                        && Mathf.Abs(Vector3.Distance(rig.Grip.position,fore.position)-lower)<.0001f
+                        && Vector3.Distance(front.position,frontPlant)<.0005f
+                        && Quaternion.Angle(front.rotation,frontFlat)<.05f
+                        && Vector3.Distance(rear.TransformPoint(SoleToe),rearPlant)<.0005f,"Directional throw stretched or slid.");
+                }
+                Require(released==1 && rig.State==LaunchThrower.Phase.Resting,"Directional throw did not settle.");
+                Require(hip.position.x>releaseHipX+.1f,"Final stance lost the forward weight transfer.");
+                Require(Mathf.Abs(Mathf.DeltaAngle(-5f,rear.eulerAngles.z))<.05f,"Heel did not ease into its final pose.");
+            }
+            for (float angle=FlightModel.MinLaunchAngle;angle<=FlightModel.MaxLaunchAngle;angle+=.25f)
+            {
+                rig.Prepare(launch);rig.StartAiming();rig.SetAim(angle);rig.Advance(1f);rig.Begin();
+                if (angle>-6f && angle<6f)
+                {
+                    while (rig.State==LaunchThrower.Phase.Windup)
+                    {
+                        Quaternion oldUpper=upper.rotation, oldFore=fore.rotation;
+                        rig.Advance(1f/240f);
+                        Require(Quaternion.Angle(oldUpper,upper.rotation)<25f && Quaternion.Angle(oldFore,fore.rotation)<25f,
+                            "Arm flipped during a blended throw at "+angle);
+                    }
+                }
+                else rig.Advance(1f);
+                Require(Vector3.Distance(rig.Grip.position,new Vector3(launch.x,rig.ReleaseHeight,launch.z))<.0002f,
+                    "Preview and grip diverged at "+angle);
+            }
+            rig.Prepare(launch);rig.StartAiming();rig.SetAim(-12f);rig.Begin();
+            Require(!rig.Advance(.38f) && rig.Grip.position.x<hip.position.x && !rig.Advance(.36f) && rig.Advance(.011f),
+                "A quick click must still play the backswing before releasing.");
+            Debug.Log("[ThrowLead] PASS: full draw, gather, hip and shoulder lead, arm catch-up and timed release.");
+            Debug.Log("[ThrowStance] PASS: rear knee bends during gather, feet planted, forward finish and sustained arm swing.");
+            Debug.Log("[HeelRoll] PASS: flat front sole, planted rear toe, lift at release and gentle settling.");
+            Debug.Log("[CounterArm] PASS: forward reach on draw and rearward balance at release and follow-through.");
+            Debug.Log("[ThrowAimPose] PASS: held ready stance, post-input backswing, weight transfer, fixed arms and feet, full angle sweep.");
+        }
+
+        private static void VerifyForecast(PaperFlightController game)
+        {
+            foreach(float speed in new[]{13f,150f})
+            foreach(float angle in new[]{FlightModel.MinLaunchAngle,10f,FlightModel.MaxLaunchAngle})
+            {
+                var model=new FlightModel(new FlightTuning { launchSpeed=speed,speedCap=speed+10 });
+                var rig=game.Thrower;
+                rig.Prepare(new Vector3(0,model.Height,0));rig.StartAiming();rig.SetAim(angle);
+                game.Trajectory.Show(model,angle,.02f,rig.ReleaseHeight);
+                var heading = Quaternion.Euler(0,0,angle)*Vector3.right;
+                foreach(var nose in new[]{new Vector3(-2.6f,4.4f,0),new Vector3(-1.5f,4.1f,0)})
+                {
+                    game.Trajectory.DrawFromNose(nose);
+                    VerifyFirstDash(game,nose,heading);
+                }
+                var samples=game.Trajectory.Samples;
+                Require(model.State==FlightModel.Phase.Ready && model.PickupsCollected==0,"Preview mutated live flight.");
+                var course=new FlightCourse();
+                model.SetLaunchPose(angle,rig.ReleaseHeight);model.Tick(true,false,false);model.Tick(false,false,false);
+                var nosePath = new Vector3[samples.Count];
+                nosePath[0] = AirborneNose(model);
+                for(int i=1;i<samples.Count;i++)
+                {
+                    course.Step(model,.02f);
+                    nosePath[i] = AirborneNose(model);
+                    Require(Vector2.Distance(samples[i],new Vector2(model.Distance,model.Height))<.0001f,"Preview mismatch.");
+                }
+                VerifyRenderedArc(game,nosePath);
+            }
+            var lowStart=new FlightModel(new FlightTuning());
+            const float lowAngle=FlightModel.MinLaunchAngle;
+            float lowHeight=PaperPlaneGeometry.ContactHeight(lowAngle)+.12f;
+            game.Trajectory.Show(lowStart,lowAngle,.02f,lowHeight);
+            lowStart.SetLaunchPose(lowAngle,lowHeight);lowStart.Tick(true,false,false);lowStart.Tick(false,false,false);
+            var shortCourse=new FlightCourse();
+            for(int i=1;i<game.Trajectory.Samples.Count;i++) shortCourse.Step(lowStart,.02f);
+            Require(lowStart.State==FlightModel.Phase.Landed && lowStart.Distance<10f &&
+                Vector2.Distance(game.Trajectory.Samples[game.Trajectory.Samples.Count-1],
+                    new Vector2(lowStart.Distance,lowStart.Height))<.0001f,"Short preview must end at first contact.");
+            game.Trajectory.Hide();
+            game.Thrower.Prepare(new Vector3(0,game.Model.Height,0));
+            Debug.Log("[Aim10m] PASS: rendered endpoint follows the first ten metres of the physical nose path at both launch speeds.");
+        }
+        private static Vector3 AirborneNose(FlightModel model) => new Vector3(model.Distance,model.Height,0)
+            + Quaternion.Euler(0,0,model.Pitch)*PaperPlaneGeometry.Nose;
+        private static void VerifyRenderedArc(PaperFlightController game,Vector3[] path)
+        {
+            var holder = game.transform.Find("출발 예상 궤도");
+            var mesh = holder.GetComponent<MeshFilter>().sharedMesh;
+            float prefix=0f;
+            for(int j=1;j<path.Length-1;j++) prefix+=Vector3.Distance(path[j-1],path[j]);
+            float lastLength=Vector3.Distance(path[path.Length-2],path[path.Length-1]);
+            Require(prefix<10f && prefix+lastLength>=9.9999f,"Expected a forecast reaching ten metres.");
+            Vector3 tenMetres=Vector3.Lerp(path[path.Length-2],path[path.Length-1],(10f-prefix)/lastLength);
+            foreach (Vector3 anchor in new[]{new Vector3(-2.6f,4.4f,0),path[0]})
+            {
+                game.Trajectory.DrawFromNose(anchor);
+                var vertices = mesh.vertices;
+                Vector3 offset = anchor-path[0];
+                int last=vertices.Length-1;
+                Vector3 endpoint=holder.TransformPoint((vertices[last]+vertices[last-1])*.5f)-offset;
+                Require(Vector3.Distance(endpoint,tenMetres)<.0002f,"Last visible dash must end at ten metres.");
+                for(int i=0;i<vertices.Length;i+=2)
+                {
+                    Vector3 center = holder.TransformPoint((vertices[i]+vertices[i+1])*.5f)-offset;
+                    Require(Vector3.Distance(center,path[0])<=10.001f,"Aim dashes exceed the preview length.");
+                    float nearest = float.PositiveInfinity;
+                    for(int j=1;j<path.Length;j++)
+                    {
+                        Vector3 segment=path[j]-path[j-1];
+                        float t=Mathf.Clamp01(Vector3.Dot(center-path[j-1],segment)/Mathf.Max(.0000001f,segment.sqrMagnitude));
+                        nearest=Mathf.Min(nearest,Vector3.Distance(center,path[j-1]+segment*t));
+                    }
+                    Require(nearest<.0002f,"A painted dash leaves the physical nose path.");
+                }
+            }
+        }
+
+        private static void VerifyFirstDash(PaperFlightController game,Vector3 nose,Vector3 forward)
+        {
+            var holder=game.transform.Find("출발 예상 궤도");
+            var vertices=holder.GetComponent<MeshFilter>().sharedMesh.vertices;
+            Require(vertices.Length >= 4,"Missing first dash.");
+            Vector3 start=holder.TransformPoint((vertices[0]+vertices[1])*.5f);
+            Vector3 next=holder.TransformPoint((vertices[2]+vertices[3])*.5f);
+            Require(Vector3.Distance(start,nose)<.0001f && Vector3.Dot((next-start).normalized,forward.normalized)>.99f,
+                "First dash must touch the rendered nose and follow its direction.");
+        }
+        private static void VerifyHeldNose(PaperFlightController game)
+        {
+            var plane=game.transform.Find("Folded paper plane");
+            Vector3 nose=plane.TransformPoint(PaperPlaneGeometry.Nose);
+            VerifyFirstDash(game,nose,nose-plane.position);
         }
 
         private static void PlayTick()
@@ -114,9 +402,12 @@ namespace FlyEditor.Editor
                     testSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
                     testSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
                     mouse = InputSystem.AddDevice<Mouse>();
+                    researchKeyboard = InputSystem.AddDevice<Keyboard>();
                     Require(controller.FlightCamera != null, "Runtime camera missing.");
                     Require(controller.transform.Find("Folded paper plane") != null, "Runtime mesh missing.");
                     Require(controller.Model.State == FlightModel.Phase.Ready, "Ready state missing.");
+                    VerifyThrowRig(controller);
+                    VerifyForecast(controller);
                     Require(!controller.OpenResearch() && !controller.Session.Research.Unlocked,
                         "Research must stay locked before the first completed flight.");
                 }
@@ -125,26 +416,56 @@ namespace FlyEditor.Editor
                 switch (stage)
                 {
                     case 0:
-                        if (t > 0.5f) { Press(true); stage++; }
+                        if (t > 0.5f) { Press(true,Screen.height*.4f); stageDeadline=EditorApplication.timeSinceStartup+.6; stage++; }
                         break;
                     case 1:
-                        if (t > 1f)
+                        if (EditorApplication.timeSinceStartup >= stageDeadline)
                         {
-                            Require(model.State == FlightModel.Phase.Flying && model.Distance > 0f, "Input System launch failed.");
-                            Require(!model.ControlArmed && !model.Climbing, "Launch hold climbed.");
-                            Press(false); stage++;
+                            Require(controller.Trajectory.Visible && controller.Thrower.State==LaunchThrower.Phase.Aiming
+                                && model.State==FlightModel.Phase.Ready && controller.Session.Research.ActiveRunId==0,
+                                "Holding must show the preview without starting a run.");
+                            VerifyHeldNose(controller);
+                            Press(true,Screen.height*.1f); stage=15;
+                        }
+                        break;
+                    case 15:
+                        if (controller.LaunchAngle==FlightModel.MinLaunchAngle)
+                        {
+                            VerifyHeldNose(controller);
+                            Press(true,Screen.height*.9f); stage=16;
+                        }
+                        break;
+                    case 16:
+                        if (controller.LaunchAngle==FlightModel.MaxLaunchAngle)
+                        {
+                            VerifyHeldNose(controller);
+                            Press(true,Screen.height*.52f); stage=11;
+                        }
+                        break;
+                    case 11:
+                        if (Mathf.Abs(controller.LaunchAngle-22f)<.3f)
+                        {
+                            Require(controller.Trajectory.Samples.Count>5,"Missing predicted path.");
+                            VerifyHeldNose(controller);
+                            Debug.Log("[LaunchNose] PASS: visible mesh starts at held nose at neutral, low and high drag angles.");
+                            Press(false,Screen.height*.52f); stage=2;
                         }
                         break;
                     case 2:
-                        if (t > 1.3f)
+                        if (model.Elapsed > .45f)
                         {
-                            Require(model.ControlArmed, "Launch release did not arm controls.");
+                            Require(model.ControlArmed && !controller.Trajectory.Visible, "Release left preview active.");
+                            int step = Mathf.RoundToInt(model.Elapsed/Time.fixedDeltaTime);
+                            var samples = controller.Trajectory.Samples;
+                            Require(step < samples.Count && Vector2.Distance(samples[step],new Vector2(model.Distance,model.Height))<.001f,
+                                "Actual hands-off flight diverged from the displayed trajectory.");
+                            Debug.Log("[LaunchAim] PASS: hold-to-preview, drag direction, release, real gameplay path and control gate.");
                             startHeight = model.Height;
                             Press(true); stage++;
                         }
                         break;
                     case 3:
-                        if (t > 2.8f)
+                        if (model.Elapsed > 1.95f)
                         {
                             Require(model.Climbing && model.Height > startHeight, "Held mouse did not climb.");
                             Press(false); stage++;
@@ -174,17 +495,57 @@ namespace FlyEditor.Editor
                         {
                             Require(model.Distance == 0f && !model.ControlArmed, "Reset failed.");
                             Require(model.BestDistance > 10f, "Best distance lost.");
-                            Require(Mathf.Abs(model.Speed - 13f * 1.03f) < 0.001f, "Purchased launch upgrade did not apply to restart.");
+                            Require(Mathf.Abs(model.Speed - 13f * 1.12f) < 0.001f, "Purchased launch upgrade did not apply to restart.");
                             Press(false); stage++;
                         }
                         break;
                     case 6:
-                        Press(true); stage++;
+                        Press(true); stage=12;
+                        break;
+                    case 12:
+                        if (controller.Trajectory.Visible)
+                        {
+                            Require(controller.OpenResearch() && !controller.Trajectory.Visible
+                                && controller.Session.Research.ActiveRunId==0,"Research did not cancel aim.");
+                            controller.CloseResearch(); Press(false);
+                            stageDeadline=EditorApplication.timeSinceStartup+.2; stage=13;
+                        }
+                        break;
+                    case 13:
+                        if(EditorApplication.timeSinceStartup >= stageDeadline)
+                        {
+                            Require(model.State==FlightModel.Phase.Ready,"Canceled release launched a flight.");
+                            Press(true,Screen.height*.4f); stage=14;
+                        }
+                        break;
+                    case 14:
+                        if (controller.Trajectory.Visible) { Press(true,Screen.height*.1f); stage=17; }
+                        break;
+                    case 17:
+                        if (controller.LaunchAngle==FlightModel.MinLaunchAngle)
+                        {
+                            VerifyHeldNose(controller);
+                            Press(false,Screen.height*.1f); stage=7;
+                        }
                         break;
                     case 7:
-                        if (model.State == FlightModel.Phase.Flying)
+                        if (model.State == FlightModel.Phase.Flying && model.Elapsed >= .15f)
                         {
-                            Require(!model.ControlArmed, "Relaunch input gate failed.");
+                            Require(model.ControlArmed && !model.Climbing, "Relaunch climbed without new input.");
+                            var path=controller.Trajectory.Samples;
+                            int index=Mathf.RoundToInt(model.Elapsed/Time.fixedDeltaTime);
+                            Require(path[0].y<2.5f && index<path.Count &&
+                                Vector2.Distance(path[index],new Vector2(model.Distance,model.Height))<.001f,
+                                "Low release flight must follow the low-hand forecast.");
+                            stage=18;
+                        }
+                        break;
+                    case 18:
+                        if (model.Elapsed>=1f)
+                        {
+                            Require(model.Height>controller.Trajectory.Samples[0].y && model.Velocity.y>0f,
+                                "Underhand flight should keep rising beyond the drawn prefix.");
+                            Debug.Log("[Underhand] PASS: mouse drag, low release and actual flight match preview.");
                             Debug.Log("[PaperFlight] PLAY CHECKS PASSED: ready, launch, hold gate, climb, dive, ground, reset, relaunch.");
                             if (Application.isBatchMode)
                             {
@@ -206,31 +567,75 @@ namespace FlyEditor.Editor
                             Require(controller.SelectResearchNode("Glide_1") && !controller.SelectResearchNode("Shield_1")
                                 && !controller.SelectResearchNode("Launch_2"), "Future nodes leaked into runtime selection.");
                             int beforePreview = controller.Session.Research.Points;
-                            Require(controller.SetResearchPreview(true) && controller.VisibleResearchCount == 33
-                                && controller.SelectResearchNode("Shield_1"), "Complete 33-node preview failed.");
+                            Require(controller.SetResearchPreview(true) && controller.VisibleResearchCount == 98
+                                && controller.SelectResearchNode("Shield_1"), "Complete 98-node preview failed.");
                             Require(controller.ResearchNavigation.Zoom < 1, "Full preview did not zoom out to fit.");
                             Require(!controller.BuyResearchNode("Launch_1") && !controller.BuySelectedResearch(ResearchNode.Throw)
                                 && controller.Session.Research.Points == beforePreview, "Preview spent real points.");
+                            Require(controller.SelectResearchNode("Launch_1"),"Preview selection failed.");
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState(Key.Enter));
+                            stageDeadline=EditorApplication.timeSinceStartup+.15;stage=19;
+                        }
+                        break;
+                    case 19:
+                        if (EditorApplication.timeSinceStartup>=stageDeadline)
+                        {
+                            Require(controller.ResearchPreviewAll && controller.Session.Research.Points==expectedPoints
+                                && !controller.Session.Research.Owns("Launch_1"),"Preview Enter spent points or left preview.");
                             Require(controller.SetResearchPreview(false) && !controller.ResearchOpen
                                 && !controller.ResearchPreviewAll && controller.OpenResearch()
                                 && controller.VisibleResearchCount == 5, "Preview leaked into normal research.");
                             controller.ResearchNavigation.BeginPan();
                             controller.ResearchNavigation.Drag(new Vector2(2000, 0));
                             controller.ResearchNavigation.Cancel();
-                            Require(controller.BuyResearchNode("Launch_1"), "First launch node purchase failed.");
+                            Require(controller.SelectResearchNode("Glide_1"),"Keyboard navigation start missing.");
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState(Key.LeftArrow));
+                            stage=20;
+                        }
+                        break;
+                    case 20:
+                        if (controller.SelectedResearchId=="Launch_1")
+                        {
+                            var launch=Array.Find(controller.ResearchAssets.nodes,n=>n.id=="Launch_1");
+                            var size=new Vector2(1408,790);
+                            Require(new Rect(Vector2.zero,size).Contains(controller.ResearchNavigation.WorldToView(launch.position,size)),
+                                "Keyboard-selected node stayed offscreen.");
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState(Key.Enter));
+                            stage=21;
+                        }
+                        break;
+                    case 21:
+                        if (controller.Session.Research.Owns("Launch_1"))
+                        {
                             var graphSize = new Vector2(1408, 790);
                             foreach (var child in controller.ResearchAssets.nodes)
                                 if (child.runtimeIndex >= 0 && child.parent == Array.FindIndex(controller.ResearchAssets.nodes, n => n.id == "Launch_1"))
                                     Require(new Rect(Vector2.zero, graphSize).Contains(controller.ResearchNavigation.WorldToView(child.position, graphSize)), "Revealed child is outside the viewport.");
                             Require(!controller.BuyResearchNode("Launch_1"), "A one-time node was bought twice.");
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState(Key.LeftArrow));
+                            stage=22;
+                        }
+                        break;
+                    case 22:
+                        if (controller.SelectedResearchId=="Launch_2")
+                        {
                             Require(controller.VisibleResearchCount == 8 && controller.SelectResearchNode("Launch_2")
                                 && controller.SelectResearchNode("Drag_1") && !controller.SelectResearchNode("Climb_1")
                                 && controller.SelectResearchNode("Boost_1") && !controller.SelectResearchNode("Launch_3"), "Expected three direct children.");
-                            Require(controller.BuyResearchNode("Drag_1") && !controller.BuyResearchNode("Drag_1")
+                            controller.SelectResearchNode("Drag_1");
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState(Key.NumpadEnter));
+                            stage=23;
+                        }
+                        break;
+                    case 23:
+                        if (controller.Session.Research.Owns("Drag_1"))
+                        {
+                            InputSystem.QueueStateEvent(researchKeyboard,new KeyboardState());
+                            Require(!controller.BuyResearchNode("Drag_1")
                                 && controller.SelectResearchNode("Drag_2") && controller.SelectResearchNode("Drag_1")
                                 && controller.SelectResearchNode("Launch_2"), "Independent branch selection failed.");
                             Require(controller.BuyResearchNode("Glide_1"), "First glide node purchase failed.");
-                            Require(controller.VisibleResearchCount == 11 && controller.SelectResearchNode("Climb_1"), "Owned nodes and open siblings must remain visible.");
+                            Require(controller.VisibleResearchCount == 13 && controller.SelectResearchNode("Climb_1"), "Owned nodes and open siblings must remain visible.");
                             Require(!controller.BuySelectedResearch(ResearchNode.Control), "Deferred control research was purchasable.");
                             Require(controller.Session.Research.Points == expectedPoints - 90, "One-time purchases charged incorrectly.");
                             string path = SessionState.GetString(TestSaveKey, "");
@@ -240,6 +645,7 @@ namespace FlyEditor.Editor
                                 && saved.Points == expectedPoints - 90,
                                 "One-time purchases did not survive reload.");
                             Require(!controller.BuyResearchNode("Launch_2"), "Insufficient points allowed a purchase.");
+                            Debug.Log("[ResearchKeys] PASS: arrow focus and reveal, Enter and keypad purchases, preview blocked, points and save verified.");
                             controller.CloseResearch();
                             stageDeadline = EditorApplication.timeSinceStartup + 0.2; stage = 9;
                         }
@@ -279,6 +685,7 @@ namespace FlyEditor.Editor
             EditorApplication.update -= PlayTick;
             Application.logMessageReceived -= WatchLog;
             if (mouse != null) InputSystem.RemoveDevice(mouse);
+            if (researchKeyboard != null) InputSystem.RemoveDevice(researchKeyboard);
             if (originalSettings != null) InputSystem.settings = originalSettings;
             if (testSettings != null) UnityEngine.Object.DestroyImmediate(testSettings);
             if (Application.isBatchMode) EditorApplication.Exit(result);
@@ -378,9 +785,9 @@ namespace FlyEditor.Editor
                     int rank = funded.Rank(node);
                     Require(funded.Points == 225 - paid, "Purchase deducted the wrong amount.");
                     var tuning = funded.Apply(baseline);
-                    Require(Mathf.Abs(tuning.launchSpeed - baseline.launchSpeed * (1f + (node == ResearchNode.Throw ? 0.03f * rank : 0f))) < 0.0001f,
+                    Require(Mathf.Abs(tuning.launchSpeed - baseline.launchSpeed * (1f + (node == ResearchNode.Throw ? new[] { 0f, .12f, .32f, .62f }[rank] : 0f))) < 0.0001f,
                         "Throw effect was not additive or altered another upgrade.");
-                    Require(Mathf.Abs(tuning.sink - baseline.sink * (1f - (node == ResearchNode.Glide ? 0.04f * rank : 0f))) < 0.0001f,
+                    Require(Mathf.Abs(tuning.sink - baseline.sink * (1f - (node == ResearchNode.Glide ? new[] { 0f, .04f, .14f, .32f }[rank] : 0f))) < 0.0001f,
                         "Glide effect was not additive.");
                     float response = 1f + (node == ResearchNode.Control ? 0.05f * rank : 0f);
                     Require(Mathf.Abs(tuning.pitchResponse - 90f * response) < 0.0001f
@@ -421,7 +828,7 @@ namespace FlyEditor.Editor
                 Require(session.Research.ActiveRunId == 0 && !session.Research.CompleteRun(interrupted, 1000f, out _)
                     && session.Research.Points == 170, "Interrupted flight paid automatically.");
                 Require(session.TryBuy(ResearchNode.Throw), "Ready purchase failed.");
-                Require(Mathf.Abs(session.Model.Speed - 13f * 1.03f) < 0.001f, "Ready purchase did not apply to the next launch.");
+                Require(Mathf.Abs(session.Model.Speed - 13f * 1.12f) < 0.001f, "Ready purchase did not apply to the next launch.");
                 session.Tick(true, true, false);
                 Require(!session.TryBuy(ResearchNode.Control), "Purchase changed an active flight snapshot.");
                 session.Tick(false, false, false);
@@ -506,7 +913,7 @@ namespace FlyEditor.Editor
         {
             var research = controller.Session.Research;
             Require(research.BeginRun() && research.CompleteRun(research.ActiveRunId, 0, out _), "Fixture first landing failed.");
-            Require(controller.AdjustDeveloperPoints(5000) && controller.OpenResearch() && !controller.ResearchPreviewAll,
+            Require(controller.AdjustDeveloperPoints(20000) && controller.OpenResearch() && !controller.ResearchPreviewAll,
                 "Expected normal purchase screen.");
             foreach (string root in new[] { "Launch_1", "Glide_1", "Recover_1", "Durability_1", "Magnet_1" })
                 Require(controller.SelectResearchNode(root) && !research.Owns(root), "Missing initial branch " + root);
@@ -514,7 +921,7 @@ namespace FlyEditor.Editor
             foreach (var n in nodes)
                 if (n.runtimeIndex == 0 || n.runtimeIndex == 1 || n.runtimeIndex == 3 || n.runtimeIndex == 4)
                     Require(controller.BuyResearchNode(n.id), "Original twelve purchase failed: " + n.id);
-            Require(controller.VisibleResearchCount == 16 && controller.SelectResearchNode("Boost_1")
+            Require(controller.VisibleResearchCount == 31 && controller.SelectResearchNode("Boost_1")
                 && controller.SelectResearchNode("Durability_1") && controller.SelectResearchNode("Magnet_1")
                 && controller.SelectResearchNode("Recover_1"), "Regression: normal web stopped at the two completed arms.");
             int total = 0;
@@ -526,9 +933,9 @@ namespace FlyEditor.Editor
             }
             controller.FitResearchWeb();
             var saved = new FlightResearch(ResearchFileStore.OpenCurrent());
-            Require(controller.VisibleResearchCount == 33 && !controller.ResearchPreviewAll && saved.Points == 5000 - total
+            Require(controller.VisibleResearchCount == 98 && !controller.ResearchPreviewAll && saved.Points == 20000 - total
                 && Array.TrueForAll(nodes, n => saved.Owns(n.id)), "Full normal ownership/save mismatch.");
-            Debug.Log("[ResearchWeb] NORMAL PLAY PASSED: five roots, original twelve plus four candidates, all 33 purchased and reloaded.");
+            Debug.Log("[ResearchWeb] NORMAL PLAY PASSED: five roots, original ownership and expanded candidates, all 98 purchased and reloaded.");
         }
         private static void VerifyDeveloperPlayMode()
         {
@@ -550,8 +957,42 @@ namespace FlyEditor.Editor
             finally { CloseDeveloperTestWindow(); }
             Debug.Log("[DeveloperMode] PLAY CHECKS PASSED: live balance, active-flight reset, ownership, save reload.");
         }
+        private static void VerifyUnderhandRise()
+        {
+            foreach (float speed in new[]{13f,150f})
+            foreach (float dt in new[]{.01f,.02f,1f/30f})
+            {
+                var model=new FlightModel(new FlightTuning { launchSpeed=speed, speedCap=speed });
+                model.SetLaunchPose(-12f,2f);
+                model.Tick(true,false,false);model.Tick(false,false,false);
+                bool rose=false, descended=false;
+                Require(model.Velocity.y<0f,"Low throw should leave the hand along its aim.");
+                while (model.State==FlightModel.Phase.Flying && model.Elapsed<6f)
+                {
+                    float energy=model.Energy;
+                    model.FixedTick(dt);
+                    Require(model.Energy<=energy+.005f,"Launch arc added energy.");
+                    if (model.Height>2f && model.Velocity.y>0f) rose=true;
+                    if (rose && model.Velocity.y<0f) descended=true;
+                }
+                Require(rose && descended,"Low throw must clear its starting height then descend.");
+            }
+            var controlled=new FlightModel(new FlightTuning());
+            controlled.SetLaunchPose(-12f,2f);
+            controlled.Tick(true,false,false);controlled.Tick(false,false,false);
+            for (int i=0;i<10;i++) controlled.FixedTick(.02f);
+            controlled.Tick(true,true,false);controlled.FixedTick(.02f);
+            Require(controlled.Climbing,"A fresh click must take over the launch arc immediately.");
+            controlled.Tick(false,false,false);
+            float before=controlled.Pitch;
+            for (int i=0;i<10;i++) controlled.FixedTick(.02f);
+            Require(controlled.Pitch<before,"Releasing manual climb should not restart launch lift.");
+            Debug.Log("[UnderhandRise] PASS: low exit, rising arc, descent, energy and manual takeover.");
+        }
+
         private static void VerifyModel()
         {
+            VerifyUnderhandRise();
             VerifyLightResponse();
             VerifyGlideContinuity();
             VerifyForwardSpeed();

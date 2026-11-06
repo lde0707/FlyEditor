@@ -15,7 +15,7 @@ MonoBehaviour:
   background: {fileID: 2800000, guid: 71c230c9efcf5935a1d1733c476b54ff, type: 3}
   panel: {fileID: 2800000, guid: b4de735cd0d25a9abc23323014ac5dbb, type: 3}
   plane: {fileID: 2800000, guid: 6188e1bb45e557b0b57255f06d4660bd, type: 3}
-  root: {fileID: 2800000, guid: 3fc83d8bcdd3539f80c2c9a66f7a8606, type: 3}
+  root: {fileID: 2800000, guid: e170783fb59a5e058b28878d30369442, type: 3}
   currency: {fileID: 2800000, guid: cf8160396ab35285aed057b9bc5eb6f5, type: 3}
   backButton: {fileID: 2800000, guid: 1e5ee6d9c2855f9a8ff5553e70978977, type: 3}
   families:
@@ -74,598 +74,2676 @@ MonoBehaviour:
     - {fileID: 2800000, guid: c05a2ec42bfe500fa3f7cdcd5f2bf3b2, type: 3}
     - {fileID: 2800000, guid: 4631b491e6ac56368ad760a3d30c9813, type: 3}
     - {fileID: 2800000, guid: cbd38d91b1d05dc882929133387a04b0, type: 3}
+  rootFrameSize: 180
+  rootOutline:
+    - {x: -0.18750000, y: -0.44531250}
+    - {x: 0.18750000, y: -0.44531250}
+    - {x: 0.44531250, y: -0.18750000}
+    - {x: 0.44531250, y: 0.18750000}
+    - {x: 0.18750000, y: 0.44531250}
+    - {x: -0.18750000, y: 0.44531250}
+    - {x: -0.44531250, y: 0.18750000}
+    - {x: -0.44531250, y: -0.18750000}
   nodes:
   - id: Launch_1
-    title: "던지기 강화"
-    summary: "초기 발사 속도 +3%."
+    title: "더 빠른 첫 던지기"
+    benefit: "출발부터 더 멀리"
+    summary: "발사 속도가 기본값의 12%만큼 늘어납니다."
     runtimeIndex: 0
     unlocksAbility: 0
-    frameSize: 136
-    icon: {fileID: 2800000, guid: c5e0c9cba42658adad4aecd0d0f984f8, type: 3}
+    frameSize: 112
+    icon: {fileID: 2800000, guid: 72c3a349954e59a8be2faee75bdb7471, type: 3}
+    selection: {fileID: 2800000, guid: a7b2329cb9d05289b1a4983cf9f8fb09, type: 3}
     family: 0
     parent: -1
+    anyPrerequisite: 1
     prerequisiteIndices: 
-    position: {x: -230, y: -80}
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -256.74025, y: -112.23436}
     costs: 1e000000
     normal:
-    - {fileID: 2800000, guid: 3bda478dcbfb59f6980fd03b92b7fb43, type: 3}
-    - {fileID: 2800000, guid: 5d3c24f4e6f352a7a4a6b32860f93aea, type: 3}
+    - {fileID: 2800000, guid: f516aaa82a94521cb53e633cc8e9b210, type: 3}
+    - {fileID: 2800000, guid: 850fe029557e5ba394c9c66d876ef0e1, type: 3}
     selected:
-    - {fileID: 2800000, guid: aa794f54c7f2599dbf02068b0877286c, type: 3}
-    - {fileID: 2800000, guid: 18c258cea8c85e01b9f88c8d459cb02b, type: 3}
-  - id: Launch_2
-    title: "힘 전달"
-    summary: "초기 발사 속도 추가 +3%. 누적 +6%."
-    runtimeIndex: 0
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: c5e0c9cba42658adad4aecd0d0f984f8, type: 3}
-    family: 0
-    parent: 0
-    prerequisiteIndices: 00000000
-    position: {x: -460, y: -200}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 35f9fc25011e55ae88222b46dba90b81, type: 3}
-    - {fileID: 2800000, guid: 1ba75e8e8e5b5f9da433eed637ecadbf, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 08de39fe72685dbcbe5bc0f8fe57f4e0, type: 3}
-    - {fileID: 2800000, guid: d2ae9441f69d518a928291706377df26, type: 3}
-  - id: Launch_3
-    title: "긴 팔로스루"
-    summary: "초기 발사 속도 추가 +3%. 누적 +9%."
-    runtimeIndex: 0
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: c5e0c9cba42658adad4aecd0d0f984f8, type: 3}
-    family: 0
-    parent: 1
-    prerequisiteIndices: 01000000
-    position: {x: -680, y: -330}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 903f5277124b53b68f0c6a73c78fa832, type: 3}
-    - {fileID: 2800000, guid: 15b35a88adeb5590976d542d71f202a1, type: 3}
-    selected:
-    - {fileID: 2800000, guid: a422fb31dec25cd287e654c130afc3ed, type: 3}
-    - {fileID: 2800000, guid: 245aea46de255ad8a61ccb20bac7d5a5, type: 3}
-  - id: Drag_1
-    title: "표면 저항 감소"
-    summary: "기본 공기 저항을 3% 줄입니다."
-    runtimeIndex: 3
-    unlocksAbility: 0
-    frameSize: 108
-    icon: {fileID: 2800000, guid: 68601e92a5265b41a56750863a1b14f4, type: 3}
-    family: 0
-    parent: 0
-    prerequisiteIndices: 00000000
-    position: {x: -460, y: 0}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: 3cd5d8214b7956dea87f252a14257b90, type: 3}
-    - {fileID: 2800000, guid: 66f9ccd04c325b7b95e74d89efc3f95d, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 99d66a478e2b5325bced110eed2f6c87, type: 3}
-    - {fileID: 2800000, guid: 58277c337b42573181c30f1781dec784, type: 3}
-  - id: Drag_2
-    title: "매끈한 날개"
-    summary: "기본 공기 저항을 3% 줄입니다."
-    runtimeIndex: 3
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: 68601e92a5265b41a56750863a1b14f4, type: 3}
-    family: 0
-    parent: 3
-    prerequisiteIndices: 03000000
-    position: {x: -680, y: -40}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 2bd9aa195faf583f9f7ef36a2f456fd7, type: 3}
-    - {fileID: 2800000, guid: 3175de65a77058368edc093805649ea8, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 6ac28fcfa5c3567d8e69f881c8697d96, type: 3}
-    - {fileID: 2800000, guid: c9f2ade4b6445e97a401a461e5d7bf4e, type: 3}
-  - id: Drag_3
-    title: "공기 가르기"
-    summary: "기본 공기 저항을 3% 줄입니다."
-    runtimeIndex: 3
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: 68601e92a5265b41a56750863a1b14f4, type: 3}
-    family: 0
-    parent: 4
-    prerequisiteIndices: 04000000
-    position: {x: -870, y: -140}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: e5785efaf84957b99fbe0bf114ba6b28, type: 3}
-    - {fileID: 2800000, guid: 6b600b98b495553fa7cea757cae59367, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 12fcfb9fc0635849a39cf4cc0402f3af, type: 3}
-    - {fileID: 2800000, guid: c1ed3c7470c45ebcb367ce82fb05b6b0, type: 3}
-  - id: Boost_1
-    title: "가속 아이템 강화"
-    summary: "가속 아이템의 추가 속도를 기본값의 15%만큼 높입니다."
-    runtimeIndex: 5
-    unlocksAbility: 0
-    frameSize: 122
-    icon: {fileID: 2800000, guid: d450f46603fb55bdb4c454217c9a52f3, type: 3}
-    family: 0
-    parent: 0
-    prerequisiteIndices: 00000000
-    position: {x: -250, y: -300}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: 8e1b0cab4cbb5201a91455773c62ab09, type: 3}
-    - {fileID: 2800000, guid: 05b8155d242259c0ab00219b6a7f67af, type: 3}
-    selected:
-    - {fileID: 2800000, guid: b7b77f033f7353669ae0388f44cfb4ff, type: 3}
-    - {fileID: 2800000, guid: 711dd9bf32585fa6a829847b8fbce3bd, type: 3}
-  - id: Boost_2
-    title: "추진력 집중"
-    summary: "가속 아이템의 추가 속도를 기본값의 15%만큼 높입니다."
-    runtimeIndex: 5
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: d450f46603fb55bdb4c454217c9a52f3, type: 3}
-    family: 0
-    parent: 6
-    prerequisiteIndices: 06000000
-    position: {x: -450, y: -440}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 050a99c12f0d55ad88a5cbc2f418b3b4, type: 3}
-    - {fileID: 2800000, guid: 33e0eeb23509567b96020a52e2d800d3, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 22ffa6e291ed57dca18e32f716a67db0, type: 3}
-    - {fileID: 2800000, guid: befb44ea7c9d511f8a03c54c163d3679, type: 3}
-  - id: Boost_3
-    title: "강한 추진"
-    summary: "가속 아이템의 추가 속도를 기본값의 15%만큼 높입니다."
-    runtimeIndex: 5
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: d450f46603fb55bdb4c454217c9a52f3, type: 3}
-    family: 0
-    parent: 7
-    prerequisiteIndices: 07000000
-    position: {x: -650, y: -560}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: b0fe0dc5f2cf5b1fa1cf01a72e25b7e3, type: 3}
-    - {fileID: 2800000, guid: 39ca17f5dd605bb393c98fbbc8fba01a, type: 3}
-    selected:
-    - {fileID: 2800000, guid: f55ca08d5c12512dbcd372913c995b3a, type: 3}
-    - {fileID: 2800000, guid: ce2edd6cb68a500e90ee54c1f2ead0af, type: 3}
-  - id: Dive_1
-    title: "하강 가속"
-    summary: "실제로 하강하는 동안 0.6초 뒤 공기 저항이 28% 감소합니다."
-    runtimeIndex: 6
-    unlocksAbility: 1
-    frameSize: 148
-    icon: {fileID: 2800000, guid: 74958cc1533e56eb83205fae733f3808, type: 3}
-    family: 0
-    parent: 6
-    prerequisiteIndices: 06000000
-    position: {x: -70, y: -320}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: 7fa046d200e356fa846b9a864e77338b, type: 3}
-    - {fileID: 2800000, guid: ae550f2dcb8d599cb117cc9ec80abf02, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 7593858c742c5659bbb15840130ae1e8, type: 3}
-    - {fileID: 2800000, guid: 91acf66cbce2584fa42d3ab29526a4af, type: 3}
-  - id: Dive_2
-    title: "하강 전환"
-    summary: "하강 가속 발동 시간이 0.2초로 줄어듭니다."
-    runtimeIndex: 6
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: 74958cc1533e56eb83205fae733f3808, type: 3}
-    family: 0
-    parent: 9
-    prerequisiteIndices: 09000000
-    position: {x: -90, y: -520}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: c002fc86c3645be19abd03dcfa61d46b, type: 3}
-    - {fileID: 2800000, guid: eb08d211b0b3522b8107d69adce0fe0c, type: 3}
-    selected:
-    - {fileID: 2800000, guid: dd3606eec9165908b42d27f2328000eb, type: 3}
-    - {fileID: 2800000, guid: 02e5b206b63754088a09116c573f5668, type: 3}
-  - id: Dive_3
-    title: "가속 유지"
-    summary: "하강을 끝낸 뒤에도 저항 감소가 1.25초 이어집니다."
-    runtimeIndex: 6
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: 74958cc1533e56eb83205fae733f3808, type: 3}
-    family: 0
-    parent: 10
-    prerequisiteIndices: 0a000000
-    position: {x: -280, y: -650}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 2baac251919c5ef5bb037590626dff7e, type: 3}
-    - {fileID: 2800000, guid: 6730a64c0d745f47b4be96c6e1fe7723, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 8e306660f22c557b8c0325670a86cbd2, type: 3}
-    - {fileID: 2800000, guid: bc31386dc3545f0d980f0f97e2154682, type: 3}
+    - {fileID: 2800000, guid: 004b46a1a0325a8c94660d39a689ba95, type: 3}
+    - {fileID: 2800000, guid: c038756b4cb45375932171896a1620d7, type: 3}
   - id: Glide_1
-    title: "활공 효율"
-    summary: "기본 침하량 -4%."
+    title: "천천히 가라앉기"
+    benefit: "손을 떼도 더 오래 비행"
+    summary: "기본 침하 속도가 4% 감소합니다."
     runtimeIndex: 1
     unlocksAbility: 0
-    frameSize: 136
-    icon: {fileID: 2800000, guid: 6188e1bb45e557b0b57255f06d4660bd, type: 3}
+    frameSize: 112
+    icon: {fileID: 2800000, guid: 1f4d5edb68ef5299a081f33f3d2f5df1, type: 3}
+    selection: {fileID: 2800000, guid: 37828b540d4f5ab5b93f257b0fd7737e, type: 3}
     family: 1
     parent: -1
+    anyPrerequisite: 1
     prerequisiteIndices: 
-    position: {x: 200, y: -100}
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 70.97427, y: -199.14644}
     costs: 1e000000
     normal:
-    - {fileID: 2800000, guid: 22c818a4b34e533893428b1882055d20, type: 3}
-    - {fileID: 2800000, guid: 938a9ce4c1fb52ca8d84280fffcaadc9, type: 3}
+    - {fileID: 2800000, guid: 0de6c1c57d975c9183aaad774e8ede57, type: 3}
+    - {fileID: 2800000, guid: b8be6b7de8635782b097ba5ebd6fdef2, type: 3}
     selected:
-    - {fileID: 2800000, guid: ab1d4d0f33895ad2af84033b010eac22, type: 3}
-    - {fileID: 2800000, guid: 926fa351c6df5656b4e7bd13d229c9f7, type: 3}
-  - id: Glide_2
-    title: "날개 균형"
-    summary: "기본 침하량 추가 -4%. 누적 -8%."
-    runtimeIndex: 1
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: 6188e1bb45e557b0b57255f06d4660bd, type: 3}
-    family: 1
-    parent: 12
-    prerequisiteIndices: 0c000000
-    position: {x: 340, y: -250}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: e4488bec5aa052dab02b726dfe7e5d1b, type: 3}
-    - {fileID: 2800000, guid: 1f71c047368459c0bbf7050cc56f1f8f, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 02f6f8066fec5bd6bdc2b10836b2016f, type: 3}
-    - {fileID: 2800000, guid: d0f0dcc52aad5bb8be2c4815b6b28ff8, type: 3}
-  - id: Glide_3
-    title: "장거리 활공"
-    summary: "기본 침하량 추가 -4%. 누적 -12%."
-    runtimeIndex: 1
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: 6188e1bb45e557b0b57255f06d4660bd, type: 3}
-    family: 1
-    parent: 13
-    prerequisiteIndices: 0d000000
-    position: {x: 520, y: -400}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 41ac68b215165a938cf3a70cb1be36f9, type: 3}
-    - {fileID: 2800000, guid: 72a1fce68b515e6c85b51e4bf0416bca, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 11d5ef9be434595bb760ee628edf2d3a, type: 3}
-    - {fileID: 2800000, guid: ec89b3a22c255b9a8ce02a695553efda, type: 3}
-  - id: Climb_1
-    title: "상승 효율"
-    summary: "상승할 때의 추가 저항을 기본값의 4%만큼 줄입니다."
-    runtimeIndex: 4
-    unlocksAbility: 0
-    frameSize: 108
-    icon: {fileID: 2800000, guid: 832bd69a6c7f5f588310c7de4d6d5a3d, type: 3}
-    family: 1
-    parent: 12
-    prerequisiteIndices: 0c000000
-    position: {x: 380, y: -40}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: 42c07992b93b5178805e04c2be178ae1, type: 3}
-    - {fileID: 2800000, guid: 128085c054b05f24b449df96cca84304, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 9192118642b65a02b3fd65d5b1d9f0c7, type: 3}
-    - {fileID: 2800000, guid: 7795450ae0fc5cf9868a51e354f7097b, type: 3}
-  - id: Climb_2
-    title: "부드러운 상승"
-    summary: "상승할 때의 추가 저항을 기본값의 4%만큼 줄입니다."
-    runtimeIndex: 4
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: 832bd69a6c7f5f588310c7de4d6d5a3d, type: 3}
-    family: 1
-    parent: 15
-    prerequisiteIndices: 0f000000
-    position: {x: 540, y: -180}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 3569f29c309559dab9b41fa3214f8ee7, type: 3}
-    - {fileID: 2800000, guid: 78d804df1d5d536cbd3d474ba58d0ed3, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 8416d857d32056219ac9122c79627149, type: 3}
-    - {fileID: 2800000, guid: 6b9b806e98325484a60e487a5c5e371d, type: 3}
-  - id: Climb_3
-    title: "고도 전환"
-    summary: "상승할 때의 추가 저항을 기본값의 4%만큼 줄입니다."
-    runtimeIndex: 4
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: 832bd69a6c7f5f588310c7de4d6d5a3d, type: 3}
-    family: 1
-    parent: 16
-    prerequisiteIndices: 10000000
-    position: {x: 720, y: -320}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: d020e7e9133257d3abc1c6d57169d890, type: 3}
-    - {fileID: 2800000, guid: ebda95929ba057e9ad4c05b94827156f, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 4bc49391d100505eb9a976dee47aefbf, type: 3}
-    - {fileID: 2800000, guid: 2ae2e8d8ee705e538f4142d7ee366ec0, type: 3}
+    - {fileID: 2800000, guid: 506fe607358a558a841166923e1c7b42, type: 3}
+    - {fileID: 2800000, guid: f9edac48d6195c088d86d20a9f38210f, type: 3}
   - id: Recover_1
-    title: "자세 회복"
+    title: "충돌 후 자세 바로잡기"
+    benefit: "부딪힌 뒤 조종을 빨리 되찾기"
     summary: "충돌 후 Space를 눌러 0.25초에 자세를 회복합니다. 비행당 한 번 사용합니다."
     runtimeIndex: 7
     unlocksAbility: 1
-    frameSize: 148
-    icon: {fileID: 2800000, guid: 44e2d94c486c54f6b324752145b1e8b3, type: 3}
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 4b618d9c7d845f38a9f624f9bc3fb40a, type: 3}
+    selection: {fileID: 2800000, guid: 7c86b533f2be51cbb59b3d9ae34f872a, type: 3}
     family: 2
     parent: -1
+    anyPrerequisite: 1
     prerequisiteIndices: 
-    position: {x: 230, y: 160}
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 273.49580, y: -13.37941}
     costs: 1e000000
     normal:
-    - {fileID: 2800000, guid: 6b3e5510d35259ec96fbe7364a369d05, type: 3}
-    - {fileID: 2800000, guid: 8ec79e0626d15817ab6529110ad85816, type: 3}
+    - {fileID: 2800000, guid: 1ef2ca0b8c74527e9a9ebeff6ecdb999, type: 3}
+    - {fileID: 2800000, guid: 554968963fd2501ba565a04fa0a33583, type: 3}
     selected:
-    - {fileID: 2800000, guid: 93c56a79aa5852a58542ecdeea59d527, type: 3}
-    - {fileID: 2800000, guid: 01020a479c705132b5c8ca3b771d67be, type: 3}
+    - {fileID: 2800000, guid: bc802d0e98cd517caf656f892fc1fccc, type: 3}
+    - {fileID: 2800000, guid: faa48fef5c445b7f8e94cbc6e7c0457f, type: 3}
+  - id: Magnet_1
+    title: "가까운 아이템 끌어오기"
+    benefit: "비행 경로 옆의 아이템도 수거"
+    summary: "3m 안의 가속 아이템을 기체로 끌어당깁니다."
+    runtimeIndex: 11
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 86b4fbeb2a595414b2a2562869ef0d11, type: 3}
+    selection: {fileID: 2800000, guid: 39f5d5ba92c25ddbba86b0dba56e2fce, type: 3}
+    family: 4
+    parent: -1
+    anyPrerequisite: 1
+    prerequisiteIndices: 
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 110.86566, y: 191.96857}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 8b6eb60defb35f17973ab62c898be662, type: 3}
+    - {fileID: 2800000, guid: fdffdb11170a5269ae6c24c5ff2f9850, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 0eec6755670b53a2abd9dab7580e4033, type: 3}
+    - {fileID: 2800000, guid: 0e5ff9a6dd4c5220ad102c02f310cb8f, type: 3}
+  - id: Durability_1
+    title: "기체 내구 늘리기"
+    benefit: "충돌을 더 버티기"
+    summary: "최대 내구도가 10 증가합니다."
+    runtimeIndex: 8
+    unlocksAbility: 0
+    frameSize: 112
+    icon: {fileID: 2800000, guid: d5ca2bf9362259f395b9c0a87e4fd894, type: 3}
+    selection: {fileID: 2800000, guid: d5a37df8e5a756eab02f487e45a202b5, type: 3}
+    family: 3
+    parent: -1
+    anyPrerequisite: 1
+    prerequisiteIndices: 
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -230.63863, y: 135.39051}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 7b1b05dee98e5939b4eb0573d8c746fa, type: 3}
+    - {fileID: 2800000, guid: f23c7a908f19581c9dfdbf5ab654c152, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 01371081f26251c6912b1d7896a7969d, type: 3}
+    - {fileID: 2800000, guid: c95eb901176e55b29925f079e5df0307, type: 3}
+  - id: Drag_1
+    title: "비행 감속 줄이기"
+    benefit: "평소 속도를 더 오래 유지"
+    summary: "기본 공기 저항이 6% 감소합니다."
+    runtimeIndex: 3
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: cebfc58e75125d0ebe40e4fa84c56f46, type: 3}
+    selection: {fileID: 2800000, guid: ca123310ebd356f5b4653e066790da93, type: 3}
+    family: 0
+    parent: 0
+    anyPrerequisite: 1
+    prerequisiteIndices: 00000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -550.05375, y: -54.08170}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 32d8decc09ac5b10ae141bb3deb81d05, type: 3}
+    - {fileID: 2800000, guid: fa4db49d8fc45d6284c2348c6ae6627e, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2e5332b8094d5c2abe47cc3a19128e2e, type: 3}
+    - {fileID: 2800000, guid: c36e2599f68053d880549975cc07b521, type: 3}
+  - id: Launch_2
+    title: "출발 속도 더 높이기"
+    benefit: "초반 구간을 빠르게 통과"
+    summary: "발사 속도가 기본값의 20%만큼 추가로 늘어납니다."
+    runtimeIndex: 0
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 4d6c5b90fb8650749536e82b780b42e6, type: 3}
+    selection: {fileID: 2800000, guid: 5f0c093553ab523daa39b7eddb41ea04, type: 3}
+    family: 0
+    parent: 0
+    anyPrerequisite: 1
+    prerequisiteIndices: 00000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -419.30866, y: -197.86269}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: 84117b4cbfb4505cbeb79e277b1d63b7, type: 3}
+    - {fileID: 2800000, guid: 06f521cb8bb1517b99abd2331fca5677, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 4bf9d2da07575a1bb4fcd209910fc5e3, type: 3}
+    - {fileID: 2800000, guid: ac23834bd29e5ebaaceb1b881f74a10f, type: 3}
+  - id: Boost_1
+    title: "아이템 전진 가속"
+    benefit: "먹는 순간 더 빠르게 전진"
+    summary: "아이템의 2초 수평 가속이 0.3 m/s 강해집니다. 연속 수거는 지속 시간을 갱신합니다."
+    runtimeIndex: 5
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 0d0da460aaa856e08c0b1992d365d57d, type: 3}
+    selection: {fileID: 2800000, guid: 3fc628da57a15074a4037206255c9406, type: 3}
+    family: 0
+    parent: 0
+    anyPrerequisite: 1
+    prerequisiteIndices: 00000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -269.59545, y: -326.67496}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 78ee64dd13085394872c06dc32c7ba75, type: 3}
+    - {fileID: 2800000, guid: d208bc6c014a5a8c9172a017d2809db7, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 0b82392a91775eba8a2cbaa64cef643a, type: 3}
+    - {fileID: 2800000, guid: 49cc3d7545f75478a59aa5b150dde768, type: 3}
+  - id: Climb_1
+    title: "상승 중 감속 줄이기"
+    benefit: "클릭을 유지해 더 높이 상승"
+    summary: "상승할 때 생기는 추가 공기 저항이 10% 감소합니다."
+    runtimeIndex: 4
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 081d580288ee5c84aa9a38a2981b3445, type: 3}
+    selection: {fileID: 2800000, guid: 577e12b2ca715158a45deafe16409158, type: 3}
+    family: 1
+    parent: 1
+    anyPrerequisite: 1
+    prerequisiteIndices: 01000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -88.90678, y: -352.74330}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 0109f3b6e9885c99810c7209085d51f8, type: 3}
+    - {fileID: 2800000, guid: f88efaf6940959b3bb8b49ecfafa76bf, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 20f38b92e34055db955432e80f96d193, type: 3}
+    - {fileID: 2800000, guid: 9a4fe9b15e165addbc1509717e6a1468, type: 3}
+  - id: Glide_2
+    title: "더 느린 고도 하락"
+    benefit: "활공 중 높이를 더 오래 유지"
+    summary: "기본 침하 속도가 추가로 10% 감소합니다."
+    runtimeIndex: 1
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 94e39760e0cb50d29db7a7ed42646e72, type: 3}
+    selection: {fileID: 2800000, guid: 31ff1b95a0cb5d489313d87765936d51, type: 3}
+    family: 1
+    parent: 1
+    anyPrerequisite: 1
+    prerequisiteIndices: 01000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 145.66074, y: -355.37651}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: 7e2db45c7e865112887dc9fb08764762, type: 3}
+    - {fileID: 2800000, guid: b8d979a3c41a5d4eae43780c2045729d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 863a60ac66c453b69feee30dc036ecb4, type: 3}
+    - {fileID: 2800000, guid: 8f35833cd0025f8db32a719b624dc8d0, type: 3}
+  - id: Web_FlightLog
+    title: "20 m 비행 보상"
+    benefit: "짧은 비행도 연구점 획득"
+    summary: "20 m 이상 비행하면 추가 연구점 +1. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: ee788d28bccb53e3a350b59ebec696ee, type: 3}
+    selection: {fileID: 2800000, guid: b34aa1256b0f54619d3b9fccebfd1614, type: 3}
+    family: 1
+    parent: 1
+    anyPrerequisite: 1
+    prerequisiteIndices: 01000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 369.65694, y: -287.21299}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: 753caabd79ee5c268c87217e237573a8, type: 3}
+    - {fileID: 2800000, guid: e14514f3cfe7555b88aa4729808a8990, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 16ecc84af4665aae9806bfd597c73c8e, type: 3}
+    - {fileID: 2800000, guid: 9a39eed76b0652c29053624021e09ac4, type: 3}
   - id: Recover_2
-    title: "빠른 복원"
+    title: "충돌 자세 빠른 복구"
+    benefit: "회복 버튼을 누른 뒤 빠르게 수평 복귀"
     summary: "자세 회복 시간이 0.12초로 줄어듭니다."
     runtimeIndex: 7
     unlocksAbility: 0
     frameSize: 96
-    icon: {fileID: 2800000, guid: 44e2d94c486c54f6b324752145b1e8b3, type: 3}
+    icon: {fileID: 2800000, guid: 92afcfd3292a57348f3a13b21358cbdf, type: 3}
+    selection: {fileID: 2800000, guid: cff6f7a8f2815e85aab06ba2ead9b4d6, type: 3}
     family: 2
-    parent: 18
-    prerequisiteIndices: 12000000
-    position: {x: 430, y: 210}
+    parent: 2
+    anyPrerequisite: 1
+    prerequisiteIndices: 02000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 457.42635, y: -170.15244}
     costs: 41000000
     normal:
-    - {fileID: 2800000, guid: 6a34bfba1f5358febc1039688a0cfbb4, type: 3}
-    - {fileID: 2800000, guid: 00fcfd5d7fb85a65b024e2a2c9066829, type: 3}
+    - {fileID: 2800000, guid: 29cbf3b6025b520b95e22ebf3adca389, type: 3}
+    - {fileID: 2800000, guid: e1065457b1b15046a6a449e233775510, type: 3}
     selected:
-    - {fileID: 2800000, guid: 62511e141f1a5379bc900ab22a4dc9ac, type: 3}
-    - {fileID: 2800000, guid: f698278d90e75622a9f25d3a792b4dea, type: 3}
-  - id: Recover_3
-    title: "재정비"
-    summary: "비행당 자세 회복을 한 번 더 사용할 수 있습니다."
-    runtimeIndex: 7
+    - {fileID: 2800000, guid: 0d1bd77a51b45d0ead17f5362522e21b, type: 3}
+    - {fileID: 2800000, guid: c146db48f6d554a9bcb5597553b55c62, type: 3}
+  - id: Web_DirectionCorrection
+    title: "진행 방향 빠른 전환"
+    benefit: "기수를 돌리면 경로도 빨리 전환"
+    summary: "비행 경로의 자세 추종 속도 +5%."
+    runtimeIndex: 12
     unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: 44e2d94c486c54f6b324752145b1e8b3, type: 3}
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a444b117f458533e9733136ded9388d8, type: 3}
+    selection: {fileID: 2800000, guid: 061646efcf25562f91c6aa7e7a178669, type: 3}
     family: 2
-    parent: 19
-    prerequisiteIndices: 13000000
-    position: {x: 610, y: 160}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 38460be4396855a7a02ff4a3e4848c14, type: 3}
-    - {fileID: 2800000, guid: 8825e16d47a454e4bcd33ac1e4c1123c, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 3fe930cc1bda5e54956a310708666709, type: 3}
-    - {fileID: 2800000, guid: 95e1df78782a524eb8bb72a5d5360e9b, type: 3}
-  - id: Durability_1
-    title: "기체 내구"
-    summary: "최대 내구도가 10 증가합니다."
-    runtimeIndex: 8
-    unlocksAbility: 0
-    frameSize: 136
-    icon: {fileID: 2800000, guid: c1f8fd60ad125d14a35945771225e1cc, type: 3}
-    family: 3
-    parent: -1
-    prerequisiteIndices: 
-    position: {x: -180, y: 180}
+    parent: 2
+    anyPrerequisite: 1
+    prerequisiteIndices: 02000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 508.94396, y: 158.52427}
     costs: 1e000000
     normal:
-    - {fileID: 2800000, guid: 15b95c301ca25c4b89697fbed952445d, type: 3}
-    - {fileID: 2800000, guid: 87d474d03fde585ebfa324de2a577340, type: 3}
+    - {fileID: 2800000, guid: 4d4d014303bf5528a57a10100fcb69b9, type: 3}
+    - {fileID: 2800000, guid: 1aec017cda2757f29fc3f46080b9fec9, type: 3}
     selected:
-    - {fileID: 2800000, guid: 6497abe5fa155273a8b82ebfcfd113d9, type: 3}
-    - {fileID: 2800000, guid: 20cfc021649e5014846a2a99e1789e5d, type: 3}
-  - id: Durability_2
-    title: "동체 보강"
-    summary: "최대 내구도가 10 증가합니다."
-    runtimeIndex: 8
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: c1f8fd60ad125d14a35945771225e1cc, type: 3}
-    family: 3
-    parent: 21
-    prerequisiteIndices: 15000000
-    position: {x: -350, y: 320}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 3711b4f5d6d651c4b20d67ca725a91f3, type: 3}
-    - {fileID: 2800000, guid: bf73ee95930256da9fd950bde22ca2dc, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 8b8695866e6f543c99c98a7b585d1c4b, type: 3}
-    - {fileID: 2800000, guid: 79bfd25e1cb65a7fab3abc72248ebbe5, type: 3}
-  - id: Durability_3
-    title: "접힘 보강"
-    summary: "최대 내구도가 10 증가합니다."
-    runtimeIndex: 8
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: c1f8fd60ad125d14a35945771225e1cc, type: 3}
-    family: 3
-    parent: 22
-    prerequisiteIndices: 16000000
-    position: {x: -530, y: 450}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: bc84356c90835206a9421c21f04dc3d4, type: 3}
-    - {fileID: 2800000, guid: ae97163e17595318a8b1f3691168bb50, type: 3}
-    selected:
-    - {fileID: 2800000, guid: b6f77294bc6f591cbe8ff71facb90b76, type: 3}
-    - {fileID: 2800000, guid: 9f0b857ba0165e8884fd817edb352ea7, type: 3}
-  - id: Impact_1
-    title: "충격 분산"
-    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
-    runtimeIndex: 9
-    unlocksAbility: 0
-    frameSize: 108
-    icon: {fileID: 2800000, guid: a5ed7f4db3515a129d16de799bdf960a, type: 3}
-    family: 3
-    parent: 21
-    prerequisiteIndices: 15000000
-    position: {x: -400, y: 170}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: 6e261a1e01215002bf19433932620c81, type: 3}
-    - {fileID: 2800000, guid: 2e3ca57d86455b619f931fe3083111d2, type: 3}
-    selected:
-    - {fileID: 2800000, guid: d294017419735d68b6048ba2b90b3254, type: 3}
-    - {fileID: 2800000, guid: 463f1a381a4a5464a0e2a52fb7886ad3, type: 3}
-  - id: Impact_2
-    title: "완충 구조"
-    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
-    runtimeIndex: 9
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: a5ed7f4db3515a129d16de799bdf960a, type: 3}
-    family: 3
-    parent: 24
-    prerequisiteIndices: 18000000
-    position: {x: -600, y: 250}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: f303657765e458338bad7776f5989569, type: 3}
-    - {fileID: 2800000, guid: 55dbaf3104c854f8bfab993b88c4b310, type: 3}
-    selected:
-    - {fileID: 2800000, guid: a246cf5fa0845447b4a11ebbb4c34326, type: 3}
-    - {fileID: 2800000, guid: ec3a386976b255cebb2868feec99d626, type: 3}
-  - id: Impact_3
-    title: "속도 보호"
-    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
-    runtimeIndex: 9
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: a5ed7f4db3515a129d16de799bdf960a, type: 3}
-    family: 3
-    parent: 25
-    prerequisiteIndices: 19000000
-    position: {x: -800, y: 390}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 212120c761fa5ea08aac094f27fea2b9, type: 3}
-    - {fileID: 2800000, guid: 43eedb2ad72957bd8d5da3e41fb0de3f, type: 3}
-    selected:
-    - {fileID: 2800000, guid: c354010c8372587781bd28208731caaf, type: 3}
-    - {fileID: 2800000, guid: 61021fbb440750bb8014a4d99fa428e4, type: 3}
-  - id: Shield_1
-    title: "종이 방패"
-    summary: "첫 장애물 충돌의 내구 피해를 막습니다."
-    runtimeIndex: 10
+    - {fileID: 2800000, guid: dab82e167b405e989243b0353f08137b, type: 3}
+    - {fileID: 2800000, guid: e636c443b8cb5123ae6893876dc6b16e, type: 3}
+  - id: Web_MailPickup
+    title: "아이템 수거 보상"
+    benefit: "아이템을 따라가며 연구점 획득"
+    summary: "수거한 가속 아이템마다 연구점 +1. 비행당 최대 3개. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
     unlocksAbility: 1
-    frameSize: 148
-    icon: {fileID: 2800000, guid: df92155c5c985fceb743f10465949c85, type: 3}
-    family: 3
-    parent: 21
-    prerequisiteIndices: 15000000
-    position: {x: -120, y: 390}
-    costs: 1e000000
-    normal:
-    - {fileID: 2800000, guid: fa531f65043a5f1b8691ab56958d37e8, type: 3}
-    - {fileID: 2800000, guid: 0d7937ea1c4556078f8c73939fb47ba9, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 6ab0f13645dd58b09a7277388acd8ee0, type: 3}
-    - {fileID: 2800000, guid: 35f8e1499e3e5be689ad624280e9b65e, type: 3}
-  - id: Shield_2
-    title: "방패 보강"
-    summary: "방패가 발동한 충돌의 속도 손실도 절반으로 줄입니다."
-    runtimeIndex: 10
-    unlocksAbility: 0
-    frameSize: 96
-    icon: {fileID: 2800000, guid: df92155c5c985fceb743f10465949c85, type: 3}
-    family: 3
-    parent: 27
-    prerequisiteIndices: 1b000000
-    position: {x: -260, y: 530}
-    costs: 41000000
-    normal:
-    - {fileID: 2800000, guid: 8a65978845f15b1998988c52e19cb92f, type: 3}
-    - {fileID: 2800000, guid: 3cb7b131f05c5474ba0e1ee884669c19, type: 3}
-    selected:
-    - {fileID: 2800000, guid: bc21124d251a565e840bb0a8d2940d8e, type: 3}
-    - {fileID: 2800000, guid: 22acdf04828a50bc92e5f7233075deb0, type: 3}
-  - id: Shield_3
-    title: "예비 방패"
-    summary: "비행당 방패가 한 번 더 발동합니다."
-    runtimeIndex: 10
-    unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: df92155c5c985fceb743f10465949c85, type: 3}
-    family: 3
-    parent: 28
-    prerequisiteIndices: 1c000000
-    position: {x: -450, y: 650}
-    costs: 82000000
-    normal:
-    - {fileID: 2800000, guid: 6893333682975a8c9b8ef8fd890c7d2c, type: 3}
-    - {fileID: 2800000, guid: cc471fd88cf054f8b3a5ee5fd3c11dc9, type: 3}
-    selected:
-    - {fileID: 2800000, guid: 99f6cc7e51735877a9cb273db3783c97, type: 3}
-    - {fileID: 2800000, guid: f3a8a921e73d540b9ca09f1818ae475d, type: 3}
-  - id: Magnet_1
-    title: "수집 끌어당김"
-    summary: "3m 안의 가속 아이템을 기체로 끌어당깁니다."
-    runtimeIndex: 11
-    unlocksAbility: 1
-    frameSize: 148
-    icon: {fileID: 2800000, guid: e32e9f28ae44566ea880dc35edef8062, type: 3}
+    frameSize: 144
+    icon: {fileID: 2800000, guid: bfa4a42942785e51b3887acb75b7f462, type: 3}
+    selection: {fileID: 2800000, guid: b1eafe3a2bee55a2a229b1a35a126c1e, type: 3}
     family: 4
-    parent: -1
-    prerequisiteIndices: 
-    position: {x: 160, y: 410}
+    parent: 3
+    anyPrerequisite: 1
+    prerequisiteIndices: 03000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 401.10818, y: 270.98256}
     costs: 1e000000
     normal:
-    - {fileID: 2800000, guid: 22cbc34d96c6541da5e4256b3a390a24, type: 3}
-    - {fileID: 2800000, guid: 4e1adb8e949c538fa5b63a70b80e8081, type: 3}
+    - {fileID: 2800000, guid: d3635a0225f55af8af1df490a9420e3e, type: 3}
+    - {fileID: 2800000, guid: cd6d9f16fdc858af92fbda7c334fdbca, type: 3}
     selected:
-    - {fileID: 2800000, guid: 1715694cda985ca4ad465151d5e66257, type: 3}
-    - {fileID: 2800000, guid: 2f5abe326d885539a72be08030b7eb82, type: 3}
+    - {fileID: 2800000, guid: 93d7ab2b40b25a038c8134869bfc784c, type: 3}
+    - {fileID: 2800000, guid: 2c6799ba085351d3a6b7b8a094ab67b8, type: 3}
   - id: Magnet_2
-    title: "넓은 수집"
+    title: "아이템 자석 반경 확대"
+    benefit: "멀리 있는 아이템도 수거"
     summary: "끌어당기는 반경이 5m로 늘어납니다."
     runtimeIndex: 11
     unlocksAbility: 0
     frameSize: 96
-    icon: {fileID: 2800000, guid: e32e9f28ae44566ea880dc35edef8062, type: 3}
+    icon: {fileID: 2800000, guid: cb317982d1d650ba88775bc95228b6b9, type: 3}
+    selection: {fileID: 2800000, guid: bd4813a0b78f5233ae68e31d813f60e2, type: 3}
     family: 4
-    parent: 30
-    prerequisiteIndices: 1e000000
-    position: {x: 360, y: 460}
+    parent: 3
+    anyPrerequisite: 1
+    prerequisiteIndices: 03000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -53.92685, y: 358.94467}
     costs: 41000000
     normal:
-    - {fileID: 2800000, guid: 7d7805cfd881524f958eaf97e981f0b2, type: 3}
-    - {fileID: 2800000, guid: 376ba78098b15e2ba2673eac2624a746, type: 3}
+    - {fileID: 2800000, guid: 116da0c87c535f95a10f8593e3bd5086, type: 3}
+    - {fileID: 2800000, guid: e4c99047501656c1bebeef421225a849, type: 3}
     selected:
-    - {fileID: 2800000, guid: f9984a1aff0a5ac297cd91261c6f068d, type: 3}
-    - {fileID: 2800000, guid: 9a1b52c2ba6e5b82a00ae0862eeb7c04, type: 3}
+    - {fileID: 2800000, guid: 8f0119c9b2a15bc1b29942ad51c50cf3, type: 3}
+    - {fileID: 2800000, guid: 6d31f32413c95e41bb290416150cb294, type: 3}
+  - id: Shield_1
+    title: "첫 충돌 피해 막기"
+    benefit: "첫 실수에도 내구 보존"
+    summary: "첫 장애물 충돌의 내구 피해를 막습니다."
+    runtimeIndex: 10
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: aea1e8af05af5d5d8e1d6e772eadb35e, type: 3}
+    selection: {fileID: 2800000, guid: 38718f6032a85ca4bfc6229805ee8e1d, type: 3}
+    family: 3
+    parent: 4
+    anyPrerequisite: 1
+    prerequisiteIndices: 04000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -230.56899, y: 330.72099}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: a71af964757f532a8d4ee605665f32d2, type: 3}
+    - {fileID: 2800000, guid: a8214f7fb8ba516abbf2b62ca1871019, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 30cbd9b5163e5d3bb84fbd5cb57be264, type: 3}
+    - {fileID: 2800000, guid: 943b55a187ac5492a03d0011fc98750b, type: 3}
+  - id: Impact_1
+    title: "충돌 감속 줄이기"
+    benefit: "부딪혀도 전진 속도 보존"
+    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
+    runtimeIndex: 9
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a01d1e48319251e2b9aac7c0262f0e06, type: 3}
+    selection: {fileID: 2800000, guid: e19ca65855695052befd43f65e473788, type: 3}
+    family: 3
+    parent: 4
+    anyPrerequisite: 1
+    prerequisiteIndices: 04000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -502.65908, y: 74.74647}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: d91f2b898cdb5379908611b14d609064, type: 3}
+    - {fileID: 2800000, guid: e5d001ebaa09574899e92df489f53981, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 9e02182446ff5f6a9e8416ef00753872, type: 3}
+    - {fileID: 2800000, guid: 455f524164d35928a2a97982ccf0003d, type: 3}
+  - id: Drag_2
+    title: "비행 속도 오래 유지"
+    benefit: "장거리 비행의 감속 완화"
+    summary: "기본 공기 저항이 추가로 12% 감소합니다."
+    runtimeIndex: 3
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f95f5a42c9205f99858bfeb0ebd5de1c, type: 3}
+    selection: {fileID: 2800000, guid: f5aaef8d745851a68027ee8bc044625d, type: 3}
+    family: 0
+    parent: 5
+    anyPrerequisite: 1
+    prerequisiteIndices: 05000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -801.00940, y: -9.78142}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: cb2f5370b27e581ea56f72d7819e6e20, type: 3}
+    - {fileID: 2800000, guid: 0044c799f6a45d11ab8ffcd4e45d0aa0, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 11a75b1ea1ce5057a460abc85521e7df, type: 3}
+    - {fileID: 2800000, guid: c8e5ab73c1a05bcab6b37361b9cd184b, type: 3}
+  - id: Web_FingerAlignment
+    title: "출발 속도 10% 추가"
+    benefit: "발사 직후 더 빠르게"
+    summary: "던지기 강화를 적용한 발사 속도에 10%를 추가합니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5e03e34a61305702b2cb501bf0719b0f, type: 3}
+    selection: {fileID: 2800000, guid: 9709dda4801f5195b63824c8f3b0a0e0, type: 3}
+    family: 0
+    parent: 5
+    anyPrerequisite: 1
+    prerequisiteIndices: 0500000006000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -730.07978, y: -146.45676}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 1d10a5c5e4b559c29e31275bf4a58a86, type: 3}
+    - {fileID: 2800000, guid: f7926af19444512c892f524951cf28bf, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 4afbe95e75ab5fa58a8321b94eece860, type: 3}
+    - {fileID: 2800000, guid: 9f763e9251835aa29abe72a5e754cda3, type: 3}
+  - id: Launch_3
+    title: "초고속 던지기"
+    benefit: "출발 구간을 빠르게 돌파"
+    summary: "발사 속도가 기본값의 30%만큼 추가로 늘어납니다."
+    runtimeIndex: 0
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f60675fd75365ce69c57b219e0e0620c, type: 3}
+    selection: {fileID: 2800000, guid: 342e7252adcb524e8d0d1816809558a8, type: 3}
+    family: 0
+    parent: 6
+    anyPrerequisite: 1
+    prerequisiteIndices: 06000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -717.01358, y: -301.40036}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: c31d9bf3f33b5257a0ab3d3acce6e69e, type: 3}
+    - {fileID: 2800000, guid: 2f4f00f4b2fa5f5ebc9486ac3b324cb7, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2a7c7533855a5cdab3155cdc562dd70b, type: 3}
+    - {fileID: 2800000, guid: 0e04f5da71db550eb78bebc53c498e38, type: 3}
+  - id: Dive_1
+    title: "하강 중 속도 보존"
+    benefit: "내려갈 때 잃는 속도 감소"
+    summary: "실제로 하강하는 동안 0.6초 뒤 공기 저항이 28% 감소합니다."
+    runtimeIndex: 6
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: e8ba9317d9d05cd1a59231ba102f1c87, type: 3}
+    selection: {fileID: 2800000, guid: 9842d018f59a594f990e081363aba839, type: 3}
+    family: 0
+    parent: 6
+    anyPrerequisite: 1
+    prerequisiteIndices: 0600000007000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -538.72709, y: -390.27819}
+    costs: 1e000000
+    normal:
+    - {fileID: 2800000, guid: dded7d5bc9f2564fb24a9b71f56093bf, type: 3}
+    - {fileID: 2800000, guid: e0f7658bc72b5b85977cc2319f1d9e27, type: 3}
+    selected:
+    - {fileID: 2800000, guid: bd1d7ef10ebd5f07b0b92c8165f207ed, type: 3}
+    - {fileID: 2800000, guid: a75bab04c82a54ccb317381aa61d762b, type: 3}
+  - id: Boost_2
+    title: "아이템 가속량 추가"
+    benefit: "아이템으로 얻는 전진 거리 증가"
+    summary: "아이템의 2초 수평 가속이 0.3 m/s 더 강해집니다."
+    runtimeIndex: 5
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5aea9cc001e052359174e81ff5654f61, type: 3}
+    selection: {fileID: 2800000, guid: d396b0c22aa95d17b1103f97d5a2c7a8, type: 3}
+    family: 0
+    parent: 7
+    anyPrerequisite: 1
+    prerequisiteIndices: 07000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -378.04254, y: -477.12410}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: 08a85690fd36591fa16eb688db6c615e, type: 3}
+    - {fileID: 2800000, guid: 356a7735e4d85690ba02a14f125d3cd9, type: 3}
+    selected:
+    - {fileID: 2800000, guid: bcb81a4036a2572482b0086d105e6199, type: 3}
+    - {fileID: 2800000, guid: d512079ea0065718b6ce8c0f7e90d63b, type: 3}
+  - id: Climb_2
+    title: "상승 속도 오래 유지"
+    benefit: "높이 올라갈 때 속도 보존"
+    summary: "상승할 때 생기는 추가 공기 저항이 18% 더 감소합니다."
+    runtimeIndex: 4
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5c9f6071826d56ae977d6b03834a1ddd, type: 3}
+    selection: {fileID: 2800000, guid: d180428f77425ed684477d0c5c41b285, type: 3}
+    family: 1
+    parent: 8
+    anyPrerequisite: 1
+    prerequisiteIndices: 08000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -220.17884, y: -503.82440}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: b0867e84414a5aecb634a19f9a30ec60, type: 3}
+    - {fileID: 2800000, guid: 6aece047eb0a5901b976b217244409bc, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 4dc158db65515c329f9e818ed80dffac, type: 3}
+    - {fileID: 2800000, guid: c8adc7aa349c520bbac5be7c701ecf1f, type: 3}
+  - id: Web_LevelFlight
+    title: "활공 중 침하 줄이기"
+    benefit: "날개를 편 채 고도 유지"
+    summary: "기본 침하 속도 -2.5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: eb657d1586ed553598d69a89ea3a20d4, type: 3}
+    selection: {fileID: 2800000, guid: 76b172875d2e5938aa4c034894a19265, type: 3}
+    family: 1
+    parent: 8
+    anyPrerequisite: 1
+    prerequisiteIndices: 0800000009000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -28.93306, y: -579.63323}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 2dc33f6831625e6191ec5e8508201a79, type: 3}
+    - {fileID: 2800000, guid: dddbd3f1d0615e4eac1f7423397e1137, type: 3}
+    selected:
+    - {fileID: 2800000, guid: a2d408aaf6035a1ebfa05e92e9431059, type: 3}
+    - {fileID: 2800000, guid: 136418aff3b2536fb711de6048b78f1a, type: 3}
+  - id: Glide_3
+    title: "장거리 활공"
+    benefit: "멀리 날 때 고도를 천천히 잃기"
+    summary: "기본 침하 속도가 추가로 18% 감소합니다."
+    runtimeIndex: 1
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 2b79682407af57cc8be3a4ba087fea60, type: 3}
+    selection: {fileID: 2800000, guid: d7bcca6ca91d51db9802fc4cebf4c57a, type: 3}
+    family: 1
+    parent: 9
+    anyPrerequisite: 1
+    prerequisiteIndices: 09000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 178.13468, y: -539.79271}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 37ea50a82e3a54b1a069455975ca88ed, type: 3}
+    - {fileID: 2800000, guid: 78cd8f45896651aab7eb01f7cfc11ef2, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 388da79371ad5c3194a515762f6f70a5, type: 3}
+    - {fileID: 2800000, guid: 1e588f29a74b52db89bfe3669f984b95, type: 3}
+  - id: Web_RouteMarks
+    title: "40 m마다 연구점"
+    benefit: "거리를 늘릴수록 추가 보상"
+    summary: "40 m마다 추가 연구점 +1. 비행당 최대 3회. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: b68fbb4455d55fc9a2be0c061cd207e8, type: 3}
+    selection: {fileID: 2800000, guid: 74b7e8cbdbc8520cb27c68e00e296958, type: 3}
+    family: 1
+    parent: 9
+    anyPrerequisite: 1
+    prerequisiteIndices: 090000000a000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 359.35012, y: -472.80937}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 4aa4433e32c85f2f9e358dac17b587e5, type: 3}
+    - {fileID: 2800000, guid: 37e4caf13d765a40a821ca8c41180907, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 64a67d61d48c50b597ded3c8abc18bae, type: 3}
+    - {fileID: 2800000, guid: 9e07da44e43959aabbbad5e7e967e247, type: 3}
+  - id: Web_PersonalRecord
+    title: "최고 기록 경신 보상"
+    benefit: "지난 기록을 넘기면 연구점"
+    summary: "이전 최고 기록을 10 m 이상 경신하면 +3 연구점. 20 m부터 적용. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 9e2084c707785bc987badf95fdc90bac, type: 3}
+    selection: {fileID: 2800000, guid: 4073f10f3af2561f85bc94f233c40ead, type: 3}
+    family: 1
+    parent: 10
+    anyPrerequisite: 1
+    prerequisiteIndices: 0a000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 571.40173, y: -428.67517}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 8dfa6b94113558aea8bfd1155e255ac7, type: 3}
+    - {fileID: 2800000, guid: 6d2f7f41b29d57409c52ab75f8467cce, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 980fc0ff146e5fcbb196e340542f4c61, type: 3}
+    - {fileID: 2800000, guid: c5a7c490c724564799aa86150758e5cf, type: 3}
+  - id: Recover_3
+    title: "자세 회복 한 번 더"
+    benefit: "두 번째 충돌에도 수동 회복"
+    summary: "비행당 자세 회복을 한 번 더 사용할 수 있습니다."
+    runtimeIndex: 7
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a970badbaa785e5db9d321717578ff8b, type: 3}
+    selection: {fileID: 2800000, guid: 5d47d7e3f36d59ce9371df725c8ca547, type: 3}
+    family: 2
+    parent: 11
+    anyPrerequisite: 1
+    prerequisiteIndices: 0b000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 668.61503, y: -327.52584}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: bc4a07537dbd5f339ea85d5044cfe3fa, type: 3}
+    - {fileID: 2800000, guid: bd3721707215571984d836bfc18ef49b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: e33e8d918af85d3c8780fd70c46dd935, type: 3}
+    - {fileID: 2800000, guid: 75c5a5c01c1d57c3be7f1c0374f3aeb9, type: 3}
+  - id: Web_BalancePoint
+    title: "충돌 흔들림 단축"
+    benefit: "조종을 더 일찍 되찾기"
+    summary: "충돌 후 자세가 흐트러지는 시간 -0.05초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a9210845a7ab56ffa7c2533f90ec49e0, type: 3}
+    selection: {fileID: 2800000, guid: 0c3f7723eb405ba3aa46d24092e5663a, type: 3}
+    family: 2
+    parent: 11
+    anyPrerequisite: 1
+    prerequisiteIndices: 0b000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 781.18594, y: -146.43656}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 92328ba346745680a348976ebec02530, type: 3}
+    - {fileID: 2800000, guid: afbf0ba5f6a95a45aed68ec1ac21fade, type: 3}
+    selected:
+    - {fileID: 2800000, guid: aeb780fee469580db9a89d54d3915c0e, type: 3}
+    - {fileID: 2800000, guid: 19dcbcd3ea6c51bb9f59048c0534872c, type: 3}
+  - id: Web_PitchBrake
+    title: "완만하게 하강하기"
+    benefit: "손을 뗄 때 기수가 천천히 내려감"
+    summary: "클릭 해제 후 최대 하강 자세까지 +0.1초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5db73082b4c955dea44057a21babe5b8, type: 3}
+    selection: {fileID: 2800000, guid: 4bacdfcb050b5bff866794b018404fb5, type: 3}
+    family: 2
+    parent: 12
+    anyPrerequisite: 1
+    prerequisiteIndices: 0c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 752.90219, y: 46.08218}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: d11b34bf063d55d9818dc70b8dec5278, type: 3}
+    - {fileID: 2800000, guid: f35b4be38d7a52f289386d7ab7311248, type: 3}
+    selected:
+    - {fileID: 2800000, guid: ff7ad1fbf6e35f41ba953306d4cc00ac, type: 3}
+    - {fileID: 2800000, guid: 5bb404eea55c5280b28af1fa7f3d0590, type: 3}
+  - id: Web_LevelReturn
+    title: "수동 회복 시간 단축"
+    benefit: "회복 버튼 효과가 더 빨리 완료"
+    summary: "수동 자세 회복 시간 -0.02초. 자세 회복 해금 후 적용."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 6bfe957cc0785327bd9e6c8206250252, type: 3}
+    selection: {fileID: 2800000, guid: 9df8342c50ca565f8415370dc2e807dc, type: 3}
+    family: 2
+    parent: 12
+    anyPrerequisite: 1
+    prerequisiteIndices: 0c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 755.71738, y: 246.53274}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 7152ae1e66b3515191297b8558ecb973, type: 3}
+    - {fileID: 2800000, guid: 25001693d5ac5f37afe973cf24783693, type: 3}
+    selected:
+    - {fileID: 2800000, guid: ecbddfbd9b9a59ce90ca4b3f5a6f42ec, type: 3}
+    - {fileID: 2800000, guid: 582d391c990959c5b7c894764bc27b82, type: 3}
+  - id: Web_BundleDelivery
+    title: "아이템 두 개씩 배달"
+    benefit: "묶음 수거로 연구점 획득"
+    summary: "수거한 아이템 2개마다 연구점 +2. 비행당 최대 2묶음. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5889c92099d15fea8f508860b8128e74, type: 3}
+    selection: {fileID: 2800000, guid: 2588db0155805ecaad6f3660c458c1a2, type: 3}
+    family: 4
+    parent: 13
+    anyPrerequisite: 1
+    prerequisiteIndices: 0d000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 657.63631, y: 346.69121}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 4b70e32c39525412b0833417aa34e565, type: 3}
+    - {fileID: 2800000, guid: 0f6f1e4a93365bd880aee8d3bd5e27a9, type: 3}
+    selected:
+    - {fileID: 2800000, guid: a1307a3a7ca7545bae485887b851a0d3, type: 3}
+    - {fileID: 2800000, guid: f95836ebdf7e5e70900eca4bd91e4fe1, type: 3}
+  - id: Web_AirMail
+    title: "5 m 위 수거 보상"
+    benefit: "높이 날며 아이템을 노리기"
+    summary: "높이 5 m 이상에서 수거한 아이템마다 +2 연구점. 비행당 최대 2개. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 5b57b40f39a25ff9b9b9c515f20bf014, type: 3}
+    selection: {fileID: 2800000, guid: 831f76ddb45d5ce2a4f228f5ff1e4cc8, type: 3}
+    family: 4
+    parent: 13
+    anyPrerequisite: 1
+    prerequisiteIndices: 0d000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 409.74742, y: 441.40934}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: 1d4578d206c551a5b7f86a389ae74f81, type: 3}
+    - {fileID: 2800000, guid: 250e3ad5f8515828ab7958685b4fab32, type: 3}
+    selected:
+    - {fileID: 2800000, guid: b181bd0d167c5299ac9a060a09cc9e2f, type: 3}
+    - {fileID: 2800000, guid: 9ab572e3ab855e8185fe82e355641b65, type: 3}
   - id: Magnet_3
-    title: "빠른 수집"
+    title: "아이템 더 빨리 끌어오기"
+    benefit: "스쳐 가는 아이템도 빠르게 당기기"
     summary: "끌어당기는 속도가 9m/s에서 18m/s로 증가합니다."
     runtimeIndex: 11
     unlocksAbility: 0
-    frameSize: 116
-    icon: {fileID: 2800000, guid: e32e9f28ae44566ea880dc35edef8062, type: 3}
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f9de1bb958f3582c9892889763b556f7, type: 3}
+    selection: {fileID: 2800000, guid: 35236f563c255e2191f923e2a9085fbf, type: 3}
     family: 4
-    parent: 31
-    prerequisiteIndices: 1f000000
-    position: {x: 550, y: 400}
+    parent: 14
+    anyPrerequisite: 1
+    prerequisiteIndices: 0e000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 185.29942, y: 561.50367}
     costs: 82000000
     normal:
-    - {fileID: 2800000, guid: 94af92db4520523885f39e87bb6c16aa, type: 3}
-    - {fileID: 2800000, guid: f79509096cc45c75bd4722ab6d4bc4a8, type: 3}
+    - {fileID: 2800000, guid: 3cafb3a4cfc154adaf547727e876166f, type: 3}
+    - {fileID: 2800000, guid: 0a653c42ac4153bfb13bb9506ff569e6, type: 3}
     selected:
-    - {fileID: 2800000, guid: 0ab54634968c5ecb96257368e2a4dd43, type: 3}
-    - {fileID: 2800000, guid: 7f9acd4f9e3c52aaaa58a54c8e2b7101, type: 3}
+    - {fileID: 2800000, guid: 598ef4d3923f51e7ab1665a753797ba4, type: 3}
+    - {fileID: 2800000, guid: 0ca37099e8cb5a2eaea1006e1cd0372e, type: 3}
+  - id: Web_DistantMarker
+    title: "자석 범위 0.5 m 추가"
+    benefit: "비행 경로 밖 아이템까지 당기기"
+    summary: "수집 끌어당김 반경 +0.5 m. 수집 끌어당김 해금 후 적용."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f50b291dead254219aed3a5905214e08, type: 3}
+    selection: {fileID: 2800000, guid: 48951ee1759756dda06aaa48445bf8b5, type: 3}
+    family: 4
+    parent: 14
+    anyPrerequisite: 1
+    prerequisiteIndices: 0e000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -97.45945, y: 555.29383}
+    costs: 32000000
+    normal:
+    - {fileID: 2800000, guid: ccac441e01bf5ccaa194e80d3608dd89, type: 3}
+    - {fileID: 2800000, guid: d7a9dbc8775b58baafc22f1fefdebf57, type: 3}
+    selected:
+    - {fileID: 2800000, guid: fcada0bff5eb55d8a2eed45c92c54c2e, type: 3}
+    - {fileID: 2800000, guid: 23b02bc392e550a785915758160d48f9, type: 3}
+  - id: Shield_2
+    title: "방패 충돌 감속 절반"
+    benefit: "방패가 막을 때 속도까지 보호"
+    summary: "방패가 발동한 충돌의 속도 손실도 절반으로 줄입니다."
+    runtimeIndex: 10
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: abd7e43de2245be48652bdeeae8058e1, type: 3}
+    selection: {fileID: 2800000, guid: f07acc6bad375d99a966eea25d3bd3d5, type: 3}
+    family: 3
+    parent: 15
+    anyPrerequisite: 1
+    prerequisiteIndices: 0f000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -246.00931, y: 499.83001}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: f8d94155bcbc51be97bf037e4e7d3e80, type: 3}
+    - {fileID: 2800000, guid: d3be503d6bb555db986a19606956f61c, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 46781eefd5cc51488dd9cbc1eca38e29, type: 3}
+    - {fileID: 2800000, guid: fd04b293780b5ac1b2dc953468b496d0, type: 3}
+  - id: Durability_2
+    title: "동체 내구 추가"
+    benefit: "기체가 버티는 피해량 증가"
+    summary: "최대 내구도가 10 증가합니다."
+    runtimeIndex: 8
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 7f094db0fe4d54d3a132490d1bba5616, type: 3}
+    selection: {fileID: 2800000, guid: 1de46e1ed04d5452a0747125491a03d8, type: 3}
+    family: 3
+    parent: 15
+    anyPrerequisite: 1
+    prerequisiteIndices: 0f000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -509.18403, y: 439.89417}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: c27d13b3d6cf5a208199f1a3ef1273d8, type: 3}
+    - {fileID: 2800000, guid: da3bd9930e555f4cafff11747247072a, type: 3}
+    selected:
+    - {fileID: 2800000, guid: fb5ff0e12d315c9bae472339a53d6c05, type: 3}
+    - {fileID: 2800000, guid: 5fbae18c9e3354edab891fd2b10c2d3c, type: 3}
+  - id: Impact_2
+    title: "충돌 속도 손실 완화"
+    benefit: "충돌 직후 더 빠르게 전진"
+    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
+    runtimeIndex: 9
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 1a8e7bd86772590e829ac1ff3c7c6fa1, type: 3}
+    selection: {fileID: 2800000, guid: 7c66b13606ee55618b60b0e76497dd1f, type: 3}
+    family: 3
+    parent: 16
+    anyPrerequisite: 1
+    prerequisiteIndices: 10000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -699.36134, y: 293.98015}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: a5fe9a571fc654d0aac348749c71a2b1, type: 3}
+    - {fileID: 2800000, guid: 4ed807dcdede5c68a92d10c1ba94af5b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 8cab4f7cc834513880b4add0e0a45cb1, type: 3}
+    - {fileID: 2800000, guid: 80f3122d7a375d59b388ec45057f042c, type: 3}
+  - id: Durability_3
+    title: "최대 내구 추가"
+    benefit: "연속 충돌에 대비"
+    summary: "최대 내구도가 10 증가합니다."
+    runtimeIndex: 8
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 90fd263d978f5d679ad49971ca147010, type: 3}
+    selection: {fileID: 2800000, guid: fd59b0ce45675d009e2c6c11e86d42d7, type: 3}
+    family: 3
+    parent: 16
+    anyPrerequisite: 1
+    prerequisiteIndices: 10000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -739.52889, y: 100.56574}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 41ec3443d82b5d0db2ce385c45137ef9, type: 3}
+    - {fileID: 2800000, guid: 28d906df87a85a59a366a27f14c7bfdc, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 5e85dc83e918569fb43294189a80c713, type: 3}
+    - {fileID: 2800000, guid: 2b9e72f00f5a569783f65f61a1c148dc, type: 3}
+  - id: Drag_3
+    title: "장거리 감속 크게 줄이기"
+    benefit: "후반에도 전진 속도를 유지"
+    summary: "기본 공기 저항이 추가로 18% 감소합니다."
+    runtimeIndex: 3
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f4f772a6ef0f57718cb21521af8ac620, type: 3}
+    selection: {fileID: 2800000, guid: 6329bece4f1f5c1ebea2042b292131eb, type: 3}
+    family: 0
+    parent: 17
+    anyPrerequisite: 1
+    prerequisiteIndices: 11000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1050.70090, y: -12.83049}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: f767ba554df653afbad6281582ae128c, type: 3}
+    - {fileID: 2800000, guid: 8fd885240f5552c3aeded839cf496bab, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 3ee3c710d3635b089e5e19df5291353f, type: 3}
+    - {fileID: 2800000, guid: c4f96eb0778b527db0077fdd24e6ebef, type: 3}
+  - id: Web_WindSlice
+    title: "평상시 공기 저항 감소"
+    benefit: "비행 내내 감속 완화"
+    summary: "기본 공기 저항 -2.5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 4260570db3185f9aad896d5527c9fe48, type: 3}
+    selection: {fileID: 2800000, guid: c3d2d3c550f756f993973ace54c3e1d7, type: 3}
+    family: 0
+    parent: 17
+    anyPrerequisite: 1
+    prerequisiteIndices: 1100000012000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1059.96056, y: -182.13876}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: dc3f8763bd4e52ca8e7b201adc91be7e, type: 3}
+    - {fileID: 2800000, guid: 9b0efd243ec25cd184aeac9112f60273, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 17eafabf359d5754853263088384e3ff, type: 3}
+    - {fileID: 2800000, guid: 80cc6622e32952da8b3b4133a5599118, type: 3}
+  - id: Web_LaunchAlignment
+    title: "기수 전환 빠르게"
+    benefit: "클릭 후 기수가 빨리 올라감"
+    summary: "기수 전환 속도 +5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 084ab68d8dfc50ff84707939c4ad81ec, type: 3}
+    selection: {fileID: 2800000, guid: cca6502ef7935b75a36b0181fb7ed074, type: 3}
+    family: 0
+    parent: 18
+    anyPrerequisite: 1
+    prerequisiteIndices: 1200000013000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1009.61730, y: -353.69702}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 496a6fd53ca6561abaf687468d63ab25, type: 3}
+    - {fileID: 2800000, guid: 9e1c95b8af8c5ee19a7fbd54da4d112e, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 698e79a1000555bb8f025c812b7af6cf, type: 3}
+    - {fileID: 2800000, guid: 794a5bb3ff9e5c428b22fb72932e9aaa, type: 3}
+  - id: Dive_2
+    title: "하강 가속 빨리 발동"
+    benefit: "짧게 내려가도 감속 완화"
+    summary: "하강 가속을 해금하면 발동 대기 시간이 0.6초에서 0.2초로 줄어듭니다."
+    runtimeIndex: 6
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: ee371091060c5ba2bcdc892ad24102e5, type: 3}
+    selection: {fileID: 2800000, guid: 246a1128d35e5290847850b96da506a4, type: 3}
+    family: 0
+    parent: 19
+    anyPrerequisite: 1
+    prerequisiteIndices: 1300000014000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -802.35673, y: -461.07306}
+    costs: 41000000
+    normal:
+    - {fileID: 2800000, guid: 015978c2846d5256a30b524b9884a83a, type: 3}
+    - {fileID: 2800000, guid: 42bb32fc77b15cc2af3443fead01d2f0, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 49b0427d884054ccac65c6a93c037c2a, type: 3}
+    - {fileID: 2800000, guid: 1c0e99ba53e3599e8c3e4a3905e67474, type: 3}
+  - id: Web_LowSprint
+    title: "저공 비행 감속 완화"
+    benefit: "지면 가까이에서 속도 보존"
+    summary: "높이 3 m 미만에서 공기 저항 -6%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 679778b3ef5a5ce285bf5e29963fb481, type: 3}
+    selection: {fileID: 2800000, guid: 00178b0155305b11a6d2742ea845a716, type: 3}
+    family: 0
+    parent: 20
+    anyPrerequisite: 1
+    prerequisiteIndices: 1400000015000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -687.47379, y: -620.03538}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 27ae89b69ae85aa1b303bc6f0881831b, type: 3}
+    - {fileID: 2800000, guid: 1736e302f4e35297a5168724516fd273, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 4563606179ef53b8a9730280b796ecac, type: 3}
+    - {fileID: 2800000, guid: aaf57cab5a695565a51ae1e51844df02, type: 3}
+  - id: Boost_3
+    title: "아이템 최대 가속 강화"
+    benefit: "가속 아이템으로 더 멀리"
+    summary: "아이템의 2초 수평 가속이 0.3 m/s 더 강해집니다."
+    runtimeIndex: 5
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: d85bf31b08f8577a81f054faf8ed2ce9, type: 3}
+    selection: {fileID: 2800000, guid: fc734a1738b655eca595348026bcc32a, type: 3}
+    family: 0
+    parent: 21
+    anyPrerequisite: 1
+    prerequisiteIndices: 15000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -465.48066, y: -698.34775}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 1a37905c3f1458a986abae126dbea892, type: 3}
+    - {fileID: 2800000, guid: 4edf8b37c37551659ff3b404161712aa, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 0efda6445b8055f7a0ad7cc00201cf43, type: 3}
+    - {fileID: 2800000, guid: 83d71e450bb953569d417ec1a008bb8b, type: 3}
+  - id: Climb_3
+    title: "고공 상승 감속 완화"
+    benefit: "오래 상승해 높은 하늘에 도달"
+    summary: "상승할 때 생기는 추가 공기 저항이 25% 더 감소합니다. 모든 고도에서 적용됩니다."
+    runtimeIndex: 4
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 46c25d76a60455f4b08ee7dd14d7b249, type: 3}
+    selection: {fileID: 2800000, guid: 4f3726cb729b50939c9f3c0873ca4690, type: 3}
+    family: 1
+    parent: 22
+    anyPrerequisite: 1
+    prerequisiteIndices: 16000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -313.11839, y: -716.49341}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: e985dfe27b6c505cade71fbb1a95413a, type: 3}
+    - {fileID: 2800000, guid: 760a3b0649a55ee2b1c27550dc3d05c2, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 6f4347854d565a399359b8581e1ad44b, type: 3}
+    - {fileID: 2800000, guid: 6fc7d4693bdf50a683f9191ef56d5775, type: 3}
+  - id: Web_ClimbReserve
+    title: "상승 저항 추가 감소"
+    benefit: "클릭 상승 때 속도 손실 완화"
+    summary: "상승 공기 저항 -3%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: b74dd8dff81a599c92df2f25ab4d960d, type: 3}
+    selection: {fileID: 2800000, guid: 55e599d954765671ba61ea4eb662cf78, type: 3}
+    family: 1
+    parent: 22
+    anyPrerequisite: 1
+    prerequisiteIndices: 1600000017000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -83.48869, y: -795.36191}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: f7d3918f0f5b5dc297cd1469aaa1e6c5, type: 3}
+    - {fileID: 2800000, guid: 4c5e27e907d156e4ae8457022a0ec032, type: 3}
+    selected:
+    - {fileID: 2800000, guid: e9bf808b505359a9b4d37643510a4072, type: 3}
+    - {fileID: 2800000, guid: bedeeb866ae95a94b41d11ffe49ed3a4, type: 3}
+  - id: Web_GentleDescent
+    title: "하강 전환 늦추기"
+    benefit: "손을 뗀 뒤 높이를 오래 유지"
+    summary: "클릭 해제 후 최대 하강 자세까지 +0.15초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 093b6d2f14a15de7a6cfcd2edd61a360, type: 3}
+    selection: {fileID: 2800000, guid: fe241fea85515b95bef86f890b9c7d7a, type: 3}
+    family: 1
+    parent: 23
+    anyPrerequisite: 1
+    prerequisiteIndices: 1700000018000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 156.17629, y: -722.44234}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 0b49d39fa25e511593c20a19338bac60, type: 3}
+    - {fileID: 2800000, guid: d94f68aa82405611a83ab586fb4e5d6b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: b2134b64879b5d67b281f3538bebb24d, type: 3}
+    - {fileID: 2800000, guid: 71d7a55da8a65f8fbf60c60bcb4624e9, type: 3}
+  - id: Web_GlideTransition
+    title: "활공 방향 빠른 전환"
+    benefit: "기수를 따라 경로가 빨리 꺾임"
+    summary: "비행 경로의 자세 추종 속도 +5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: dc6c064894a254b3bf721896ccfea0b7, type: 3}
+    selection: {fileID: 2800000, guid: 7409d14872f950d6877aa5273924eba0, type: 3}
+    family: 1
+    parent: 24
+    anyPrerequisite: 1
+    prerequisiteIndices: 1800000019000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 402.36258, y: -718.27329}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 26dc853c194450e9bac8385c9d2126c6, type: 3}
+    - {fileID: 2800000, guid: 20a972a595e8571a902e982681255fd1, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2029fb57270453bea1c5491fca340810, type: 3}
+    - {fileID: 2800000, guid: e5188eb5547e558985945e567bdb25b9, type: 3}
+  - id: Web_RouteQuest
+    title: "80 m 배달 보상"
+    benefit: "거리와 수거를 함께 달성해 보상 획득"
+    summary: "80 m 이상 비행하고 아이템 2개 이상을 수거하면 +4 연구점. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 648c8cfea67f59eb84c561db1f03617f, type: 3}
+    selection: {fileID: 2800000, guid: fc6f991d453659a391ee1c4dd7e3e7b8, type: 3}
+    family: 1
+    parent: 25
+    anyPrerequisite: 1
+    prerequisiteIndices: 190000001a000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 629.85095, y: -648.37687}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: a94323623782580c86c23211b5149a28, type: 3}
+    - {fileID: 2800000, guid: ccc6107efe0357e58207995c8788dc7f, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 478bc32439e351f2b32bd9b7e2d152b3, type: 3}
+    - {fileID: 2800000, guid: 135c328f0926506ebf4ae9dac1638711, type: 3}
+  - id: Web_RecordStamp
+    title: "기록 경신 추가 연구점"
+    benefit: "최고 기록 경신 보상 증가"
+    summary: "최고 기록을 10 m 이상 경신할 때 추가 연구점 +1. 20 m부터 적용. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 345b7a4e71415b639e9f03292caa3314, type: 3}
+    selection: {fileID: 2800000, guid: 7213db71742a50628077acc02c4905bb, type: 3}
+    family: 1
+    parent: 26
+    anyPrerequisite: 1
+    prerequisiteIndices: 1a000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 759.49714, y: -495.47832}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 2ba9c04e75f45b718f2594ab9086ec1b, type: 3}
+    - {fileID: 2800000, guid: d223a4a90e2259ffa6e0d54ef87ebadb, type: 3}
+    selected:
+    - {fileID: 2800000, guid: c7b2c4025c4e5985badbda80dfef416c, type: 3}
+    - {fileID: 2800000, guid: cc3f74de5308525fab7d21b7598c7471, type: 3}
+  - id: Web_EmergencyAlign
+    title: "첫 충돌 자동 회복"
+    benefit: "버튼 없이 조종 자세 복구"
+    summary: "비행당 첫 충돌 후 자세를 자동으로 회복합니다. 회복 시간 0.2초."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 959e37e1ae4554a78b56885f0c9048a2, type: 3}
+    selection: {fileID: 2800000, guid: f155c54ad48b594b8c964612d89bad2f, type: 3}
+    family: 2
+    parent: 27
+    anyPrerequisite: 1
+    prerequisiteIndices: 1b000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 936.28714, y: -458.64692}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: c7cc6ef27be15cb68a5271365c3b9737, type: 3}
+    - {fileID: 2800000, guid: 884d8d1fe94a513aa6461b4c349bb64b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2ec769a18b7155bb8e79c4659b3d5283, type: 3}
+    - {fileID: 2800000, guid: 9de92891d05c53008b79a405e3a0745c, type: 3}
+  - id: Web_SteadyHand
+    title: "충돌 흔들림 더 짧게"
+    benefit: "충돌 뒤 조종 불능 시간 단축"
+    summary: "충돌 후 자세가 흐트러지는 시간 -0.06초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: caeae7cd786a5c6bb2e766ccb1fc9737, type: 3}
+    selection: {fileID: 2800000, guid: 2539cf8dd94750d9958307bf47d6cab1, type: 3}
+    family: 2
+    parent: 27
+    anyPrerequisite: 1
+    prerequisiteIndices: 1b0000001c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1000.14619, y: -240.92285}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: c0bb04e1910f5d3b93e5a16a97ef3b85, type: 3}
+    - {fileID: 2800000, guid: 328129d17b0a546fbe8e35cb2e07cbaa, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 8c1d939625be52cf84e42101c8a601cb, type: 3}
+    - {fileID: 2800000, guid: 314cf447b95b5db3a34f92af2ab18f39, type: 3}
+  - id: Web_Reclimb
+    title: "기수 빠르게 올리기"
+    benefit: "하강 뒤 상승 조작에 빨리 반응"
+    summary: "기수 전환 속도 +5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 7093f6bd53ac53729255631b353c5baf, type: 3}
+    selection: {fileID: 2800000, guid: 969956ac96605eb8a507ec6a05db1267, type: 3}
+    family: 2
+    parent: 28
+    anyPrerequisite: 1
+    prerequisiteIndices: 1c0000001d000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1080.40907, y: -39.61199}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 117254ba71a55ea5b89ca9a6881ad28c, type: 3}
+    - {fileID: 2800000, guid: fa81e53feac95ba393f3bc6f96663e03, type: 3}
+    selected:
+    - {fileID: 2800000, guid: c71abadff1805dbfa26cdc8312a53a4c, type: 3}
+    - {fileID: 2800000, guid: 86cac8cf0e585a7c9539fdc667b5d0b0, type: 3}
+  - id: Web_LowDodge
+    title: "저공 첫 충돌 방어"
+    benefit: "지면 가까이서 한 번 피해 차단"
+    summary: "높이 3 m 미만에서 받는 첫 장애물 피해를 막습니다. 비행당 1회."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 83bb80ccfb76579d9f07a7b886b1b931, type: 3}
+    selection: {fileID: 2800000, guid: 45f8aaed095c5a9d871fed5cb675ac62, type: 3}
+    family: 2
+    parent: 29
+    anyPrerequisite: 1
+    prerequisiteIndices: 1d0000001e000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 1105.88621, y: 178.61470}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 17ef97163c305672b200726bd2c130fa, type: 3}
+    - {fileID: 2800000, guid: 6d9f13e2d2a9511aa3418d3f1003ee5c, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 799950c61b9d528e923277588c6e34a7, type: 3}
+    - {fileID: 2800000, guid: ecb34cb79ef25768ab1a0991d2fd148f, type: 3}
+  - id: Web_NoseStability
+    title: "충돌 자세 조기 안정"
+    benefit: "충돌 뒤 더 빨리 조종"
+    summary: "충돌 후 자세가 흐트러지는 시간 -0.06초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 7dac3518967352628bbc7622a10831ab, type: 3}
+    selection: {fileID: 2800000, guid: a0b0cf9d4b4b51e09cea719fc7fa9104, type: 3}
+    family: 2
+    parent: 30
+    anyPrerequisite: 1
+    prerequisiteIndices: 1e000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 909.71135, y: 352.77535}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 1f5167a7ad1050eb8c684103cf341379, type: 3}
+    - {fileID: 2800000, guid: 399387f60daf59d6ade52500519e1a18, type: 3}
+    selected:
+    - {fileID: 2800000, guid: a67e6bf5d337586793d3d529acc08d60, type: 3}
+    - {fileID: 2800000, guid: cb8aec03cd04543da0b902345f09992c, type: 3}
+  - id: Web_RepairTape
+    title: "80 m 비행 시 수리"
+    benefit: "장거리 비행 중 손상 복구"
+    summary: "80 m를 처음 통과하면 내구 10을 회복합니다. 최대 내구까지, 비행당 1회."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: cdf17ab794cb52fcb3b8c224f9df28a3, type: 3}
+    selection: {fileID: 2800000, guid: 247950ef47b152d4bf814c7d0e6c5977, type: 3}
+    family: 4
+    parent: 31
+    anyPrerequisite: 1
+    prerequisiteIndices: 1f000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 859.58724, y: 453.15525}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: a73998d9c670590abc1ce8457d9d8568, type: 3}
+    - {fileID: 2800000, guid: dc12809d0bc05ef58b8e7d6ebc21adb2, type: 3}
+    selected:
+    - {fileID: 2800000, guid: d723c153c3ba5d4aa1d9daf230657cbb, type: 3}
+    - {fileID: 2800000, guid: c7f1e8650b54545b85a6ff025da7aa47, type: 3}
+  - id: Web_SortStamp
+    title: "세 개 수거 보상"
+    benefit: "한 비행에서 세 개를 모으면 연구점"
+    summary: "아이템을 3개 이상 수거하면 추가 연구점 +2. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a8b26719c0d55af79d7fddfd21f6c13d, type: 3}
+    selection: {fileID: 2800000, guid: f17c67b2e78b5e719f969f00ffc19f20, type: 3}
+    family: 4
+    parent: 31
+    anyPrerequisite: 1
+    prerequisiteIndices: 1f00000020000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 639.38053, y: 593.59147}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 65e0a22212ac5ad5b94bb10b97c432e1, type: 3}
+    - {fileID: 2800000, guid: 3ec1b64f10d35727b2a530825c8ff1eb, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 613ec32843955da2a5f647a76c38dd58, type: 3}
+    - {fileID: 2800000, guid: 0cdae8c45eb5582081c45dfd947d9e29, type: 3}
+  - id: Web_HighDelivery
+    title: "고공 수거 추가 연구점"
+    benefit: "높은 아이템의 가치 증가"
+    summary: "높이 5 m 이상에서 수거한 아이템마다 +1 연구점. 비행당 최대 2개. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 81ee5101d4e35f13bb2f49cda30893b9, type: 3}
+    selection: {fileID: 2800000, guid: f7713ce080015ad984b973342abba278, type: 3}
+    family: 4
+    parent: 32
+    anyPrerequisite: 1
+    prerequisiteIndices: 2000000021000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 409.39155, y: 746.11212}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: de3609967d07542eb9be2a966b6ddef3, type: 3}
+    - {fileID: 2800000, guid: 0189cf485e4f5a77a7f038518c61d21a, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 17d80a5ee47c59a798998c48e2f33a3d, type: 3}
+    - {fileID: 2800000, guid: 9136492112d75ef5bbd70f9205f61f58, type: 3}
+  - id: Web_PickupChain
+    title: "세 개 연속 수거 보상"
+    benefit: "아이템을 연속으로 모아 연구점 획득"
+    summary: "배치된 아이템을 놓치지 않고 3개 연속 수거하면 +3 연구점. 비행당 1회. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 51d20aa9af0b5ab8bd9b02a6780cf394, type: 3}
+    selection: {fileID: 2800000, guid: 35ec837890ce50ea802d31e261131f44, type: 3}
+    family: 4
+    parent: 33
+    anyPrerequisite: 1
+    prerequisiteIndices: 2100000022000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 91.48999, y: 731.58438}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 550d8dfff2975b3f9649a30ecc128bb9, type: 3}
+    - {fileID: 2800000, guid: 66a558eeb0da5581b4f8a73b2106c424, type: 3}
+    selected:
+    - {fileID: 2800000, guid: ffa970e97619534296264c63dfb98bd0, type: 3}
+    - {fileID: 2800000, guid: 892d0c452e6e5b7590dd93733a896197, type: 3}
+  - id: Web_MailNotice
+    title: "아이템 접촉 범위 확대"
+    benefit: "조금 빗겨가도 아이템 수거"
+    summary: "가속 아이템에 닿는 수거 판정 반경 +0.2 m."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 4be29855b5d550bfa49b6dad060733f3, type: 3}
+    selection: {fileID: 2800000, guid: be47e3b564ff5ad5aa081cae8107e67f, type: 3}
+    family: 4
+    parent: 34
+    anyPrerequisite: 1
+    prerequisiteIndices: 22000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -208.59823, y: 750.75978}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: ffe985aaddf25f569e73a2c437ed8a37, type: 3}
+    - {fileID: 2800000, guid: 4afd75223ecd56e59c5e5161b195f00d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: e1ebc42334be537f81d7b42f211d1929, type: 3}
+    - {fileID: 2800000, guid: 582871099c5d5ac88576a17934796b7c, type: 3}
+  - id: Shield_3
+    title: "종이 방패 한 번 더"
+    benefit: "두 번째 충돌도 피해 차단"
+    summary: "종이 방패를 해금하면 비행당 방패 사용 횟수가 1회 늘어납니다."
+    runtimeIndex: 10
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f6d218fd7c5d5b45a6c1b0c22bf9bfbe, type: 3}
+    selection: {fileID: 2800000, guid: 2770bd58fd145a1881fef118041ea325, type: 3}
+    family: 3
+    parent: 35
+    anyPrerequisite: 1
+    prerequisiteIndices: 23000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -340.99858, y: 692.82470}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 08cf454b885f5df28b56b79ba42b3c97, type: 3}
+    - {fileID: 2800000, guid: 0976f9ab6eb3571b9646a9ef763f1abe, type: 3}
+    selected:
+    - {fileID: 2800000, guid: a9330843eaae5aff82dc6f9a194750b2, type: 3}
+    - {fileID: 2800000, guid: 255367ada09255ff87cb2be43fc7107a, type: 3}
+  - id: Web_WingPatch
+    title: "날개 내구 보강"
+    benefit: "최대 내구 증가"
+    summary: "최대 내구 +8."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: b42415d3277d5e819002de2ca7abe128, type: 3}
+    selection: {fileID: 2800000, guid: db76c829b23f5f67ba1f621e0a303e5d, type: 3}
+    family: 3
+    parent: 35
+    anyPrerequisite: 1
+    prerequisiteIndices: 2300000024000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -654.79643, y: 654.21751}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 599bdab9065858c1b11563ba64bd5217, type: 3}
+    - {fileID: 2800000, guid: ca03ed8acfbc5d46817362f2fee7193c, type: 3}
+    selected:
+    - {fileID: 2800000, guid: dbb906f9c2e2580a9af68420b3e96233, type: 3}
+    - {fileID: 2800000, guid: 5df998e256df5a0cbe7548d4aa9e4ca7, type: 3}
+  - id: Web_CushionPaper
+    title: "충돌 감속 2%p 감소"
+    benefit: "부딪힐 때 속도 보존"
+    summary: "충돌 시 잃는 속도 비율 -2%p."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 265e05c20f5f5bc9a980468ae41e2fbf, type: 3}
+    selection: {fileID: 2800000, guid: 7ff0ef5422765ed88a1bd3fe3a635c1e, type: 3}
+    family: 3
+    parent: 36
+    anyPrerequisite: 1
+    prerequisiteIndices: 2400000025000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -828.27246, y: 469.22925}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: 7bfc299263525a89b8b800152ded368b, type: 3}
+    - {fileID: 2800000, guid: 184f903d68c753ddb9d785ae7bfcc298, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 86f2963a553752db944c8e221325c910, type: 3}
+    - {fileID: 2800000, guid: f1ccc6303b3e50b09443874887ccf86e, type: 3}
+  - id: Impact_3
+    title: "충돌 후 전진 속도 보존"
+    benefit: "여러 번 부딪혀도 속도 손실 완화"
+    summary: "장애물 충돌 시 속도 손실을 기본 손실량의 12%만큼 줄입니다."
+    runtimeIndex: 9
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 8f4d9a6ef0805b098f314ba4baf3d9e5, type: 3}
+    selection: {fileID: 2800000, guid: d1c49388a3d05acfa5c895f93f923085, type: 3}
+    family: 3
+    parent: 37
+    anyPrerequisite: 1
+    prerequisiteIndices: 2500000026000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -987.34076, y: 293.19843}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 4d19f2baa5da5b35a7a5ec8a0c242138, type: 3}
+    - {fileID: 2800000, guid: 6eb2957918815a33b4d50e45cdae5be3, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 0d01302f6a8b5cd4b4af55732ce86d18, type: 3}
+    - {fileID: 2800000, guid: 4da0aaf0681551819b3d7e6994b32782, type: 3}
+  - id: Web_TailReinforce
+    title: "꼬리 내구 보강"
+    benefit: "최대 내구 증가"
+    summary: "최대 내구 +8."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 791dc8f2e3fa594c95740e67aaed8ffa, type: 3}
+    selection: {fileID: 2800000, guid: 13c0b944e81a5ef7b5bd3c5d22920bc4, type: 3}
+    family: 3
+    parent: 38
+    anyPrerequisite: 1
+    prerequisiteIndices: 26000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1130.84218, y: 97.13783}
+    costs: 50000000
+    normal:
+    - {fileID: 2800000, guid: fb8339d5e0d25cfe8489708ddb534bc8, type: 3}
+    - {fileID: 2800000, guid: 1a8679dc25245c98afbadb26dcf3a469, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 8acb1d42adfe5cc1a5c3461fb1c95c60, type: 3}
+    - {fileID: 2800000, guid: f26ff2c6befe59a0af03f3437058e2fa, type: 3}
+  - id: Web_SmoothBody
+    title: "동체 공기 저항 감소"
+    benefit: "비행 내내 전진 속도 보존"
+    summary: "기본 공기 저항 -3%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a1682ac9c2ed51b698446f0557cb68b0, type: 3}
+    selection: {fileID: 2800000, guid: 540d26b713c75acd8da45af8dd8352e3, type: 3}
+    family: 0
+    parent: 39
+    anyPrerequisite: 1
+    prerequisiteIndices: 27000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1311.85190, y: 32.04876}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 5dbe816a22ec5b938bf959654bee7904, type: 3}
+    - {fileID: 2800000, guid: cf234f37df8250cf857ad556f5317b78, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 1862cf3b05a850aab3a330b61d429063, type: 3}
+    - {fileID: 2800000, guid: ca694139ec0a5e53aef943eb1e26df15, type: 3}
+  - id: Web_WindBreak
+    title: "고속 비행 감속 완화"
+    benefit: "빠르게 날 때 속도를 오래 유지"
+    summary: "속도 12 m/s 이상에서 공기 저항 -10%."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: d1d11130af7d5e33a256bcb2ef716e17, type: 3}
+    selection: {fileID: 2800000, guid: 5cbe9afd262c508d98fe69d84180e71f, type: 3}
+    family: 0
+    parent: 39
+    anyPrerequisite: 1
+    prerequisiteIndices: 2700000028000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -1400.71340, y: -155.20455}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 3ce0b4aec1a05e6c8caf72e60e7c6dd7, type: 3}
+    - {fileID: 2800000, guid: 18903b6c8992501db1344f9c15f999c9, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2863668136985483b1b9f9c44dd687d8, type: 3}
+    - {fileID: 2800000, guid: f4452f78dc865893bfd7cc06e5059a15, type: 3}
+  - id: Web_StartingSprint
+    title: "출발 속도 18% 추가"
+    benefit: "초반 구간을 단숨에 통과"
+    summary: "던지기 강화를 적용한 발사 속도에 18%를 추가합니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 2ccca6cdf6af5edd940eae9892d13bb8, type: 3}
+    selection: {fileID: 2800000, guid: 3e6f2173d22653d3a9b8be0a588dc2ac, type: 3}
+    family: 0
+    parent: 40
+    anyPrerequisite: 1
+    prerequisiteIndices: 2800000029000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1276.48716, y: -325.03114}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 3861a775fc335ca1bb38191ddc96932c, type: 3}
+    - {fileID: 2800000, guid: d494c934f12357e5b093c73d4807828e, type: 3}
+    selected:
+    - {fileID: 2800000, guid: b45d3e2b3fab54fe914cd816974e37f2, type: 3}
+    - {fileID: 2800000, guid: 68bd01a11a9b5e3d998086a982e55bcc, type: 3}
+  - id: Web_ContinuousGlide
+    title: "하강 가속 연장"
+    benefit: "하강을 끝내도 속도 보존"
+    summary: "하강 가속의 잔여 지속 시간 +0.25초. 하강 가속을 해금하면 적용됩니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 0b8461dd99fe557b8dbf658bac768a54, type: 3}
+    selection: {fileID: 2800000, guid: 9fcdb35534ca589ea1cd228f729fcc67, type: 3}
+    family: 0
+    parent: 41
+    anyPrerequisite: 1
+    prerequisiteIndices: 290000002a000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1142.19792, y: -480.12880}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 7780e4d8ada85c81bdfdf661588631c6, type: 3}
+    - {fileID: 2800000, guid: 378e088119025ca19fcea7a3566dd2c6, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 5c0a57b3f35d598fa529746bc6177f12, type: 3}
+    - {fileID: 2800000, guid: 93431c602d8f53acb22ad86443094486, type: 3}
+  - id: Dive_3
+    title: "하강 후 가속 유지"
+    benefit: "활공으로 바꿔도 감속 완화"
+    summary: "하강 가속을 해금하면 하강 후에도 저항 감소가 1.25초 이어집니다."
+    runtimeIndex: 6
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: df764a24348c582bb8b87d48415d0a61, type: 3}
+    selection: {fileID: 2800000, guid: cc03be41883d584daefb875bd431e9d8, type: 3}
+    family: 0
+    parent: 42
+    anyPrerequisite: 1
+    prerequisiteIndices: 2a0000002b000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1060.30485, y: -667.89906}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 9b0b81abdcc259bb9561d4ef84fd08e7, type: 3}
+    - {fileID: 2800000, guid: 4af3bbaeb5dd5d4ba58f7a9b184f3f9b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 8e904aa7091f5f629216ceafb3ccbaac, type: 3}
+    - {fileID: 2800000, guid: 5b0a7daf5a55584cba87890f7f07b8f4, type: 3}
+  - id: Web_BoostReserve
+    title: "아이템 전진 속도 추가"
+    benefit: "수거 뒤 2초간 더 빠르게 전진"
+    summary: "아이템의 2초 수평 가속이 0.2 m/s 더 강해집니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 9151e2248f4a5250917da924a1b7953e, type: 3}
+    selection: {fileID: 2800000, guid: bd5a6d4bdbbf5fbaa67184d719bd3402, type: 3}
+    family: 0
+    parent: 43
+    anyPrerequisite: 1
+    prerequisiteIndices: 2b0000002c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -798.64746, y: -741.45254}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: f74fa9ec76c65daeb1d98f5340cb205c, type: 3}
+    - {fileID: 2800000, guid: d9db35259a4f583eb1a97219d9b80e29, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 3e60ca28f6c05896aa157b652c809a00, type: 3}
+    - {fileID: 2800000, guid: dbe67964829158e5beab959bf8ff5c4f, type: 3}
+  - id: Web_ElasticFlight
+    title: "충돌 속도 더 보존"
+    benefit: "장애물 뒤 전진 거리 확보"
+    summary: "충돌 시 잃는 속도 비율 -2%p."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 89dc7e376e9b5c0abd3ab0247e1fb33b, type: 3}
+    selection: {fileID: 2800000, guid: 2e3bee56eb7c5d84bb7364998b60a12f, type: 3}
+    family: 0
+    parent: 44
+    anyPrerequisite: 1
+    prerequisiteIndices: 2c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -598.67781, y: -858.72486}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 64e2c8cae24b54ab9a0b49bfd964d302, type: 3}
+    - {fileID: 2800000, guid: 2881b3d8a71c516fbfc2f41e3e81558d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 8e171bbe99635d8a986b76907b7d4fff, type: 3}
+    - {fileID: 2800000, guid: c24225744ab7548c8dfefe8c464e0935, type: 3}
+  - id: Web_CloudStep
+    title: "6 m 위 상승 저항 감소"
+    benefit: "고공에서 더 쉽게 상승"
+    summary: "높이 6 m 이상에서 상승 공기 저항 -20%."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: c029d8e79ec95e13b6c88354f95440c8, type: 3}
+    selection: {fileID: 2800000, guid: 9ce3a24eec6954b78703ea6a190162fe, type: 3}
+    family: 1
+    parent: 45
+    anyPrerequisite: 1
+    prerequisiteIndices: 2d0000002c000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -479.61847, y: -921.87637}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 864d68c4e7485e9cb058ea76de30ef08, type: 3}
+    - {fileID: 2800000, guid: 53c1864a7b2c5964bdd8a6cf2d1ecb19, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 769a6b574bba5cb1a2d1a77f898708c9, type: 3}
+    - {fileID: 2800000, guid: d09bb33e64775580ae5e5bf1ce6751be, type: 3}
+  - id: Web_WingTip
+    title: "날개 침하 줄이기"
+    benefit: "활공할 때 고도 하락 완화"
+    summary: "기본 침하 속도 -3%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 395da7dc4d5052f38a94f1038bc6d780, type: 3}
+    selection: {fileID: 2800000, guid: 0c5c8defd4475c588e07c2a6faad04b9, type: 3}
+    family: 1
+    parent: 45
+    anyPrerequisite: 1
+    prerequisiteIndices: 2d0000002e000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -216.12594, y: -954.63427}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 47933446952e5b3490ec08183ed3f61e, type: 3}
+    - {fileID: 2800000, guid: 6f8de1839ec25680b6bf240aff677360, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 3d4c1d59398e5332a9255a06b4a26475, type: 3}
+    - {fileID: 2800000, guid: 2d820a0857dd5f68881a49decfa6d2b1, type: 3}
+  - id: Web_LowGlide
+    title: "저공 활공 속도 유지"
+    benefit: "낮게 나는 구간을 빠르게 통과"
+    summary: "높이 3 m 미만에서 공기 저항 -4%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 3f6cd1aa811e5565b70cad17288f1fdf, type: 3}
+    selection: {fileID: 2800000, guid: 7052799d22155b9d966e9abc6b26ec4f, type: 3}
+    family: 1
+    parent: 46
+    anyPrerequisite: 1
+    prerequisiteIndices: 2e0000002f000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 45.98077, y: -921.16006}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 92b641a9588a57828881983dac1b9d42, type: 3}
+    - {fileID: 2800000, guid: 0a581018ef375efaa3fb32c05532d287, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 3001687fab5e52afaeca1c235c4593e6, type: 3}
+    - {fileID: 2800000, guid: 903484d4fbb15e579388378c19ef6880, type: 3}
+  - id: Web_Cruising
+    title: "순항 감속 줄이기"
+    benefit: "먼 거리까지 속도 보존"
+    summary: "기본 공기 저항 -2.5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: e949c8b368a05cfdbfc3494efbd1b1b1, type: 3}
+    selection: {fileID: 2800000, guid: 82c26fbbc6d15863bc57b53f16fe300f, type: 3}
+    family: 1
+    parent: 47
+    anyPrerequisite: 1
+    prerequisiteIndices: 2f00000030000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 320.24309, y: -970.41683}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 7854eebbc9875c1eacd4a2f5ba7fc109, type: 3}
+    - {fileID: 2800000, guid: 985ab20da17e59f49436ab3beb0390b4, type: 3}
+    selected:
+    - {fileID: 2800000, guid: ed7b32d746b350339e4986aefad45fe6, type: 3}
+    - {fileID: 2800000, guid: 65fd886767665d05bd7c121e55eec314, type: 3}
+  - id: Web_RouteSurvey
+    title: "40 m 구간 추가 연구점"
+    benefit: "장거리 구간 보상 증가"
+    summary: "40 m마다 추가 연구점 +1. 비행당 최대 3회. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: ec4fb4374d125ea4a0c64b2c3340eb38, type: 3}
+    selection: {fileID: 2800000, guid: db3b89a129205a71aaf89820cf2e6bb0, type: 3}
+    family: 1
+    parent: 48
+    anyPrerequisite: 1
+    prerequisiteIndices: 3000000031000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 547.58694, y: -860.42415}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 951837f2bdb65e19bc547e65640da318, type: 3}
+    - {fileID: 2800000, guid: 00d8a4342df150f5a949bf0cb35500cd, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 6c8d0e60a40a5ef7b08f085f4b80c053, type: 3}
+    - {fileID: 2800000, guid: 62d0e3a73c125efd8b6cc694fc282511, type: 3}
+  - id: Web_SectionRecord
+    title: "60 m 도달 보상"
+    benefit: "한 번에 60 m를 날아 연구점 획득"
+    summary: "60 m를 넘으면 추가 연구점 +2. 비행당 1회. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 060c86c4019056b390662060a4275e98, type: 3}
+    selection: {fileID: 2800000, guid: 51c6f5e8fd945455b4a60f289267aec0, type: 3}
+    family: 1
+    parent: 49
+    anyPrerequisite: 1
+    prerequisiteIndices: 3100000032000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 770.44630, y: -769.76514}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 70da153a38155093bcf8596d09ff5a13, type: 3}
+    - {fileID: 2800000, guid: 4ac95635a6305a97a1b2f0758ed86c69, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 094b3b49faab5efaa37e577e6111ee0f, type: 3}
+    - {fileID: 2800000, guid: f1545fbb47d75104b0d605f877d606bc, type: 3}
+  - id: Web_LongCertificate
+    title: "100 m 도달 보상"
+    benefit: "한 번에 100 m를 날아 연구점 획득"
+    summary: "100 m를 넘으면 추가 연구점 +3. 비행당 1회. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 720de89a58bc5e9e8a952839339f561e, type: 3}
+    selection: {fileID: 2800000, guid: 7ad1368d760458c89b098c1e3b12ef1d, type: 3}
+    family: 1
+    parent: 50
+    anyPrerequisite: 1
+    prerequisiteIndices: 32000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1024.79337, y: -692.33476}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: d4db74c426015740939353edebc2cab9, type: 3}
+    - {fileID: 2800000, guid: 8eb997cc1a5856bdbc993f8b4ffa87e4, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 2ab6e5e295555b98b9f93f4e496f0110, type: 3}
+    - {fileID: 2800000, guid: b2b5928b49ce585d878c65b6e736eee1, type: 3}
+  - id: Web_LandingAttitude
+    title: "급하강 전환 늦추기"
+    benefit: "손을 뗀 뒤 완만하게 내려가기"
+    summary: "클릭 해제 후 최대 하강 자세까지 +0.1초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 11630af45dd15bd8962ced0f427ed57d, type: 3}
+    selection: {fileID: 2800000, guid: 3a47738e602d5f0f802ecd188608256a, type: 3}
+    family: 2
+    parent: 51
+    anyPrerequisite: 1
+    prerequisiteIndices: 33000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1105.33352, y: -604.15145}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 75c9275a93b552fda2298dbef1a7549b, type: 3}
+    - {fileID: 2800000, guid: 5800d33d1cdd50d0acfdbca4052fce53, type: 3}
+    selected:
+    - {fileID: 2800000, guid: a53aa4fd04c152c9b3805743fb92fba0, type: 3}
+    - {fileID: 2800000, guid: d8843d9b02a75025ba3dd10576c7b26f, type: 3}
+  - id: Web_CalmRecovery
+    title: "수동 회복 더 빠르게"
+    benefit: "회복 버튼 사용 후 조종 조기 복귀"
+    summary: "수동 자세 회복 시간 -0.02초. 자세 회복 해금 후 적용."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: b6ee5a03140f5b23b41834b15a26fbe0, type: 3}
+    selection: {fileID: 2800000, guid: 066ed9735ed554b7b9adc7c330f60609, type: 3}
+    family: 2
+    parent: 51
+    anyPrerequisite: 1
+    prerequisiteIndices: 3300000034000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1189.70928, y: -384.57978}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 1e6af06c70d654db8eff7894c2a2f0b0, type: 3}
+    - {fileID: 2800000, guid: 3dac48bf4c0d51fe99d8c92a6389b204, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 7352375f372952c8864cf2985f07eea7, type: 3}
+    - {fileID: 2800000, guid: 6b1b2ec239e35ae6948009d3b9a8e988, type: 3}
+  - id: Web_TiltDamping
+    title: "충돌 흔들림 추가 단축"
+    benefit: "충돌 뒤 조종 조기 복귀"
+    summary: "충돌 후 자세가 흐트러지는 시간 -0.06초."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 18609ddc6b895ed29043dfa614664e74, type: 3}
+    selection: {fileID: 2800000, guid: 1c536a8af3485f11a41a1100153a6989, type: 3}
+    family: 2
+    parent: 52
+    anyPrerequisite: 1
+    prerequisiteIndices: 3400000035000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1382.91998, y: -198.59407}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 07411159abb952429317fdb187f29f08, type: 3}
+    - {fileID: 2800000, guid: c7c918e892425fa1b37d15533374505d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 67799874fa2e55ff91c1d5b2ba2f387a, type: 3}
+    - {fileID: 2800000, guid: 3894aeb807e25f8c8f5b8b35bb83c18b, type: 3}
+  - id: Web_EvasiveGlide
+    title: "충돌 감속 추가 완화"
+    benefit: "장애물을 지나 속도 보존"
+    summary: "충돌 시 잃는 속도 비율 -2%p."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: d352e6823bee5d17a2dad6e3b02782a6, type: 3}
+    selection: {fileID: 2800000, guid: 3d7c7145e10d56ce9a1bf749163d4fd7, type: 3}
+    family: 2
+    parent: 53
+    anyPrerequisite: 1
+    prerequisiteIndices: 3500000036000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1368.50664, y: 26.74237}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 3aa818fb7e7959e6b8dd7a25d845ca5f, type: 3}
+    - {fileID: 2800000, guid: 9c2bc0989d2650bbb40ba068127b7c6f, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 1daceb15dfa653edae8378b52c033f95, type: 3}
+    - {fileID: 2800000, guid: a1ed593e71d45984a0e319be252d8891, type: 3}
+  - id: Web_ResponseTuning
+    title: "기수 반응 높이기"
+    benefit: "상승 조작에 더 빠르게 반응"
+    summary: "기수 전환 속도 +6%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: f276a190b12250ae82b38e7fc9c176dd, type: 3}
+    selection: {fileID: 2800000, guid: c9d2879ab042573fbf8593168d230ab4, type: 3}
+    family: 2
+    parent: 54
+    anyPrerequisite: 1
+    prerequisiteIndices: 3600000037000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1280.82676, y: 236.74706}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: d7e4f652b1d0569fb0b3d1af5da3c770, type: 3}
+    - {fileID: 2800000, guid: 529e3c82788850ee9ae5095599669e6c, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 4e666c298f7352c6b61cb688054d4adf, type: 3}
+    - {fileID: 2800000, guid: 27cfea925c9d5a8fbd8bcaf069f1be17, type: 3}
+  - id: Web_PrecisionControl
+    title: "비행 경로 빠른 반응"
+    benefit: "기수와 진행 방향의 차이 감소"
+    summary: "비행 경로의 자세 추종 속도 +7%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 60deb29afc975f44bc37b0d978824c4e, type: 3}
+    selection: {fileID: 2800000, guid: bf6dff5cf6955876b5f50f12a02ff860, type: 3}
+    family: 2
+    parent: 55
+    anyPrerequisite: 1
+    prerequisiteIndices: 37000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 1259.50191, y: 468.50674}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 9d7123cb3f22586ca0d3ceee1a22735c, type: 3}
+    - {fileID: 2800000, guid: c9e43777cdff5474bdddc41d4b77418a, type: 3}
+    selected:
+    - {fileID: 2800000, guid: e5d3a21bc8955af9b07236689d8b69da, type: 3}
+    - {fileID: 2800000, guid: e57a2c1141415bb3a70c59104babee52, type: 3}
+  - id: Web_RepairKit
+    title: "내구 부족 시 자동 수리"
+    benefit: "큰 충돌 뒤 남은 내구 회복"
+    summary: "충돌 후 남은 내구가 최대치의 35% 이하일 때 내구 15 회복. 비행당 1회."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 768bac0203c859cdb0b0c6d868185002, type: 3}
+    selection: {fileID: 2800000, guid: c93f7d6805f950f0bd193dcdec0e7d78, type: 3}
+    family: 4
+    parent: 56
+    anyPrerequisite: 1
+    prerequisiteIndices: 3800000037000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 1088.34813, y: 513.56796}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 2e111ccd03ac5de593c836986b6458e0, type: 3}
+    - {fileID: 2800000, guid: e8cbfa8e38af57f4aa31a357865c8a3d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 66deb561100f5437b327eb17f28504fa, type: 3}
+    - {fileID: 2800000, guid: bd62ee384804510a831dd3d797af356c, type: 3}
+  - id: Web_RegularMail
+    title: "수거 보상 추가"
+    benefit: "가속 아이템마다 연구점 추가"
+    summary: "수거한 가속 아이템마다 추가 연구점 +1. 비행당 최대 3개. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: effe6ca5774c5441a5a67d33d6ce4d64, type: 3}
+    selection: {fileID: 2800000, guid: 56b55765fda8508bb1a24c19cea95a52, type: 3}
+    family: 4
+    parent: 56
+    anyPrerequisite: 1
+    prerequisiteIndices: 3800000039000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 946.51619, y: 715.08052}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: c7d10baedc4653f49e9df9efa21ded07, type: 3}
+    - {fileID: 2800000, guid: 2e8b00366b2350dc85dff1a8f0ea8b1d, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 006f474db2ea56deb88cb8532ddd4a97, type: 3}
+    - {fileID: 2800000, guid: a4e044036ce85c01bee3218052239cdf, type: 3}
+  - id: Web_RegisteredMail
+    title: "세 개 수거 추가 연구점"
+    benefit: "세 개 수거 시 보상 증가"
+    summary: "아이템을 3개 이상 수거하면 추가 연구점 +2. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 113e8988744856c398c6cb1e9eaad632, type: 3}
+    selection: {fileID: 2800000, guid: b89648b8914257f5aa4eeec22dd98db3, type: 3}
+    family: 4
+    parent: 57
+    anyPrerequisite: 1
+    prerequisiteIndices: 390000003a000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 687.42577, y: 846.56375}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: ecfc95052918568f8fb7ce7dd293c566, type: 3}
+    - {fileID: 2800000, guid: b5974f21f99b5980bec23f1baaa0c4fb, type: 3}
+    selected:
+    - {fileID: 2800000, guid: ee7922f98ae6545e8d1b335b2e102d73, type: 3}
+    - {fileID: 2800000, guid: 694d8f2dfd2d5a84a041796fa4b2aeea, type: 3}
+  - id: Web_ExpressRoute
+    title: "두 번째·네 번째 가속 강화"
+    benefit: "특정 수거 순서에서 더 빠르게 전진"
+    summary: "두 번째와 네 번째 아이템의 2초 수평 가속에 1 m/s를 추가합니다."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 332c1bec11995105b8abf8e5727ca051, type: 3}
+    selection: {fileID: 2800000, guid: e837dc5b3dc55ce58e692daa2eb543c8, type: 3}
+    family: 4
+    parent: 58
+    anyPrerequisite: 1
+    prerequisiteIndices: 3a0000003b000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: 370.78192, y: 881.34779}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 067ee24e40b75e228650c44b849facc1, type: 3}
+    - {fileID: 2800000, guid: 5fc8b0a32e4752f3a17bf8586d249d87, type: 3}
+    selected:
+    - {fileID: 2800000, guid: fa09e2b485965404a0862146939e06bd, type: 3}
+    - {fileID: 2800000, guid: 2e5ec8c53ad3505380652b545c702bbf, type: 3}
+  - id: Web_ReturnEnvelope
+    title: "20 m 배달 보상"
+    benefit: "짧은 비행과 수거로 연구점 획득"
+    summary: "20 m 이상 비행하고 아이템 1개 이상을 수거하면 +2 연구점. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 90e256baedd25716bf6dda09641fec15, type: 3}
+    selection: {fileID: 2800000, guid: 70afdd2186ac51fabe55747e06b80876, type: 3}
+    family: 4
+    parent: 59
+    anyPrerequisite: 1
+    prerequisiteIndices: 3b0000003c000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: 79.22060, y: 991.29181}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 47e041b764f653bb823cfadccf2ec2dc, type: 3}
+    - {fileID: 2800000, guid: bf11b483df11524f9a873a22f36b3ff0, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 88be2a75bce8561ea79c5c8fe06aa8b2, type: 3}
+    - {fileID: 2800000, guid: 9e824daeabfb5aeb99bb3fa1aee8458c, type: 3}
+  - id: Web_LastDelivery
+    title: "파손 종료 시 배달 보상"
+    benefit: "부서져도 배달 성과를 연구점으로"
+    summary: "20 m 이상 비행해 내구 소진으로 종료하면 +3 연구점. 아이템 수거 1개 이상 필요. 추가 점수 합계는 거리 보상의 절반까지입니다."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 7277ff3b25635d498a402a649b37878b, type: 3}
+    selection: {fileID: 2800000, guid: 4e9ae2c178975973818506d0188b523d, type: 3}
+    family: 4
+    parent: 60
+    anyPrerequisite: 1
+    prerequisiteIndices: 3c000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -235.55100, y: 934.56353}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: ce2808f9e854572eb1b7e88f8b17c0aa, type: 3}
+    - {fileID: 2800000, guid: bbf378ae0c7556148117f8bc224f152c, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 32f1459136385f45866f7fa2b14e799f, type: 3}
+    - {fileID: 2800000, guid: ed4ff41a87545decbedbf8482ad1b0f2, type: 3}
+  - id: Web_EmergencyBarrier
+    title: "치명타 한 번 막기"
+    benefit: "기체가 부서질 충돌을 한 번 차단"
+    summary: "내구가 소진될 장애물 피해를 한 번 차단합니다. 비행당 1회."
+    runtimeIndex: 12
+    unlocksAbility: 1
+    frameSize: 144
+    icon: {fileID: 2800000, guid: 879ecbf323aa5b0b9f4dccded02edec0, type: 3}
+    selection: {fileID: 2800000, guid: baaca73a17c65a28ae3ee5116af83bf6, type: 3}
+    family: 3
+    parent: 61
+    anyPrerequisite: 1
+    prerequisiteIndices: 3d0000003c000000
+    outline:
+    - {x: 0.00000000, y: -0.44531250}
+    - {x: 0.38565194, y: -0.22265625}
+    - {x: 0.38565194, y: 0.22265625}
+    - {x: 0.00000000, y: 0.44531250}
+    - {x: -0.38565194, y: 0.22265625}
+    - {x: -0.38565194, y: -0.22265625}
+    position: {x: -377.77117, y: 921.66908}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: fda57eea5d9a5158af59280f562ed613, type: 3}
+    - {fileID: 2800000, guid: efe3d95f10425e25a20e21527e4fe683, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 5fd593a8235e5f3e93e32e0538aebe35, type: 3}
+    - {fileID: 2800000, guid: 72bbc43ffdf756d79350b20e323bd9fc, type: 3}
+  - id: Web_ResidualShield
+    title: "방패 사용 횟수 추가"
+    benefit: "방패로 보호할 충돌이 한 번 더"
+    summary: "종이 방패 사용 횟수 +1. 종이 방패 해금 후 적용."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: fb2c01988f6453af97e8a9c104239530, type: 3}
+    selection: {fileID: 2800000, guid: cfc7d34ddc1c582a940ce20e12080edd, type: 3}
+    family: 3
+    parent: 61
+    anyPrerequisite: 1
+    prerequisiteIndices: 3d0000003e000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -688.24042, y: 861.51609}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 1edc9ded40665727b1e0afa1f72b3cbf, type: 3}
+    - {fileID: 2800000, guid: 96dc505f9b065a90825b3daec6603afe, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 3dd392fb63dc5f2ebdfcd0d2127eeb6f, type: 3}
+    - {fileID: 2800000, guid: 829934819fe4533d8fe6d47ecd298aed, type: 3}
+  - id: Web_BodyRepair
+    title: "40 m마다 내구 수리"
+    benefit: "날아간 거리로 기체를 수리"
+    summary: "40 m를 통과할 때마다 내구 2를 회복합니다. 비행당 최대 3회."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 768546bbbc345d84987f318e5ec7a16d, type: 3}
+    selection: {fileID: 2800000, guid: f0a0e1278c815936882356dc9b2494e8, type: 3}
+    family: 3
+    parent: 62
+    anyPrerequisite: 1
+    prerequisiteIndices: 3e0000003f000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -883.63066, y: 676.99110}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: d2a21bf383155743a0874a2aa8332b8c, type: 3}
+    - {fileID: 2800000, guid: 4874ae02412059c9929201081b2e2a3b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: f35c9c7faa4650609638d4d3f6df05f4, type: 3}
+    - {fileID: 2800000, guid: 2cd6c2f03d1a580fad05b60b037f26e5, type: 3}
+  - id: Web_CollisionGlide
+    title: "충돌 후 감속 더 줄이기"
+    benefit: "장애물을 지나서도 속도 유지"
+    summary: "충돌 시 잃는 속도 비율 -2%p."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 764d88af8f7d572b8aad5dfa6a3592fd, type: 3}
+    selection: {fileID: 2800000, guid: c91addf65c3c5d26a71df543eaf5e8d8, type: 3}
+    family: 3
+    parent: 63
+    anyPrerequisite: 1
+    prerequisiteIndices: 3f00000040000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1158.36948, y: 554.88010}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: bd26ddc0065b54fa9ab64ceb4ef6d569, type: 3}
+    - {fileID: 2800000, guid: 86206866c48b517db395def597f65c6e, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 157874a55eaa5280b02a454e4fb42bca, type: 3}
+    - {fileID: 2800000, guid: 79923fe6ef155644a38951971a09558e, type: 3}
+  - id: Web_ImpactLayer
+    title: "장애물 피해 줄이기"
+    benefit: "충돌 시 내구 손실 감소"
+    summary: "장애물의 내구 피해 -5%."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: a0750e204b9e555c8689f0be1b862c93, type: 3}
+    selection: {fileID: 2800000, guid: 8f56a0f37f145260bf2c1d7fdc6de1b3, type: 3}
+    family: 3
+    parent: 64
+    anyPrerequisite: 1
+    prerequisiteIndices: 4000000041000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1286.28615, y: 349.03695}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: fbc6e1734579584595e6bfb2e8ce63d9, type: 3}
+    - {fileID: 2800000, guid: fbf93c229fd05398a435fb3e08ff7d16, type: 3}
+    selected:
+    - {fileID: 2800000, guid: 74417eab01e05a42985d9610228eb7dc, type: 3}
+    - {fileID: 2800000, guid: d04cde7b79555b46a410fae9dc1d09bb, type: 3}
+  - id: Web_WingSkeleton
+    title: "날개 최대 내구 확대"
+    benefit: "큰 충돌을 버틸 여유 확보"
+    summary: "최대 내구 +10."
+    runtimeIndex: 12
+    unlocksAbility: 0
+    frameSize: 96
+    icon: {fileID: 2800000, guid: 8f5a8051901851ab9fbfbcd28714f97a, type: 3}
+    selection: {fileID: 2800000, guid: 339e34e8acce534d9b20dd50122e2e0a, type: 3}
+    family: 3
+    parent: 65
+    anyPrerequisite: 1
+    prerequisiteIndices: 41000000
+    outline:
+    - {x: -0.42187500, y: -0.42187500}
+    - {x: 0.28906250, y: -0.42187500}
+    - {x: 0.42187500, y: -0.28906250}
+    - {x: 0.42187500, y: 0.42187500}
+    - {x: -0.42187500, y: 0.42187500}
+    position: {x: -1305.66469, y: 128.37393}
+    costs: 82000000
+    normal:
+    - {fileID: 2800000, guid: 9f6f1630771659588c5cb09a2129a0c5, type: 3}
+    - {fileID: 2800000, guid: 603d8f9cf2c1552e9da11e664042520b, type: 3}
+    selected:
+    - {fileID: 2800000, guid: f21b508ad9175ccb9ebe2699b7ae88ae, type: 3}
+    - {fileID: 2800000, guid: b7a7b05886565bb687ef428f0078de02, type: 3}

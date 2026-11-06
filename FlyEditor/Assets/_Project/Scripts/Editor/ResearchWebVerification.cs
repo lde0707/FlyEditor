@@ -18,7 +18,7 @@ namespace FlyEditor.Editor
         public static void VerifyAsset()
         {
             var skin = AssetDatabase.LoadAssetAtPath<ResearchWebAssets>("Assets/_Project/Data/ResearchWeb.asset");
-            Require(skin != null && skin.nodes.Length == 33 && skin.families.Length == 5, "Web data missing.");
+            Require(skin != null && skin.nodes.Length == 98 && skin.families.Length == 5, "Web data missing.");
             Require(skin.background != null && skin.panel != null && skin.root != null && skin.currency != null && skin.backButton != null, "Web art missing.");
             int active = 0, abilities = 0;
             var ids = new System.Collections.Generic.HashSet<string>();
@@ -37,15 +37,15 @@ namespace FlyEditor.Editor
                 if (n.unlocksAbility) abilities++;
                 foreach (int p in n.prerequisiteIndices) Require(p >= 0 && p < i, "Prerequisites must be earlier, acyclic nodes.");
                 Require(n.parent == -1 ? n.prerequisiteIndices.Length == 0 :
-                    n.prerequisiteIndices.Length == 1 && n.prerequisiteIndices[0] == n.parent,
+                    n.prerequisiteIndices.Length >= 1 && n.prerequisiteIndices[0] == n.parent && n.anyPrerequisite,
                     "Drawn connection must match the unlock prerequisite.");
             }
-            Require(active == 33 && abilities == 4, "Every node must have a flight effect.");
+            Require(active == 98 && abilities == 16, "Every node must have a flight effect.");
             foreach (var f in skin.families)
                 Require(f.ready != null && f.pressed != null && f.success != null && f.maximum != null && f.panel != null
                     && f.feedback.Length == 3 && Array.TrueForAll(f.feedback, t => t != null), "Family art missing.");
-            VerifyLegacyMapping(skin); VerifyNavigation(); VerifyFlightAbilities();
-            Debug.Log("[ResearchWeb] ASSET CHECKS PASSED: all 33 nodes, five families, reference geometry and square art.");
+            VerifyLegacyMapping(skin); VerifyNavigation(); VerifyFlightAbilities(); Research98Verification.Run(skin);
+            Debug.Log("[ResearchWeb] ASSET CHECKS PASSED: all 98 nodes, five families, reference geometry and square art.");
         }
         private sealed class MemoryStore : IResearchStore
         {
@@ -102,8 +102,8 @@ namespace FlyEditor.Editor
                     reloaded.Owns("Drag_1") && !reloaded.Owns("Drag_2") && reloaded.Points == 540,
                     "File reload changed ownership or funds.");
                 var baseline = new FlightTuning(); var tuning = reloaded.Apply(baseline);
-                Require(Mathf.Approximately(tuning.drag, baseline.drag * .97f)
-                    && Mathf.Approximately(tuning.climbDrag, baseline.climbDrag * .96f)
+                Require(Mathf.Approximately(tuning.drag, baseline.drag * .94f)
+                    && Mathf.Approximately(tuning.climbDrag, baseline.climbDrag * .90f)
                     && reloaded.BestDistance == 42f && reloaded.Rank(ResearchNode.Control) == 2,
                     "Selected effects or legacy progress lost.");
                 Require(!skin.IsVisible(Find(skin, "Shield_1"), reloaded), "Missing prerequisite exposed shield.");
@@ -134,8 +134,8 @@ namespace FlyEditor.Editor
             foreach (string group in groups)
                 for (int rank = 1; rank <= 3; rank++) ids.Add(group + "_" + rank);
             var full = LaunchWith(ids.ToArray());
-            float speed = full.Speed; full.CollectBoost();
-            Require(Mathf.Approximately(full.Speed - speed, 2.9f), "Boost pickup strength incorrect.");
+            float speed = full.Speed; float energy = full.Energy; full.CollectBoost();
+            Require(Mathf.Approximately(full.ForwardBoost, 2.9f) && full.Speed == speed && full.Energy == energy, "Boost pickup strength incorrect.");
             Require(full.Durability == 130 && full.ShieldUses == 2 && full.RecoveryUses == 2, "Per-flight loadout incorrect.");
             speed = full.Speed; full.StrikeObstacle(55);
             Require(full.Durability == 130 && full.ShieldUses == 1
