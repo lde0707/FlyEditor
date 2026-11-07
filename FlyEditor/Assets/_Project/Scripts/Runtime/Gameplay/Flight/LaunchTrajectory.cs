@@ -9,6 +9,13 @@ namespace FlyEditor.Flight
         private readonly FlightCourse course = new FlightCourse();
         private const float PreviewLength = 10f;
         private FlightModel source, preview;
+        private Vector3 localNose=PaperPlaneGeometry.Nose;
+
+        public void SetNose(Vector3 nose)
+        {
+            if(localNose==nose)return;
+            localNose=nose;source=null;
+        }
         private float cachedAngle, cachedStep, cachedHeight;
         private Matrix4x4 lastWorldToLocal;
         private bool geometryDirty;
@@ -70,10 +77,10 @@ namespace FlyEditor.Flight
             }
         }
         private Vector3 PredictedNose(Vector2 center)
-            => (Vector3)center + Quaternion.Euler(0,0,preview.Pitch) * PaperPlaneGeometry.Nose;
+            => (Vector3)center + Quaternion.Euler(0,0,preview.Pitch) * localNose;
 
-        // Move the whole predicted nose path with the hand. At release its origin
-        // coincides with the airborne nose, without splicing two different curves.
+        // Anchor the predicted path at the supplied nose position while aiming.
+        // The controller keeps the final placement for the duration of the throw.
         public void DrawFromNose(Vector3 nose)
         {
             if (!Visible || noseSamples.Count < 2) return;

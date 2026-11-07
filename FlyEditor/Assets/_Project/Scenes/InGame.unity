@@ -474,7 +474,7 @@ MonoBehaviour:
   tuning:
     launchHeight: 4
     launchSpeed: 13
-    gravity: 2.6
+    gravity: 2.86
     drag: 0.012
     climbDrag: 0.014
     sink: 0.16

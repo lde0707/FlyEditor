@@ -4,7 +4,7 @@ namespace FlyEditor.Flight
     // Provisional balance. Built once per launch or research refresh.
     public sealed class ExtendedResearchStats
     {
-        public readonly float air, autoRecovery, boost, bundle, carry, chain, climb, criticalGuard, criticalRepair, damageReduction, disturbance, drag, durability, expressBoost, fastDrag, highClimb, impact, lastMail, launch, log, longDistance, lowDrag, lowGuard, magnetRadius, mail, marks, path, pickupRadius, intervalRepair, record, recoveryTime, release, response, returnMail, route, section, shield, sink, sort, routeRepair;
+        public readonly float air, autoRecovery, boost, bundle, carry, chain, climb, criticalGuard, criticalRepair, damageReduction, disturbance, drag, durability, expressBoost, fastDrag, highClimb, impact, lastMail, launch, log, longDistance, lowDrag, lowGuard, magnetRadius, mail, marks, path, pickupRadius, intervalRepair, record, recoveryTime, response, returnMail, route, section, shield, glide, sort, routeRepair;
         public ExtendedResearchStats(FlightResearch research)
         {
             if (research == null) return;
@@ -19,16 +19,16 @@ namespace FlyEditor.Flight
             if (research.Owns("Web_BoostReserve")) boost += 0.2f; // 추진 여유분
             if (research.Owns("Web_ElasticFlight")) impact += 0.02f; // 탄력 비행
             if (research.Owns("Web_FlightLog")) log += 1f; // 비행 수첩
-            if (research.Owns("Web_LevelFlight")) sink += 0.025f; // 수평 유지
+            if (research.Owns("Web_LevelFlight")) glide += 0.0125f; // 수평 유지
             if (research.Owns("Web_RouteMarks")) marks += 1f; // 항로 눈금
             if (research.Owns("Web_PersonalRecord")) record += 3f; // 개인 기록지
             if (research.Owns("Web_ClimbReserve")) climb += 0.03f; // 상승 여유
-            if (research.Owns("Web_GentleDescent")) release += 0.15f; // 완만한 하강
+            if (research.Owns("Web_GentleDescent")) glide += 0.04f; // Shallower glide slope
             if (research.Owns("Web_GlideTransition")) path += 0.05f; // 활공 전환
             if (research.Owns("Web_RouteQuest")) route += 4f; // 항로 의뢰
             if (research.Owns("Web_RecordStamp")) record += 1f; // 기록 갱신 도장
             if (research.Owns("Web_CloudStep")) highClimb += 0.2f; // 구름턱 넘기
-            if (research.Owns("Web_WingTip")) sink += 0.03f; // 날개 끝 조율
+            if (research.Owns("Web_WingTip")) glide += 0.015f; // 날개 끝 조율
             if (research.Owns("Web_LowGlide")) lowDrag += 0.04f; // 낮은 활공
             if (research.Owns("Web_Cruising")) drag += 0.025f; // 순항 자세
             if (research.Owns("Web_RouteSurvey")) marks += 1f; // 항로 측량
@@ -36,14 +36,14 @@ namespace FlyEditor.Flight
             if (research.Owns("Web_LongCertificate")) longDistance += 3f; // 장거리 인증
             if (research.Owns("Web_DirectionCorrection")) path += 0.05f; // 방향 보정
             if (research.Owns("Web_BalancePoint")) disturbance += 0.05f; // 균형점 찾기
-            if (research.Owns("Web_PitchBrake")) release += 0.1f; // 피치 제동
+            if (research.Owns("Web_PitchBrake")) glide += 0.03f; // Shallower glide slope
             if (research.Owns("Web_LevelReturn")) recoveryTime += 0.02f; // 수평 복귀
             if (research.Owns("Web_EmergencyAlign")) autoRecovery += 1f; // 비상 재정렬
             if (research.Owns("Web_SteadyHand")) disturbance += 0.06f; // 손떨림 완화
             if (research.Owns("Web_Reclimb")) response += 0.05f; // 빠른 재상승
             if (research.Owns("Web_LowDodge")) lowGuard += 1f; // 저공 회피
             if (research.Owns("Web_NoseStability")) disturbance += 0.06f; // 기수 안정
-            if (research.Owns("Web_LandingAttitude")) release += 0.1f; // 착륙 자세
+            if (research.Owns("Web_LandingAttitude")) glide += 0.03f; // Shallower glide slope
             if (research.Owns("Web_CalmRecovery")) recoveryTime += 0.02f; // 침착한 복원
             if (research.Owns("Web_TiltDamping")) disturbance += 0.06f; // 기울기 감쇠
             if (research.Owns("Web_EvasiveGlide")) impact += 0.02f; // 회피 후 활공

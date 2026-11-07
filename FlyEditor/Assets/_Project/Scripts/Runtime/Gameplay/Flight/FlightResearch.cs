@@ -15,6 +15,7 @@ namespace FlyEditor.Flight
         public int completedFlights;
         public int a1, g1, c1;
         public string[] ownedNodeIds = Array.Empty<string>();
+        public FoldStep[] paperFolds = Array.Empty<FoldStep>();
         public long nextRunId, activeRunId, lastPaidRunId;
         public float bestDistance;
         public static ResearchSave NewGame() => new ResearchSave { version = 2, ownedNodeIds = Array.Empty<string>() };
@@ -22,6 +23,7 @@ namespace FlyEditor.Flight
         {
             var copy = (ResearchSave)MemberwiseClone();
             copy.ownedNodeIds = ownedNodeIds == null ? Array.Empty<string>() : (string[])ownedNodeIds.Clone();
+            copy.paperFolds = paperFolds == null ? Array.Empty<FoldStep>() : (FoldStep[])paperFolds.Clone();
             return copy;
         }
     }
@@ -83,6 +85,15 @@ namespace FlyEditor.Flight
         public bool Unlocked => data.completedFlights > 0;
         public long ActiveRunId => data.activeRunId;
         public float BestDistance => data.bestDistance;
+        public FoldStep[] PaperDesign => (FoldStep[])data.paperFolds.Clone();
+        public PaperFlightProfile EquippedProfile { get; private set; }
+        internal bool SavePaperDesign(PaperSheet sheet)
+        {
+            var profile=PaperFlightProfile.Measure(sheet);
+            var next=data.Copy();next.paperFolds=sheet.Recipe();
+            if(!Commit(next))return false;
+            EquippedProfile=profile;return true;
+        }
         public string LastError { get; private set; } = "";
         private readonly HashSet<string> owned;
         private static readonly int[] GrowthThresholds = { 8, 22, 42, 68, 90 };
@@ -113,6 +124,7 @@ namespace FlyEditor.Flight
                 data.ownedNodeIds = previous.ToArray();
                 data.version = 2;
             }
+            EquippedProfile=PaperFlightProfile.Measure(PaperSheet.Replay(data.paperFolds));
             owned = new HashSet<string>(data.ownedNodeIds);
         }
         public bool Owns(string id) => owned.Contains(id);
@@ -155,7 +167,7 @@ namespace FlyEditor.Flight
         public bool ResetDeveloperProgress()
         {
             if (!Commit(ResearchSave.NewGame())) return false;
-            owned.Clear();
+            owned.Clear();EquippedProfile=PaperFlightProfile.Standard;
             return true;
         }
 #endif
@@ -224,7 +236,7 @@ namespace FlyEditor.Flight
             var result = baseline.Copy();
             result.effects = new FlightEffects(this);
             result.launchSpeed *= 1f + Bonus("Launch_1", .12f) + Bonus("Launch_2", .20f) + Bonus("Launch_3", .30f);
-            result.sink *= 1f - Bonus("Glide_1", .04f) - Bonus("Glide_2", .10f) - Bonus("Glide_3", .18f);
+            float glideScale = 1f - Bonus("Glide_1", .02f) - Bonus("Glide_2", .05f) - Bonus("Glide_3", .09f);
             result.drag *= 1f - Bonus("Drag_1", .06f) - Bonus("Drag_2", .12f) - Bonus("Drag_3", .18f);
             result.climbDrag *= 1f - Bonus("Climb_1", .10f) - Bonus("Climb_2", .18f) - Bonus("Climb_3", .25f);
             result.pitchResponse *= 1f + 0.05f * data.c1;
@@ -232,11 +244,13 @@ namespace FlyEditor.Flight
             var extra = result.effects.extra;
             result.launchSpeed *= 1f + extra.launch;
             result.drag *= Mathf.Max(.5f, 1f - extra.drag);
-            result.sink *= Mathf.Max(.5f, 1f - extra.sink);
+            // Scale metres lost per metre travelled, not the control response time.
+            glideScale *= Mathf.Max(.5f, 1f - extra.glide);
+            result.sink *= glideScale;
+            result.divePitch = Mathf.Atan(Mathf.Tan(result.divePitch * Mathf.Deg2Rad) * glideScale) * Mathf.Rad2Deg;
             result.climbDrag *= Mathf.Max(.5f, 1f - extra.climb);
             result.pitchResponse *= 1f + extra.response;
             result.flightPathResponse *= 1f + extra.path;
-            result.releasePitchDuration += extra.release;
             int tier = GrowthTier;
             float speedScale = GrowthSpeeds[tier];
             result.launchSpeed *= speedScale;
@@ -247,6 +261,7 @@ namespace FlyEditor.Flight
             result.drag /= dragScale;
             result.climbDrag /= dragScale;
             result.climbPitch += 2f * tier;
+            EquippedProfile.Apply(result);
             result.Sanitize();
             return result;
         }
@@ -289,6 +304,11 @@ namespace FlyEditor.Flight
             return true;
         }
 #endif
+        public bool TryEquipPaper(PaperSheet sheet)
+        {
+            if(Model.State!=FlightModel.Phase.Ready || Research.ActiveRunId!=0 || !Research.SavePaperDesign(sheet))return false;
+            Prepare();return true;
+        }
         public bool TryBuy(ResearchNode node)
         {
             if (Model.State == FlightModel.Phase.Flying || SettlementPending || !Research.TryBuy(node)) return false;

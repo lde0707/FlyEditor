@@ -24,9 +24,12 @@ namespace FlyEditor.Flight
     public sealed class FlightTuning
     {
         [NonSerialized] public FlightEffects effects;
+        [NonSerialized] public PaperFlightProfile paperProfile;
         [Min(0.1f)] public float launchHeight = 4f;
         [Min(0.1f)] public float launchSpeed = 13f;
-        [Min(0.1f)] public float gravity = 2.6f;
+        // +10% potential/kinetic conversion: stronger descent gain and matching climb cost.
+        // Symmetric conversion prevents repeated climb/glide cycles from creating energy.
+        [Min(0.1f)] public float gravity = 2.86f;
         [Min(0f)] public float drag = 0.012f;
         [Min(0f)] public float climbDrag = 0.014f;
         [Min(0f)] public float sink = 0.16f;
@@ -70,7 +73,7 @@ namespace FlyEditor.Flight
         public enum Attitude { Normal, Disturbed, Restoring }
         public Attitude Posture { get; private set; }
         public bool DiveBoostActive { get; private set; }
-        private float attitudeRemaining, divingTime, carryRemaining;
+        private float attitudeRemaining, divingTime, carryRemaining, diveDragBlend;
         public int PickupsCollected { get; private set; }
         public int HighPickups { get; private set; }
         private bool lowGuardUsed, criticalGuardUsed, criticalRepairUsed, autoRecoveryUsed;
@@ -191,18 +194,27 @@ namespace FlyEditor.Flight
             if (underhandLift > 0f) pathResponse = Mathf.Max(pathResponse, 8f/underhandRiseTime);
             FlightPathPitch = Mathf.Lerp(FlightPathPitch, Pitch, 1f - Mathf.Exp(-pathResponse * dt));
             float angle = FlightPathPitch * Mathf.Deg2Rad;
+            float pathSine = Mathf.Sin(angle);
             float forwardSpeed = Speed * Mathf.Cos(angle);
             float step = dt;
             float sinkDrop = tuning.sink * dt;
-            float dy = Speed * Mathf.Sin(angle) * dt - sinkDrop;
+            float dy = Speed * pathSine * dt - sinkDrop;
             // E/m = v^2/2 + gh. Passive sink is dissipative, not a propulsion source.
-            float effectiveDrag = tuning.drag + (Climbing ? tuning.climbDrag : 0f);
+            // Game-scale approximation of parasite + lift-induced drag. As the
+            // glide steepens, required lift falls and its drag contribution eases.
+            // The 50% split is a balance parameter, not measured paper-airfoil data.
+            float descendingSine = Mathf.Min(0f, pathSine);
+            float effectiveDrag = tuning.drag * (1f - .5f * descendingSine * descendingSine)
+                + (Climbing ? tuning.climbDrag : 0f);
             var extra = Effects.extra;
             if (Height < 3f) effectiveDrag *= 1f - extra.lowDrag;
             if (Speed >= 12f) effectiveDrag *= 1f - extra.fastDrag;
             if (Height >= 6f && Climbing) effectiveDrag -= tuning.climbDrag * extra.highClimb;
             effectiveDrag = Mathf.Max(0f, effectiveDrag);
             effectiveDrag *= DiveDragMultiplier(dy, dt);
+            // Equivalent along-path acceleration: -g*sin(angle) - drag*v^2.
+            // Growing descent angle increases the gravity component; quadratic
+            // drag eventually balances it. Integrating energy avoids free boosts.
             float nextEnergy = Mathf.Max(0f, Energy - effectiveDrag * Speed * Speed * Speed * dt
                 - tuning.gravity * sinkDrop);
             float nextHeight = Mathf.Min(Height + dy, nextEnergy / tuning.gravity);
@@ -289,7 +301,10 @@ namespace FlyEditor.Flight
                 DiveBoostActive = carryRemaining > 0;
                 carryRemaining = Mathf.Max(0, carryRemaining - dt);
             }
-            return DiveBoostActive ? .72f : 1f;
+            // Blend the purchased drag benefit instead of jumping acceleration
+            // at the unlock threshold. Carry and re-press also fade continuously.
+            diveDragBlend = Mathf.MoveTowards(diveDragBlend, DiveBoostActive ? 1f : 0f, dt / .8f);
+            return 1f - .28f * Mathf.SmoothStep(0f, 1f, diveDragBlend);
         }
         private void ChangePosture(Attitude next, float duration)
         {
@@ -332,7 +347,8 @@ namespace FlyEditor.Flight
         {
             if (State != Phase.Flying || damage <= 0) return;
             var extra = Effects.extra;
-            damage *= 1f - extra.damageReduction;
+            float resistance=(tuning.paperProfile??PaperFlightProfile.Standard).impact;
+            damage *= (1f-extra.damageReduction)/resistance;
             bool blocked;
             if (extra.lowGuard > 0 && Height < 3f && !lowGuardUsed)
             { lowGuardUsed = true; blocked = true; }
@@ -344,7 +360,7 @@ namespace FlyEditor.Flight
             { blocked = false; Durability = Mathf.Max(0, Durability - damage); }
             if (Durability > 0 && Durability <= Effects.durability * .35f && extra.criticalRepair > 0 && !criticalRepairUsed)
             { criticalRepairUsed = true; Durability = Mathf.Min(Effects.durability, Durability + extra.criticalRepair); }
-            float loss = Effects.collisionSpeedLoss * (blocked && Effects.reinforcedShield ? .5f : 1f);
+            float loss = Effects.collisionSpeedLoss * (blocked && Effects.reinforcedShield ? .5f : 1f)/resistance;
             SetFlightSpeed(Speed * (1f - loss));
             if (Durability <= 0) { ChangeState(Phase.Landed); return; }
             Pitch = Mathf.Max(tuning.divePitch, Pitch - 8);
@@ -384,7 +400,7 @@ namespace FlyEditor.Flight
             RecoveryUses = Effects.recoveryUses;
             PickupsCollected = HighPickups = 0;
             lowGuardUsed = criticalGuardUsed = criticalRepairUsed = autoRecoveryUsed = false;
-            divingTime = carryRemaining = 0;
+            divingTime = carryRemaining = diveDragBlend = 0;
             boostAmount = boostRemaining = 0f;
             DiveBoostActive = false;
             ChangePosture(Attitude.Normal, 0);

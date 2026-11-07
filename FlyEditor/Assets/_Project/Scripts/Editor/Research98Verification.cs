@@ -93,7 +93,135 @@ namespace FlyEditor.Editor
             VerifyAbilities();
             VerifyFullFlight(web);
             VerifyProgressionAndPickups(web);
+            VerifyGentleDescentBalance(web);
             Debug.Log("[Research98] PASSED: 98 nodes, 144 contour endpoints, OR branches, 65 live modifiers, old save, failed-save retry, rewards and abilities.");
+        }
+        private static void VerifyGentleDescentBalance(ResearchWebAssets web)
+        {
+            string[] glideIds = { "Glide_1", "Glide_2", "Glide_3", "Web_LevelFlight", "Web_WingTip",
+                "Web_GentleDescent", "Web_PitchBrake", "Web_LandingAttitude" };
+            float previousSlope = 1f;
+            for (int count = 0; count <= glideIds.Length; count++)
+            {
+                var tuning = Research(glideIds.Take(count).ToArray()).Apply(new FlightTuning());
+                float slope = Mathf.Tan(tuning.divePitch*Mathf.Deg2Rad) / Mathf.Tan(-24f*Mathf.Deg2Rad);
+                Check(count == 0 || slope < previousSlope, "Each glide upgrade must make descent shallower.");
+                Check(tuning.releasePitchDuration == 3f, "Glide upgrades changed launch transition time.");
+                previousSlope = slope;
+            }
+            Check(Mathf.Abs(previousSlope - .7329f) < .00001f, "Full glide slope multiplier.");
+            var allIds = web.nodes.Select(n => n.id).ToArray();
+            var store = new Store { Data = new ResearchSave { version = 2, completedFlights = 1, points = 123, ownedNodeIds = allIds } };
+            var loaded = new FlightResearch(store);
+            Check(allIds.All(loaded.Owns) && loaded.Points == 123, "Slope rebalance lost saved purchases.");
+            foreach (float dt in new[] { .01f, .02f, .04f })
+            {
+                foreach (var research in new[] { Research(), loaded })
+                {
+                    var tuning = research.Apply(new FlightTuning { launchHeight = 200 });
+                    var plane = new FlightModel(tuning);
+                    plane.Tick(true, false, false); plane.Tick(false, false, false);
+                    for (int i = 0; i < Mathf.RoundToInt(1f / dt); i++)
+                    { plane.Tick(false, true, false); plane.FixedTick(dt); }
+                    float startPitch = plane.Pitch, firstDown = -1f;
+                    for (int i = 1; i <= Mathf.CeilToInt(3.4f / dt); i++)
+                    {
+                        float energy = plane.Energy;
+                        plane.Tick(false, false, false); plane.FixedTick(dt);
+                        Check(plane.Energy <= energy + .002f, "Release generated energy.");
+                        if (plane.Velocity.y < 0 && firstDown < 0) firstDown = i*dt;
+                        if (i == 1) Check(plane.Pitch < startPitch, "Release response was delayed.");
+                    }
+                    Check(firstDown >= 1f && firstDown <= 2.2f, "Release must follow the original gradual throw curve.");
+                    Check(Mathf.Abs(plane.FlightPathPitch-tuning.divePitch)<.05f, "Glide did not settle on upgraded slope.");
+                    for (int i = 0; i < Mathf.RoundToInt(.8f / dt); i++)
+                    { plane.Tick(false, true, false); plane.FixedTick(dt); }
+                    Check(plane.Velocity.y > 0, "Pressing again must resume climb.");
+                    plane.StrikeObstacle(.1f);
+                    for (int i = 0; i < Mathf.RoundToInt(2f / dt); i++)
+                    { plane.Tick(false, false, false); plane.FixedTick(dt); }
+                    Check(plane.Posture == FlightModel.Attitude.Normal && plane.Velocity.y < 0,
+                        "Collision recovery must return to a descending glide.");
+                    Debug.Log($"[GlideSlope] release dt={dt} launch={tuning.launchSpeed:F2} descent={firstDown:F2}s slope={tuning.divePitch:F2}");
+                }
+                // Same launch speed, drag, altitude and shape: isolate the value of glide upgrades.
+                float lastDistance = 0;
+                foreach (int count in new[] { 0, 3, 8 })
+                {
+                    var tuning = Research(glideIds.Take(count).ToArray()).Apply(new FlightTuning { launchHeight = 30 });
+                    tuning.launchSpeed = 13; tuning.speedCap = 25; tuning.drag = .012f; tuning.climbDrag = .014f;
+                    var plane = new FlightModel(tuning);
+                    plane.Tick(true, false, false); plane.Tick(false, false, false);
+                    for (int i = 0; i < 30000 && plane.State == FlightModel.Phase.Flying; i++) plane.FixedTick(dt);
+                    Check(plane.State == FlightModel.Phase.Landed && plane.Distance > lastDistance,
+                        "Glide upgrades must increase actual passive range and still land.");
+                    lastDistance = plane.Distance;
+                    Debug.Log($"[GlideSlope] passive dt={dt} nodes={count} distance={plane.Distance:F2}");
+                }
+            }
+            VerifyGravityConversion();
+            VerifyProgressiveDescent();
+            Debug.Log("[GlideSlope] PASSED: throw-style response, shallow upgrades, passive range, energy, re-climb, collision, saved ownership.");
+        }
+        private static void VerifyGravityConversion()
+        {
+            foreach (float dt in new[] { .01f, .02f, .04f })
+            {
+                float[] measured = new float[2];
+                for (int version=0; version<2; version++)
+                {
+                    var tuning = new FlightTuning { gravity=version==0 ? 2.6f : 2.86f, launchHeight=100,
+                        launchSpeed=10, speedCap=100, drag=0, climbDrag=0, sink=0 };
+                    var plane = new FlightModel(tuning);
+                    plane.SetLaunchAngle(0); plane.Tick(true,false,false); plane.Tick(false,false,false);
+                    for(int i=0;i<Mathf.RoundToInt(4f/dt);i++) plane.FixedTick(dt);
+                    float initialHeight=plane.Height, initialSpeed=plane.Speed, initialEnergy=plane.Energy;
+                    plane.FixedTick(dt);
+                    measured[version]=(plane.Speed*plane.Speed-initialSpeed*initialSpeed)/(2f*(initialHeight-plane.Height));
+                    Check(plane.Speed>initialSpeed && plane.Energy<=initialEnergy+.002f,
+                        "Descent must convert height into speed without new energy.");
+                    for(int i=0;i<Mathf.RoundToInt(1f/dt);i++) {plane.Tick(false,true,false);plane.FixedTick(dt);}
+                    float climbingSpeed=plane.Speed;
+                    plane.FixedTick(dt);
+                    Check(plane.Climbing && plane.Speed<climbingSpeed,"Holding must slow the plane while climbing.");
+                }
+                Check(Mathf.Abs(measured[1]/measured[0]-1.1f)<.003f,"Gravity-driven descent gain must increase by 10 percent.");
+                Debug.Log($"[GravityGain] dt={dt} old={measured[0]:F3} new={measured[1]:F3} ratio={measured[1]/measured[0]:F3}");
+            }
+        }
+        private static void VerifyProgressiveDescent()
+        {
+            foreach (float dt in new[] { .01f, .02f, .04f })
+            {
+                var plane = new FlightModel(new FlightTuning { launchHeight = 1000, launchSpeed = 6, speedCap = 100 });
+                plane.Tick(true,false,false); plane.Tick(false,false,false);
+                float earlierAcceleration = float.NegativeInfinity, previousSpeed = plane.Speed;
+                for (int i=1;i<=Mathf.RoundToInt(40f/dt);i++)
+                {
+                    float energy = plane.Energy;
+                    plane.FixedTick(dt);
+                    float acceleration = (plane.Speed-previousSpeed)/dt;
+                    Check(plane.Energy<=energy+.001f,"Progressive descent generated energy.");
+                    if(i==Mathf.RoundToInt(.5f/dt) || i==Mathf.RoundToInt(1f/dt)
+                        || i==Mathf.RoundToInt(1.5f/dt) || i==Mathf.RoundToInt(2f/dt))
+                    {
+                        Check(acceleration>earlierAcceleration,"Steepening descent must progressively increase net acceleration.");
+                        earlierAcceleration=acceleration;
+                        Debug.Log($"[ProgressiveDescent] dt={dt} time={i*dt:F2} acceleration={acceleration:F3} speed={plane.Speed:F3}");
+                    }
+                    if(i==Mathf.RoundToInt(3f/dt)) Check(acceleration>0,"Developed descent should gain speed.");
+                    if(i==Mathf.RoundToInt(40f/dt))
+                    {
+                        Check(Mathf.Abs(acceleration)<.01f && plane.Speed<20,
+                            "Air resistance must limit speed well below the safety cap.");
+                        Debug.Log($"[ProgressiveDescent] terminal dt={dt} speed={plane.Speed:F3} acceleration={acceleration:F4}");
+                    }
+                    previousSpeed=plane.Speed;
+                }
+                plane.Tick(false,false,true);
+                Check(plane.Distance==0 && !plane.DiveBoostActive,"Reset retained descent acceleration state.");
+            }
+            Debug.Log("[ProgressiveDescent] PASSED: increasing early acceleration, quadratic drag equilibrium, energy and reset.");
         }
         private static void VerifyBoundary(Vector2 from, Vector2 to, float size, Vector2[] polygon)
         {

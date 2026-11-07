@@ -26,7 +26,13 @@ namespace FlyEditor.Flight
         public FlightTuning GetResearchTuning() => Session.Research.Apply(tuning);
         public FlightSession Session { get; private set; }
         public FlightModel Model => Session?.Model;
-        private enum View { Flight, Research }
+        private enum View { Flight, Research, Folding }
+        private FoldingDesk folding;
+        private Renderer[] defaultAircraft;
+        private Mesh customMesh;
+        private Transform customAircraft;
+        private Vector3 localNose=PaperPlaneGeometry.Nose;
+        public bool FoldingOpen => view==View.Folding;
         private View view;
         public bool ResearchOpen => view == View.Research;
         private string progressError = "";
@@ -36,6 +42,7 @@ namespace FlyEditor.Flight
         private Font uiFont;
         public Camera FlightCamera => flightCamera;
         private Transform plane;
+        private readonly FlightVisualMotion visualMotion = new FlightVisualMotion();
         private LaunchThrower thrower;
         public LaunchThrower Thrower => thrower;
         private LaunchTrajectory trajectory;
@@ -47,6 +54,8 @@ namespace FlyEditor.Flight
         private Transform scenery;
         private Transform skyScenery;
         private Transform boostPickup, obstacle;
+        private Transform openingSign, nextOpeningPickup, recordFlag;
+        private string recordLabel;
         private string equipmentText;
         private Transform[] markers;
         private Material material;
@@ -84,7 +93,7 @@ namespace FlyEditor.Flight
             var prefab = Resources.Load<GameObject>("LaunchThrower");
             if (prefab == null) throw new InvalidOperationException("LaunchThrower prefab is missing.");
             thrower = Instantiate(prefab,transform).GetComponent<LaunchThrower>();
-            if (Model != null) { PrepareThrow(); UpdateVisuals(true); RefreshHud(); }
+            if (Model != null) { SetAircraft(PaperSheet.Replay(Session.Research.PaperDesign));PrepareThrow(); UpdateVisuals(true); RefreshHud(); }
         }
 
         private void LoadSession()
@@ -101,14 +110,45 @@ namespace FlyEditor.Flight
 
         public bool OpenResearch()
         {
-            if (Session == null || !Session.Research.Unlocked || Model.State == FlightModel.Phase.Flying
+            if (FoldingOpen || Session == null || !Session.Research.Unlocked || Model.State == FlightModel.Phase.Flying
                 || Session.SettlementPending) return false;
             SetView(View.Research); RefreshResearch(); return true;
         }
         public void CloseResearch() { SetView(View.Flight); }
+        public bool OpenFolding()
+        {
+            if(view!=View.Flight || Model==null || Model.State!=FlightModel.Phase.Ready || thrower.Pending)return false;
+            if(folding==null)folding=new FoldingDesk(this,material);
+            SetView(View.Folding);folding.Open(Session.Research.PaperDesign);return true;
+        }
+        internal void CloseFolding(){if(FoldingOpen)SetView(View.Flight);}
+        internal bool ApplyFold(PaperSheet sheet)
+        {
+            if(!FoldingOpen || !Session.TryEquipPaper(sheet))return false;
+            SetAircraft(sheet);PrepareThrow();RefreshHud();CloseFolding();return true;
+        }
+        private void SetAircraft(PaperSheet sheet)
+        {
+            bool custom=sheet.Count>0;
+            if(custom){
+                if(customAircraft==null){
+                    customAircraft=Child("내가 접은 기체",plane);
+                    customMesh=new Mesh{name="접은 기체"};meshes.Add(customMesh);
+                    customAircraft.gameObject.AddComponent<MeshFilter>().sharedMesh=customMesh;
+                    var renderer=customAircraft.gameObject.AddComponent<MeshRenderer>();
+                    renderer.sharedMaterial=planeMaterial;renderer.sortingOrder=100;
+                }
+                localNose=new FoldMesh().BuildAircraft(customMesh,sheet);
+            }
+            else localNose=PaperPlaneGeometry.Nose;
+            trajectory.SetNose(localNose);
+            if(customAircraft!=null)customAircraft.gameObject.SetActive(custom);
+            foreach(var renderer in defaultAircraft)renderer.enabled=!custom;
+        }
         private void SetView(View next)
         {
             if (view == next) return;
+            if (FoldingOpen) folding?.Close();
             view = next;
             if (thrower != null && thrower.Pending) PrepareThrow();
             if (next == View.Flight) researchWeb?.SetPreview(false);
@@ -133,6 +173,7 @@ namespace FlyEditor.Flight
         public bool ResetDeveloperProgress()
         {
             if (Session == null || !Session.ResetDeveloperSession()) return false;
+            SetAircraft(new PaperSheet());
             CloseResearch();
             PrepareThrow();
             RefreshResearch();
@@ -163,6 +204,7 @@ namespace FlyEditor.Flight
         private void Update()
         {
             if (!hasFocus || Model == null) return;
+            if (FoldingOpen) { folding.Tick(Time.unscaledDeltaTime); return; }
             var mouse = Mouse.current;
             if (mouse == null && thrower.State == LaunchThrower.Phase.Aiming) PrepareThrow();
             var keyboard = Keyboard.current;
@@ -170,6 +212,12 @@ namespace FlyEditor.Flight
             bool held = mouse != null && mouse.leftButton.isPressed;
             bool released = mouse != null && mouse.leftButton.wasReleasedThisFrame;
             bool restart = keyboard != null && keyboard.rKey.wasPressedThisFrame;
+            if (view==View.Flight && pressed && !waitForMouseRelease)
+            {
+                float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);
+                Vector2 p=mouse.position.ReadValue();
+                if (FoldButton(Screen.width/scale).Contains(new Vector2(p.x,Screen.height-p.y)/scale) && OpenFolding())return;
+            }
             if (ResearchOpen)
             {
                 researchWeb?.Tick(Time.unscaledTime);
@@ -194,8 +242,14 @@ namespace FlyEditor.Flight
         private void PrepareThrow()
         {
             trajectory.Hide();
+            visualMotion.Reset(Model,Time.timeAsDouble);
             launchAngle = 0;
             thrower.Prepare(new Vector3(0f, Model.Height, 0f));
+            // Snapshot the saved best before launch. A new record is marked on the next run.
+            float best=Session.Research.BestDistance;
+            recordFlag.position=new Vector3(best,0f,.35f);
+            recordFlag.gameObject.SetActive(best>0f);
+            recordLabel="최고 "+best.ToString("0.0")+" m";
         }
         private void UpdateAim(float mouseY)
         {
@@ -228,6 +282,8 @@ namespace FlyEditor.Flight
                     UpdateAim(mouseY);
                     if (released)
                     {
+                        // Commit the last aim at the displayed nose before the hand starts moving.
+                        trajectory.DrawFromNose(plane.TransformPoint(localNose));
                         thrower.Begin();
                     }
                 }
@@ -244,19 +300,32 @@ namespace FlyEditor.Flight
 
         private void FixedUpdate()
         {
-            if (hasFocus && Model != null && !ResearchOpen) Session.FixedTick(Time.fixedDeltaTime);
+            if (hasFocus && Model != null && view==View.Flight)
+            {
+                var before = new FlightVisualMotion.Pose(Model);
+                Session.FixedTick(Time.fixedDeltaTime);
+                visualMotion.RecordStep(Model,before,Time.fixedTimeAsDouble);
+            }
         }
 
-        private void LateUpdate() { if (Model != null) UpdateVisuals(false); }
+        private void LateUpdate()
+        {
+            if (Model == null || FoldingOpen) return;
+            UpdateVisuals(false);
+            if (hasFocus && !ResearchOpen && thrower.State != LaunchThrower.Phase.Holding)
+                thrower.UpdateGaze(plane.TransformPoint(localNose),Time.deltaTime);
+        }
 
         private bool IsOverFlightUI(Vector2 mousePosition)
         {
-            if (Model.State == FlightModel.Phase.Flying || (!Session.Research.Unlocked && !Session.SettlementPending)) return false;
+            if (Model.State == FlightModel.Phase.Flying) return false;
             float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             float width = Screen.width / scale;
             Vector2 point = new Vector2(mousePosition.x, Screen.height - mousePosition.y) / scale;
-            return new Rect(width - 242, 295, 202, 84).Contains(point);
+            return (Model.State==FlightModel.Phase.Ready && FoldButton(width).Contains(point)) ||
+                ((Session.Research.Unlocked || Session.SettlementPending) && new Rect(width - 242, 295, 202, 84).Contains(point));
         }
+        private static Rect FoldButton(float width)=>new Rect(width-475,34,201,52);
 
         private void OnApplicationFocus(bool focused)
         {
@@ -276,6 +345,7 @@ namespace FlyEditor.Flight
 
         private void OnDestroy()
         {
+            folding?.Dispose();
             trajectory?.Dispose();
             researchWeb?.Dispose();
             if (material != null) Destroy(material);
@@ -299,29 +369,40 @@ namespace FlyEditor.Flight
 
         private void UpdateVisuals(bool snap)
         {
+            // The aircraft, camera and scrolling world must share the same rendered
+            // sample. The simulation remains on its original fixed clock.
+            var pose = visualMotion.Sample(Model,Time.timeAsDouble,Time.fixedDeltaTime,snap);
             if (Model.State == FlightModel.Phase.Ready && thrower.HoldingPlane)
                 plane.SetPositionAndRotation(thrower.Grip.position, thrower.Pending
                     ? Quaternion.Euler(0,0,launchAngle) : thrower.Grip.rotation);
-            else plane.SetPositionAndRotation(new Vector3(Model.Distance, Model.Height, 0f),
-                Quaternion.Euler(0f, 0f, Model.Pitch));
-            if (trajectory.Visible)
+            else plane.SetPositionAndRotation(pose.position,Quaternion.Euler(0f,0f,pose.pitch));
+            if (thrower.State == LaunchThrower.Phase.Aiming && trajectory.Visible)
             {
-                Vector3 nose = plane.TransformPoint(PaperPlaneGeometry.Nose);
+                Vector3 nose = plane.TransformPoint(localNose);
                 trajectory.DrawFromNose(nose);
             }
             boostPickup.position = Session.Course.Pickup;
+            bool showNext=Session.Course.TryGetNextOpeningPickup(out var nextPosition);
+            if (showNext!=nextOpeningPickup.gameObject.activeSelf) nextOpeningPickup.gameObject.SetActive(showNext);
+            if (showNext) nextOpeningPickup.position=nextPosition;
             obstacle.position = Session.Course.Obstacle;
-            Vector3 cameraPosition = new Vector3(Model.Distance + 7f, Mathf.Max(7.5f, Model.Height + 2f), -24f);
+            bool showSign=Session.Course.IsPaperSign;
+            if (showSign!=openingSign.gameObject.activeSelf)
+            {
+                openingSign.gameObject.SetActive(showSign);
+                obstacle.gameObject.SetActive(!showSign);
+            }
+            Vector3 cameraPosition = new Vector3(pose.position.x + 7f, Mathf.Max(7.5f, pose.position.y + 2f), -24f);
             flightCamera.transform.position = snap || Model.State == FlightModel.Phase.Ready
                 ? cameraPosition : Vector3.Lerp(flightCamera.transform.position, cameraPosition, 1f - Mathf.Exp(-cameraFollowSharpness * Time.deltaTime));
-            float viewSize = 8.5f + Mathf.Clamp((Model.HorizontalSpeed - 18f) * .10f, 0f, 12f);
+            float viewSize = 8.5f + Mathf.Clamp((pose.speed - 18f) * .10f, 0f, 12f);
             flightCamera.orthographicSize = snap ? viewSize :
                 Mathf.Lerp(flightCamera.orthographicSize, viewSize, 1f - Mathf.Exp(-4f * Time.deltaTime));
-            terrain.position = new Vector3(Model.Distance, 0f, 0f);
-            scenery.position = new Vector3(Mathf.Floor(Model.Distance / 120f) * 120f, 0f, 0f);
-            skyScenery.position = new Vector3(Mathf.Floor(Model.Distance / 96f) * 96f,
-                Mathf.Max(0f, Mathf.Floor((Model.Height - 60f) / 48f) * 48f), 0);
-            int first = Mathf.FloorToInt((Model.Distance - 35f) / 5f);
+            terrain.position = new Vector3(pose.position.x, 0f, 0f);
+            scenery.position = new Vector3(Mathf.Floor(pose.position.x / 120f) * 120f, 0f, 0f);
+            skyScenery.position = new Vector3(Mathf.Floor(pose.position.x / 96f) * 96f,
+                Mathf.Max(0f, Mathf.Floor((pose.position.y - 60f) / 48f) * 48f), 0);
+            int first = Mathf.FloorToInt((pose.position.x - 35f) / 5f);
             for (int i = 0; i < markers.Length; i++)
                 markers[i].position = new Vector3((first + i) * 5f, 0f, -0.4f);
         }
@@ -354,7 +435,8 @@ namespace FlyEditor.Flight
             Line("Near wing outline", plane, new[] { nose, left, back, nose }, Ink, 0.025f);
             Line("Far wing outline", plane, new[] { nose, right, back }, Ink, 0.025f);
             Line("Centre fold", plane, new[] { nose, keel, back }, Ink, 0.025f);
-            foreach (var renderer in plane.GetComponentsInChildren<Renderer>())
+            defaultAircraft=plane.GetComponentsInChildren<Renderer>();
+            foreach (var renderer in defaultAircraft)
             {
                 renderer.sharedMaterial = planeMaterial;
                 renderer.sortingOrder = renderer is LineRenderer ? 101 : 100;
@@ -371,6 +453,8 @@ namespace FlyEditor.Flight
             BeginMesh(); Triangle(tip, rightCorner, leftCorner, Peach); EndMesh("Obstacle surface", obstacle);
             Line("Obstacle outline", obstacle, new[] { tip, rightCorner, leftCorner, tip }, Ink, .05f);
             Line("Obstacle fold", obstacle, new[] { tip, new Vector3(.32f,-.78f,-.03f) }, Muted, .04f);
+            BuildOpeningCourse();
+            obstacle.gameObject.SetActive(false);
 
             terrain = Child("Ground", transform);
             BeginMesh();
@@ -408,6 +492,55 @@ namespace FlyEditor.Flight
                         new Color(.90f,.94f,.96f));
                 }
             EndMesh("높이 기준 구름", skyScenery);
+        }
+
+        private void BuildOpeningCourse()
+        {
+            var course=Child("첫 비행 · 0–50 m",transform);
+            nextOpeningPickup=Instantiate(boostPickup,course);
+            nextOpeningPickup.name="다음 저공 가속 아이템";
+            // Two pale paper ridges frame the low lane; their folds are scenery.
+            var hills=Child("접힌 종이 언덕",course);
+            BeginMesh();
+            FoldedHill(2f,12f,21f,2.7f);
+            FoldedHill(31f,42f,50f,3.2f);
+            EndMesh("언덕 종이 면",hills);
+            float end=FlightCourse.OpeningEnd;
+            Line("50 m 접힘선",course,new[]{new Vector3(end,-.43f,-.35f),new Vector3(end,.35f,-.35f)},Muted,.06f);
+
+            openingSign=Child("종이 표지판",course);
+            openingSign.position=new Vector3(FlightCourse.SignCenter.x,0,0);
+            float w=FlightCourse.SignHalfSize.x, top=FlightCourse.SignCenter.y+FlightCourse.SignHalfSize.y;
+            float bottom=FlightCourse.SignCenter.y-FlightCourse.SignHalfSize.y, post=FlightCourse.PostHalfWidth;
+            Vector3 a=new Vector3(-w,bottom,0), b=new Vector3(w,bottom,0);
+            Vector3 c=new Vector3(w,top-.34f,0), d=new Vector3(w-.34f,top,0), e=new Vector3(-w,top,0);
+            BeginMesh();
+            Quad(new Vector3(-post,0,.02f),new Vector3(post,0,.02f),new Vector3(post,bottom,.02f),new Vector3(-post,bottom,.02f),Muted);
+            Quad(a,b,c,d,Peach); Triangle(a,d,e,Peach);
+            Triangle(c,d,new Vector3(d.x,c.y,-.02f),new Color(.87f,.66f,.56f));
+            EndMesh("표지판 접힌 면",openingSign);
+            Vector3 inkOffset=Vector3.back*.04f;
+            Line("표지판 테두리",openingSign,new[]{a+inkOffset,b+inkOffset,c+inkOffset,d+inkOffset,e+inkOffset,a+inkOffset},Ink,.055f);
+            Line("위로 피해가기",openingSign,new[]{new Vector3(-.45f,bottom+.40f,-.04f),
+                new Vector3(0,top-.52f,-.04f),new Vector3(.45f,bottom+.40f,-.04f)},Ink,.10f);
+
+            recordFlag=Child("최고 기록 깃발",transform);
+            Vector3 flagTop=new Vector3(0,2.7f,0), tail=new Vector3(1.55f,2.43f,0);
+            Vector3 fold=new Vector3(.58f,2.09f,-.02f), lower=new Vector3(0,1.76f,0);
+            BeginMesh();
+            Triangle(flagTop,tail,fold,Mint);Triangle(flagTop,fold,lower,new Color(.62f,.79f,.71f));
+            EndMesh("기록 페넌트",recordFlag);
+            Line("깃대",recordFlag,new[]{inkOffset,flagTop+inkOffset},Muted,.075f);
+            Line("깃발 테두리",recordFlag,new[]{flagTop+inkOffset,tail+inkOffset,fold+inkOffset,lower+inkOffset,flagTop+inkOffset},Muted,.045f);
+            Line("깃발 접힌 선",recordFlag,new[]{flagTop+inkOffset,fold+inkOffset},Muted,.03f);
+            recordFlag.gameObject.SetActive(false);
+        }
+        private void FoldedHill(float left,float peak,float right,float height)
+        {
+            Vector3 a=new Vector3(left,0,4), b=new Vector3(peak,height,4);
+            Vector3 crease=new Vector3(peak-2.4f,0,4), c=new Vector3(right,0,4);
+            Triangle(a,b,crease,new Color(.93f,.95f,.91f));
+            Triangle(crease,b,c,new Color(.87f,.91f,.86f));
         }
 
         private void BeginMesh() { vertices.Clear(); colors.Clear(); indices.Clear(); }
@@ -520,6 +653,11 @@ namespace FlyEditor.Flight
                 if (OutlineButton(new Rect(80, 300, 220, 48), "다시 읽기")) LoadSession();
                 GUI.matrix = previous; return;
             }
+            if (FoldingOpen)
+            {
+                folding.Draw(width,height,uiFont);
+                GUI.matrix=previous;return;
+            }
             if (ResearchOpen)
             {
                 DrawResearch(width, height);
@@ -529,6 +667,8 @@ namespace FlyEditor.Flight
             GUI.Label(new Rect(58, 29, 360, 42), "PAPER / FLIGHT", titleStyle);
             GUI.Label(new Rect(60, 69, 360, 25), "01   /   THE FIRST GLIDE", smallStyle);
             GUI.Label(new Rect(width - 245, 36, 210, 23), bestText, smallStyle);
+            if(Model.State==FlightModel.Phase.Ready && !thrower.Pending &&
+                OutlineButton(FoldButton(width),"종이접기"))OpenFolding();
             Fill(new Rect(40, 111, width - 80, 1), new Color(0.82f, 0.85f, 0.84f));
 
             GUI.Label(new Rect(42, 135, 250, 24), "DISTANCE / m", smallStyle);
@@ -588,8 +728,23 @@ namespace FlyEditor.Flight
             GUI.Label(new Rect(42, height - 74, width - 84, 30),
                 Model.State == FlightModel.Phase.Ready ? "왼쪽 버튼을 누른 채 위아래로 조준하고, 놓아서 던지세요."
                     : "왼쪽 버튼 누르기 · 상승     놓기 · 하강     R · 다시 시작", bodyStyle);
-            GUI.Label(new Rect(42, height - 40, width - 84, 24), "노란 마름모를 먹으면 2초간 앞으로 더 빠르게 날아갑니다.", smallStyle);
+            GUI.Label(new Rect(42, height - 40, width - 84, 24), Model.Distance<FlightCourse.OpeningEnd
+                ? "첫 50 m   ·   낮게 날면 가속 아이템   /   높게 날면 표지판 위로 안전 통과"
+                : "노란 마름모를 먹으면 2초간 앞으로 더 빠르게 날아갑니다.", smallStyle);
+            if (Model.State!=FlightModel.Phase.Landed)
+            {
+                DrawCourseLabel(new Vector3(FlightCourse.OpeningEnd,-.5f,0),"50 m",scale);
+                if (recordFlag.gameObject.activeSelf)
+                    DrawCourseLabel(recordFlag.position+Vector3.up*3.35f,recordLabel,scale);
+            }
             GUI.matrix = previous;
+        }
+
+        private void DrawCourseLabel(Vector3 world,string text,float scale)
+        {
+            Vector3 p=flightCamera.WorldToScreenPoint(world);
+            if (p.z>0 && p.x>=0 && p.x<=Screen.width && p.y>=0 && p.y<=Screen.height)
+                GUI.Label(new Rect(p.x/scale,(Screen.height-p.y)/scale,150,22),text,smallStyle);
         }
 
         private bool OutlineButton(Rect rect, string text)
@@ -651,4 +806,41 @@ namespace FlyEditor.Flight
             researchWeb.Draw(uiFont);
         }
     }
+    // Fixed simulation snapshots, sampled one physics tick behind for rendering.
+    // Model identity and the existing Ready/Flying/Landed FSM bound each sample pair.
+    public sealed class FlightVisualMotion
+    {
+        public readonly struct Pose
+        {
+            public readonly Vector3 position;
+            public readonly float pitch,speed;
+            public Pose(FlightModel model)
+            {position=new Vector3(model.Distance,model.Height,0);pitch=model.Pitch;speed=model.HorizontalSpeed;}
+            private Pose(Vector3 position,float pitch,float speed)
+            {this.position=position;this.pitch=pitch;this.speed=speed;}
+            internal static Pose Blend(Pose a,Pose b,float t)=>new Pose(Vector3.Lerp(a.position,b.position,t),
+                Mathf.LerpAngle(a.pitch,b.pitch,t),Mathf.Lerp(a.speed,b.speed,t));
+        }
+        private FlightModel source;
+        private FlightModel.Phase sampledPhase;
+        private Pose previous,current;
+        private double fixedAt;
+        public void Reset(FlightModel model,double now)
+        {
+            source=model;sampledPhase=model.State;previous=current=new Pose(model);fixedAt=now;
+        }
+        public void RecordStep(FlightModel model,Pose before,double fixedTime)
+        {
+            source=model;sampledPhase=model.State;previous=before;current=new Pose(model);fixedAt=fixedTime;
+        }
+        public Pose Sample(FlightModel model,double renderTime,float step,bool snap=false)
+        {
+            // Never blend a retry/equipped design or hand release with the preceding run.
+            if(snap || source!=model || model.State==FlightModel.Phase.Ready || sampledPhase==FlightModel.Phase.Ready)
+                Reset(model,renderTime);
+            float t=step>0?Mathf.Clamp01((float)((renderTime-fixedAt)/step)):1f;
+            return Pose.Blend(previous,current,t);
+        }
+    }
+
 }

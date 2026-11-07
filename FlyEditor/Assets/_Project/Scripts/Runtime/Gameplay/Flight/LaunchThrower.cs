@@ -13,7 +13,10 @@ namespace FlyEditor.Flight
         private const float DrawDuration = .38f, GatherDuration = .12f;
         private const float DriveDuration = .25f, ArmDelay = .09f;
         private float windupElapsed, drawStartTime;
-        private Transform torso, upperArm, forearm, head;
+        private Transform torso, upperArm, forearm, head, eye;
+        private Vector3 eyeSocket;
+        private float authoredHeadPitch, lookPitch, watchElapsed;
+        private const float WatchDuration = .6f, ReturnDuration = .3f;
         private Vector2 releaseShoulder, releaseUpperArm, releaseForearm;
         private Vector3 releaseOffsets, releaseDirections, authoredDraw, drawCorrection;
         private static readonly Vector3 LowDraw = new Vector3(-7f,-136f,-118f);
@@ -49,6 +52,8 @@ namespace FlyEditor.Flight
                 upperArm = forearm.parent;
                 torso = upperArm.parent;
                 head = torso.Find("head");
+                eye = head.Find("gaze");
+                if (eye != null) eyeSocket = eye.localPosition;
             }
             releaseShoulder = upperArm.position - torso.position;
             releaseUpperArm = forearm.position - upperArm.position;
@@ -63,6 +68,9 @@ namespace FlyEditor.Flight
             motion.SampleAnimation(gameObject,DrawnTime);
             authoredDraw = ArmDirections();
             Enter(Phase.Holding);
+            authoredHeadPitch = lookPitch = Mathf.DeltaAngle(0f,head.eulerAngles.z);
+            watchElapsed = 0f;
+            if (eye != null) eye.SetLocalPositionAndRotation(eyeSocket,Quaternion.identity);
         }
         public void StartAiming()
         {
@@ -165,6 +173,7 @@ namespace FlyEditor.Flight
             // Start from the Spine pose on every changed frame, including a new
             // angle on the held ready pose. Offsets are absolute, never accumulated.
             motion.SampleAnimation(gameObject,time);
+            authoredHeadPitch=Mathf.DeltaAngle(0f,head.eulerAngles.z);
             aimChanged = false;
             if (!hasAim) return;
             float delta=aimAngle-NeutralAim;
@@ -206,8 +215,29 @@ namespace FlyEditor.Flight
             torso.rotation=Quaternion.AngleAxis(offsets.x,Vector3.forward)*torso.rotation;
             upperArm.rotation=Quaternion.AngleAxis(offsets.y,Vector3.forward)*shoulderRotation;
             forearm.rotation=Quaternion.AngleAxis(offsets.z,Vector3.forward)*elbowRotation;
-            head.rotation=Quaternion.AngleAxis(delta*.38f*weight,Vector3.forward)*headRotation;
+            head.rotation=headRotation;
             grip.rotation=Quaternion.Slerp(handRotation,Quaternion.Euler(0,0,aimAngle),weight);
+        }
+        // Called after the pose and plane have both been placed for this frame.
+        public void UpdateGaze(Vector3 planeNose,float dt)
+        {
+            if (!hasAim || State==Phase.Holding) return;
+            float target=aimAngle, weight=1f;
+            if (!Pending)
+            {
+                if (watchElapsed>=WatchDuration+ReturnDuration) return;
+                watchElapsed=Mathf.Min(watchElapsed+dt,WatchDuration+ReturnDuration);
+                Vector2 sight=planeNose-head.TransformPoint(eyeSocket);
+                target=Mathf.Clamp(Heading(sight),-38f,42f);
+                weight=1f-Mathf.SmoothStep(0f,1f,(watchElapsed-WatchDuration)/ReturnDuration);
+            }
+            lookPitch=Mathf.LerpAngle(lookPitch,target,1f-Mathf.Exp(-14f*dt));
+            float neck=Mathf.LerpAngle(authoredHeadPitch,lookPitch,.72f*weight);
+            head.rotation=Quaternion.Euler(0f,0f,neck);
+            if (eye==null) return;
+            float glance=weight*Mathf.Clamp(Mathf.DeltaAngle(neck,lookPitch),-18f,18f);
+            eye.SetLocalPositionAndRotation(eyeSocket+Vector3.up*(.018f*glance/18f),
+                Quaternion.Euler(0f,0f,glance));
         }
         public void Begin()
         {

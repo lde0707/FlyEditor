@@ -17,6 +17,8 @@ namespace FlyEditor.Editor
         private static Keyboard researchKeyboard;
         private static int stage;
         private static float startHeight;
+        private static Vector3 previewAnchor, aimingHand;
+        private static bool sawMovingThrow;
         private static bool failed;
         private static double deadline;
         private static InputSettings originalSettings;
@@ -42,10 +44,51 @@ namespace FlyEditor.Editor
             BeginVerification();
         }
 
+        public static void VerifyVisualMotion()
+        {
+            const float step=.02f;
+            foreach(int fps in new[]{30,60,120,144,240})foreach(float speed in new[]{13f,100f,300f}){
+                var tuning=new FlightTuning{launchSpeed=speed,speedCap=400,launchHeight=100,gravity=.1f,
+                    drag=0,climbDrag=0,sink=0,releasePitchDuration=1000};
+                var model=new FlightModel(tuning.Copy());var reference=new FlightModel(tuning.Copy());
+                model.Tick(true,false,false);reference.Tick(true,false,false);
+                var motion=new FlightVisualMotion();motion.Reset(model,0);
+                double fixedAt=0;int ticks=0;float rawCamera=7,viewCamera=7,oldRaw=-7,oldView=-7,rawBack=0,viewBack=0;
+                for(int frame=1;frame<=fps*3;frame++){
+                    double now=(double)frame/fps;
+                    while((ticks+1)*.02<=now+1e-10){
+                        var before=new FlightVisualMotion.Pose(model);model.FixedTick(step);reference.FixedTick(step);
+                        fixedAt=++ticks*.02;motion.RecordStep(model,before,fixedAt);
+                    }
+                    var pose=motion.Sample(model,now,step);
+                    float blend=1f-Mathf.Exp(-12f/fps);
+                    rawCamera=Mathf.Lerp(rawCamera,model.Distance+7,blend);viewCamera=Mathf.Lerp(viewCamera,pose.position.x+7,blend);
+                    float raw=model.Distance-rawCamera,view=pose.position.x-viewCamera;
+                    if(frame>fps){rawBack=Mathf.Max(rawBack,oldRaw-raw);viewBack=Mathf.Max(viewBack,oldView-view);}
+                    oldRaw=raw;oldView=view;
+                    Require(pose.position.x<=model.Distance+.0001f && model.Distance-pose.position.x<=speed*step+.01f,
+                        "Render pose extrapolated or delayed more than a physics step");
+                    Require(model.Distance==reference.Distance && model.Energy==reference.Energy && model.Pitch==reference.Pitch,
+                        "Presentation changed flight physics");
+                }
+                Require(viewBack<.005f && (rawBack<.01f || viewBack<rawBack*.05f),"Render-camera backtracking at "+fps+" FPS / "+speed+" m/s");
+                var held=motion.Sample(model,100,step);Require(Mathf.Abs(held.position.x-model.Distance)<.001f,"Long frame extrapolated");
+                model.Tick(false,false,true);var reset=motion.Sample(model,101,step);
+                Require(reset.position.x==0 && reset.pitch==model.Pitch,"Retry blended across previous run");
+                model.SetLaunchPose(30,6);model.Tick(true,false,false);
+                var release=motion.Sample(model,101.01,step);Require(release.position.x==0 && release.position.y==6 && release.pitch==30,"Hand release used stale ready pose");
+                var equipped=new FlightModel(tuning.Copy());Require(motion.Sample(equipped,102,step).position.x==0,"New model used old flight samples");
+                Debug.Log("[MotionClock] fps="+fps+" speed="+speed+" oldBack="+rawBack.ToString("F6")+" newBack="+viewBack.ToString("F6"));
+            }
+            Debug.Log("[MotionClock] PASS 30/60/120/144/240 FPS, 13/100/300 m/s, unchanged physics, retry, release and equipment reset.");
+        }
+
         private static void BeginVerification()
         {
             ResearchWebVerification.VerifyAsset();
+            PaperFoldingVerification.Run();
             VerifyModel();
+            VerifyVisualMotion();
             VerifyResearch();
             var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             foreach (var root in scene.GetRootGameObjects())
@@ -147,8 +190,39 @@ namespace FlyEditor.Editor
             }
             Require(releases==1 && rig.State==LaunchThrower.Phase.Resting,"Throw release count or final pose.");
             VerifyDirectionalThrow(rig,new Vector3(0,game.Model.Height,0));
+            VerifyThrowGaze(rig,new Vector3(0,game.Model.Height,0));
             rig.Prepare(new Vector3(0,game.Model.Height,0));
             Debug.Log("[Thrower] PASS: Spine-baked windup, fixed limb lengths, planted foot, one release at flight origin and reset.");
+        }
+        private static void VerifyThrowGaze(LaunchThrower rig,Vector3 launch)
+        {
+            var head=rig.transform.Find("root/hip/torso/head");
+            var eye=head.Find("gaze");
+            Require(eye && eye.GetComponentInChildren<SpriteRenderer>(),"Visible gaze region missing.");
+            foreach(float angle in new[]{FlightModel.MinLaunchAngle,FlightModel.MaxLaunchAngle})
+            {
+                rig.Prepare(launch);rig.StartAiming();rig.SetAim(angle);
+                Vector3 neutralEye=eye.localPosition;
+                for(int i=0;i<30;i++){rig.Advance(.02f);rig.UpdateGaze(launch,.02f);}
+                Require(Mathf.Abs(Mathf.DeltaAngle(eye.eulerAngles.z,angle))<.1f
+                    && Mathf.DeltaAngle(0,head.eulerAngles.z)*Mathf.Sign(angle)>5f,
+                    "Head and eye did not face the held aim.");
+                rig.Begin();Require(rig.Advance(.76f),"Gaze test missed release.");
+                // A target on the opposite side of horizontal distinguishes actual
+                // tracking from simply holding the launch angle into follow-through.
+                float targetAngle=angle<0f ? 25f : -20f;
+                for(int i=0;i<25;i++)
+                {
+                    rig.Advance(.02f);
+                    Vector3 target=head.TransformPoint(neutralEye)+Quaternion.Euler(0,0,targetAngle)*Vector3.right*10f;
+                    rig.UpdateGaze(target,.02f);
+                }
+                Require(Mathf.Abs(Mathf.DeltaAngle(eye.eulerAngles.z,targetAngle))<.2f,"Gaze stayed on the launch angle.");
+                for(int i=0;i<27;i++){rig.Advance(.02f);rig.UpdateGaze(launch,.02f);}
+                Require(rig.State==LaunchThrower.Phase.Resting && Vector3.Distance(eye.localPosition,neutralEye)<.0001f
+                    && Quaternion.Angle(eye.localRotation,Quaternion.identity)<.01f,"Gaze did not settle.");
+            }
+            Debug.Log("[ThrowGaze] PASS: aimed head and eye, tracked target after release, settled and reset.");
         }
 
         private static void VerifyDirectionalThrow(LaunchThrower rig,Vector3 launch)
@@ -384,6 +458,53 @@ namespace FlyEditor.Editor
             Vector3 nose=plane.TransformPoint(PaperPlaneGeometry.Nose);
             VerifyFirstDash(game,nose,nose-plane.position);
         }
+        private static void VerifyOpeningCourse(PaperFlightController game)
+        {
+            // Simulate both lanes with the starter plane and the production hold/release controls.
+            foreach (bool lowLane in new[]{true,false})
+            {
+                var plane=new FlightModel(new FlightTuning());
+                var course=new FlightCourse();
+                var rig=game.Thrower;
+                rig.Prepare(new Vector3(0,plane.Height,0));rig.StartAiming();
+                float aim=lowLane ? -10f : 18f;
+                rig.SetAim(aim);plane.SetLaunchPose(aim,rig.ReleaseHeight);
+                plane.Tick(true,false,false);plane.Tick(false,false,false);
+                bool held=false;float signClearance=0;
+                for(int i=0;i<700 && plane.State==FlightModel.Phase.Flying && plane.Distance<FlightCourse.OpeningEnd;i++)
+                {
+                    // The original throw-style release carries through the sign before the second pickup.
+                    if (lowLane) held=(plane.Distance>=23 && plane.Distance<24) || plane.Distance>=40;
+                    else if (i%10==0) held=plane.Height+.4f*plane.Velocity.y<6.4f;
+                    plane.Tick(false,held,false);
+                    float previous=plane.Distance;
+                    course.Step(plane,.02f);
+                    if (previous<FlightCourse.SignCenter.x && plane.Distance>=FlightCourse.SignCenter.x)
+                        signClearance=plane.Height-(FlightCourse.SignCenter.y+FlightCourse.SignHalfSize.y);
+                }
+                Require(plane.Distance>=FlightCourse.OpeningEnd && course.Collisions==0 &&
+                    course.PickupsCollected==(lowLane ? 2 : 0) && signClearance>(lowLane ? .3f : 2f),
+                    "Opening route failed: low="+lowLane+", sign clearance="+signClearance);
+                Require(!course.IsPaperSign && course.Pickup.x==80 && course.Obstacle.x==67,
+                    "Authored opening did not hand off to the continuing course.");
+            }
+            game.Thrower.Prepare(new Vector3(0,game.Model.Height,0));
+            Debug.Log("[OpeningCourse] PASS: two low boosts and obstacle avoidance; clear upper bypass; both cross 50 m.");
+        }
+        private static void RememberAim()
+        {
+            previewAnchor = controller.transform.Find("출발 예상 궤도").position;
+            aimingHand = controller.Thrower.Grip.position;
+            sawMovingThrow = false;
+        }
+        private static void VerifyWindupPreview()
+        {
+            if (controller.Thrower.State != LaunchThrower.Phase.Windup) return;
+            var holder = controller.transform.Find("출발 예상 궤도");
+            Require(controller.Trajectory.Visible && Vector3.Distance(holder.position,previewAnchor)<.0001f,
+                "Windup moved or hid the aim preview.");
+            if (Vector3.Distance(controller.Thrower.Grip.position,aimingHand)>.25f) sawMovingThrow=true;
+        }
 
         private static void PlayTick()
         {
@@ -406,8 +527,10 @@ namespace FlyEditor.Editor
                     Require(controller.FlightCamera != null, "Runtime camera missing.");
                     Require(controller.transform.Find("Folded paper plane") != null, "Runtime mesh missing.");
                     Require(controller.Model.State == FlightModel.Phase.Ready, "Ready state missing.");
+                    Require(!controller.transform.Find("최고 기록 깃발").gameObject.activeSelf,"First game showed a record flag.");
                     VerifyThrowRig(controller);
                     VerifyForecast(controller);
+                    VerifyOpeningCourse(controller);
                     Require(!controller.OpenResearch() && !controller.Session.Research.Unlocked,
                         "Research must stay locked before the first completed flight.");
                 }
@@ -448,13 +571,18 @@ namespace FlyEditor.Editor
                             Require(controller.Trajectory.Samples.Count>5,"Missing predicted path.");
                             VerifyHeldNose(controller);
                             Debug.Log("[LaunchNose] PASS: visible mesh starts at held nose at neutral, low and high drag angles.");
+                            RememberAim();
                             Press(false,Screen.height*.52f); stage=2;
                         }
                         break;
                     case 2:
+                        VerifyWindupPreview();
                         if (model.Elapsed > .45f)
                         {
-                            Require(model.ControlArmed && !controller.Trajectory.Visible, "Release left preview active.");
+                            Require(sawMovingThrow && model.ControlArmed && !controller.Trajectory.Visible, "Release left preview active or missed moving windup.");
+                            var eye=controller.Thrower.transform.Find("root/hip/torso/head/gaze");
+                            Vector3 toPlane=AirborneNose(model)-eye.position;
+                            Require(Vector2.Angle(eye.right,toPlane)<8f,"Thrower did not watch the launched plane.");
                             int step = Mathf.RoundToInt(model.Elapsed/Time.fixedDeltaTime);
                             var samples = controller.Trajectory.Samples;
                             Require(step < samples.Count && Vector2.Distance(samples[step],new Vector2(model.Distance,model.Height))<.001f,
@@ -476,6 +604,7 @@ namespace FlyEditor.Editor
                         if (model.State == FlightModel.Phase.Landed)
                         {
                             Require(model.Distance > 10f && model.Clearance == 0f, "Ground contact or distance failed.");
+                            Require(!controller.transform.Find("최고 기록 깃발").gameObject.activeSelf,"Flag moved on the recording flight.");
                             Debug.Log("[PaperFlight] PLAY LANDING: distance=" + model.Distance.ToString("F2"));
                             expectedPoints = 95 + Mathf.FloorToInt(model.Distance / 5f);
                             Require(controller.Session.Research.Points == expectedPoints
@@ -495,6 +624,11 @@ namespace FlyEditor.Editor
                         {
                             Require(model.Distance == 0f && !model.ControlArmed, "Reset failed.");
                             Require(model.BestDistance > 10f, "Best distance lost.");
+                            var flag=controller.transform.Find("최고 기록 깃발");
+                            var onDisk=new ResearchFileStore(SessionState.GetString(TestSaveKey,"")).Load();
+                            Require(flag.gameObject.activeSelf && Mathf.Abs(flag.position.x-onDisk.bestDistance)<.001f
+                                && Mathf.Abs(flag.position.x-model.BestDistance)<.001f,"Next flight did not mark the saved record.");
+                            Debug.Log("[RecordFlag] PASS: hidden on first flight; next flight marks saved best at "+flag.position.x+" m.");
                             Require(Mathf.Abs(model.Speed - 13f * 1.12f) < 0.001f, "Purchased launch upgrade did not apply to restart.");
                             Press(false); stage++;
                         }
@@ -525,12 +659,16 @@ namespace FlyEditor.Editor
                         if (controller.LaunchAngle==FlightModel.MinLaunchAngle)
                         {
                             VerifyHeldNose(controller);
+                            RememberAim();
                             Press(false,Screen.height*.1f); stage=7;
                         }
                         break;
                     case 7:
+                        VerifyWindupPreview();
                         if (model.State == FlightModel.Phase.Flying && model.Elapsed >= .15f)
                         {
+                            Require(sawMovingThrow && !controller.Trajectory.Visible,"Underhand preview did not lock until takeoff.");
+                            Debug.Log("[PreviewLock] PASS: normal and underhand windup keep the visible mouse-up anchor until takeoff.");
                             Require(model.ControlArmed && !model.Climbing, "Relaunch climbed without new input.");
                             var path=controller.Trajectory.Samples;
                             int index=Mathf.RoundToInt(model.Elapsed/Time.fixedDeltaTime);
@@ -787,12 +925,14 @@ namespace FlyEditor.Editor
                     var tuning = funded.Apply(baseline);
                     Require(Mathf.Abs(tuning.launchSpeed - baseline.launchSpeed * (1f + (node == ResearchNode.Throw ? new[] { 0f, .12f, .32f, .62f }[rank] : 0f))) < 0.0001f,
                         "Throw effect was not additive or altered another upgrade.");
-                    Require(Mathf.Abs(tuning.sink - baseline.sink * (1f - (node == ResearchNode.Glide ? new[] { 0f, .04f, .14f, .32f }[rank] : 0f))) < 0.0001f,
+                    Require(Mathf.Abs(tuning.sink - baseline.sink * (1f - (node == ResearchNode.Glide ? new[] { 0f, .02f, .07f, .16f }[rank] : 0f))) < 0.0001f,
                         "Glide effect was not additive.");
                     float response = 1f + (node == ResearchNode.Control ? 0.05f * rank : 0f);
                     Require(Mathf.Abs(tuning.pitchResponse - 90f * response) < 0.0001f
                         && Mathf.Abs(tuning.flightPathResponse - 10f * response) < 0.0001f
-                        && tuning.releasePitchDuration == 3f && tuning.divePitch == -24f,
+                        && tuning.releasePitchDuration == 3f
+                        && Mathf.Abs(Mathf.Tan(tuning.divePitch*Mathf.Deg2Rad) / Mathf.Tan(-24f*Mathf.Deg2Rad)
+                            - (1f - (node == ResearchNode.Glide ? new[] { 0f, .02f, .07f, .16f }[rank] : 0f))) < .0001f,
                         "Control effect changed the release curve or response incorrectly.");
                 }
                 Require(!funded.TryBuy(node) && funded.Points == 0 && funded.Rank(node) == 3, "Maximum rank was exceeded.");

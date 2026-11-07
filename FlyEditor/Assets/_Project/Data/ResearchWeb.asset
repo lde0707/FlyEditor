@@ -113,9 +113,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 004b46a1a0325a8c94660d39a689ba95, type: 3}
     - {fileID: 2800000, guid: c038756b4cb45375932171896a1620d7, type: 3}
   - id: Glide_1
-    title: "천천히 가라앉기"
-    benefit: "손을 떼도 더 오래 비행"
-    summary: "기본 침하 속도가 4% 감소합니다."
+    title: "완만한 활공"
+    benefit: "같은 높이에서 더 멀리 활공"
+    summary: "하강 경사와 기본 침하 속도 2% 감소."
     runtimeIndex: 1
     unlocksAbility: 0
     frameSize: 112
@@ -331,9 +331,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 20f38b92e34055db955432e80f96d193, type: 3}
     - {fileID: 2800000, guid: 9a4fe9b15e165addbc1509717e6a1468, type: 3}
   - id: Glide_2
-    title: "더 느린 고도 하락"
-    benefit: "활공 중 높이를 더 오래 유지"
-    summary: "기본 침하 속도가 추가로 10% 감소합니다."
+    title: "더 완만한 활공"
+    benefit: "고도를 덜 잃으며 멀리 이동"
+    summary: "하강 경사와 기본 침하 속도 추가 5% 감소."
     runtimeIndex: 1
     unlocksAbility: 0
     frameSize: 96
@@ -713,9 +713,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 4dc158db65515c329f9e818ed80dffac, type: 3}
     - {fileID: 2800000, guid: c8adc7aa349c520bbac5be7c701ecf1f, type: 3}
   - id: Web_LevelFlight
-    title: "활공 중 침하 줄이기"
-    benefit: "날개를 편 채 고도 유지"
-    summary: "기본 침하 속도 -2.5%."
+    title: "수평에 가까운 활공"
+    benefit: "하강 경사를 더 완만하게"
+    summary: "활공 강화 후 하강 경사·기본 침하 속도 1.25% 추가 감소. 추가 활공 효과끼리 합산."
     runtimeIndex: 12
     unlocksAbility: 0
     frameSize: 96
@@ -742,7 +742,7 @@ MonoBehaviour:
   - id: Glide_3
     title: "장거리 활공"
     benefit: "멀리 날 때 고도를 천천히 잃기"
-    summary: "기본 침하 속도가 추가로 18% 감소합니다."
+    summary: "하강 경사와 기본 침하 속도 추가 9% 감소."
     runtimeIndex: 1
     unlocksAbility: 0
     frameSize: 96
@@ -875,9 +875,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: aeb780fee469580db9a89d54d3915c0e, type: 3}
     - {fileID: 2800000, guid: 19dcbcd3ea6c51bb9f59048c0534872c, type: 3}
   - id: Web_PitchBrake
-    title: "완만하게 하강하기"
-    benefit: "손을 뗄 때 기수가 천천히 내려감"
-    summary: "클릭 해제 후 최대 하강 자세까지 +0.1초."
+    title: "효율적인 활공 자세"
+    benefit: "하강 중 고도 손실 감소"
+    summary: "활공 강화 후 하강 경사·기본 침하 속도 3% 추가 감소. 추가 활공 효과끼리 합산. 조작 반응은 유지."
     runtimeIndex: 12
     unlocksAbility: 0
     frameSize: 96
@@ -1361,9 +1361,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: e9bf808b505359a9b4d37643510a4072, type: 3}
     - {fileID: 2800000, guid: bedeeb866ae95a94b41d11ffe49ed3a4, type: 3}
   - id: Web_GentleDescent
-    title: "하강 전환 늦추기"
-    benefit: "손을 뗀 뒤 높이를 오래 유지"
-    summary: "클릭 해제 후 최대 하강 자세까지 +0.15초."
+    title: "완만한 하강각"
+    benefit: "손을 떼면 얕은 경사로 활공"
+    summary: "활공 강화 후 하강 경사·기본 침하 속도 4% 추가 감소. 추가 활공 효과끼리 합산. 조작 반응은 유지."
     runtimeIndex: 12
     unlocksAbility: 0
     frameSize: 96
@@ -2096,9 +2096,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 769a6b574bba5cb1a2d1a77f898708c9, type: 3}
     - {fileID: 2800000, guid: d09bb33e64775580ae5e5bf1ce6751be, type: 3}
   - id: Web_WingTip
-    title: "날개 침하 줄이기"
-    benefit: "활공할 때 고도 하락 완화"
-    summary: "기본 침하 속도 -3%."
+    title: "날개 활공 효율"
+    benefit: "날개 효율로 더 멀리 활공"
+    summary: "활공 강화 후 하강 경사·기본 침하 속도 1.5% 추가 감소. 추가 활공 효과끼리 합산."
     runtimeIndex: 12
     unlocksAbility: 0
     frameSize: 96
@@ -2258,9 +2258,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 2ab6e5e295555b98b9f93f4e496f0110, type: 3}
     - {fileID: 2800000, guid: b2b5928b49ce585d878c65b6e736eee1, type: 3}
   - id: Web_LandingAttitude
-    title: "급하강 전환 늦추기"
-    benefit: "손을 뗀 뒤 완만하게 내려가기"
-    summary: "클릭 해제 후 최대 하강 자세까지 +0.1초."
+    title: "급완만한 하강각"
+    benefit: "완만한 하강으로 비행 거리 확보"
+    summary: "활공 강화 후 하강 경사·기본 침하 속도 3% 추가 감소. 추가 활공 효과끼리 합산. 조작 반응은 유지."
     runtimeIndex: 12
     unlocksAbility: 0
     frameSize: 96
