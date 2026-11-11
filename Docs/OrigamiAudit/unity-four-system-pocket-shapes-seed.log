@@ -1,0 +1,584 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.3f1 (c2eb47b3a2a9) revision 12774215'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0" at "2026-11-10T11:36:22.9843219Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 32164 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-10T11:36:22Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Unity.exe
+-batchmode
+-force-d3d11
+-projectPath
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+-executeMethod
+PocketShapeProbe.Run
+-logFile
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\.four-system\..\output\validation\unity-four-system-pocket-shapes-seed.log
+-quit
+Successfully changed project path to: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [41904]  Target information:
+
+Player connection [41904]  * "[IP] 192.168.0.128 [Port] 55505 [Flags] 2 [Guid] 3479934151 [EditorId] 3479934151 [Version] 1048832 [Id] WindowsEditor(7,doeon07) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [41904] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [41904] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-16664" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-doun0"
+[Licensing::IpcConnector] LicenseClient-doun0 channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3" at "2026-11-10T11:36:24.4532596Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 11832, path: "C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              679d678e9cb1412b8009338e26f4d5d8
+  Correlation Id:          3f7b89d0e7690ae8c1b99dd249ca87fb
+  External correlation Id: 1057357190318666968
+  Machine Id:              YvDvKs+GecMwzKpRjRcVzYtBbgs=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-doun0-6000.5.3" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3-notifications" at "2026-11-10T11:36:24.4628867Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568939546096-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.49s
+[Licensing::Module] Licensing is initialized (took 0.24s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.3f1 (c2eb47b3a2a9)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 130T GPU (16GB) (ID=0x7d51)
+    Vendor:   Intel
+    VRAM:     18333 MB
+    Driver:   32.0.101.6737
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56664
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005649 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.334 seconds
+Domain Reload Profiling: 913ms
+	BeginReloadAssembly (184ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (89ms)
+	LoadAllAssembliesAndSetupDomain (286ms)
+		LoadAssemblies (159ms)
+		AnalyzeDomain (200ms)
+			TypeCache.Refresh (198ms)
+				TypeCache.ScanAssembly (184ms)
+	FinalizeReload (337ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (76ms)
+			ProcessInitializeOnLoadAttributes (79ms)
+			ProcessInitializeOnLoadMethodAttributes (111ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 57 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.13 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ai.navigation@42d896194035)
+    com.unity.collab-proxy@2.12.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.19.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.inputsystem@21a28c3a6c83)
+    com.unity.timeline@1.8.12 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.timeline@8cd8509afae5)
+    com.unity.visualscripting@1.9.11 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.visualscripting@8bed5ad90189)
+    com.unity.searcher@4.9.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.29 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.burst@6bb9aca3ef38)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.render-pipelines.universal@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal@276396f56b3f)
+    com.unity.test-framework@1.7.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.ugui@2.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ugui@377fd60ad87b)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+    com.unity.render-pipelines.core@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.core@0733e3164aa3)
+    com.unity.shadergraph@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.shadergraph@8aa9acb51790)
+    com.unity.render-pipelines.universal-config@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal-config@fdda01c80fe3)
+    com.unity.collections@6.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collections@a43cabe808ca)
+    com.unity.mathematics@1.4.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.mathematics@981956d94fb6)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 2s434ms
+[720/915    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[907/915    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+[909/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 140 defines and 360 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[910/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 142 defines and 337 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[912/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[913/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+*** Tundra build success (2.39 seconds), 6 items updated, 915 evaluated
+AssetDatabase: script compilation time: 2.936726s
+Begin MonoManager ReloadAssembly
+Total cache size 267581923
+Total cache size after purge 267581923, took 00:00:00.2642535
+Refreshing native plugins compatible for Editor in 4.05 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 4.20 ms, found 4 plugins.
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.663 seconds
+Domain Reload Profiling: 3931ms
+	BeginReloadAssembly (313ms)
+		DisableScriptedObjects (81ms)
+		CreateAndSetChildDomain (49ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (96ms)
+	LoadAllAssembliesAndSetupDomain (838ms)
+		LoadAssemblies (559ms)
+		AnalyzeDomain (233ms)
+			TypeCache.Refresh (160ms)
+				TypeCache.ScanAssembly (149ms)
+			BuildScriptInfoCaches (64ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (2664ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (71ms)
+			ProcessInitializeOnLoadAttributes (1972ms)
+			ProcessInitializeOnLoadMethodAttributes (257ms)
+			AfterProcessingInitializeOnLoad (23ms)
+		AwakeInstancesAfterBackupRestoration (38ms)
+Starting new worker id: 0 with log in C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 3.66 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=1c6288c3dc95c7043b567219057c84c3): Total: 8.031 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=3367 ms
+		Asset DB Callback time: managed=210 ms, native=35 ms
+		Scripting: domain reloads=1, domain reload time=1384 ms, compile time=2940 ms, other=93 ms
+		Project Asset Count: scripts=1347, non-scripts=3452
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 29.679ms
+	ApplyChangesToAssetFolders: 1.157ms
+	Scan: 291.838ms
+	Collect global state as custom dependencies: 4.875ms
+	OnSourceAssetsModified: 0.750ms
+	CategorizeScriptCompilationAssets: 44.852ms
+	ProcessAssetsWithTransientArtifactChanges: 78.996ms
+	CategorizeAssets: 41.396ms
+	CompileScripts: 2940.192ms
+	ImportOutOfDateAssets: 2730.574ms (2687.011ms without children)
+		UnloadImportedAssets: 0.645ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.554ms
+		ImportSchedulerStart: 42.321ms
+	PostProcessAllAssets: 213.685ms
+		XRBuildSystem.XRAssetImported 2.353ms
+		VCAutoAddAssetPostprocess 1.193ms
+		MonoPostProcessAllAssets: 209.539ms
+			AssetPostprocessor.OnPostprocessAllAssets 98.238ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 34.954ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 16.963ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 11.986ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 9.275ms
+			SyncVS.PostprocessSyncProject 3.840ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.541ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.270ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.246ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.188ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.138ms
+			AssetChangedListener.OnPostprocessAllAssets 1.099ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.857ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.817ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.562ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.517ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 0.420ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.399ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.358ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.274ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.272ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.266ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.257ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.251ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.222ms
+			AssetEvents.OnPostprocessAllAssets 0.215ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.209ms
+			PostProcessor.OnPostprocessAllAssets 0.176ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.162ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.139ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.130ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.103ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.103ms
+	PostAssetChangesProfiler: 5.449ms
+	UnloadStreamsBegin: 2.634ms
+	PersistCurrentRevisions: 0.127ms
+	GenerateScriptTypeHashes: 1.534ms
+	GenerateScriptTypeSerializationHashes: 2.840ms
+	Untracked: 1636.469ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Scanning for USB devices : 1.192ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-FlyEditor
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6526 unused Assets / (8.2 MB). Loaded Objects now: 7428.
+Memory consumption went from 419.4 MB to 411.3 MB.
+Total: 19.409800 ms (FindLiveObjects: 0.692800 ms CreateObjectMapping: 2.926200 ms MarkObjects: 5.253100 ms  DeleteObjects: 10.534800 ms)
+
+[ShapeJoint] diagonal-front anchor=2 reached=180 ms=218
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] geometry PASS replay error=0 faces=6
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 18)
+
+Releasing render texture that is set as Camera.targetTexture!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object,bool)
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object)
+OrigamiFeasibilityAudit:Render (FlyEditor.Flight.PaperSheet,string,FlyEditor.Flight.PaperCornerPull) (at Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs:306)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+PocketShapeProbe:Render (FlyEditor.Flight.PaperSheet,string) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:21)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+[Assets/_Project/Scripts/Editor/PocketShapeProbe.cs line 24]
+
+[ShapeJoint] diagonal-back anchor=0 reached=-70.10742 ms=49
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] diagonal-back anchor=1 reached=-180 ms=236
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] geometry PASS replay error=0 faces=8
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 18)
+
+Releasing render texture that is set as Camera.targetTexture!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object,bool)
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object)
+OrigamiFeasibilityAudit:Render (FlyEditor.Flight.PaperSheet,string,FlyEditor.Flight.PaperCornerPull) (at Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs:306)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+PocketShapeProbe:Render (FlyEditor.Flight.PaperSheet,string) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:21)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:24)
+
+[Assets/_Project/Scripts/Editor/PocketShapeProbe.cs line 24]
+
+[ShapeJoint] axis-pocket-1 anchor=2 reached=8.203125 ms=2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:27)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] axis-pocket-1 anchor=3 reached=8.125 ms=2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:27)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] half-head-1 anchor=0 reached=179.9902 ms=146
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+Worker ready: AssetImportWorkerHW0 0
+[ShapeJoint] geometry PASS replay error=0 faces=18
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 18)
+
+Releasing render texture that is set as Camera.targetTexture!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object,bool)
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object)
+OrigamiFeasibilityAudit:Render (FlyEditor.Flight.PaperSheet,string,FlyEditor.Flight.PaperCornerPull) (at Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs:306)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+PocketShapeProbe:Render (FlyEditor.Flight.PaperSheet,string) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:21)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+[Assets/_Project/Scripts/Editor/PocketShapeProbe.cs line 29]
+
+[ShapeJoint] axis-pocket--1 anchor=2 reached=0 ms=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:27)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] axis-pocket--1 anchor=3 reached=0 ms=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:27)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] half-head--1 anchor=0 reached=-179.9902 ms=136
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:11)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 11)
+
+[ShapeJoint] geometry PASS replay error=0 faces=18
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketShapeProbe.cs Line: 18)
+
+Releasing render texture that is set as Camera.targetTexture!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object,bool)
+UnityEngine.Object:DestroyImmediate (UnityEngine.Object)
+OrigamiFeasibilityAudit:Render (FlyEditor.Flight.PaperSheet,string,FlyEditor.Flight.PaperCornerPull) (at Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs:306)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+PocketShapeProbe:Render (FlyEditor.Flight.PaperSheet,string) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:21)
+PocketShapeProbe:Fold (FlyEditor.Flight.PaperSheet,string,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,int) (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:18)
+PocketShapeProbe:Run () (at Assets/_Project/Scripts/Editor/PocketShapeProbe.cs:29)
+
+[Assets/_Project/Scripts/Editor/PocketShapeProbe.cs line 29]
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

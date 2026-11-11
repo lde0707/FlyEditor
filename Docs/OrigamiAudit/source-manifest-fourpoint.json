@@ -1,0 +1,10 @@
+{
+  "description": "Four-point general region/contact/input improvements; five unfinished model attempts; no precreases",
+  "sources": {
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs": "e25e2dddda765c1ee812446fc291b58f6eeb3d067ec2879ff15e3f1486b31629",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperCornerPull.cs": "caab1b5b0c79664118aedc545babeec4cdce9c51019345b1688d95a799efbcb8",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs": "ce1b12c5da91efdb803def2e3a70fa780ba269f19e495314ead1cf4d4d5c2640",
+    "FlyEditor/Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs": "8300158fb4e18b9b60610e727b2c423f3cb0e6c400df452eeb67586c23d92394",
+    "FlyEditor/Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs": "3b47a115576849610e0dad902116030b5495a78d940790f824c2f58a687f03d3"
+  }
+}

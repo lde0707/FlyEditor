@@ -1,0 +1,19 @@
+{
+  "normalFacePoints": 25,
+  "narrowFacePoints": 3,
+  "narrowAspectThreshold": 0.25,
+  "status": "passed",
+  "checks": [
+    "25-percent boundary",
+    "narrow faces 3 noncollinear corners",
+    "normal and triangle 25",
+    "stacked quarter fold",
+    "reference toggle",
+    "free placement",
+    "empty click cleanup",
+    "mouse drag fold",
+    "replay",
+    "undo"
+  ],
+  "sourceHash": "52BE39838F4E6A641A81EB0998DA7798BC1C6588C73D593D1170EBB7FC0BC0E2"
+}

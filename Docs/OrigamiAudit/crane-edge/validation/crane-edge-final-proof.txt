@@ -1,0 +1,17 @@
+[FinalCrane] step 1 area/seams/replay PASS
+[FinalCrane] step 2 area/seams/replay PASS
+[FinalCrane] step 3 area/seams/replay PASS
+[FinalCrane] step 4 area/seams/replay PASS
+[FinalCrane] step 5 area/seams/replay PASS
+[FinalCrane] step 6 area/seams/replay PASS
+[FinalCrane] step 7 area/seams/replay PASS
+[FinalCrane] step 8 area/seams/replay PASS
+[FinalCrane] step 9 area/seams/replay PASS
+[FinalCrane] step 10 area/seams/replay PASS
+[FinalCrane] step 11 area/seams/replay PASS
+[FinalCrane] step 12 area/seams/replay PASS
+[FinalCrane] step 13 area/seams/replay PASS
+[FinalCrane] step 14 area/seams/replay PASS
+[FinalCrane] step 15 area/seams/replay PASS
+[FinalCrane] step 16 area/seams/replay PASS
+[FinalCrane] PASS 16 stages; neck/tail/head sweeps; opposite wing tips distance=6.44365

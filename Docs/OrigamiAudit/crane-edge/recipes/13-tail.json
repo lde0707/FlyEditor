@@ -1,0 +1,912 @@
+{
+    "version": 1,
+    "points": 0,
+    "completedFlights": 0,
+    "a1": 0,
+    "g1": 0,
+    "c1": 0,
+    "ownedNodeIds": [],
+    "paperFolds": [
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 1,
+            "degrees": 180.0,
+            "cornerPull": false,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": false,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": false,
+            "customFlanks": false,
+            "regionalPull": false,
+            "adaptiveCreases": false,
+            "compactLayers": true,
+            "localLayerPacking": false,
+            "coupledHinges": false,
+            "closeFlat": false,
+            "pullLeft": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullRight": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullStop": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.7071067690849304,
+                "y": 0.7071067690849304
+            },
+            "creaseOffset": 7.77817440032959,
+            "anchor": 0,
+            "flap": 0
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": -1,
+            "degrees": 180.0,
+            "cornerPull": false,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": false,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": false,
+            "customFlanks": false,
+            "regionalPull": false,
+            "adaptiveCreases": false,
+            "compactLayers": true,
+            "localLayerPacking": false,
+            "coupledHinges": false,
+            "closeFlat": false,
+            "pullLeft": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullRight": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullStop": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.7071067690849304,
+                "y": -0.7071067690849304
+            },
+            "creaseOffset": 0.0,
+            "anchor": 0,
+            "flap": 0
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": true,
+            "continuousHinge": true,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": true,
+            "partialPetalBacking": true,
+            "exactSquash": true,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullRight": {
+                "x": 11.000001907348633,
+                "y": 11.000001907348633
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 11.000000953674317,
+                "y": -9.725602012622404e-7
+            },
+            "pullStop": {
+                "x": 5.5,
+                "y": 5.5
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 2,
+            "flap": 3
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": -180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": true,
+            "continuousHinge": true,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": true,
+            "partialPetalBacking": true,
+            "exactSquash": true,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullRight": {
+                "x": 11.000001907348633,
+                "y": 11.000001907348633
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 11.0,
+                "y": 0.0
+            },
+            "pullStop": {
+                "x": 5.5,
+                "y": 5.5
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 0,
+            "flap": 1
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 5.5,
+                "y": 4.6739401682316386e-7
+            },
+            "pullRight": {
+                "x": -0.0000024939520244515735,
+                "y": 5.500000476837158
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.0000020265579223632814,
+                "y": 9.347879768029088e-7
+            },
+            "pullStop": {
+                "x": 5.499999046325684,
+                "y": 5.5
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 4,
+            "flap": 5
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": -180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 5.499999046325684,
+                "y": 5.167579028125509e-15
+            },
+            "pullRight": {
+                "x": -0.000003337860107421875,
+                "y": 5.5
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.000003337860107421875,
+                "y": 6.201099746541705e-14
+            },
+            "pullStop": {
+                "x": 5.499999046325684,
+                "y": 5.5
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 0,
+            "flap": 1
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 10.99999713897705,
+                "y": 5.500001907348633
+            },
+            "pullRight": {
+                "x": 10.999993324279786,
+                "y": 0.000002278736474181642
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 0.0000011018080385838403,
+                "y": -0.0000026599998363963097
+            },
+            "pullStop": {
+                "x": 5.499999523162842,
+                "y": 2.2781739234924318
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 16,
+            "flap": 17
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 2.104771375656128,
+                "y": 10.475010871887207
+            },
+            "pullRight": {
+                "x": 7.778173923492432,
+                "y": 7.778170585632324
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.0000023608326955582017,
+                "y": 0.0000012516975402832032
+            },
+            "pullStop": {
+                "x": 2.2781765460968019,
+                "y": 5.499998092651367
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 27,
+            "flap": 28
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": -2.1047494411468508,
+                "y": 5.08134651184082
+            },
+            "pullRight": {
+                "x": -7.778170585632324,
+                "y": 7.778186798095703
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.00000696908909958438,
+                "y": 0.000004787071702594403
+            },
+            "pullStop": {
+                "x": 2.278174877166748,
+                "y": 5.499999523162842
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 19,
+            "flap": 20
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": true,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": true,
+            "customFlanks": true,
+            "regionalPull": true,
+            "adaptiveCreases": true,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": true,
+            "closeFlat": true,
+            "pullLeft": {
+                "x": 5.918667316436768,
+                "y": 8.895230293273926
+            },
+            "pullRight": {
+                "x": 8.450919608549157e-7,
+                "y": 10.999995231628418
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullStop": {
+                "x": 5.5,
+                "y": 2.27817440032959
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 9,
+            "flap": 10
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 1,
+            "degrees": 180.0,
+            "cornerPull": false,
+            "insideReverse": false,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": false,
+            "packetMaterialHandles": false,
+            "reverseCreaseAngle": 0.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "packetStopMaterial": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "coordinatedCreases": false,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": false,
+            "customFlanks": false,
+            "regionalPull": false,
+            "adaptiveCreases": false,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": false,
+            "closeFlat": false,
+            "pullLeft": {
+                "x": -0.000004291534878575476,
+                "y": 0.0000010732146620284767
+            },
+            "pullRight": {
+                "x": -0.000004291534878575476,
+                "y": 0.0000010732146620284767
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.000004291534878575476,
+                "y": 0.0000010732146620284767
+            },
+            "pullStop": {
+                "x": -0.000004291534878575476,
+                "y": 0.0000010732146620284767
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.7071067690849304,
+                "y": -0.7071067690849304
+            },
+            "creaseOffset": 0.0,
+            "anchor": 0,
+            "flap": 0
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": true,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": true,
+            "packetMaterialHandles": true,
+            "reverseCreaseAngle": 65.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": -1.2821629879773006e-13,
+                "y": 1.1529716255082728e-13
+            },
+            "packetStopMaterial": {
+                "x": 3.799999713897705,
+                "y": 3.799999713897705
+            },
+            "coordinatedCreases": false,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": false,
+            "customFlanks": false,
+            "regionalPull": false,
+            "adaptiveCreases": false,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": false,
+            "closeFlat": false,
+            "pullLeft": {
+                "x": 0.0000011018080385838403,
+                "y": -0.0000026599998363963097
+            },
+            "pullRight": {
+                "x": 0.0000011018080385838403,
+                "y": -0.0000026599998363963097
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": 1.1529713544577297e-13,
+                "y": -1.2821627169267574e-13
+            },
+            "pullStop": {
+                "x": 3.799999475479126,
+                "y": 3.799999475479126
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 28,
+            "flap": 29
+        },
+        {
+            "family": 0,
+            "offset": 0,
+            "side": 0,
+            "degrees": 180.0,
+            "cornerPull": true,
+            "insideReverse": true,
+            "clearance": [],
+            "clearanceDirection": 0,
+            "packetReverse": true,
+            "packetMaterialHandles": true,
+            "reverseCreaseAngle": 115.0,
+            "neutralContacts": false,
+            "continuousHinge": false,
+            "packetTipMaterial": {
+                "x": 10.999999046325684,
+                "y": 11.000000953674317
+            },
+            "packetStopMaterial": {
+                "x": 7.19999885559082,
+                "y": 7.200001239776611
+            },
+            "coordinatedCreases": false,
+            "connectedPetalBacking": false,
+            "partialPetalBacking": false,
+            "exactSquash": false,
+            "flexible": false,
+            "customFlanks": false,
+            "regionalPull": false,
+            "adaptiveCreases": false,
+            "compactLayers": true,
+            "localLayerPacking": true,
+            "coupledHinges": false,
+            "closeFlat": false,
+            "pullLeft": {
+                "x": -0.00000696908909958438,
+                "y": 0.000004787071702594403
+            },
+            "pullRight": {
+                "x": -0.00000696908909958438,
+                "y": 0.000004787071702594403
+            },
+            "singlePanel": false,
+            "connectedPanel": false,
+            "separateFoldSides": false,
+            "opening": false,
+            "mirror": 0,
+            "contact": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "pullTip": {
+                "x": -0.0000062947401602286849,
+                "y": 0.000004112721853744006
+            },
+            "pullStop": {
+                "x": -0.0000011959712082898478,
+                "y": 5.374014377593994
+            },
+            "paper": 0,
+            "pattern": 0,
+            "creaseNormal": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "creaseOffset": 0.0,
+            "anchor": 4,
+            "flap": 5
+        }
+    ],
+    "nextRunId": 0,
+    "activeRunId": 0,
+    "lastPaidRunId": 0,
+    "bestDistance": 0.0
+}

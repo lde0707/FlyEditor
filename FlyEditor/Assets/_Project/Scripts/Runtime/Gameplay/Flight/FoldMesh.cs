@@ -14,13 +14,18 @@ namespace FlyEditor.Flight
         private Matrix4x4 faceFrame, rotation;
         private float sine;
         private bool workbench;
+        private IReadOnlyList<PaperSheet.Face> outlinePeers;
+        private readonly List<Vector2> coveredEdges=new List<Vector2>();
+        private static readonly Color SoftEdge=new Color(.42f,.47f,.45f);
+
         public void Build(Mesh mesh,PaperSheet sheet,PaperSheet.Turn turn,float angle,
             List<PaperSheet.FoldVertex> points=null,int first=-1,int second=-1,int hoverPoint=-1,bool hoverSide=false,
-            List<PaperSheet.Guide> hinge=null,PaperCornerPull pull=null,PaperMirrorFold pair=null,MirrorAxis mirror=MirrorAxis.Off,bool upper=true,PaperInsideReverse reverse=null,int third=-1,int fourth=-1)
+            List<PaperSheet.Guide> hinge=null,PaperCornerPull pull=null,PaperMirrorFold pair=null,MirrorAxis mirror=MirrorAxis.Off,bool upper=true,PaperInsideReverse reverse=null,int third=-1,int fourth=-1,int selectedPanel=-1,Vector3 viewDirection=default,List<int> selectablePanels=null,IReadOnlyList<bool> visiblePoints=null,IReadOnlyList<float> pointOpacities=null)
         {
-            workbench=points!=null;
+            workbench=points!=null;outlinePeers=sheet.Faces;
             vertices.Clear();indices.Clear();colors.Clear();
             if(pair!=null){
+                outlinePeers=pair.Preview;
                 foreach(var f in pair.Preview)Surface(f,false,false);
                 if(hinge!=null)foreach(var mark in hinge){
                     var a=mark.face.Original(mark.a);var b=mark.face.Original(mark.b);
@@ -28,10 +33,12 @@ namespace FlyEditor.Flight
                     MaterialStripe(pair.Preview,pair.PartnerPoint(a),pair.PartnerPoint(b));
                 }
             }else if(reverse!=null){
-                foreach(var f in reverse.Preview)Surface(f,false,false);
+                outlinePeers=reverse.Preview;
+                for(int i=0;i<reverse.Preview.Count;i++)Surface(reverse.Preview[i],false,workbench && reverse.Highlights(i));
                 foreach(var mark in reverse.Creases)
                     MaterialStripe(reverse.Preview,mark.face.Original(mark.a),mark.face.Original(mark.b));
             }else if(pull!=null){
+                outlinePeers=pull.Preview;
                 foreach(var f in pull.Preview)Surface(f,false,false);
                 var basis=sheet.Faces[pull.Step.anchor];
                 var tip=basis.Original(pull.Step.pullTip);var stop=basis.Original(pull.Step.pullStop);
@@ -40,33 +47,68 @@ namespace FlyEditor.Flight
                     MaterialStripe(pull.Preview,stop,basis.Original(pull.Step.pullLeft));
                     MaterialStripe(pull.Preview,stop,basis.Original(pull.Step.pullRight));
                 }
-            }else if(turn==null){foreach(var f in sheet.Faces)Surface(f,false,false);}
+            }else if(turn==null){foreach(var f in sheet.Faces)Surface(f,false,Selected(f,sheet,selectedPanel));}
             else
             {
                 rotation=turn.Rotation(angle);
                 sine=Mathf.Abs(Mathf.Sin(angle*Mathf.Deg2Rad));
-                foreach(var f in turn.fixedFaces)Surface(f,false,false);
-                foreach(var f in turn.movingFaces)Surface(f,true,hoverSide);
+                outlinePeers=turn.fixedFaces;
+                foreach(var f in turn.fixedFaces)Surface(f,false,Selected(f,sheet,selectedPanel));
+                outlinePeers=turn.movingFaces;
+                foreach(var f in turn.movingFaces)Surface(f,true,Selected(f,sheet,selectedPanel) || (selectedPanel<0 && hoverSide));
+            }
+            // Selected hidden plies use the same camera-facing display overlay
+            // as their handles. It changes rendering only, never sheet geometry.
+            if(selectedPanel>=0 && angle==0f && reverse==null && pull==null && pair==null){
+                outlinePeers=sheet.Faces;
+                var offset=-viewDirection*(sheet.SpatialBounds.size.magnitude+.04f);
+                foreach(var f in sheet.Faces)if(Selected(f,sheet,selectedPanel))Surface(f,false,true,offset);
+            }
+            if(turn==null && reverse==null && pull==null && pair==null && points!=null && first>=0 && second>=0 && (hinge==null || hinge.Count==0 || selectedPanel>=0)){
+                var va=points[first];var vb=points[second];var fa=sheet.Faces[va.anchor];var fb=sheet.Faces[vb.anchor];
+                var a=fa.World(va.point,(fa.layer+.5f)*PaperSheet.Thickness)-viewDirection*.025f;
+                var b=fb.World(vb.point,(fb.layer+.5f)*PaperSheet.Thickness)-viewDirection*.025f;
+                var side=Vector3.Cross(viewDirection,b-a).normalized*.035f;
+                Quad(a-side,b-side,b+side,a+side,new Color(.12f,.46f,.38f));
             }
             if(reverse==null && pull==null && pair==null && hinge!=null){
                 foreach(var segment in hinge){
                     faceFrame=segment.face.frame;
+                    if(selectedPanel>=0 && angle==0f)faceFrame=Matrix4x4.Translate(-viewDirection*(sheet.SpatialBounds.size.magnitude+.05f))*faceFrame;
                     var side=new Vector2(segment.a.y-segment.b.y,segment.b.x-segment.a.x).normalized*.038f;
                     HingeStripe(segment,side,(segment.layer+1)*PaperSheet.Thickness+.002f);
                     HingeStripe(segment,side,segment.layer*PaperSheet.Thickness-.002f);
                 }
             }
-            if(reverse==null && pull==null && pair==null && points!=null && (turn==null || angle==0f)){
+            if((reverse==null || (reverse.UsesPacket && hoverSide && angle==0f)) && pull==null && pair==null && points!=null && (turn==null || angle==0f)){
                 for(int i=0;i<points.Count;i++){
+                    if(visiblePoints!=null && !visiblePoints[i])continue;
                     var vertex=points[i];var face=sheet.Faces[vertex.anchor];
+                    if(selectablePanels!=null){
+                        bool allowed=false;foreach(int panel in selectablePanels)if(PaperSheet.SamePanel(face,sheet.Faces[panel])){allowed=true;break;}
+                        if(!allowed)continue;
+                    }
                     faceFrame=face.frame;
                     sheet.PlyRange(face,vertex.point,out int bottom,out int top);
-                    if(face.layer!=(upper?top:bottom))continue;
+                    if(viewDirection==Vector3.zero){if(face.layer!=(upper?top:bottom))continue;}
+                    else if(selectedPanel>=0 && i!=first && i!=second && !PaperSheet.SamePanel(face,sheet.Faces[selectedPanel]))continue;
+                    if(selectedPanel>=0)faceFrame=Matrix4x4.Translate(-viewDirection*(sheet.SpatialBounds.size.magnitude+.05f))*faceFrame;
                     bool chosen=i==first || i==second || i==third || i==fourth;
-                    float radius=chosen?.14f:i==hoverPoint?.11f:.075f;
-                    Color color=chosen?new Color(.12f,.52f,.40f):Ink;
-                    Dot(vertex.point,(top+1)*PaperSheet.Thickness+.002f,radius,color);
-                    Dot(vertex.point,bottom*PaperSheet.Thickness-.002f,radius,color);
+                    bool front=viewDirection==Vector3.zero?upper:Vector3.Dot(viewDirection,face.frame.MultiplyVector(Vector3.up))<0;
+                    float markerHeight=front?(face.layer+1)*PaperSheet.Thickness+.002f:face.layer*PaperSheet.Thickness-.002f;
+                    float opacity=pointOpacities==null?1:pointOpacities[i];
+                    bool highlighted=selectedPanel>=0 && PaperSheet.SamePanel(face,sheet.Faces[selectedPanel]);
+                    float tilt=Mathf.Abs(face.frame.MultiplyVector(Vector3.up).y);
+                    Color paper=highlighted?new Color(.62f,.83f,.73f):((front!=face.back)?Front:Back)*(.78f+.22f*tilt);
+                    Marker(vertex.point,markerHeight,chosen,i==hoverPoint,opacity,paper);
+                }
+            }
+            if(selectedPanel>=0 && angle==0 && reverse==null && pull==null && pair==null){
+                var face=sheet.Faces[selectedPanel];
+                faceFrame=Matrix4x4.Translate(-viewDirection*(sheet.SpatialBounds.size.magnitude+.05f))*face.frame;
+                for(int i=0;i<face.points.Length;i++){
+                    var a=face.points[i];var b=face.points[(i+1)%face.points.Length];
+                    HingeStripe(new PaperSheet.Guide{a=a,b=b},new Vector2(a.y-b.y,b.x-a.x).normalized*.018f,(face.layer+.5f)*PaperSheet.Thickness);
                 }
             }
             if(mirror!=MirrorAxis.Off){
@@ -155,14 +197,16 @@ namespace FlyEditor.Flight
             Vector3 world=faceFrame.MultiplyPoint3x4(new Vector3(p.x,height,p.y));
             return moving?rotation.MultiplyPoint3x4(world):world;
         }
-        private void Surface(PaperSheet.Face f,bool moving,bool highlight)
+        private static bool Selected(PaperSheet.Face face,PaperSheet sheet,int panel)=>
+            panel>=0 && panel<sheet.Faces.Count && PaperSheet.SamePanel(face,sheet.Faces[panel]);
+        private void Surface(PaperSheet.Face f,bool moving,bool highlight,Vector3 displayOffset=default)
         {
-            faceFrame=f.frame;
+            faceFrame=Matrix4x4.Translate(displayOffset)*f.frame;
             float bottom=f.layer*PaperSheet.Thickness,top=bottom+PaperSheet.Thickness;
             float tilt=Mathf.Abs(faceFrame.MultiplyVector(Vector3.up).y);
             Color a=(f.back?Back:Front)*(.78f+.22f*tilt),b=(f.back?Front:Back)*(.78f+.22f*tilt);
             if(moving){float shade=1f-.18f*sine;a*=shade;b*=shade;}
-            if(highlight){a=Color.Lerp(a,new Color(.67f,.86f,.77f),.65f);b=a;}
+            if(highlight){a=new Color(.62f,.83f,.73f);b=a;}
             var p=f.points;
             for(int i=1;i<p.Length-1;i++)
             {
@@ -173,16 +217,77 @@ namespace FlyEditor.Flight
             {
                 Vector2 u=p[i],v=p[(i+1)%p.Length];
                 Quad(Vertex(u,top,moving),Vertex(v,top,moving),Vertex(v,bottom,moving),Vertex(u,bottom,moving),workbench?Color.Lerp(a,b,.5f):Edge);
-                if(workbench)continue;
+                if(workbench){
+                    PaperOutline(f,u,v,top,bottom,moving,a,b);continue;
+                }
                 Vector2 shift=new Vector2(-(v-u).y,(v-u).x).normalized*.027f*(f.back?-1f:1f);
                 Quad(Vertex(u,top+.0006f,moving),Vertex(v,top+.0006f,moving),
                     Vertex(v+shift,top+.0006f,moving),Vertex(u+shift,top+.0006f,moving),Edge);
+            }
+        }
+        // Subtle opaque strokes: tint toward the paper rather than using
+        // transparency that would reveal hidden plies. No triangulation seams.
+        private void PaperOutline(PaperSheet.Face face,Vector2 a,Vector2 b,float top,float bottom,bool moving,Color front,Color back)
+        {
+            var edge=b-a;float length=edge.magnitude;if(length<.0001f)return;
+            var axis=edge/length;coveredEdges.Clear();
+            foreach(var other in outlinePeers){
+                if(ReferenceEquals(face,other)||!PaperSheet.SamePanel(face,other))continue;
+                for(int i=0;i<other.points.Length;i++){
+                    var p=other.points[i]-a;var q=other.points[(i+1)%other.points.Length]-a;
+                    if(Mathf.Abs(axis.x*p.y-axis.y*p.x)>.0001f||Mathf.Abs(axis.x*q.y-axis.y*q.x)>.0001f)continue;
+                    float x=Vector2.Dot(p,axis),y=Vector2.Dot(q,axis);
+                    float lo=Mathf.Max(0,Mathf.Min(x,y)),hi=Mathf.Min(length,Mathf.Max(x,y));
+                    if(hi-lo<.0001f)continue;
+                    int k=coveredEdges.Count;while(k>0&&coveredEdges[k-1].x>lo)k--;
+                    coveredEdges.Insert(k,new Vector2(lo,hi));
+                }
+            }
+            var inset=new Vector2(-axis.y,axis.x)*.018f*(face.back?-1:1);
+            var upper=Color.Lerp(front,SoftEdge,.18f);var lower=Color.Lerp(back,SoftEdge,.18f);
+            float cursor=0;
+            for(int i=0;i<=coveredEdges.Count;i++){
+                float end=i==coveredEdges.Count?length:coveredEdges[i].x;
+                if(end>cursor+.0001f){
+                    var u=a+axis*cursor;var v=a+axis*end;
+                    Quad(Vertex(u,top+.0005f,moving),Vertex(v,top+.0005f,moving),Vertex(v+inset,top+.0005f,moving),Vertex(u+inset,top+.0005f,moving),upper);
+                    Quad(Vertex(u,bottom-.0005f,moving),Vertex(u+inset,bottom-.0005f,moving),Vertex(v+inset,bottom-.0005f,moving),Vertex(v,bottom-.0005f,moving),lower);
+                }
+                if(i<coveredEdges.Count)cursor=Mathf.Max(cursor,coveredEdges[i].y);
             }
         }
         private void HingeStripe(PaperSheet.Guide g,Vector2 side,float h)
         {
             Quad(Vertex(g.a-side,h,false),Vertex(g.b-side,h,false),Vertex(g.b+side,h,false),
                  Vertex(g.a+side,h,false),new Color(.12f,.46f,.38f));
+        }
+        private void Marker(Vector2 p,float h,bool chosen,bool hovered,float opacity,Color paper)
+        {
+            // The paper uses an opaque vertex-colour shader. Blend with the actual
+            // underlying paper tint so fading cannot expose hidden layers.
+            if(!chosen && !hovered){Dot(p,h,.075f,Color.Lerp(paper,Ink,opacity));return;}
+            // Angular paper-style marker: dark rim, light separation, solid centre.
+            // Disjoint rings avoid overlapping coplanar triangles on either paper side.
+            float outer=chosen?(hovered?.26f:.23f):.17f;
+            float rim=outer-.035f, core=chosen?.14f:.105f;
+            Color ink=chosen?new Color(.08f,.30f,.26f):new Color(.51f,.31f,.12f);
+            Color fill=chosen?new Color(.12f,.43f,.34f):new Color(.76f,.54f,.26f);
+            DiamondRing(p,h,outer,rim,Color.Lerp(paper,ink,opacity));
+            DiamondRing(p,h,rim,core,Color.Lerp(paper,new Color(1f,.99f,.94f),opacity));
+            Dot(p,h,core,Color.Lerp(paper,fill,opacity));
+        }
+        private void DiamondRing(Vector2 p,float h,float outer,float inner,Color color)
+        {
+            for(int i=0;i<4;i++){
+                Vector2 a=DiamondCorner(i),b=DiamondCorner((i+1)%4);
+                Quad(Vertex(p+a*outer,h,false),Vertex(p+b*outer,h,false),
+                     Vertex(p+b*inner,h,false),Vertex(p+a*inner,h,false),color);
+            }
+        }
+        private static Vector2 DiamondCorner(int i)
+        {
+            switch(i){case 0:return Vector2.left;case 1:return Vector2.up;
+                case 2:return Vector2.right;default:return Vector2.down;}
         }
         private void Dot(Vector2 p,float h,float r,Color color)
         {

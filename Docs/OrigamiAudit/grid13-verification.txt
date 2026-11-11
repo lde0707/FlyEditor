@@ -1,0 +1,24 @@
+[SquareGrid] PASS 169 points, 14196 pairs, oblique fold and replay
+[VertexFolds] PASS: 169 targets, same point, perimeter, tilted panel, replay.
+[SeparatePlies] PASS upper and lower isolated, other ply stationary, joined guard, undo and replay.
+[SelectedPanel] PASS one-ply axis, free wing bend, stationary opposite ply, shared corner, replay.
+[MirrorFold] PASS two axes, paired angles, centre crease once, stacked opposite wings, fixed neighbour, paired pull, atomic save/undo.
+[InsideReverse] PASS folded tip inside pocket, two flank creases, rigid lengths, 40/100/180 degree starting folds, save and undo.
+[CornerPull] PASS flat and tilted triangle, interior stop, moving tip and side corners, save/undo.
+[FlexibleFolds] PASS flat, tilted, closed stack to 150, four handles to 100, repeated free fold, mirrored handles, rigid triangle metrics, seam continuity, save, undo.
+[ContactClosure] PASS continuous +/- fan contact and straight 180, thickness, area, seams, closed stack refold, legacy, replay and undo.
+[OpeningPlies] PASS 48 angle/layer/direction commits, fixed other plies, geometry, replay, undo; repeated-fold handles=6, repeated commits=10, swept contact.
+[DartFold] PASS: two corners, body fold, opposite signed single-wing folds, collision, legacy and replay.
+[PaperPatterns] PASS Square / Basic / 5 folds
+[PaperPatterns] PASS Square / Dart / 7 folds
+[PaperPatterns] PASS Square / Bulldog / 8 folds
+[PaperPatterns] PASS A4 / Basic / 5 folds
+[PaperPatterns] PASS A4 / Dart / 7 folds
+[PaperPatterns] PASS A4 / Bulldog / 8 folds
+[PaperPatterns] PASS Letter / Basic / 5 folds
+[PaperPatterns] PASS Letter / Dart / 7 folds
+[PaperPatterns] PASS Letter / Bulldog / 8 folds
+[AircraftGrip] PASS keel and upper side on normal, inverted and sideways darts, V-fold, flat sheet, replay.
+[FoldRatings] PASS actual shapes, 1.4 ratio, rotated stack, research, impact, failed save, reload, retry, default.
+[PaperFolding] PASS: 11+11 axis guides, 169 connected points, area, four/eight plies, opposite sides, undo and replay.
+[DenseGrid] ALL PASS 169 markers, 13 edge picks without neighbor confusion, re-click deselection, flat fold, undo, four-to-two selection.

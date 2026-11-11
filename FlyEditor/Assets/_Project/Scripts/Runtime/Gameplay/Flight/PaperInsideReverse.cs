@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlyEditor.Flight
@@ -8,6 +8,7 @@ namespace FlyEditor.Flight
     public sealed class PaperInsideReverse
     {
         private const float FlankAngle=65f;
+        private PaperPacketReverse packet;
         private sealed class Leaf
         {
             public PaperSheet.Face source,body,tip;
@@ -22,11 +23,17 @@ namespace FlyEditor.Flight
         private readonly List<PaperSheet.Guide> creases=new List<PaperSheet.Guide>();
         public readonly FoldStep Step;
         public readonly PaperSheet Source;
-        public IReadOnlyList<PaperSheet.Face> Preview=>preview;
-        public IReadOnlyList<PaperSheet.Guide> Creases=>creases;
+        public IReadOnlyList<PaperSheet.Face> Preview=>packet!=null?packet.Preview:preview;
+        public IReadOnlyList<PaperSheet.Guide> Creases=>packet!=null?packet.Creases:creases;
+        public bool UsesPacket=>packet!=null;
+        public int PacketPanels=>packet!=null?packet.ActivePanels:0;
+        public bool Highlights(int index)=>packet!=null&&packet.Highlights(index);
+        public Vector3 TipWorld=>packet!=null?packet.TipWorld:leaves[0].source.World(leaves[0].handle,0);
+        public Vector3 StopWorld=>packet!=null?packet.StopWorld:leaves[0].pivot;
         public bool IsCurrent=>initial==Source.Faces;
         private float last=float.NaN;
 
+        private PaperInsideReverse(PaperSheet sheet,FoldStep step,PaperPacketReverse packet){Source=sheet;initial=sheet.Faces;Step=step;this.packet=packet;}
         private PaperInsideReverse(PaperSheet sheet,FoldStep step,Leaf a,Leaf b)
         {
             Source=sheet;initial=sheet.Faces;Step=step;leaves[0]=a;leaves[1]=b;
@@ -45,6 +52,11 @@ namespace FlyEditor.Flight
         public static PaperInsideReverse Create(PaperSheet sheet,FoldStep step)
         {
             if(!step.insideReverse || sheet.Count>=sheet.FoldLimit || step.anchor<0 || step.anchor>=sheet.Faces.Count)return null;
+            if(step.packetReverse){
+                var packetFace=sheet.Faces[step.anchor];var packetTip=packetFace.Original(step.pullTip);var packetStop=packetFace.Original(step.pullStop);
+                if(!step.packetMaterialHandles){step.packetMaterialHandles=true;step.packetTipMaterial=new Vector2(packetTip.x,packetTip.z);step.packetStopMaterial=new Vector2(packetStop.x,packetStop.z);}
+                var packet=PaperPacketReverse.Create(sheet,step);return packet!=null?new PaperInsideReverse(sheet,step,packet):null;
+            }
             var face=sheet.Faces[step.anchor];
             var tip=face.Original(step.pullTip);var stop=face.Original(step.pullStop);
             if(Mathf.Min(Mathf.Min(tip.x,sheet.Width-tip.x),Mathf.Min(tip.z,sheet.Height-tip.z))>.001f ||
@@ -100,6 +112,7 @@ namespace FlyEditor.Flight
 
         public bool Pose(float progressDegrees)
         {
+            if(packet!=null)return packet.Pose(progressDegrees);
             if(!IsCurrent || !(progressDegrees>=0 && progressDegrees<=180))return false;
             if(last==progressDegrees)return true;
             trial.Clear();

@@ -1,0 +1,3 @@
+[Oblique] tail=4.5 anchor=4 plan=False
+[Oblique] tail=3.5 anchor=4 plan=False
+[Oblique] tail=2.5 anchor=4 plan=False

@@ -13,7 +13,7 @@ namespace FlyEditor.Editor
             var guides=new List<PaperSheet.Guide>();
             foreach(CreaseFamily family in Enum.GetValues(typeof(CreaseFamily))){
                 sheet.Guides(family,guides);
-                Check(guides.Count==((int)family<2?5:261),"Wrong crease count");
+                Check(guides.Count==((int)family<2?11:3217),"Wrong crease count");
             }
             VerifyPointPairs(sheet);
             VerifyVertexFolds();
@@ -41,7 +41,7 @@ namespace FlyEditor.Editor
             Fold(sheet,CreaseFamily.Falling,15,1);
             var accordion=new PaperSheet();
             for(int k=1;k<=accordion.FoldLimit;k++){
-                var turn=accordion.Plan(new FoldStep(CreaseFamily.Vertical,k,-1));
+                var turn=accordion.Plan(new FoldStep(CreaseFamily.Vertical,k,-1){creaseNormal=Vector2.right,creaseOffset=k*accordion.Width/(accordion.FoldLimit+1),compactLayers=true});
                 Check(accordion.Finish(turn) && !accordion.Finish(turn),"Accordion fold or stale turn");
             }
             Check(accordion.Plan(new FoldStep(CreaseFamily.Horizontal,5,1))==null,"Fold limit exceeded");
@@ -56,7 +56,7 @@ namespace FlyEditor.Editor
             var raised=guides.Find(g=>g.line.anchor!=0 && g.line.offset==2);
             Check(raised.face!=null && angled.Finish(angled.Plan(raised.line),34f),"Could not crease the tilted flap");
             Check(angled.Plan(new FoldStep(CreaseFamily.Horizontal,5,1))==null,"Bent across a non-collinear joint");
-            Debug.Log("[PaperFolding] PASS: 5+5 axis guides, 49 connected points, area, four/eight plies, opposite sides, undo and replay.");
+            Debug.Log("[PaperFolding] PASS: 11+11 axis guides, 169 connected points, area, four/eight plies, opposite sides, undo and replay.");
         }
         private static void VerifyInsideReverse()
         {
@@ -440,10 +440,10 @@ namespace FlyEditor.Editor
         {
             var sheet=new PaperSheet();
             var points=new List<PaperSheet.FoldVertex>();sheet.CollectVertices(points);
-            Check(points.Count==49,"Initial sheet vertices");
+            Check(points.Count==169,"Initial sheet vertices");
             var a=points[0];
             var b=points.Find(v=>v.point==new Vector2(sheet.Width,sheet.Height));
-            Check(!sheet.TryAxis(a,a,out _) && !sheet.TryAxis(a,points[6],out _),"Degenerate or perimeter axis");
+            Check(!sheet.TryAxis(a,a,out _) && !sheet.TryAxis(a,points[12],out _),"Degenerate or perimeter axis");
             Check(sheet.TryAxis(a,b,out var axis) && sheet.Finish(sheet.Plan(axis),45),"Manual diagonal fold");
             sheet.CollectVertices(points);
             var lifted=points.Find(v=>sheet.Faces[v.anchor].frame!=Matrix4x4.identity);
@@ -457,7 +457,7 @@ namespace FlyEditor.Editor
                 folded=true;break;
             }
             Check(folded && PaperSheet.Replay(sheet.Recipe()).Count==2,"Second vertex fold or replay failed");
-            Debug.Log("[VertexFolds] PASS: 49 targets, same point, perimeter, tilted panel, replay.");
+            Debug.Log("[VertexFolds] PASS: 169 targets, same point, perimeter, tilted panel, replay.");
         }
         private static void VerifyPointPairs(PaperSheet sheet)
         {
@@ -466,11 +466,11 @@ namespace FlyEditor.Editor
             foreach(CreaseFamily family in Enum.GetValues(typeof(CreaseFamily))){
                 sheet.Guides(family,batch);all.AddRange(batch);
             }
-            for(int i=0;i<49;i++)
-            for(int j=i+1;j<49;j++){
-                var p=new Vector2(i%7,i/7)*(sheet.Width/6f);
-                var q=new Vector2(j%7,j/7)*(sheet.Width/6f);
-                bool border=(i%7==j%7 && (i%7==0 || i%7==6)) || (i/7==j/7 && (i/7==0 || i/7==6));
+            for(int i=0;i<169;i++)
+            for(int j=i+1;j<169;j++){
+                var p=new Vector2(i%13,i/13)*(sheet.Width/12f);
+                var q=new Vector2(j%13,j/13)*(sheet.Width/12f);
+                bool border=(i%13==j%13 && (i%13==0 || i%13==12)) || (i/13==j/13 && (i/13==0 || i/13==12));
                 int matches=0;
                 foreach(var g in all){
                     if(Mathf.Abs(g.line.Distance(p))>.0001f || Mathf.Abs(g.line.Distance(q))>.0001f)continue;
@@ -483,7 +483,7 @@ namespace FlyEditor.Editor
             var replay=PaperSheet.Replay(sheet.Recipe());
             Check(replay.Count==1 && (replay.SpatialBounds.size-sheet.SpatialBounds.size).sqrMagnitude<.00001f && sheet.Undo(),
                 "Oblique fold save or undo");
-            Debug.Log("[SquareGrid] PASS 49 points, 1176 pairs, oblique fold and replay");
+            Debug.Log("[SquareGrid] PASS 169 points, 14196 pairs, oblique fold and replay");
         }
         private static void VerifyPatterns()
         {
@@ -495,7 +495,7 @@ namespace FlyEditor.Editor
                 var guides=new List<PaperSheet.Guide>();
                 foreach(CreaseFamily family in Enum.GetValues(typeof(CreaseFamily))){
                     paper.Guides(family,guides);
-                    Check(guides.Count==((int)family<2?5:261),"Format grid "+family+" "+guides.Count);
+                    Check(guides.Count==((int)family<2?11:3217),"Format grid "+family+" "+guides.Count);
                 }
                 var print=new PaperPatterns.Print(size,pattern);
                 int count=PaperPatterns.Length(pattern);

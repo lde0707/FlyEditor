@@ -1,0 +1,1 @@
+[WingSide] PASS 16 full-180 tapered wing sequences followed by opposite wing; fixed material, seams and replay.

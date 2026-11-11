@@ -103,10 +103,12 @@ namespace FlyEditor.Flight
             Mathf.Max(0.01f, initialSpeed * initialSpeed - tuning.stallSpeed * tuning.stallSpeed));
         private readonly FlightTuning tuning;
         private float initialSpeed;
+        private float pitchTurnRate;
         private bool held;
         private bool recovering;
         private bool releasePitchActive;
         private float releaseStartPitch;
+        private float releaseTurnRate, releaseTurnTime;
         private float releasePitchElapsed;
         private float underhandLift, underhandRiseTime;
 
@@ -186,9 +188,12 @@ namespace FlyEditor.Flight
             float previousClearance = Clearance;
             if (Speed < tuning.stallSpeed) recovering = true;
             else if (!held && Speed > tuning.stallSpeed + 1.5f) recovering = false;
+            bool wasClimbing = Climbing;
             Climbing = held && !recovering;
-            if (Posture == Attitude.Normal) UpdatePitch(dt);
+            float previousPitch = Pitch;
+            if (Posture == Attitude.Normal) UpdatePitch(dt, wasClimbing);
             else TickDisturbance(dt);
+            if (!Climbing) pitchTurnRate = (Pitch - previousPitch) / dt;
             // The travel direction carries through release/exhaustion instead of snapping to the nose.
             float pathResponse = tuning.flightPathResponse;
             if (underhandLift > 0f) pathResponse = Mathf.Max(pathResponse, 8f/underhandRiseTime);
@@ -249,7 +254,7 @@ namespace FlyEditor.Flight
             Durability = Mathf.Min(Effects.durability, Durability + repair + crossed * extra.intervalRepair);
         }
 
-        private void UpdatePitch(float dt)
+        private void UpdatePitch(float dt, bool wasClimbing)
         {
             if (underhandLift > 0f && (held || recovering))
             {
@@ -260,13 +265,15 @@ namespace FlyEditor.Flight
             {
                 releasePitchActive = false;
                 releasePitchElapsed = 0f;
-                Pitch = Mathf.MoveTowards(Pitch, tuning.climbPitch, tuning.pitchResponse * dt);
+                UpdateClimbPitch(dt);
                 return;
             }
 
             if (!releasePitchActive)
             {
                 releaseStartPitch = Pitch;
+                releaseTurnRate = wasClimbing ? Mathf.Clamp(pitchTurnRate, 0f, Mathf.Min(90f, tuning.pitchResponse)) : 0f;
+                releaseTurnTime = .08f + .02f * Mathf.Clamp01(Velocity.y / 15f);
                 releasePitchElapsed = 0f;
                 releasePitchActive = true;
             }
@@ -277,6 +284,12 @@ namespace FlyEditor.Flight
             // recovering must not restart its timer; only an eligible climb cancels it.
             float eased = progress * progress * (3f - 2f * progress);
             Pitch = Mathf.Lerp(releaseStartPitch, tuning.divePitch, eased);
+            // Preserve the upward turn at release, then dissipate it over a short window.
+            // Its initial slope matches the held turn; the offset and slope vanish at
+            // the normal glide endpoint, without adding propulsion or restarting the curve.
+            float remaining = 1f - progress;
+            Pitch += releaseTurnRate * releasePitchElapsed * Mathf.Exp(-releasePitchElapsed / releaseTurnTime)
+                * remaining * remaining;
             if (underhandLift > 0f)
             {
                 float rise = Mathf.SmoothStep(0f,1f,releasePitchElapsed/underhandRiseTime);
@@ -284,6 +297,26 @@ namespace FlyEditor.Flight
                 Pitch += underhandLift * rise * Mathf.SmoothStep(1f,0f,fade);
                 if (progress >= 1f) underhandLift = 0f;
             }
+        }
+
+        private void UpdateClimbPitch(float dt)
+        {
+            float error = tuning.climbPitch - Pitch;
+            if (Mathf.Abs(error) < .001f){Pitch = tuning.climbPitch;pitchTurnRate = 0f;return;}
+            // Carry the existing turn into the press. Faster/downward travel adds only
+            // a small inertia window; research still controls the maximum turn speed.
+            float responseTime = .065f + .035f * Mathf.Clamp01(Speed / 60f)
+                + .02f * Mathf.Clamp01(-Velocity.y / 20f);
+            float targetRate = Mathf.Clamp(error / .06f, -tuning.pitchResponse, tuning.pitchResponse);
+            float previousRate = Mathf.Clamp(pitchTurnRate, -tuning.pitchResponse, tuning.pitchResponse);
+            float decay = Mathf.Exp(-dt / responseTime);
+            // Analytic integration of the rate filter avoids a first-frame angle jump
+            // and makes the short easing segment consistent across fixed step sizes.
+            float delta = targetRate * dt + (previousRate - targetRate) * responseTime * (1f - decay);
+            pitchTurnRate = targetRate + (previousRate - targetRate) * decay;
+            if (Mathf.Sign(delta) == Mathf.Sign(error) && Mathf.Abs(delta) >= Mathf.Abs(error)){
+                Pitch = tuning.climbPitch;pitchTurnRate = 0f;
+            }else Pitch += delta;
         }
 
         private float DiveDragMultiplier(float dy, float dt)
@@ -404,14 +437,15 @@ namespace FlyEditor.Flight
             boostAmount = boostRemaining = 0f;
             DiveBoostActive = false;
             ChangePosture(Attitude.Normal, 0);
-            Distance = Elapsed = Pitch = FlightPathPitch = 0f;
+            Distance = Elapsed = Pitch = FlightPathPitch = pitchTurnRate = 0f;
             Height = Mathf.Max(tuning.launchHeight, PaperPlaneGeometry.ContactHeight(0f) + 0.1f);
             Speed = Mathf.Min(tuning.launchSpeed, tuning.speedCap);
             initialSpeed = Speed;
             Energy = 0.5f * Speed * Speed + tuning.gravity * Height;
             ControlArmed = held = recovering = Climbing = false;
             releasePitchActive = false;
-            releaseStartPitch = releasePitchElapsed = 0f;
+            releaseStartPitch = releasePitchElapsed = releaseTurnRate = 0f;
+            releaseTurnTime = .08f;
         }
 
         private void EnterFlying() { ControlArmed = held = false; }

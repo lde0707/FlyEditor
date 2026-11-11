@@ -217,7 +217,7 @@ namespace FlyEditor.Flight
         public void Refresh()
         {
             if (assets == null || assets.nodes == null || assets.nodes.Length == 0 || owner.Session == null) return;
-            pointsText = "연구점  " + owner.Session.Research.Points;
+            pointsText = "연구점  " + owner.Session.Research.Points.ToString("N0");
             var research = owner.Session.Research;
             growthText = "기체 " + (research.GrowthTier + 1) + "단계   ·   "
                 + (research.NextGrowthCount > 0 ? "다음 성장 " + research.OwnedCount + " / " + research.NextGrowthCount
@@ -229,7 +229,7 @@ namespace FlyEditor.Flight
             stateText = previewAll ? "전체 설계 미리보기 · 각 노드 1회 구매"
                 : owned ? "구매 완료" : "구매 후보 · 1회 구매";
             currentValue = n.benefit;
-            costText = owned && !previewAll ? "구매 완료" : n.costs[0] + " 연구점";
+            costText = owned && !previewAll ? "구매 완료" : n.costs[0].ToString("N0") + " 연구점";
             buttonText = previewAll ? "미리보기 · 구매 불가" : owned ? "구매 완료"
                 : assets.CanBuy(selectedIndex, owner.Session.Research) ? "해금하기" : "연구점 부족";
         }

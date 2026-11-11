@@ -1,0 +1,104 @@
+[
+  {
+    "image": "00-square.png",
+    "folds": 0,
+    "name": "시작 종이",
+    "diagram": "시작"
+  },
+  {
+    "image": "01-diagonal.png",
+    "folds": 1,
+    "name": "대각선으로 반 접기",
+    "diagram": "도안 1→2"
+  },
+  {
+    "image": "02-half-triangle.png",
+    "folds": 2,
+    "name": "삼각형을 다시 반 접기",
+    "diagram": "도안 2→3"
+  },
+  {
+    "image": "03-front-pocket.png",
+    "folds": 3,
+    "name": "앞쪽 주머니 눌러 펴기",
+    "diagram": "도안 3→4"
+  },
+  {
+    "image": "04-back-pocket.png",
+    "folds": 4,
+    "name": "뒤쪽 주머니 눌러 펴기",
+    "diagram": "도안 5: 뒤쪽 반복"
+  },
+  {
+    "image": "05-front-petal.png",
+    "folds": 5,
+    "name": "앞쪽 꽃잎 접기",
+    "diagram": "도안 6→7"
+  },
+  {
+    "image": "06-back-petal.png",
+    "folds": 6,
+    "name": "뒤쪽 꽃잎 접기",
+    "diagram": "도안 7: 뒤쪽 반복"
+  },
+  {
+    "image": "07-narrow-front-left.png",
+    "folds": 7,
+    "name": "앞 왼쪽 좁히기",
+    "diagram": "도안 8"
+  },
+  {
+    "image": "08-narrow-front-right.png",
+    "folds": 8,
+    "name": "앞 오른쪽 좁히기",
+    "diagram": "도안 8"
+  },
+  {
+    "image": "09-narrow-back-left.png",
+    "folds": 9,
+    "name": "뒤 왼쪽 좁히기",
+    "diagram": "도안 9"
+  },
+  {
+    "image": "10-narrow-back-right.png",
+    "folds": 10,
+    "name": "뒤 오른쪽 좁히기",
+    "diagram": "도안 9"
+  },
+  {
+    "image": "11-body-book.png",
+    "folds": 11,
+    "name": "몸통 가운데 접기",
+    "diagram": "도안 10 준비"
+  },
+  {
+    "image": "12-neck.png",
+    "folds": 12,
+    "name": "목 들어 올리기",
+    "diagram": "도안 10→11"
+  },
+  {
+    "image": "13-tail.png",
+    "folds": 13,
+    "name": "꼬리 들어 올리기",
+    "diagram": "도안 10→11"
+  },
+  {
+    "image": "14-beak.png",
+    "folds": 14,
+    "name": "부리 안으로 접기",
+    "diagram": "도안 12"
+  },
+  {
+    "image": "15-wing-front.png",
+    "folds": 15,
+    "name": "첫 번째 날개 펼치기",
+    "diagram": "도안 13: 날개"
+  },
+  {
+    "image": "16-wing-back.png",
+    "folds": 16,
+    "name": "반대쪽 날개 펼치기",
+    "diagram": "도안 13: 날개 (몸통 부풀리기 제외)"
+  }
+]

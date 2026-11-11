@@ -1,0 +1,2475 @@
+{
+    "utc": "2026-11-10T11:05:59.5191706Z",
+    "unity": "6000.5.3f1",
+    "execution": "Four-handle continuous drags and real commits; marking-only precreases skipped. Engine route with separate input regression; complete models are not certified",
+    "gridPointsPerEdge": 13,
+    "foldLimit": 10,
+    "models": [
+        {
+            "id": "waterbomb",
+            "source": "https://origami.me/waterbomb/",
+            "status": "partial-contact",
+            "nextOperation": "web 3 / opposite side",
+            "note": "Stopped at allowed contact/constraint angle 2.177734 before request 135",
+            "commits": 2,
+            "panels": 6,
+            "completed": false,
+            "recipe": [
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 135.0,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 5.5
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 0,
+                    "flap": 1
+                },
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 2.177734375,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 11.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 11.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 11.0,
+                        "y": 5.5
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 4,
+                    "flap": 5
+                }
+            ],
+            "events": [
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "web 1-2",
+                    "action": "marking-only precreases",
+                    "outcome": "skipped",
+                    "detail": "Specify handles directly.",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "web 3 / first side",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=0; markers=True; scope=authored material region",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 135.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 2.3269999027252199,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 1
+                    }
+                },
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "web 3 / first side",
+                    "action": "four-point commit",
+                    "outcome": "motion reached",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 1,
+                    "panels": 5,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 135.0,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 1
+                    }
+                },
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "web 3 / opposite side",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=4; markers=True; scope=authored material region",
+                    "commits": 1,
+                    "panels": 5,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 2.177734375,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 14.059000015258789,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 11.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 11.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 4,
+                        "flap": 5
+                    }
+                },
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "web 3 / opposite side",
+                    "action": "four-point commit",
+                    "outcome": "partial contact",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 2,
+                    "panels": 6,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 2.177734375,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 11.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 11.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 4,
+                        "flap": 5
+                    }
+                },
+                {
+                    "model": "waterbomb",
+                    "sourceStep": "verification",
+                    "action": "recipe replay",
+                    "outcome": "pass",
+                    "detail": "replayed commits=2",
+                    "commits": 2,
+                    "panels": 6,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                }
+            ]
+        },
+        {
+            "id": "frog",
+            "source": "https://www.japansociety.org.uk/usercontent/3bc1ed5a28641e243974254376c82e51/Jumping-Frog-Origami-Instructions.pdf",
+            "status": "partial-contact",
+            "nextOperation": "PDF 5 / paired layers",
+            "note": "Stopped at allowed contact/constraint angle 90.625 before request 135",
+            "commits": 2,
+            "panels": 18,
+            "completed": false,
+            "recipe": [
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": -1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": -1.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": -5.5,
+                    "anchor": 0,
+                    "flap": 0
+                },
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 90.625,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": false,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 5.5
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 8.25
+                    },
+                    "pullStop": {
+                        "x": 2.75,
+                        "y": 8.25
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 0,
+                    "flap": 0
+                }
+            ],
+            "events": [
+                {
+                    "model": "frog",
+                    "sourceStep": "PDF 1,3-4",
+                    "action": "marking-only precreases",
+                    "outcome": "skipped",
+                    "detail": "Use existing midpoint and quarter markers.",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "frog",
+                    "sourceStep": "PDF 2",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 1,
+                    "panels": 2,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.046799998730421069,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": -1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": -1.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": -5.5,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "frog",
+                    "sourceStep": "PDF 5 / paired layers",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=0; markers=True; scope=whole stack",
+                    "commits": 1,
+                    "panels": 2,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 90.625,
+                    "materialArea": 121.0,
+                    "milliseconds": 2.6112000942230226,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": false,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 8.25
+                        },
+                        "pullStop": {
+                            "x": 2.75,
+                            "y": 8.25
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "frog",
+                    "sourceStep": "PDF 5 / paired layers",
+                    "action": "four-point commit",
+                    "outcome": "partial contact",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 2,
+                    "panels": 18,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 90.625,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": false,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 8.25
+                        },
+                        "pullStop": {
+                            "x": 2.75,
+                            "y": 8.25
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "frog",
+                    "sourceStep": "verification",
+                    "action": "recipe replay",
+                    "outcome": "pass",
+                    "detail": "replayed commits=2",
+                    "commits": 2,
+                    "panels": 18,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                }
+            ]
+        },
+        {
+            "id": "crane",
+            "source": "https://californiamuseum.org/wp-content/uploads/CAM_Uprooted_CraneInsturctions.pdf",
+            "status": "shape-not-certified",
+            "nextOperation": "PDF 4 square-pocket shape",
+            "note": "Opening and pressing were attempted through the four-point solver. Check target silhouette and ply layout before repeating the back pocket.",
+            "commits": 4,
+            "panels": 6,
+            "completed": false,
+            "recipe": [
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": 1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.7071067690849304,
+                        "y": 0.7071067690849304
+                    },
+                    "creaseOffset": 7.77817440032959,
+                    "anchor": 0,
+                    "flap": 0
+                },
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": 1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": -0.7071067690849304,
+                        "y": 0.7071067690849304
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 0,
+                    "flap": 0
+                },
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 90.0,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 11.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 10.999999046325684,
+                        "y": 9.347879768029088e-7
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 2,
+                    "flap": 3
+                },
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": -89.990234375,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 5.499999523162842,
+                        "y": 4.673939884014544e-7
+                    },
+                    "pullRight": {
+                        "x": 10.999999046325684,
+                        "y": 5.500000476837158
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 10.999999046325684,
+                        "y": 9.347879768029088e-7
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 2,
+                    "flap": 3
+                }
+            ],
+            "events": [
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 1",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 1,
+                    "panels": 2,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.029400000348687173,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": 1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.7071067690849304,
+                            "y": 0.7071067690849304
+                        },
+                        "creaseOffset": 7.77817440032959,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 2",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 2,
+                    "panels": 4,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 0.04149999842047691,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": 1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": -0.7071067690849304,
+                            "y": 0.7071067690849304
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 3 / open pocket",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=2; markers=True; scope=authored material region",
+                    "commits": 2,
+                    "panels": 4,
+                    "requestedAngle": 90.0,
+                    "permittedAngle": 90.0,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 43.91310119628906,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 10.999999046325684,
+                            "y": 9.347879768029088e-7
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 2,
+                        "flap": 3
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 3 / open pocket",
+                    "action": "four-point commit",
+                    "outcome": "motion reached",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 3,
+                    "panels": 4,
+                    "requestedAngle": 90.0,
+                    "permittedAngle": 90.0,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 10.999999046325684,
+                            "y": 9.347879768029088e-7
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 2,
+                        "flap": 3
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 4 / press pocket",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=2; markers=True; scope=authored material region",
+                    "commits": 3,
+                    "panels": 4,
+                    "requestedAngle": -90.0,
+                    "permittedAngle": -89.990234375,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 44.61109924316406,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 5.499999523162842,
+                            "y": 4.673939884014544e-7
+                        },
+                        "pullRight": {
+                            "x": 10.999999046325684,
+                            "y": 5.500000476837158
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 10.999999046325684,
+                            "y": 9.347879768029088e-7
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 2,
+                        "flap": 3
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 4 / press pocket",
+                    "action": "four-point commit",
+                    "outcome": "motion reached",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 4,
+                    "panels": 6,
+                    "requestedAngle": -90.0,
+                    "permittedAngle": -89.990234375,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 5.499999523162842,
+                            "y": 4.673939884014544e-7
+                        },
+                        "pullRight": {
+                            "x": 10.999999046325684,
+                            "y": 5.500000476837158
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 10.999999046325684,
+                            "y": 9.347879768029088e-7
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 2,
+                        "flap": 3
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "PDF 4 square-pocket shape",
+                    "action": "target shape comparison",
+                    "outcome": "not certified",
+                    "detail": "Opening and pressing were attempted through the four-point solver. Check target silhouette and ply layout before repeating the back pocket.",
+                    "commits": 4,
+                    "panels": 6,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "crane",
+                    "sourceStep": "verification",
+                    "action": "recipe replay",
+                    "outcome": "pass",
+                    "detail": "replayed commits=4",
+                    "commits": 4,
+                    "panels": 6,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00003051757813,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                }
+            ]
+        },
+        {
+            "id": "lily",
+            "source": "https://www.origami-fun.com/support-files/origami-lily-print.pdf",
+            "status": "partial-contact",
+            "nextOperation": "PDF 3 / opposite side",
+            "note": "Stopped at allowed contact/constraint angle 2.929688 before request 135",
+            "commits": 2,
+            "panels": 6,
+            "completed": false,
+            "recipe": [
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 135.0,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 11.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 11.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 11.0,
+                        "y": 5.5
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 0,
+                    "flap": 1
+                },
+                {
+                    "family": 0,
+                    "offset": 0,
+                    "side": 0,
+                    "degrees": 2.9296875,
+                    "cornerPull": true,
+                    "insideReverse": false,
+                    "flexible": true,
+                    "customFlanks": true,
+                    "regionalPull": true,
+                    "closeFlat": true,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 11.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 5.5
+                    },
+                    "pullStop": {
+                        "x": 5.5,
+                        "y": 5.5
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "creaseOffset": 0.0,
+                    "anchor": 4,
+                    "flap": 5
+                }
+            ],
+            "events": [
+                {
+                    "model": "lily",
+                    "sourceStep": "PDF 1-2",
+                    "action": "marking-only precreases",
+                    "outcome": "skipped",
+                    "detail": "Specify handles directly.",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "lily",
+                    "sourceStep": "PDF 3 / first side",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=0; markers=True; scope=authored material region",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 135.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.48980000615119936,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 11.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 11.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 1
+                    }
+                },
+                {
+                    "model": "lily",
+                    "sourceStep": "PDF 3 / first side",
+                    "action": "four-point commit",
+                    "outcome": "motion reached",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 1,
+                    "panels": 5,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 135.0,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 11.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 11.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 11.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 1
+                    }
+                },
+                {
+                    "model": "lily",
+                    "sourceStep": "PDF 3 / opposite side",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=4; markers=True; scope=authored material region",
+                    "commits": 1,
+                    "panels": 5,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 2.9296875,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 12.776000022888184,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 4,
+                        "flap": 5
+                    }
+                },
+                {
+                    "model": "lily",
+                    "sourceStep": "PDF 3 / opposite side",
+                    "action": "four-point commit",
+                    "outcome": "partial contact",
+                    "detail": "Target shape is not certified by angle alone.",
+                    "commits": 2,
+                    "panels": 6,
+                    "requestedAngle": 135.0,
+                    "permittedAngle": 2.9296875,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 11.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 5.5
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 4,
+                        "flap": 5
+                    }
+                },
+                {
+                    "model": "lily",
+                    "sourceStep": "verification",
+                    "action": "recipe replay",
+                    "outcome": "pass",
+                    "detail": "replayed commits=2",
+                    "commits": 2,
+                    "panels": 6,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00000762939453,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                }
+            ]
+        },
+        {
+            "id": "dragon",
+            "source": "https://origami.me/dragon-advanced/",
+            "status": "blocked",
+            "nextOperation": "web 7 / lift near flap attempt",
+            "note": "No continuous, geometry-checked four-point commit. Candidates=1",
+            "commits": 3,
+            "panels": 5,
+            "completed": false,
+            "recipe": [
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": 1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.7071067690849304,
+                        "y": 0.7071067690849304
+                    },
+                    "creaseOffset": 7.77817440032959,
+                    "anchor": 0,
+                    "flap": 0
+                },
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": -1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": true,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.7071067690849304,
+                        "y": 0.7071067690849304
+                    },
+                    "creaseOffset": 1.9445436000823975,
+                    "anchor": 1,
+                    "flap": 2
+                },
+                {
+                    "family": 1,
+                    "offset": 0,
+                    "side": 1,
+                    "degrees": 180.0,
+                    "cornerPull": false,
+                    "insideReverse": false,
+                    "flexible": false,
+                    "customFlanks": false,
+                    "regionalPull": false,
+                    "closeFlat": false,
+                    "pullLeft": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullRight": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "singlePanel": false,
+                    "opening": false,
+                    "mirror": 0,
+                    "contact": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullTip": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "pullStop": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "paper": 0,
+                    "pattern": 0,
+                    "creaseNormal": {
+                        "x": 0.7071067690849304,
+                        "y": 0.7071067690849304
+                    },
+                    "creaseOffset": 5.8336310386657719,
+                    "anchor": 0,
+                    "flap": 0
+                }
+            ],
+            "events": [
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 1,4",
+                    "action": "marking-only precreases",
+                    "outcome": "skipped",
+                    "detail": "Specify reference lines directly.",
+                    "commits": 0,
+                    "panels": 1,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.0,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 3",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 1,
+                    "panels": 2,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.02879999950528145,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": 1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.7071067690849304,
+                            "y": 0.7071067690849304
+                        },
+                        "creaseOffset": 7.77817440032959,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 5 top layer",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 2,
+                    "panels": 3,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.954800009727478,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": -1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": true,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.7071067690849304,
+                            "y": 0.7071067690849304
+                        },
+                        "creaseOffset": 1.9445436000823975,
+                        "anchor": 1,
+                        "flap": 2
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 6",
+                    "action": "straight fold",
+                    "outcome": "pass",
+                    "detail": "endpoint markers=True,True; committed",
+                    "commits": 3,
+                    "panels": 5,
+                    "requestedAngle": 180.0,
+                    "permittedAngle": 180.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.06360000371932984,
+                    "request": {
+                        "family": 1,
+                        "offset": 0,
+                        "side": 1,
+                        "degrees": 180.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.7071067690849304,
+                            "y": 0.7071067690849304
+                        },
+                        "creaseOffset": 5.8336310386657719,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 7 / lift near flap attempt",
+                    "action": "four-point continuous candidate",
+                    "outcome": "diagnostic",
+                    "detail": "material anchor=1; markers=True; scope=authored material region",
+                    "commits": 3,
+                    "panels": 5,
+                    "requestedAngle": 90.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.21150000393390656,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": true,
+                        "insideReverse": false,
+                        "flexible": true,
+                        "customFlanks": true,
+                        "regionalPull": true,
+                        "closeFlat": true,
+                        "pullLeft": {
+                            "x": 3.5762786865234377e-7,
+                            "y": 11.0
+                        },
+                        "pullRight": {
+                            "x": 0.0000012924158454552526,
+                            "y": 0.0000012924158454552526
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 8.250218570537982e-7,
+                            "y": 5.500000476837158
+                        },
+                        "pullStop": {
+                            "x": 5.5,
+                            "y": 5.5
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 1,
+                        "flap": 2
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "web 7 / lift near flap attempt",
+                    "action": "four-point commit",
+                    "outcome": "blocked",
+                    "detail": "No continuous, geometry-checked four-point commit. Candidates=1",
+                    "commits": 3,
+                    "panels": 5,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                },
+                {
+                    "model": "dragon",
+                    "sourceStep": "verification",
+                    "action": "recipe replay",
+                    "outcome": "pass",
+                    "detail": "replayed commits=3",
+                    "commits": 3,
+                    "panels": 5,
+                    "requestedAngle": 0.0,
+                    "permittedAngle": 0.0,
+                    "materialArea": 121.00001525878906,
+                    "milliseconds": 0.0,
+                    "request": {
+                        "family": 0,
+                        "offset": 0,
+                        "side": 0,
+                        "degrees": 0.0,
+                        "cornerPull": false,
+                        "insideReverse": false,
+                        "flexible": false,
+                        "customFlanks": false,
+                        "regionalPull": false,
+                        "closeFlat": false,
+                        "pullLeft": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullRight": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "singlePanel": false,
+                        "opening": false,
+                        "mirror": 0,
+                        "contact": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullTip": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pullStop": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "paper": 0,
+                        "pattern": 0,
+                        "creaseNormal": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "creaseOffset": 0.0,
+                        "anchor": 0,
+                        "flap": 0
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+  "runtimeSourceMatch": true,
+  "unity": "6000.5.3f1",
+  "sources": {
+    "AircraftHold.cs": "ddfa87ced89d0054959ca369808bce8b03c2d33d22e05ba5d4027eb805f548e0",
+    "ExtendedResearchStats.cs": "e04721762ac1955f1c73a14dde0ee03360d2f4785849343326d19e254ba8c206",
+    "FlightCourse.cs": "58023def59a90e89bbb78523e5549eae1cd80d1c2440081247ec877a379b60a0",
+    "FlightEffects.cs": "553562a8f385cc3415040a17b6360cfba4a03f1c5ce9fa60ec629f1d20af2d99",
+    "FlightEntry.cs": "d1e69650036017fd1157e66c7f6ddbe4871c4c49ebcdf61039783766d54503e7",
+    "FlightModel.cs": "cbad9035b2c7125802089bad9c537c92459d2a30bc7ba7cc892535f5bc182a91",
+    "FlightResearch.cs": "4d4486f848766d31945498a7411b6a0fa378711e5dfed9ccf369dbf8e3ffebd9",
+    "FoldingDesk.cs": "291e1f427ab44c61a26539711cf488560fbccc17e5fe07b1083e6ada6e40526b",
+    "FoldMesh.cs": "4912bf5fa10952888b2ce6b216f69ce5b99613e2b21966e13acadea65a6bc18c",
+    "LaunchThrower.cs": "b23f8aefb23cbc3aaaa629c152d33e209c73593de27947e3df359d58c6a7fff7",
+    "LaunchTrajectory.cs": "2bbc56adb342b4df1b35be958bcf500adee7730dcb2a67800bff32ebfdc8e0ed",
+    "PaperCornerPull.cs": "7b576598aa99ce3371f80dda9ba2ab2f728f2d935ab7ef2cee79498599e67dc3",
+    "PaperEdgeMatchFold.cs": "d1fa3a6d44eb33c365d35751ea5b10aebe1aa3b0107217037b9d6eb8d17a5002",
+    "PaperFlightController.cs": "eb3efe5f3fb8ddbb8c01b739d7652175d243fc929030baffbd09368ee71fceea",
+    "PaperFlightProfile.cs": "ee6799082a0d2a87a7297e08f8a906611281ef02a188f32aa34fbd5f07ff6933",
+    "PaperFoldTopology.cs": "66db914dcb5ea7985cf611c693fb2d1c09c82b05e1d7508240a924fecc4c1956",
+    "PaperInsideReverse.cs": "228504a98adc5021a6a5cfaa295e22aa1e1f389d3e8ce30d9c6eb2b843283512",
+    "PaperMirrorFold.cs": "b71e5221991dae97ae4b5e116bfa5ca7487a495c1267bfb39675a222a48f5088",
+    "PaperPatterns.cs": "782dc2a5444b54fac77c5ac85f30e47e4ae0fb586e5f0476932bd1e9d6ef12c8",
+    "PaperPetalFold.cs": "9f37e66f8cf64369fb2e8f5cac953cf3e4dc09f0d9d6c77d2d1fd25ade58be44",
+    "PaperRadialGather.cs": "adafe65bee331797ed0ff3dbc9281e3808689c4c941fa1e9097327c8b16dcb78",
+    "PaperSheet.cs": "521d7967982667d85d90ef7e8e2ff28005fcc89d08f6ce1a8971d6fc90a124d4",
+    "ResearchEconomy.cs": "93d05657ffc39c2d75e7b562f4bd2558cab3fa22fd6dbe029cede8a1008d53dd",
+    "ResearchWebAssets.cs": "1c46d611abf4660bd3e548d61fb60fb4d508d92a463d057dc08f4a02d757125b",
+    "ResearchWebGeometry.cs": "e8c89059b7a11f73affe552af670df48112febfe0b6709ec2eb2381b68e134f1",
+    "ResearchWebNavigation.cs": "87d36988be414385fd6f96eb9c62fcf050df8122793a0996fb0aff5e9bfbc7d6",
+    "ResearchWebView.cs": "e8ee59154dc16831ac7cb086d4060359107efcfb1d93fd94116ceb03ab374676"
+  }
+}

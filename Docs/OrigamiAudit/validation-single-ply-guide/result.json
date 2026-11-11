@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "reproduced": "Partial existing spine selected an automatic two-leaf reverse fold with three guides",
+  "fix": "Normal two-point selection binds its axis and guides to the selected physical ply. Multi-ply reverse remains explicit in Stack or Packet scope.",
+  "checks": [
+    "half sheet exactly overlapped",
+    "one guide on selected top ply",
+    "top folded and bottom face unchanged",
+    "existing seam unfolds selected ply",
+    "reversed point order",
+    "next-ply and top selection",
+    "explicit stack guides",
+    "underside camera selects visible ply",
+    "packet forward and backward drag",
+    "four-point fallback",
+    "replay and undo",
+    "aircraft apply"
+  ],
+  "sourceHash": "46027E0DA2EF578FADAE5F2DBD4C4B0FAEC7952CCBB27F8524004E55156FA915"
+}

@@ -136,7 +136,7 @@ namespace FlyEditor.Flight
         public int Cost(ResearchNode node)
         {
             int slot = NextSlot(node);
-            switch (slot) { case 0: return 30; case 1: return 65; case 2: return 130; default: return 0; }
+            switch (slot) { case 0: return 30; case 1: return 120; case 2: return 480; default: return 0; }
         }
         private int NextSlot(ResearchNode node)
         {
@@ -221,7 +221,7 @@ namespace FlyEditor.Flight
             if (runId <= 0 || runId != ActiveRunId || runId <= data.lastPaidRunId
                 || float.IsNaN(maxForwardDistance) || float.IsInfinity(maxForwardDistance) || maxForwardDistance < 0f)
                 return false;
-            double baseReward = Math.Floor((double)maxForwardDistance / 5d);
+            double baseReward = ResearchEconomy.BaseReward(maxForwardDistance);
             int earned = (int)Math.Min(int.MaxValue, baseReward + Math.Min(Math.Max(0, bonus), Math.Floor(baseReward * .5)));
             var next = data.Copy();
             next.points = (int)Math.Min(int.MaxValue, (long)next.points + earned);

@@ -704,12 +704,12 @@ namespace FlyEditor.Flight
                 else if (Session.Research.Unlocked)
                 {
                     if (OutlineButton(new Rect(width - 242, 295, 202, 44), "연구 열기  [U]")) OpenResearch();
-                    GUI.Label(new Rect(width - 242, 346, 220, 28), "연구점  " + Session.Research.Points, bodyStyle);
+                    GUI.Label(new Rect(width - 242, 346, 220, 28), "연구점  " + Session.Research.Points.ToString("N0"), bodyStyle);
                 }
                 else GUI.Label(new Rect(width - 242, 302, 220, 56), "첫 비행을 마치면\n연구가 열립니다.", bodyStyle);
                 if (Model.State == FlightModel.Phase.Landed)
                     GUI.Label(new Rect(42, 235, 480, 30), Session.SettlementPending ? "보상을 아직 저장하지 못했습니다."
-                        : "이번 비행  +" + Session.LastReward + " 연구점", bodyStyle);
+                        : "이번 비행  +" + Session.LastReward.ToString("N0") + " 연구점", bodyStyle);
             }
             if (!string.IsNullOrEmpty(Session.Research.LastError))
                 GUI.Label(new Rect(42, 280, width - 330, 80), Session.Research.LastError, bodyStyle);

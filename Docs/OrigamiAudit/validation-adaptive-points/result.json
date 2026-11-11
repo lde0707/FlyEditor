@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "initial 5x5",
+    "reference toggle",
+    "free placement",
+    "empty click cleanup",
+    "mouse drag fold",
+    "small faces 2, 1 and 0.5 units",
+    "triangles",
+    "stacked quarter fold",
+    "containment and uniqueness",
+    "replay",
+    "undo"
+  ],
+  "sourceHash": "06D3D76ABF0499124A8A3F1FEAC8A5ED3A8D1105E7C50073358F129363509F23",
+  "pointsPerFace": 25,
+  "triangleTip": "degenerate row moved half a cell inward",
+  "layout": "5 rows with 5 points adapted to each convex face",
+  "status": "passed"
+}

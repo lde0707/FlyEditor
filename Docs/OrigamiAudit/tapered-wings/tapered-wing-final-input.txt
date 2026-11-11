@@ -1,0 +1,2 @@
+Asset Pipeline Refresh (id=effce9d69ffc3284fa0decce2fb1fde9): Total: 3.430 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+[WingInput] TAPERED PASS narrowed nose, central fold, whole/individual switching at zero-angle preview, face pick, both wing drags, opposite wing material unchanged, replay, lower undo, upper edit/cancel. Camera set below for lower-side visibility; paper gestures use actual Input System.

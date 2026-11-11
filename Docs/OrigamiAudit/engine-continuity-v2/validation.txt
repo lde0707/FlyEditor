@@ -1,0 +1,82 @@
+﻿Unity 6000.5.3f1 / local isolated validation project / 2026-11-11
+Runtime source hashes: written by installer after verification.
+
+=== connected-regression ===
+[ConnectedFold] PASS 8 rotated/swapped fragmented petals, 104 sweep poses, backward scrub, fixed-layer blocking, partial/full replay and undo; 28 continuous vertex-opening cases.
+[LilyStudyVerification] PASS 19 committed folds, 185 pull poses, 9 rigid turn poses, 2 blocked opposite directions; area, all seams, replay and undo. Model NOT complete.
+[ReverseDirection] PASS 16 reverse cases, 24 hinge cases: continuous motion, all material seams, area, partial/full replay and undo, invalid input.
+[NestedRegression] PASS 8 rotated/reversed cases, depth 2/3, continuous sweep and scrub, area/seams, independent tail, parent hinge, partial/full replay and exact undo.
+[Packet] PASS 8 rotated/anchor cases: full sweep, backward scrub, invalid angles, partial/full replay, independent ends, first tip preserved, original area, seams, undo.
+[Packet] PASS nested head reverse after independent neck and tail.
+[Packet] PASS crane sequential returns; neck panels=8, tail panels=8, folds=14. Wings are verified separately.
+[RadialGather] PASS 16 rotations/signs/swaps; scrub, partial/full replay, undo, four plies, two-ply packet, unchanged attached body, layer scope, legacy opt-in.
+[Petal] PASS 8 rotated/swapped cases: front/back, area and seams, exact tip shape, partial replay, backward scrub, undo.
+[Pocket] PASS 8 rotated/swapped cases, front/back squashes, exact square-base vertices, fixed plies, fractional/reversed scrubbing, JSON replay and undo.
+[FourPoint] PASS 12 variable-geometry/side/flank cases; four-ply isolation; continuous contact, original area, seams, JSON replay and undo.
+[SquareGrid] PASS 169 points, 14196 pairs, oblique fold and replay
+[VertexFolds] PASS: 169 targets, same point, perimeter, tilted panel, replay.
+[SeparatePlies] PASS upper and lower isolated, other ply stationary, joined guard, undo and replay.
+[SelectedPanel] PASS one-ply axis, free wing bend, stationary opposite ply, shared corner, replay.
+[MirrorFold] PASS two axes, paired angles, centre crease once, stacked opposite wings, fixed neighbour, paired pull, atomic save/undo.
+[InsideReverse] PASS folded tip inside pocket, two flank creases, rigid lengths, 40/100/180 degree starting folds, save and undo.
+[CornerPull] PASS flat and tilted triangle, interior stop, moving tip and side corners, save/undo.
+[FlexibleFolds] PASS flat, tilted, closed stack to 150, four handles to 100, repeated free fold, mirrored handles, rigid triangle metrics, seam continuity, save, undo.
+[ContactClosure] PASS continuous +/- fan contact and straight 180, thickness, area, seams, closed stack refold, legacy, replay and undo.
+[OpeningPlies] PASS 48 angle/layer/direction commits, fixed other plies, geometry, replay, undo; repeated-fold handles=6, repeated commits=10, swept contact.
+[DartFold] PASS: two corners, body fold, opposite signed single-wing folds, collision, legacy and replay.
+[PaperPatterns] PASS Square / Basic / 5 folds
+[PaperPatterns] PASS Square / Dart / 7 folds
+[PaperPatterns] PASS Square / Bulldog / 8 folds
+[PaperPatterns] PASS A4 / Basic / 5 folds
+[PaperPatterns] PASS A4 / Dart / 7 folds
+[PaperPatterns] PASS A4 / Bulldog / 8 folds
+[PaperPatterns] PASS Letter / Basic / 5 folds
+[PaperPatterns] PASS Letter / Dart / 7 folds
+[PaperPatterns] PASS Letter / Bulldog / 8 folds
+[AircraftGrip] PASS keel and upper side on normal, inverted and sideways darts, V-fold, flat sheet, replay.
+[FoldRatings] PASS actual shapes, 1.4 ratio, rotated stack, research, impact, failed save, reload, retry, default.
+[PaperFolding] PASS: 11+11 axis guides, 169 connected points, area, four/eight plies, opposite sides, undo and replay.
+
+=== connected-input-final ===
+[ConnectedFoldInputPlay] ALL PASS input, partial commit, edit, cancel, contact closure, next selection, undo, fourth-point deselect/reselect and four-point edge alignment
+
+=== connected-point-toggle ===
+[SquareGrid] PASS 169 points, 14196 pairs, oblique fold and replay
+[VertexFolds] PASS: 169 targets, same point, perimeter, tilted panel, replay.
+[SeparatePlies] PASS upper and lower isolated, other ply stationary, joined guard, undo and replay.
+[SelectedPanel] PASS one-ply axis, free wing bend, stationary opposite ply, shared corner, replay.
+[MirrorFold] PASS two axes, paired angles, centre crease once, stacked opposite wings, fixed neighbour, paired pull, atomic save/undo.
+[InsideReverse] PASS folded tip inside pocket, two flank creases, rigid lengths, 40/100/180 degree starting folds, save and undo.
+[CornerPull] PASS flat and tilted triangle, interior stop, moving tip and side corners, save/undo.
+[FlexibleFolds] PASS flat, tilted, closed stack to 150, four handles to 100, repeated free fold, mirrored handles, rigid triangle metrics, seam continuity, save, undo.
+[ContactClosure] PASS continuous +/- fan contact and straight 180, thickness, area, seams, closed stack refold, legacy, replay and undo.
+[OpeningPlies] PASS 48 angle/layer/direction commits, fixed other plies, geometry, replay, undo; repeated-fold handles=6, repeated commits=10, swept contact.
+[DartFold] PASS: two corners, body fold, opposite signed single-wing folds, collision, legacy and replay.
+[PaperPatterns] PASS Square / Basic / 5 folds
+[PaperPatterns] PASS Square / Dart / 7 folds
+[PaperPatterns] PASS Square / Bulldog / 8 folds
+[PaperPatterns] PASS A4 / Basic / 5 folds
+[PaperPatterns] PASS A4 / Dart / 7 folds
+[PaperPatterns] PASS A4 / Bulldog / 8 folds
+[PaperPatterns] PASS Letter / Basic / 5 folds
+[PaperPatterns] PASS Letter / Dart / 7 folds
+[PaperPatterns] PASS Letter / Bulldog / 8 folds
+[AircraftGrip] PASS keel and upper side on normal, inverted and sideways darts, V-fold, flat sheet, replay.
+[FoldRatings] PASS actual shapes, 1.4 ratio, rotated stack, research, impact, failed save, reload, retry, default.
+[PaperFolding] PASS: 11+11 axis guides, 169 connected points, area, four/eight plies, opposite sides, undo and replay.
+[PointToggle] PASS: single and pair clicks, all four slots, 4-to-3-to-2 mode changes, retained points, face fold, selected endpoint drag.
+
+=== connected-leaf-final ===
+[ConnectedLeafInputPlay] ALL PASS visible leaf guide, upper/lower opposite folds, unchanged opposite layers, hidden lower selection with Tab, whole-stack opt-in, undo/replay.
+
+Investigation failures (not counted as passes):
+Baseline and early changed workbench tests both failed at action 54: fourth handle rejected by pinned-panel filter. Fixed and re-run to completion.
+Original SelectedLeafPlay object-reference assertion failed after compact layer repacking. ConnectedLeafInputPlay compares material polygon and neutral world geometry; passes.
+An intermediate test-harness build failed due inaccessible Face.Original; replaced with public material transform.
+An intermediate leaf harness used the old session flag and collided with its baseline test. Separate flag; single-harness rerun passed.
+Remaining lily corners 1, 2, 3: direct petal plan creation still returns false. Lily is not completed.
+
+Installed runtime SHA256:
+PaperSheet.cs db21f15ac625eb85b4edb84082b5228eb45bc05bd3aa1de6e5995786b4dc8b2d
+PaperPetalFold.cs 680c2ede031f92ae9a7cc280a328871491c68a06c269430f3af71bc0103b4bfa
+FoldingDesk.cs e3e1c272b400b93ca5f7d56e06247175545d036b6c79f4cd880882d7226b0c5e

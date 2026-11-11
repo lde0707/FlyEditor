@@ -1,0 +1,13 @@
+{
+  "unity": "6000.5.3f1",
+  "completedPatterns": 0,
+  "testedPatterns": 5,
+  "sources": {
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs": "521d7967982667d85d90ef7e8e2ff28005fcc89d08f6ce1a8971d6fc90a124d4",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperCornerPull.cs": "7b576598aa99ce3371f80dda9ba2ab2f728f2d935ab7ef2cee79498599e67dc3",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs": "291e1f427ab44c61a26539711cf488560fbccc17e5fe07b1083e6ada6e40526b",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperRadialGather.cs": "adafe65bee331797ed0ff3dbc9281e3808689c4c941fa1e9097327c8b16dcb78",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperFoldTopology.cs": "66db914dcb5ea7985cf611c693fb2d1c09c82b05e1d7508240a924fecc4c1956",
+    "FlyEditor/Assets/_Project/Scripts/Editor/RadialGatherVerification.cs": "7521937d0c5ce08dd715809aa068bfdf7f5dce24d817ce580af8861e5096e6d9"
+  }
+}

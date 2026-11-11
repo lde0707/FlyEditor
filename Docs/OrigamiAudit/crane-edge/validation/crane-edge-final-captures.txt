@@ -1,0 +1,17 @@
+[CraneEdge] step 1 diagonal geometry/replay PASS faces=2
+[CraneEdge] step 2 half-triangle geometry/replay PASS faces=4
+[CraneEdge] step 3 front-pocket geometry/replay PASS faces=6
+[CraneEdge] step 4 back-pocket geometry/replay PASS faces=8
+[CraneEdge] step 5 front-petal geometry/replay PASS faces=16
+[CraneEdge] step 6 back-petal geometry/replay PASS faces=24
+[CraneEdge] step 7 narrow-front-left geometry/replay PASS faces=36
+[CraneEdge] step 8 narrow-front-right geometry/replay PASS faces=48
+[CraneEdge] step 9 narrow-back-left geometry/replay PASS faces=48
+[CraneEdge] step 10 narrow-back-right geometry/replay PASS faces=48
+[CraneEdge] step 11 body-book geometry/replay PASS faces=48
+[CraneEdge] step 12 neck geometry/replay PASS faces=64
+[CraneEdge] step 13 tail geometry/replay PASS faces=104
+[CraneEdge] step 14 beak geometry/replay PASS faces=120
+[CraneEdge] step 15 wing-front geometry/replay PASS faces=124
+[CraneEdge] step 16 wing-back geometry/replay PASS faces=128
+[CraneEdge] PASS folded crane silhouette; body inflation remains a separate operation.

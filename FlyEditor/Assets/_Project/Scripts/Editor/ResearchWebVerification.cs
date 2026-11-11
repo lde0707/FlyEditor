@@ -99,7 +99,7 @@ namespace FlyEditor.Editor
                     "Reference layout branch purchases failed.");
                 var reloaded = new FlightResearch(disk);
                 Require(reloaded.Owns("Climb_1") && !reloaded.Owns("Climb_2") &&
-                    reloaded.Owns("Drag_1") && !reloaded.Owns("Drag_2") && reloaded.Points == 540,
+                    reloaded.Owns("Drag_1") && !reloaded.Owns("Drag_2") && reloaded.Points == 360,
                     "File reload changed ownership or funds.");
                 var baseline = new FlightTuning(); var tuning = reloaded.Apply(baseline);
                 Require(Mathf.Approximately(tuning.drag, baseline.drag * .94f)
@@ -112,7 +112,7 @@ namespace FlyEditor.Editor
                 disk.Save(earlierLayout);
                 var restored = new FlightResearch(disk);
                 Require(restored.Owns("Drag_2") && !restored.Owns("Drag_1") && restored.Owns("Climb_2")
-                    && !restored.Owns("Climb_1") && restored.Points == 540, "Previous graph purchases were lost.");
+                    && !restored.Owns("Climb_1") && restored.Points == 360, "Previous graph purchases were lost.");
             }
             finally
             {

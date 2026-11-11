@@ -1,0 +1,11 @@
+{
+  "description": "Coupled pocket hinges, supported flattening, conservative collision/rigidity checks, actual input and five-model rerun. Full models remain unfinished.",
+  "sources": {
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs": "ef8e4bbfeadf820fac967c7a52f3fd8ca479d72f325254f3f57035435e48576f",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperCornerPull.cs": "e0fddb4c13cb961f37a2bba5338200fe1637bed6b30c0c00582d7e10f73cb9fe",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs": "720d5ae8434aa2f30269063f279f3a25cc410e3784ab35225f60ce66f2763144",
+    "FlyEditor/Assets/_Project/Scripts/Editor/OrigamiFeasibilityAudit.cs": "90c74b273d9c82a22d503792883fcd58ac594846c54ac956cfc6de1693457489",
+    "FlyEditor/Assets/_Project/Scripts/Editor/PocketFoldingVerification.cs": "48b85076cd81ecadab9e4b9fb05f67958b2ce3a06ff0d0b7863f7727a0223652",
+    "FlyEditor/Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs": "3b47a115576849610e0dad902116030b5495a78d940790f824c2f58a687f03d3"
+  }
+}

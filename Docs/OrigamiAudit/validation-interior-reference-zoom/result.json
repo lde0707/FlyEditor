@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "edge point counts unchanged",
+    "actual mouse wheel show/hide",
+    "80-percent fit threshold",
+    "hysteresis",
+    "hidden interiors excluded from picking",
+    "selected point retained and deselectable at far zoom",
+    "interior-point fold and undo/replay",
+    "occluded stacked interiors hidden",
+    "small faces require closer zoom"
+  ],
+  "selectedHandlesRemainVisible": true,
+  "hideThreshold": 0.74,
+  "metric": "Largest projected face extent relative to viewport dimensions, evaluated per face",
+  "sourceHash": "7A6C48A47461F05A23065E4EAC19B4ECBD35FE39E41A95398D85B4E7B22B9D33",
+  "status": "passed",
+  "interiorLayout": "Three inset rows with three points following each convex face outline",
+  "showThreshold": 0.8
+}

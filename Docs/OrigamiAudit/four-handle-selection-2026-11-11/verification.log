@@ -1,0 +1,920 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.3f1 (c2eb47b3a2a9) revision 12774215'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0" at "2026-11-11T09:11:15.3491103Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 32164 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-11T09:11:15Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Unity.exe
+-batchmode
+-force-d3d11
+-projectPath
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+-executeMethod
+FourHandleSelectionProbe.Run
+-logFile
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\.four-system\..\output\validation\unity-four-system-four-handle-final.log
+-quit
+Successfully changed project path to: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [53576]  Target information:
+
+Player connection [53576]  * "[IP] 192.168.0.32 [Port] 55505 [Flags] 2 [Guid] 310439182 [EditorId] 310439182 [Version] 1048832 [Id] WindowsEditor(7,doeon07) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [53576] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [53576] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-7592" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-doun0"
+[Licensing::IpcConnector] LicenseClient-doun0 channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3" at "2026-11-11T09:11:17.0330778Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 51036, path: "C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              c6561d4be6ca40b688690b2c311bded9
+  Correlation Id:          a7fbe66c37ec5c57631ff556f252be37
+  External correlation Id: 2394432719797338975
+  Machine Id:              YvDvKs+GecMwzKpRjRcVzYtBbgs=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-doun0-6000.5.3" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3-notifications" at "2026-11-11T09:11:17.0467262Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568939546096-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.71s
+[Licensing::Module] Licensing is initialized (took 0.51s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.3f1 (c2eb47b3a2a9)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 130T GPU (16GB) (ID=0x7d51)
+    Vendor:   Intel
+    VRAM:     18333 MB
+    Driver:   32.0.101.6737
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56592
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009983 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.543 seconds
+Domain Reload Profiling: 1371ms
+	BeginReloadAssembly (205ms)
+		CreateAndSetChildDomain (7ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (120ms)
+	LoadAllAssembliesAndSetupDomain (479ms)
+		LoadAssemblies (187ms)
+		AnalyzeDomain (328ms)
+			TypeCache.Refresh (326ms)
+				TypeCache.ScanAssembly (310ms)
+	FinalizeReload (546ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (112ms)
+			ProcessInitializeOnLoadAttributes (124ms)
+			ProcessInitializeOnLoadMethodAttributes (198ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 57 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.13 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ai.navigation@42d896194035)
+    com.unity.collab-proxy@2.12.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.19.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.inputsystem@21a28c3a6c83)
+    com.unity.timeline@1.8.12 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.timeline@8cd8509afae5)
+    com.unity.visualscripting@1.9.11 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.visualscripting@8bed5ad90189)
+    com.unity.searcher@4.9.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.29 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.burst@6bb9aca3ef38)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.render-pipelines.universal@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal@276396f56b3f)
+    com.unity.test-framework@1.7.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.ugui@2.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ugui@377fd60ad87b)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+    com.unity.render-pipelines.core@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.core@0733e3164aa3)
+    com.unity.shadergraph@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.shadergraph@8aa9acb51790)
+    com.unity.render-pipelines.universal-config@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal-config@fdda01c80fe3)
+    com.unity.collections@6.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collections@a43cabe808ca)
+    com.unity.mathematics@1.4.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.mathematics@981956d94fb6)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.03 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 4s332ms
+[720/915    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[907/915    2s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+[908/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 142 defines and 337 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[909/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[910/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[911/915    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\_Project\Scripts\Editor\LilyFanProbe.cs(8,368): warning CS0219: The variable 'touches' is assigned but its value is never used
+
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+[912/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 140 defines and 360 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[913/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[914/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (4.24 seconds), 9 items updated, 915 evaluated
+Assets\_Project\Scripts\Editor\LilyFanProbe.cs(8,368): warning CS0219: The variable 'touches' is assigned but its value is never used
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+AssetDatabase: script compilation time: 4.890942s
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 5.12 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 6.33 ms, found 4 plugins.
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.853 seconds
+Domain Reload Profiling: 5327ms
+	BeginReloadAssembly (433ms)
+		DisableScriptedObjects (67ms)
+		CreateAndSetChildDomain (145ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (108ms)
+	LoadAllAssembliesAndSetupDomain (907ms)
+		LoadAssemblies (641ms)
+		AnalyzeDomain (240ms)
+			TypeCache.Refresh (169ms)
+				TypeCache.ScanAssembly (157ms)
+			BuildScriptInfoCaches (63ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (3854ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (86ms)
+			ProcessInitializeOnLoadAttributes (3115ms)
+			ProcessInitializeOnLoadMethodAttributes (224ms)
+			AfterProcessingInitializeOnLoad (24ms)
+		AwakeInstancesAfterBackupRestoration (39ms)
+Starting new worker id: 0 with log in C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 7.45 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=f13418c8be58de14bb2ebc407647b354): Total: 11.750 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=4805 ms
+		Asset DB Callback time: managed=262 ms, native=54 ms
+		Scripting: domain reloads=1, domain reload time=1609 ms, compile time=4893 ms, other=124 ms
+		Project Asset Count: scripts=1347, non-scripts=3452
+		Asset File Changes: new=0, changed=2, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 43.532ms
+	ApplyChangesToAssetFolders: 1.528ms
+	Scan: 445.993ms
+	Collect global state as custom dependencies: 3.669ms
+	OnSourceAssetsModified: 0.774ms
+	CategorizeScriptCompilationAssets: 63.183ms
+	ProcessAssetsWithTransientArtifactChanges: 86.428ms
+	CategorizeAssets: 52.395ms
+	CompileScripts: 4892.636ms
+	ImportOutOfDateAssets: 3946.028ms (3878.982ms without children)
+		UnloadImportedAssets: 0.746ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.661ms
+		ImportSchedulerStart: 65.589ms
+	PostProcessAllAssets: 266.573ms
+		VCAutoAddAssetPostprocess 1.922ms
+		XRBuildSystem.XRAssetImported 1.729ms
+		PostProcessCallbackCreateDeferredMaterials 0.061ms
+		MonoPostProcessAllAssets: 262.075ms
+			AssetPostprocessor.OnPostprocessAllAssets 150.393ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 22.539ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 14.630ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 9.503ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 6.215ms
+			SyncVS.PostprocessSyncProject 5.450ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.851ms
+			AssetChangedListener.OnPostprocessAllAssets 2.595ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 2.257ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.044ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.875ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.492ms
+			MaterialPostprocessor.OnPostprocessAllAssets 1.177ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.171ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.817ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.724ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.719ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.669ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.648ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.568ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.533ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.481ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.420ms
+			PostProcessor.OnPostprocessAllAssets 0.369ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.367ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.312ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.282ms
+			AssetEvents.OnPostprocessAllAssets 0.266ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.221ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.191ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.140ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.132ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.074ms
+	PostAssetChangesProfiler: 10.194ms
+	UnloadStreamsBegin: 2.881ms
+	PersistCurrentRevisions: 0.179ms
+	GenerateScriptTypeHashes: 1.496ms
+	GenerateScriptTypeSerializationHashes: 2.645ms
+	Untracked: 1926.411ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Scanning for USB devices : 2.679ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-FlyEditor
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6650 unused Assets / (4.7 MB). Loaded Objects now: 7552.
+Memory consumption went from 415.9 MB to 411.2 MB.
+Total: 17.499800 ms (FindLiveObjects: 0.783900 ms CreateObjectMapping: 3.701400 ms MarkObjects: 7.406000 ms  DeleteObjects: 5.602800 ms)
+
+[FourHandle] pitch=57 yaw=-18 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=-18 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=-18 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=-18 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=0 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=0 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=0 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=0 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=90 corner=0 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=90 corner=1 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=90 corner=2 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=90 corner=3 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=180 corner=0 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=180 corner=1 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=180 corner=2 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=57 yaw=180 corner=3 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=-18 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=-18 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=-18 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=-18 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=0 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=0 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=0 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=0 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=90 corner=0 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=90 corner=1 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=90 corner=2 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=90 corner=3 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=180 corner=0 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=180 corner=1 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=180 corner=2 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=123 yaw=180 corner=3 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=-18 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=-18 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=-18 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=-18 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=0 corner=0 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=0 corner=1 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=0 corner=2 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=0 corner=3 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=90 corner=0 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=90 corner=1 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=90 corner=2 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=90 corner=3 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=180 corner=0 phase=PreparingClearance first=4 second=36 left=40 right=47 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=180 corner=1 phase=ReviewFourPoints first=40 second=47 left=36 right=4 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=180 corner=2 phase=PickSide first=36 second=4 left=47 right=40 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] pitch=90 yaw=180 corner=3 phase=ReviewFourPoints first=47 second=40 left=4 right=36 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1·2번의 방향이나 선택한 겹을 확인하세요.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:28)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 28)
+
+[FourHandle] PASS 48 view/order cases; retention, deselection, reselection and blocked drag safety, explicit layer retry.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FourHandleSelectionProbe:Run () (at Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs:30)
+
+(Filename: Assets/_Project/Scripts/Editor/FourHandleSelectionProbe.cs Line: 30)
+
+MonoPathRemapper: Attempts to remap: 25242; Successful remaps: 2
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794388295968,"processId":7592,"allocatedMemory":16897914,"memoryLabels":[{"Default":204614},{"Permanent":15516},{"NewDelete":66155},{"Thread":4197640},{"Manager":33669},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":852633},{"Material":24},{"GfxDevice":55328},{"Animation":952},{"Audio":1544},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":952},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1574452},{"BaseObject":1621960},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":1032},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":16906},{"StaticString":3808},{"Utility":2673510},{"Curl":2696},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":8392},{"WebRequest":629},{"VR":47114},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":552},{"Hierarchy":1176},{"UIElements":72},{"CoreStats":13688},{"Identifiers":6768},{"Gui":128},{"EditorUtility":112129},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4870620},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":38905},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3480},{"Windowing":456},{"Licensing":664},{"AssetReference":32},{"IPCStream":32}]}

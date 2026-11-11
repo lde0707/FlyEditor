@@ -1,0 +1,121 @@
+[
+  {
+    "step": 0,
+    "name": "새 정사각형 종이",
+    "command": 2,
+    "image": "steps/00.png",
+    "sha256": "63f6b403579898c0ea36684648ba13dd94d17579be2a00b40cb7e23394dfd75c"
+  },
+  {
+    "step": 1,
+    "name": "대각선 반 접기",
+    "command": 4,
+    "image": "steps/01.png",
+    "sha256": "4d423a0aa11f8e23b3509bb97c193100fc34581f766426417d591c32ecd02a37"
+  },
+  {
+    "step": 2,
+    "name": "삼각형 반 접기",
+    "command": 5,
+    "image": "steps/02.png",
+    "sha256": "534176bb4eb9da229b687e4b1ec8a5c8262d35b080cb933590d7bb8067d530b5"
+  },
+  {
+    "step": 3,
+    "name": "앞 주머니 눌러 펴기",
+    "command": 8,
+    "image": "steps/03.png",
+    "sha256": "f69f6fed0b584c9c83713609095af1d332aa756d46352f943ee682acf5aa232e"
+  },
+  {
+    "step": 4,
+    "name": "뒤 주머니 눌러 펴기",
+    "command": 10,
+    "image": "steps/04.png",
+    "sha256": "a8fd87bb1d95291b7ff9eb3313709584812b20204b9563076615f7613719a7d4"
+  },
+  {
+    "step": 5,
+    "name": "앞 꽃잎 접기",
+    "command": 15,
+    "image": "steps/05.png",
+    "sha256": "de86dc9805ecc9325cebfffe5a2dc8d2d9914ec59e010b61d33d8e03a3447a7c"
+  },
+  {
+    "step": 6,
+    "name": "뒤 꽃잎 접기",
+    "command": 18,
+    "image": "steps/06.png",
+    "sha256": "82b8310fd6e80a339f3023d605cd06494cd3bf8a9cf3de7fe02d7363102592ef"
+  },
+  {
+    "step": 7,
+    "name": "앞쪽 목 부분 좁히기",
+    "command": 25,
+    "image": "steps/07.png",
+    "sha256": "b6d0b9ba7b954dd41ac1f85a7dea9f0e71554eea46aafe801522235cd5b8f55e"
+  },
+  {
+    "step": 8,
+    "name": "앞쪽 꼬리 부분 좁히기",
+    "command": 27,
+    "image": "steps/08.png",
+    "sha256": "c48ec3725da20ba9cb23cb1b27f21c7df38a1a9a328657ed25f593e150dcc46e"
+  },
+  {
+    "step": 9,
+    "name": "뒤쪽 목 부분 좁히기",
+    "command": 30,
+    "image": "steps/09.png",
+    "sha256": "d1787864e5b39945b9b602f56f7c75d5d7168a94b77ad32cae178b93cb431d50"
+  },
+  {
+    "step": 10,
+    "name": "뒤쪽 꼬리 부분 좁히기",
+    "command": 32,
+    "image": "steps/10.png",
+    "sha256": "71c8a43b7d27bc42836d809e7d5aaeec46c569e871db7eefee782c845b08ba77"
+  },
+  {
+    "step": 11,
+    "name": "몸통 반 접기",
+    "command": 33,
+    "image": "steps/11.png",
+    "sha256": "82e875a7bfbebe3fd700b0d3a2f1c87c3329885943ecc10229c2dc3bc7ac7c91"
+  },
+  {
+    "step": 12,
+    "name": "목 안쪽 뒤집어 접기",
+    "command": 35,
+    "image": "steps/12.png",
+    "sha256": "e03f7b338acd14d3a5141ea8c3be92f830d79d81dfcb0ed7549b1d186f1bfea1"
+  },
+  {
+    "step": 13,
+    "name": "꼬리 안쪽 뒤집어 접기",
+    "command": 37,
+    "image": "steps/13.png",
+    "sha256": "67c8401b03277ed44d4ba68eb8e7598a60cfb382cdb6db089f0da0754d4c018a"
+  },
+  {
+    "step": 14,
+    "name": "부리 접기",
+    "command": 42,
+    "image": "steps/14.png",
+    "sha256": "d61c2f01e0acb6d2941ea9f75f0c1590482e8f959d7835cc71cf5412eafcf08b"
+  },
+  {
+    "step": 15,
+    "name": "첫 날개 펼치기",
+    "command": 48,
+    "image": "steps/15.png",
+    "sha256": "0d7180494595b82e8efc4aedc6bb088e6a22740b476d9c93d10cf914542104c9"
+  },
+  {
+    "step": 16,
+    "name": "반대 날개 펼치기",
+    "command": 51,
+    "image": "steps/16.png",
+    "sha256": "d383fc20478fbd7b90b93e6c2ca65db5762da31109de7fea932860b4649a2871"
+  }
+]

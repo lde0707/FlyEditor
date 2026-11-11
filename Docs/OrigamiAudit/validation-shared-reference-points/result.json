@@ -1,0 +1,30 @@
+{
+  "normalReferencesPerFace": 5,
+  "smallOrNarrowReferencesPerFace": 3,
+  "checks": [
+    "square five",
+    "fully overlapped triangle five visible",
+    "four-layer quarter five visible",
+    "thin strip three",
+    "small square three",
+    "canonical shared endpoint",
+    "left and right connection and actual fold",
+    "selected shared endpoint toggles off",
+    "unrelated stacked corners stay distinct",
+    "internal ply selectable",
+    "cross-panel whole and individual folds",
+    "direct face drag",
+    "four-point fold",
+    "automatic packet fold",
+    "undo and replay"
+  ],
+  "identity": "Shared material coordinate and connected spatial position; coincident unrelated layers remain distinct",
+  "hashes": {
+    "FoldingDesk": "759EECE7D0F1A946446429BA8B3905A951E445407819B895372BD0BC8D04AEB8",
+    "FoldMesh": "F2E708EFB1F6A1494FD5D8C9F3F113E6C5C4457D68766B26934E23E71A76E886"
+  },
+  "narrowAspectRatio": 0.25,
+  "smallAreaFraction": 0.04,
+  "status": "passed",
+  "visibility": "Only exposed reference representatives, plus explicitly selected internal ply and authored handles"
+}

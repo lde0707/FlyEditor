@@ -85,7 +85,7 @@ namespace FlyEditor.Flight
                 + Mathf.Min(2, highPickups) * air + (pickups >= 3 ? sort : 0)
                 + (longestChain >= 3 ? chain : 0)
                 + (distance >= 20 && pickups >= 1 ? returnMail + (broken ? lastMail : 0) : 0);
-            return Mathf.FloorToInt(Mathf.Min(result, Mathf.Floor(distance / 5) * .5f));
+            return ResearchEconomy.BonusReward(distance, result);
         }
     }
 }

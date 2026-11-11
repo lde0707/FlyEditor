@@ -1,0 +1,23 @@
+{
+  "editor": "6000.5.3f1",
+  "rule": "Selected leaf follows material-connected pieces on the chosen side; unrelated stationary layers are not split or moved.",
+  "result": "PASS",
+  "sourceHashes": {
+    "PaperSheet": "3DB5362BD3C979C5D8CCE94737D7D51329582589CF4EF237C18D41E11D6C0C9E",
+    "FoldingDesk": "440B40FBBC1F7A6A3916C12B99C4A80736594F697BE02E8DBD016112DC94D855"
+  },
+  "checks": [
+    "cross-color shared vertex line and fold",
+    "visible leaf guide only",
+    "upper then lower opposite folds",
+    "other leaf geometry unchanged",
+    "hidden lower leaf selection via Tab",
+    "explicit entire-stack selection",
+    "six upper/lower angle cases",
+    "area and seams",
+    "collision",
+    "JSON save/replay",
+    "undo",
+    "existing petal/pocket/four-point/paper regressions"
+  ]
+}

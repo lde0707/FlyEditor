@@ -1,0 +1,817 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.3f1 (c2eb47b3a2a9) revision 12774215'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0" at "2026-11-10T16:20:00.4500574Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 32164 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-10T16:20:00Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Unity.exe
+-batchmode
+-force-d3d11
+-projectPath
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+-executeMethod
+LeafRegression.Run
+-logFile
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\.four-system\..\output\validation\unity-four-system-leaf-regression.log
+-quit
+Successfully changed project path to: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [43080]  Target information:
+
+Player connection [43080]  * "[IP] 192.168.0.128 [Port] 55505 [Flags] 2 [Guid] 633663867 [EditorId] 633663867 [Version] 1048832 [Id] WindowsEditor(7,doeon07) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [43080] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [43080] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-44060" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-doun0"
+[Licensing::IpcConnector] LicenseClient-doun0 channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3" at "2026-11-10T16:20:01.9067212Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 11832, path: "C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              09207737060342d68da894c3dbd9c2f8
+  Correlation Id:          3f7b89d0e7690ae8c1b99dd249ca87fb
+  External correlation Id: 2691835156442518104
+  Machine Id:              YvDvKs+GecMwzKpRjRcVzYtBbgs=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-doun0-6000.5.3" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3-notifications" at "2026-11-10T16:20:01.9167059Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568939546096-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.47s
+[Licensing::Module] Licensing is initialized (took 0.27s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.3f1 (c2eb47b3a2a9)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 130T GPU (16GB) (ID=0x7d51)
+    Vendor:   Intel
+    VRAM:     18333 MB
+    Driver:   32.0.101.6737
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56060
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004708 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.329 seconds
+Domain Reload Profiling: 893ms
+	BeginReloadAssembly (178ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (83ms)
+	LoadAllAssembliesAndSetupDomain (283ms)
+		LoadAssemblies (150ms)
+		AnalyzeDomain (198ms)
+			TypeCache.Refresh (197ms)
+				TypeCache.ScanAssembly (182ms)
+	FinalizeReload (331ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (70ms)
+			ProcessInitializeOnLoadAttributes (79ms)
+			ProcessInitializeOnLoadMethodAttributes (112ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 57 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.13 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ai.navigation@42d896194035)
+    com.unity.collab-proxy@2.12.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.19.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.inputsystem@21a28c3a6c83)
+    com.unity.timeline@1.8.12 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.timeline@8cd8509afae5)
+    com.unity.visualscripting@1.9.11 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.visualscripting@8bed5ad90189)
+    com.unity.searcher@4.9.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.29 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.burst@6bb9aca3ef38)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.render-pipelines.universal@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal@276396f56b3f)
+    com.unity.test-framework@1.7.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.ugui@2.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ugui@377fd60ad87b)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+    com.unity.render-pipelines.core@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.core@0733e3164aa3)
+    com.unity.shadergraph@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.shadergraph@8aa9acb51790)
+    com.unity.render-pipelines.universal-config@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal-config@fdda01c80fe3)
+    com.unity.collections@6.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collections@a43cabe808ca)
+    com.unity.mathematics@1.4.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.mathematics@981956d94fb6)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.03 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 2s45ms
+[721/915    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[911/915    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+[912/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 140 defines and 360 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[913/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[914/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (2.00 seconds), 5 items updated, 915 evaluated
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+AssetDatabase: script compilation time: 2.552550s
+Begin MonoManager ReloadAssembly
+Total cache size 267581923
+Total cache size after purge 267581923, took 00:00:00.3025997
+Refreshing native plugins compatible for Editor in 4.46 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 4.08 ms, found 4 plugins.
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.730 seconds
+Domain Reload Profiling: 3939ms
+	BeginReloadAssembly (304ms)
+		DisableScriptedObjects (74ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (88ms)
+	LoadAllAssembliesAndSetupDomain (795ms)
+		LoadAssemblies (560ms)
+		AnalyzeDomain (210ms)
+			TypeCache.Refresh (149ms)
+				TypeCache.ScanAssembly (138ms)
+			BuildScriptInfoCaches (53ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (2731ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (2103ms)
+			ProcessInitializeOnLoadMethodAttributes (181ms)
+			AfterProcessingInitializeOnLoad (21ms)
+		AwakeInstancesAfterBackupRestoration (43ms)
+Starting new worker id: 0 with log in C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 4.30 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=66de4612bf82bcf4e9b9850d77357b58): Total: 7.605 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=3353 ms
+		Asset DB Callback time: managed=217 ms, native=41 ms
+		Scripting: domain reloads=1, domain reload time=1339 ms, compile time=2554 ms, other=98 ms
+		Project Asset Count: scripts=1347, non-scripts=3452
+		Asset File Changes: new=0, changed=2, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 33.594ms
+	ApplyChangesToAssetFolders: 0.951ms
+	Scan: 210.014ms
+	Collect global state as custom dependencies: 4.894ms
+	OnSourceAssetsModified: 0.755ms
+	CategorizeScriptCompilationAssets: 43.689ms
+	ProcessAssetsWithTransientArtifactChanges: 74.260ms
+	CategorizeAssets: 44.116ms
+	CompileScripts: 2554.011ms
+	ImportOutOfDateAssets: 2800.191ms (2754.093ms without children)
+		UnloadImportedAssets: 0.668ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.524ms
+		ImportSchedulerStart: 44.861ms
+	PostProcessAllAssets: 223.701ms
+		VCAutoAddAssetPostprocess 4.362ms
+		XRBuildSystem.XRAssetImported 1.670ms
+		PostProcessCallbackCreateDeferredMaterials 0.056ms
+		MonoPostProcessAllAssets: 216.991ms
+			AssetPostprocessor.OnPostprocessAllAssets 106.195ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 40.066ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 16.661ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 10.503ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 4.122ms
+			SyncVS.PostprocessSyncProject 3.224ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 2.183ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.641ms
+			AssetChangedListener.OnPostprocessAllAssets 1.637ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.397ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.306ms
+			MaterialPostprocessor.OnPostprocessAllAssets 1.097ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 1.077ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.805ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.744ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.725ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.707ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.666ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.479ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.343ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.317ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.313ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.280ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.254ms
+			PostProcessor.OnPostprocessAllAssets 0.252ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.242ms
+			AssetEvents.OnPostprocessAllAssets 0.230ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.220ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.173ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.146ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.140ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.110ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.089ms
+	PostAssetChangesProfiler: 5.803ms
+	UnloadStreamsBegin: 2.581ms
+	PersistCurrentRevisions: 0.130ms
+	GenerateScriptTypeHashes: 1.986ms
+	GenerateScriptTypeSerializationHashes: 3.759ms
+	Untracked: 1595.870ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Scanning for USB devices : 1.259ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-FlyEditor
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6567 unused Assets / (6.4 MB). Loaded Objects now: 7469.
+Memory consumption went from 421.4 MB to 415.0 MB.
+Total: 21.293600 ms (FindLiveObjects: 0.945100 ms CreateObjectMapping: 2.863700 ms MarkObjects: 6.490800 ms  DeleteObjects: 10.982800 ms)
+
+Leaf case 0 angle 30
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+Leaf case 0 angle 90
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+Leaf case 0 angle 180
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+Leaf case 2 angle 30
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+Leaf case 2 angle 90
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+Leaf case 2 angle 180
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:9)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 9)
+
+[LeafRegression] PASS 6 selected upper/lower angles, area and seams, collision, JSON replay, exact undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:17)
+
+(Filename: Assets/_Project/Scripts/Editor/LeafRegression.cs Line: 17)
+
+Worker ready: AssetImportWorkerHW0 0
+[Petal] PASS 8 rotated/swapped cases: front/back, area and seams, exact tip shape, partial replay, backward scrub, undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PetalFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:42)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs Line: 42)
+
+[Pocket] PASS 8 rotated/swapped cases, front/back squashes, exact square-base vertices, fixed plies, fractional/reversed scrubbing, JSON replay and undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PocketFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PocketFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PocketFoldingVerification.cs Line: 49)
+
+[FourPoint] safe constrained fan=88.70117; refined pocket contact=-89.99023
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.FourPointFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs:60)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs Line: 60)
+
+[FourPoint] PASS 12 variable-geometry/side/flank cases; four-ply isolation; continuous contact, original area, seams, JSON replay and undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.FourPointFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs:61)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/FourPointFoldingVerification.cs Line: 61)
+
+[SquareGrid] PASS 169 points, 14196 pairs, oblique fold and replay
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPointPairs (FlyEditor.Flight.PaperSheet) (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:486)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:18)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 486)
+
+[VertexFolds] PASS: 169 targets, same point, perimeter, tilted panel, replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyVertexFolds () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:460)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:19)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 460)
+
+[SeparatePlies] PASS upper and lower isolated, other ply stationary, joined guard, undo and replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifySeparatePlies () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:405)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:20)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 405)
+
+[SelectedPanel] PASS one-ply axis, free wing bend, stationary opposite ply, shared corner, replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifySelectedPanel () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:437)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:21)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 437)
+
+[MirrorFold] PASS two axes, paired angles, centre crease once, stacked opposite wings, fixed neighbour, paired pull, atomic save/undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyMirrorFolds () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:158)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:22)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 158)
+
+[InsideReverse] PASS folded tip inside pocket, two flank creases, rigid lengths, 40/100/180 degree starting folds, save and undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyInsideReverse () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:107)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:23)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 107)
+
+[CornerPull] PASS flat and tilted triangle, interior stop, moving tip and side corners, save/undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyCornerPull () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:206)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:24)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 206)
+
+[FlexibleFolds] PASS flat, tilted, closed stack to 150, four handles to 100, repeated free fold, mirrored handles, rigid triangle metrics, seam continuity, save, undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyFlexibleFolds () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:361)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:25)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 361)
+
+[ContactClosure] PASS continuous +/- fan contact and straight 180, thickness, area, seams, closed stack refold, legacy, replay and undo.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyContactClosure () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:243)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:26)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 243)
+
+[OpeningPlies] PASS 48 angle/layer/direction commits, fixed other plies, geometry, replay, undo; repeated-fold handles=6, repeated commits=10, swept contact.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyOpeningPlies () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:304)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:27)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 304)
+
+[DartFold] PASS: two corners, body fold, opposite signed single-wing folds, collision, legacy and replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyDart () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:660)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:48)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 660)
+
+[PaperPatterns] PASS Square / Basic / 5 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS Square / Dart / 7 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS Square / Bulldog / 8 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS A4 / Basic / 5 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS A4 / Dart / 7 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS A4 / Bulldog / 8 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS Letter / Basic / 5 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS Letter / Dart / 7 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[PaperPatterns] PASS Letter / Bulldog / 8 folds
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyPatterns () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:528)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:49)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 528)
+
+[AircraftGrip] PASS keel and upper side on normal, inverted and sideways darts, V-fold, flat sheet, replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyAircraftGrip () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:570)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:50)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 570)
+
+[FoldRatings] PASS actual shapes, 1.4 ratio, rotated stack, research, impact, failed save, reload, retry, default.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:VerifyFoldRatings () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:628)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:51)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 628)
+
+[PaperFolding] PASS: 11+11 axis guides, 169 connected points, area, four/eight plies, opposite sides, undo and replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.PaperFoldingVerification:Run () (at Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs:59)
+FlyEditor.Editor.PetalFoldingVerification:Regression () (at Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs:44)
+LeafRegression:Run () (at Assets/_Project/Scripts/Editor/LeafRegression.cs:18)
+
+(Filename: Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs Line: 59)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

@@ -238,11 +238,11 @@ namespace FlyEditor.Editor
             string[] resourceIds = { "Web_FlightLog", "Web_RouteMarks", "Web_PersonalRecord", "Web_RouteQuest",
                 "Web_MailPickup", "Web_BundleDelivery", "Web_AirMail", "Web_PickupChain" };
             var bonus = new ExtendedResearchStats(Research(resourceIds));
-            Check(bonus.Reward(100,90,4,2,3,false) == 10, "Research reward cap.");
+            Check(bonus.Reward(100,90,4,2,3,false) == 47, "Research reward cap.");
             var record = new ExtendedResearchStats(Research("Web_PersonalRecord"));
-            Check(record.Reward(100,90,0,0,0,false) == 3 && record.Reward(100,91,0,0,0,false) == 0, "Record threshold.");
+            Check(record.Reward(100,90,0,0,0,false) == 14 && record.Reward(100,91,0,0,0,false) == 0, "Record threshold.");
             var mail = new ExtendedResearchStats(Research("Web_AirMail"));
-            Check(mail.Reward(100,0,4,0,0,false)==0 && mail.Reward(100,0,4,3,0,false)==4,"High pickup limit.");
+            Check(mail.Reward(100,0,4,0,0,false)==0 && mail.Reward(100,0,4,3,0,false)==18,"High pickup limit.");
             var disk = new Store { Data = ResearchSave.NewGame() };
             var research = new FlightResearch(disk);
             Check(research.BeginRun(), "Begin settlement.");
@@ -250,7 +250,7 @@ namespace FlyEditor.Editor
             disk.Fail = true;
             Check(!research.CompleteRun(id,100,out _,1000) && research.Points==0,"Failed bonus settlement.");
             disk.Fail = false;
-            Check(research.CompleteRun(id,100,out int total,1000) && total==30
+            Check(research.CompleteRun(id,100,out int total,1000) && total==141
                 && !research.CompleteRun(id,100,out _,1000), "Bonus double paid or cap bypassed.");
         }
         private static void VerifyAbilities()

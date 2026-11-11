@@ -1,0 +1,20 @@
+{
+  "sourceHashes": {
+    "FoldMesh": "029008F0A4F67B7D9A09D2FF51B0CED20A61D0FCF3A426E325DFF71B65D3C9D3",
+    "FoldingDesk": "7DD4D4C485E08D64A294E0D6889AFCE5C908CB2BE681292DB03DFC7FB833A8D7"
+  },
+  "checks": [
+    "smooth zoom fade in/out",
+    "persistent visible face centroid",
+    "hidden ply occlusion",
+    "spatial midpoint",
+    "fade direction reversal",
+    "frame rate independence",
+    "settled state",
+    "faint point hit exclusion",
+    "selected handle retention",
+    "interior fold and undo/replay"
+  ],
+  "result": "PASS",
+  "editor": "6000.5.3f1"
+}

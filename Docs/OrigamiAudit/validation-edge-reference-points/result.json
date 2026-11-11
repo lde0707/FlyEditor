@@ -1,0 +1,22 @@
+{
+  "initialSquareUniquePoints": 16,
+  "status": "passed",
+  "normalEdgePoints": 5,
+  "corners": "Shared once within each face and across true material joints",
+  "shortEdgeThreshold": "25 percent of original paper shorter dimension",
+  "sourceHash": "5BB70B7B67B779B0DE286D6164B9DBF2D38CB82A621662689B84ACB838B4023D",
+  "foldedTriangleVisiblePoints": 12,
+  "shortEdgePoints": 3,
+  "endpointsIncluded": true,
+  "checks": [
+    "per-edge counts and uniform spacing",
+    "short and long edges on the same face",
+    "no automatic interior points",
+    "hidden layer points remain hidden",
+    "shared left and right folds",
+    "unrelated overlapping corners remain separate",
+    "internal ply selection",
+    "cross-panel fold",
+    "undo and replay"
+  ]
+}

@@ -1,0 +1,1 @@
+[CraneBody] center-sharing faces=8, mouth edges tested=40, valid local pockets=0, center-lifting pockets=0. A pressure/volume body operation with both wing roots coupled is not implemented; no fake inflation or collision bypass applied.

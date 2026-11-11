@@ -1,0 +1,13 @@
+{
+  "unity": "6000.5.3f1",
+  "craneCompleted": false,
+  "craneVerifiedFolds": 13,
+  "sources": {
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs": "ea4f20a991b105780a659c320ccdd3ef1acdd30deb88d7a955723a5141b4fb39",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperInsideReverse.cs": "5d3be4afe0893a56e177e73c2619ef053e1a51fbf227313f77c0f7091dcfff49",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperPacketReverse.cs": "69dd1d8b37766ca3ae93a38e8c647ed4a9d8a45f8faa3c809232efe540b9dfa4",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs": "b544b6ef94b2ad731c805a69efdc63c7efcaa07587dfebce507ec5f54560be33",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldMesh.cs": "6e4a4074181c71d09d1943889838a863fa7f0885fce69396f2af6f1dfeecaece",
+    "FlyEditor/Assets/_Project/Scripts/Editor/PacketFoldingVerification.cs": "37d2958f829e8589193df489b118082d4abf550522fc40a8f78d12198f86ac4d"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "features": [
+    "Face picking mode V",
+    "Visible surface first",
+    "Repeat click cycles intersected physical plies",
+    "Front/back commands",
+    "Selected-ply mint overlay without geometry changes",
+    "Explicit lower ply remains selected",
+    "Default selection follows visible side on camera orbit"
+  ],
+  "checks": [
+    "2-ply and 4-ply cycling",
+    "selected top and bottom fold isolation",
+    "empty click deselection",
+    "camera underside selection",
+    "packet and four-point regression",
+    "replay and undo"
+  ],
+  "status": "passed",
+  "hashes": {
+    "FoldMesh": "D139F17FDE058DA35014F77013D9BD241A7D3FCC669A5F1768FD5CB5D6AD7AC2",
+    "FoldingDesk": "AD9B9063E773B029460789262EA2EBCBCE18A179265197566B32CE8DD4936B8C"
+  },
+  "uiValidation": "Mode tested with V; paper clicks via Input System; front/back button commands invoked directly. Native IMGUI mouse event delivery was unavailable in batch."
+}

@@ -1,0 +1,10 @@
+[ClearCommon] search ms=8994 visits=120 preparations=3
+[ClearCommon] 8 transformed/swapped sequences, 104 poses preserve seams and area
+[ClearCommon] PASS next petal, continuous sweep, backward scrub, replay, undo, opposite block. folds=22
+[ClearCommon] search ms=7356 visits=120 preparations=3
+[ClearCommon] 8 transformed/swapped sequences, 104 poses preserve seams and area
+[ClearCommon] PASS next petal, continuous sweep, backward scrub, replay, undo, opposite block. folds=22
+[LilyStudyVerification] PASS 21 committed folds, 185 pull poses, 15 rigid turn poses, 3 blocked opposite directions; area, all seams, replay and undo. Model NOT complete.
+[ClearanceInputPlay] PASS async assist callback, cancel, stale result disposal, actual pointer drag, partial commit, edit, Escape, C closure, one undo, close cancellation; no OS IMGUI click asserted.
+[LilyStudyVerification] PASS 22 committed folds, 222 pull poses, 15 rigid turn poses, 3 blocked opposite directions; area, all seams, replay and undo. Model NOT complete.
+[LilyStudyPlay] PASS editor study menu, actual workbench 22-action replay, rendered paper, close without saving; paper and research points unchanged. Not a completed lily.

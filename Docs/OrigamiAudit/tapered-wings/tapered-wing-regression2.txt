@@ -1,0 +1,4 @@
+[WingSide] PASS 64 rotated basic/narrow parallel and tapered wing sequences, 3968 poses; either wing first, opposite material unchanged, contacts, area, all seams, replay, undo, planning-copy history.
+[WingSide] PASS reproduced legacy opposite-wing leak; crossing scope rejected; legacy individual body fold supported.
+[JetEdge] PASS 8 cases / 368 sweep poses, baseline defects reproduced, contact blocking, stationary other wing, partial/full replay and undo.
+DirectoryNotFoundException: Could not find a part of the path "C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\Docs\OrigamiAudit\petal-clearance\before-21.json".

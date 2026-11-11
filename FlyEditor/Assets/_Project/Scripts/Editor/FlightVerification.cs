@@ -114,7 +114,7 @@ namespace FlyEditor.Editor
             Debug.Log("[PaperFlight] SAVED SCENE CHECKS PASSED");
             string researchPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "flyeditor-play-" + Guid.NewGuid().ToString("N") + ".json");
             // Isolated fixture provides enough points to exercise UI purchases after the first landing.
-            new ResearchFileStore(researchPath).Save(new ResearchSave { points = 95 });
+            new ResearchFileStore(researchPath).Save(new ResearchSave { points = 185 });
             Environment.SetEnvironmentVariable("FLYEDITOR_TEST_PROGRESS", researchPath);
             if (Application.isBatchMode) VerifyDeveloperEditMode(researchPath);
             SessionState.SetString(TestSaveKey, researchPath);
@@ -606,7 +606,7 @@ namespace FlyEditor.Editor
                             Require(model.Distance > 10f && model.Clearance == 0f, "Ground contact or distance failed.");
                             Require(!controller.transform.Find("최고 기록 깃발").gameObject.activeSelf,"Flag moved on the recording flight.");
                             Debug.Log("[PaperFlight] PLAY LANDING: distance=" + model.Distance.ToString("F2"));
-                            expectedPoints = 95 + Mathf.FloorToInt(model.Distance / 5f);
+                            expectedPoints = 185 + ResearchEconomy.BaseReward(model.Distance);
                             Require(controller.Session.Research.Points == expectedPoints
                                 && controller.Session.Research.CompletedFlights == 1 && !controller.Session.SettlementPending,
                                 "Landing reward was not committed exactly once.");
@@ -775,12 +775,12 @@ namespace FlyEditor.Editor
                             Require(controller.BuyResearchNode("Glide_1"), "First glide node purchase failed.");
                             Require(controller.VisibleResearchCount == 13 && controller.SelectResearchNode("Climb_1"), "Owned nodes and open siblings must remain visible.");
                             Require(!controller.BuySelectedResearch(ResearchNode.Control), "Deferred control research was purchasable.");
-                            Require(controller.Session.Research.Points == expectedPoints - 90, "One-time purchases charged incorrectly.");
+                            Require(controller.Session.Research.Points == expectedPoints - 180, "One-time purchases charged incorrectly.");
                             string path = SessionState.GetString(TestSaveKey, "");
                             var saved = new FlightResearch(new ResearchFileStore(path));
                             Require(saved.Rank(ResearchNode.Throw) == 1 && saved.Rank(ResearchNode.Glide) == 1
                                 && saved.Rank(ResearchNode.Control) == 0 && saved.Owns("Drag_1") && !saved.Owns("Climb_1")
-                                && saved.Points == expectedPoints - 90,
+                                && saved.Points == expectedPoints - 180,
                                 "One-time purchases did not survive reload.");
                             Require(!controller.BuyResearchNode("Launch_2"), "Insufficient points allowed a purchase.");
                             Debug.Log("[ResearchKeys] PASS: arrow focus and reveal, Enter and keypad purchases, preview blocked, points and save verified.");
@@ -875,16 +875,16 @@ namespace FlyEditor.Editor
             Require(research.BeginRun(), "Run creation failed.");
             long firstRun = research.ActiveRunId;
             Require(!research.TryBuy(ResearchNode.Throw), "An active run allowed a purchase.");
-            Require(research.CompleteRun(firstRun, 149.99f, out int reward) && reward == 29
+            Require(research.CompleteRun(firstRun, 49.99f, out int reward) && reward == 29
                 && research.Points == 29 && research.Unlocked, "Distance reward rounding/unlock failed.");
             Require(!research.TryBuy(ResearchNode.Throw) && research.Points == 29, "Insufficient funds were spent.");
             research = new FlightResearch(store);
-            Require(!research.CompleteRun(firstRun, 149.99f, out _) && research.Points == 29,
+            Require(!research.CompleteRun(firstRun, 49.99f, out _) && research.Points == 29,
                 "Reload allowed a duplicate reward.");
             Require(research.BeginRun(), "Second run creation failed.");
             long secondRun = research.ActiveRunId;
-            Require(research.CompleteRun(secondRun, 5f, out reward) && reward == 1 && research.Points == 30,
-                "Exact 5 metre reward failed.");
+            Require(research.CompleteRun(secondRun, 7f, out reward) && reward == 1 && research.Points == 30,
+                "Small-distance reward failed.");
             store.FailWrites = true;
             Require(!research.TryBuy(ResearchNode.Throw) && research.Points == 30 && research.Rank(ResearchNode.Throw) == 0,
                 "Failed save spent points or changed rank.");
@@ -913,15 +913,15 @@ namespace FlyEditor.Editor
             foreach (ResearchNode node in Enum.GetValues(typeof(ResearchNode)))
             {
                 var funded = new FlightResearch(new MemoryResearchStore());
-                funded.BeginRun(); funded.CompleteRun(funded.ActiveRunId, 1125f, out _); // 30 + 65 + 130
+                funded.BeginRun(); funded.CompleteRun(funded.ActiveRunId, 0f, out _); funded.AdjustDeveloperPoints(630);
                 var baseline = new FlightTuning();
                 int paid = 0;
-                foreach (int cost in new[] { 30, 65, 130 })
+                foreach (int cost in new[] { 30, 120, 480 })
                 {
                     Require(funded.Cost(node) == cost && funded.TryBuy(node), "Research price or next rank was incorrect.");
                     paid += cost;
                     int rank = funded.Rank(node);
-                    Require(funded.Points == 225 - paid, "Purchase deducted the wrong amount.");
+                    Require(funded.Points == 630 - paid, "Purchase deducted the wrong amount.");
                     var tuning = funded.Apply(baseline);
                     Require(Mathf.Abs(tuning.launchSpeed - baseline.launchSpeed * (1f + (node == ResearchNode.Throw ? new[] { 0f, .12f, .32f, .62f }[rank] : 0f))) < 0.0001f,
                         "Throw effect was not additive or altered another upgrade.");
@@ -960,13 +960,13 @@ namespace FlyEditor.Editor
                 first.BeginRun(); long id = first.ActiveRunId;
                 first.CompleteRun(id, 1000f, out _); first.TryBuy(ResearchNode.Glide);
                 var reloaded = new FlightResearch(disk);
-                Require(reloaded.Points == 170 && reloaded.Rank(ResearchNode.Glide) == 1 && reloaded.CompletedFlights == 1,
+                Require(reloaded.Points == ResearchEconomy.BaseReward(1000f) - 30 && reloaded.Rank(ResearchNode.Glide) == 1 && reloaded.CompletedFlights == 1,
                     "Disk reload lost currency/ranks/unlock.");
-                Require(!reloaded.CompleteRun(id, 1000f, out _) && reloaded.Points == 170, "Disk reload duplicated reward.");
+                Require(!reloaded.CompleteRun(id, 1000f, out _) && reloaded.Points == ResearchEconomy.BaseReward(1000f) - 30, "Disk reload duplicated reward.");
                 reloaded.BeginRun(); long interrupted = reloaded.ActiveRunId;
                 var session = new FlightSession(new FlightTuning(), new FlightResearch(disk));
                 Require(session.Research.ActiveRunId == 0 && !session.Research.CompleteRun(interrupted, 1000f, out _)
-                    && session.Research.Points == 170, "Interrupted flight paid automatically.");
+                    && session.Research.Points == ResearchEconomy.BaseReward(1000f) - 30, "Interrupted flight paid automatically.");
                 Require(session.TryBuy(ResearchNode.Throw), "Ready purchase failed.");
                 Require(Mathf.Abs(session.Model.Speed - 13f * 1.12f) < 0.001f, "Ready purchase did not apply to the next launch.");
                 session.Tick(true, true, false);
@@ -974,8 +974,8 @@ namespace FlyEditor.Editor
                 session.Tick(false, false, false);
                 for (int i = 0; i < 10000 && session.Model.State == FlightModel.Phase.Flying; i++) session.FixedTick(0.02f);
                 int points = session.Research.Points;
-                int expected = Mathf.FloorToInt(session.Model.Distance / 5f);
-                Require(session.LastReward == expected && points == 140 + expected && session.Model.State == FlightModel.Phase.Landed,
+                int expected = ResearchEconomy.BaseReward(session.Model.Distance);
+                Require(session.LastReward == expected && points == ResearchEconomy.BaseReward(1000f) - 60 + expected && session.Model.State == FlightModel.Phase.Landed,
                     "Session landing did not settle its own distance exactly once.");
                 for (int i = 0; i < 100; i++) session.FixedTick(0.02f);
                 Require(points == session.Research.Points, "Landed updates duplicated reward.");
@@ -1011,7 +1011,7 @@ namespace FlyEditor.Editor
                 }
                 Require(model.State == FlightModel.Phase.Landed, "Max upgrades produced endless flight.");
             }
-            Debug.Log("[PaperFlight] RESEARCH CHECKS PASSED: unlock, rewards, duplicate/aborted runs, insufficient/exact funds, 30/65/130 costs, rank cap, atomic failure, disk reload, flight effects, max-rank energy/landing.");
+            Debug.Log("[PaperFlight] RESEARCH CHECKS PASSED: unlock, rewards, duplicate/aborted runs, insufficient/exact funds, 30/120/480 costs, rank cap, atomic failure, disk reload, flight effects, max-rank energy/landing.");
         }
 
         private static DeveloperProgressWindow OpenDeveloperTestWindow()
@@ -1053,7 +1053,7 @@ namespace FlyEditor.Editor
         {
             var research = controller.Session.Research;
             Require(research.BeginRun() && research.CompleteRun(research.ActiveRunId, 0, out _), "Fixture first landing failed.");
-            Require(controller.AdjustDeveloperPoints(20000) && controller.OpenResearch() && !controller.ResearchPreviewAll,
+            Require(controller.AdjustDeveloperPoints(1000000) && controller.OpenResearch() && !controller.ResearchPreviewAll,
                 "Expected normal purchase screen.");
             foreach (string root in new[] { "Launch_1", "Glide_1", "Recover_1", "Durability_1", "Magnet_1" })
                 Require(controller.SelectResearchNode(root) && !research.Owns(root), "Missing initial branch " + root);
@@ -1073,7 +1073,7 @@ namespace FlyEditor.Editor
             }
             controller.FitResearchWeb();
             var saved = new FlightResearch(ResearchFileStore.OpenCurrent());
-            Require(controller.VisibleResearchCount == 98 && !controller.ResearchPreviewAll && saved.Points == 20000 - total
+            Require(controller.VisibleResearchCount == 98 && !controller.ResearchPreviewAll && saved.Points == 1000000 - total
                 && Array.TrueForAll(nodes, n => saved.Owns(n.id)), "Full normal ownership/save mismatch.");
             Debug.Log("[ResearchWeb] NORMAL PLAY PASSED: five roots, original ownership and expanded candidates, all 98 purchased and reloaded.");
         }
@@ -1125,6 +1125,8 @@ namespace FlyEditor.Editor
             Require(controlled.Climbing,"A fresh click must take over the launch arc immediately.");
             controlled.Tick(false,false,false);
             float before=controlled.Pitch;
+            for (int i=0;i<10;i++) controlled.FixedTick(.02f);
+            Require(controlled.Pitch<before+3.5f,"Manual release carry exceeded the short inertia window.");
             for (int i=0;i<10;i++) controlled.FixedTick(.02f);
             Require(controlled.Pitch<before,"Releasing manual climb should not restart launch lift.");
             Debug.Log("[UnderhandRise] PASS: low exit, rising arc, descent, energy and manual takeover.");
@@ -1417,12 +1419,12 @@ namespace FlyEditor.Editor
                 float initialEnergy = model.Energy;
                 model.Tick(false, true, false);
                 for (int i = 0; i < Mathf.RoundToInt(0.2f / dt); i++) model.FixedTick(dt);
-                Require(Mathf.Abs(model.Pitch - 18f) < 0.001f && model.Height > 4.1f,
-                    "Climb should turn at 90 degrees/second: 18 degrees after 0.2 seconds.");
+                Require(model.Pitch > 10f && model.Pitch < 14f && model.Height > 4.05f,
+                    "Short climb should ease in while responding within 0.2 seconds.");
                 Debug.Log("[PaperFlight] LIGHT RESPONSE dt=" + dt + " t=0.20 pitch=" + model.Pitch.ToString("F3")
                     + " height=" + model.Height.ToString("F3") + " speed=" + model.Speed.ToString("F3"));
-                for (int i = 0; i < Mathf.RoundToInt(0.08f / dt); i++) model.FixedTick(dt);
-                Require(Mathf.Abs(model.Pitch - 22f) < 0.001f, "Full climb should engage within 0.28 seconds without overshoot.");
+                for (int i = 0; i < Mathf.RoundToInt(0.24f / dt); i++) model.FixedTick(dt);
+                Require(model.Pitch > 21.5f && model.Pitch <= 22f, "Full climb should engage within 0.44 seconds without overshoot.");
                 Require(model.Energy < initialEnergy, "Faster response must not create energy.");
                 var recovery = new FlightModel(new FlightTuning { launchHeight = 30f, launchSpeed = 3f });
                 recovery.Tick(true, true, false);

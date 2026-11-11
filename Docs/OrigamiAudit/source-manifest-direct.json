@@ -1,0 +1,8 @@
+{
+  "Runtime/Gameplay/Flight/PaperSheet.cs": "59aeeaff1c8127af1d432a3a726af6c19191a5fa7e8910315b9807e33b73fe2e",
+  "Runtime/Gameplay/Flight/PaperCornerPull.cs": "45c8e1111d35dcc779c7f9d1e04d646a4539e20818b05a888e05a9bb83d14123",
+  "Runtime/Gameplay/Flight/PaperInsideReverse.cs": "228504a98adc5021a6a5cfaa295e22aa1e1f389d3e8ce30d9c6eb2b843283512",
+  "Runtime/Gameplay/Flight/FoldMesh.cs": "4912bf5fa10952888b2ce6b216f69ce5b99613e2b21966e13acadea65a6bc18c",
+  "Runtime/Gameplay/Flight/FoldingDesk.cs": "9b86b8fb0f46a18a640dcfb719c4505e446f9c8a5dbec58ee7271fb534446d20",
+  "Editor/OrigamiFeasibilityAudit.cs": "5b40326172bf140ae91d2edbcf0753d7d0f6c044a123274aef77b3f2b21dc219"
+}

@@ -1,0 +1,10 @@
+{
+    "committedFolds": 16,
+    "allStageGeometry": true,
+    "continuousReverse": true,
+    "oppositeWings": true,
+    "saveReplay": true,
+    "execution": "Production fold API replay and motion checks; input harness separately checks tail and direction controls.",
+    "remaining": "Body remains flat; body inflation and uniform shell spacing are not certified.",
+    "wingSeparation": 6.443649768829346
+}

@@ -1,0 +1,31 @@
+{
+  "uiScopes": [
+    "전체 면 [1]",
+    "면 개별 [2]"
+  ],
+  "default": "All faces",
+  "status": "passed",
+  "limitation": "Noncoplanar endpoints that do not share a straight hinge plane are connected visually but require four-point shaping; no false projection is committed.",
+  "checks": [
+    "blue-to-white and white-to-blue endpoints",
+    "whole fold moves both panels",
+    "individual fold leaves other panel unchanged",
+    "individual direct face drag",
+    "ply cycling retains axis",
+    "undo and replay",
+    "four-point fold",
+    "noncoplanar endpoint connector",
+    "automatic packet fold"
+  ],
+  "changes": [
+    "Visible endpoint selection across physical panels",
+    "Crease from current positions instead of original material coordinates",
+    "Scope and ply changes preserve both authored endpoints",
+    "Individual face click or direct drag after axis selection",
+    "Connected reverse tip fold inferred on whole-face endpoint drag"
+  ],
+  "hashes": {
+    "FoldingDesk": "31D2032B2CC7DA2CD7F1990FF43C60B10EFE10A041B51B04FF96183A61A423ED",
+    "FoldMesh": "2EB090DDE67F9EC17ACB79F8F8FB8B802C1491C05EB772EDCAEAA4C11305E60A"
+  }
+}

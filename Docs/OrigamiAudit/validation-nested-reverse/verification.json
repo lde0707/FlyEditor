@@ -1,0 +1,16 @@
+{
+  "runtimeInstalled": true,
+  "checks": "PASS nested reverse, regression, input, replay and undo",
+  "craneHead": "fixed",
+  "sourceHashes": [
+    {
+      "sha256": "3DDE0BBCD5DB540B2A8D30CD93AAB655CDF88C3EB83B6925EA9661504BA0DB47",
+      "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperPacketReverse.cs"
+    },
+    {
+      "sha256": "F950EA0A48D22359014703DA32D0B2D748449F02AA3616ABE4DB90D148647FC3",
+      "file": "FlyEditor/Assets/_Project/Scripts/Editor/PacketFoldingVerification.cs"
+    }
+  ],
+  "craneFinalShape": "not certified; lower waist hinge remains blocked"
+}

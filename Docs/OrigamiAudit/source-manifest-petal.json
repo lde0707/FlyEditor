@@ -1,0 +1,14 @@
+{
+  "unity": "6000.5.3f1",
+  "craneCompleted": false,
+  "sources": {
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs": "79e7806744dbfb86adda006d2857666435059604f9acef03b9280db703a9f195",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperCornerPull.cs": "101611ea275da6b4b832934bcfe8d5c18de18d23c134decb185e3ed34ae9ffe6",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs": "ec7504cd269b01e8227c5fc0c7b94fd7b696e2ffb3f160746375ad5864589427",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperPetalFold.cs": "9f37e66f8cf64369fb2e8f5cac953cf3e4dc09f0d9d6c77d2d1fd25ade58be44",
+    "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperEdgeMatchFold.cs": "d1fa3a6d44eb33c365d35751ea5b10aebe1aa3b0107217037b9d6eb8d17a5002",
+    "FlyEditor/Assets/_Project/Scripts/Editor/PaperFoldingVerification.cs": "c3daa5ce54d62f984c35a489dc14776e54a1ac43426c2978fabd31cdadbe37d0",
+    "FlyEditor/Assets/_Project/Scripts/Editor/PetalFoldingVerification.cs": "eb2aeb2b6a9463963c51925dc523f5d1a2404eabc3b63d4bb834cd6c842f1a8f",
+    "FlyEditor/Assets/_Project/Scripts/Editor/CranePetalAudit.cs": "5fdca915de020bbcca83650e37fc255ff2fcb2bc0fc156bbe83e38fa0f26dc99"
+  }
+}

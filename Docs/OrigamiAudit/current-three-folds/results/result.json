@@ -1,0 +1,69 @@
+{
+    "unity": "6000.5.3f1",
+    "execution": "Current production engine API, no injected final mesh, no runtime solver changes. Rendered by Unity; not an end-to-end mouse walkthrough.",
+    "models": [
+        {
+            "name": "airplane",
+            "status": "complete",
+            "blockedAt": "",
+            "complete": true,
+            "folds": 5,
+            "actions": [
+                "1: 오른쪽 위 모서리를 중앙선에 맞추세요.",
+                "2: 오른쪽 아래 모서리도 중앙선에 맞추세요.",
+                "3: 긴 중앙선을 따라 동체를 반으로 접으세요.",
+                "4: 윗날개를 펼치고 원하는 각도를 정하세요.",
+                "5: 반대쪽 날개도 펼쳐 양쪽 각도를 맞추세요."
+            ],
+            "attempts": []
+        },
+        {
+            "name": "petal",
+            "status": "complete",
+            "blockedAt": "",
+            "complete": true,
+            "folds": 6,
+            "actions": [
+                "4: Two shape folds and two four-point pocket squashes; no marking-only precreases.",
+                "5: Front petal flattened.",
+                "6: Back petal flattened."
+            ],
+            "attempts": []
+        },
+        {
+            "name": "crane",
+            "status": "blocked",
+            "blockedAt": "Nested head reverse after neck and tail: 0 plans, 0 full-angle candidates, maximum 0 degrees. Wings and final crane silhouette not certified.",
+            "complete": false,
+            "folds": 13,
+            "actions": [
+                "4: Two shape folds and two four-point pocket squashes; no marking-only precreases.",
+                "5: Front petal flattened.",
+                "6: Back petal flattened.",
+                "7: Narrow edge 1 with four surface handles.",
+                "8: Narrow edge 2 with four surface handles.",
+                "9: Narrow edge 3 with four surface handles.",
+                "10: Narrow edge 4 with four surface handles.",
+                "11: Book fold for neck and tail.",
+                "12: Neck reverse completed.",
+                "13: Tail reverse completed."
+            ],
+            "attempts": [
+                "Head stop=0.35, packet=True, plans=0, reached=0/180",
+                "Head stop=0.35, packet=False, plans=0, reached=0/180",
+                "Head stop=0.5, packet=True, plans=0, reached=0/180",
+                "Head stop=0.5, packet=False, plans=0, reached=0/180",
+                "Head stop=0.75, packet=True, plans=0, reached=0/180",
+                "Head stop=0.75, packet=False, plans=0, reached=0/180",
+                "Head stop=1, packet=True, plans=0, reached=0/180",
+                "Head stop=1, packet=False, plans=0, reached=0/180",
+                "Head stop=1.25, packet=True, plans=0, reached=0/180",
+                "Head stop=1.25, packet=False, plans=0, reached=0/180",
+                "Head stop=1.5, packet=True, plans=0, reached=0/180",
+                "Head stop=1.5, packet=False, plans=0, reached=0/180",
+                "Head stop=2, packet=True, plans=0, reached=0/180",
+                "Head stop=2, packet=False, plans=0, reached=0/180"
+            ]
+        }
+    ]
+}
