@@ -1,60 +1,59 @@
 # FlyEditor
 
-<!-- WINDOWS-RELEASE-START -->
-## Windows에서 바로 플레이
+**직접 접은 종이 기체를 발사하고, 착륙 보상을 연구에 투자하며 다시 비행하는 게임입니다.**
 
-**[FlyEditor · Windows 실행 파일 다운로드](https://github.com/lde0707/portfolio-game-builds/releases/tag/flyeditor-2026-11-14)**
+1인 개발 중 · 종이 접기·비행·연구 · Unity 6000.5.3f1 · C#
 
-종이를 접어 비행체를 만들고 비행·연구를 이어가는 개발 중 프로젝트.
+[Windows 실행 파일](https://github.com/lde0707/portfolio-game-builds/releases/tag/flyeditor-2026-11-14) · [QA 엑셀](https://leedoeon.vercel.app/qa/reports/flyeditor.xlsx) · [QA 포트폴리오](https://leedoeon.vercel.app/qa/index.html)
 
-1. 위 Releases 페이지의 `FlyEditor-Windows-x64.zip`을 내려받습니다. `Source code` 파일은 실행 파일이 아닙니다.
-2. ZIP 전체를 한 폴더에 압축 해제합니다.
-3. `FlyEditor.exe`를 실행합니다. Unity 설치는 필요 없습니다.
+<img src="Portfolio/gameplay.webp" alt="FlyEditor 실제 게임 화면" width="900">
 
-`FlyEditor_Data`, `UnityPlayer.dll`, 나머지 동봉 폴더를 함께 유지해야 합니다. Windows 64비트용이며 모바일·macOS에서는 실행되지 않습니다.
+## 내가 맡은 역할
 
-**조작:** 마우스로 접기 도구와 메뉴를 선택합니다. 각 단계의 화면 안내를 따르세요.
+접기·비행·연구 시스템 구현과 테스트를 담당하고 있습니다.
 
-[실행·검증 범위](PLAY.md) · [QA 포트폴리오](https://leedoeon.vercel.app/qa/index.html)
-<!-- WINDOWS-RELEASE-END -->
+## 게임의 주요 흐름
 
-Unity를 활용한 1인 게임 개발 프로젝트입니다.
+발사·비행 → 착륙 보상 → 연구 구매 → 접기·재실행
 
-## 현재 상태
+## 실행 방법
 
-`FlyEditor/` 폴더에 Unity 프로젝트가 있습니다.
+### Unity 없이 플레이
 
-- Unity 에디터: `6000.5.3f1`
-- 렌더 파이프라인: URP
+1. 위 **Windows 실행 파일** 링크에서 `FlyEditor-Windows-x64.zip`을 받습니다.
+2. ZIP **전체를 압축 해제**합니다.
+3. `FlyEditor.exe`를 실행합니다.
 
-## 시작하기
+Windows 64비트용입니다. EXE와 `Data` 폴더·`UnityPlayer.dll`을 함께 유지하세요. GitHub의 `Source code` 압축 파일은 게임 실행 패키지가 아닙니다.
 
-1. 저장소를 복제합니다: `git clone https://github.com/lde0707/FlyEditor.git`
-2. Unity Hub에서 Unity `6000.5.3f1`을 설치합니다.
-3. Unity Hub에서 저장소 내부의 `FlyEditor/` 폴더를 프로젝트로 추가하고 엽니다.
-4. 패키지 복원과 에셋 임포트가 끝나면 `Assets/_Project/Scenes/Main.unity`를 엽니다.
+**기본 조작:** 마우스로 접기 선·면 선택 / C 접기 / Z 되돌리기 / Enter 적용 / 화면 UI로 발사·연구
 
-프로젝트 버전은 `FlyEditor/ProjectSettings/ProjectVersion.txt`, 패키지는 `FlyEditor/Packages/`에서 관리합니다.
+<details>
+<summary>Unity에서 소스 열기</summary>
 
-## 버전 관리
+1. Unity Hub에서 `FlyEditor` 폴더를 프로젝트로 추가합니다.
+2. **Unity 6000.5.3f1**으로 엽니다.
+3. `Assets/_Project/Scenes/Main.unity` 씬을 열고 Play를 실행합니다.
+4. 실행 파일을 만들 때 Windows Build Support를 설치하고 기존 Build Settings의 씬 구성으로 Windows x64를 빌드합니다.
 
-- `Assets`와 함께 `.meta` 파일을 반드시 커밋합니다.
-- `Packages`와 `ProjectSettings`를 커밋해 프로젝트 구성과 에디터 버전을 함께 관리합니다.
-- `Library`, `Temp`, `Logs`, 빌드 결과물과 로컬 비밀 정보는 `.gitignore`로 제외합니다.
-- 대용량 원본 아트·오디오 파일은 추가하기 전에 Git LFS 적용 여부를 결정합니다.
-- 동작을 확인한 작은 변경 단위로 커밋합니다.
+</details>
 
-## 개발 방향
+## QA 테스트
 
-- 개발 형태: 1인 개발
-- 엔진: Unity
-- 플랫폼: PC (Windows 64비트 개발 빌드 기준)
-- 장르: 추후 결정
+Windows 빌드에 실제 키보드·마우스 입력을 보내 확인한 내용입니다. 세부 조건과 관찰값은 **QA 엑셀의 플레이 재검증 시트**에서 볼 수 있습니다.
 
-외부 에셋을 사용할 때는 출처와 이용 조건을 함께 기록합니다.
+| 확인 기능 | 테스트 조건 | 관찰 결과 |
+|---|---|---|
+| 비행·연구 | 비행·착륙 후 비용 30 연구 구매 | 보상 59 지급 후 구매 잔액 29 |
+| 접기·되돌리기 | 선·면 선택 후 C, Z, 다시 접기·적용 | 접기 기록 1 → 0 → 1과 형상 적용 |
+| 종료·재실행 | 연구 구매·접기 적용 후 재실행 | 연구점 29·접힌 형상 유지, 기체 발사 확인 |
 
-## 개발 환경
+**검증 범위:** 모든 접기 조합·연구 노드·비행 조건을 검증한 결과는 아닙니다.
 
-폴더 구조, 기본 설정과 개발 메뉴는 [개발 안내](Docs/DEVELOPMENT.md)를 참고하세요.
+[실제 입력 검증 기록](PLAYTEST.md) · [실행·검증 안내](PLAY.md)
 
-[2026-11-14 실제 플레이·수정 재검증](PLAYTEST.md)
+## 소스와 상세 문서
+
+- [접기 작업대](FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs)
+- [게임 코드](FlyEditor/Assets/_Project/Scripts/Runtime)
+- [기존 개발·설계 기록](README-DEV-NOTES.md)
