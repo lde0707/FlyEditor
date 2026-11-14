@@ -74,15 +74,15 @@ namespace FlyEditor.Flight
                 if(closed){var chart=basis.frame.inverse*map*f.frame;var pts=new Vector2[f.points.Length];for(int i=0;i<pts.Length;i++){var v=chart.MultiplyPoint3x4(new Vector3(f.points[i].x,0,f.points[i].y));if(Mathf.Abs(v.y)>.002f)return false;pts[i]=new Vector2(v.x,v.z);}
                     chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;bool flipped=chart.m00*chart.m22-chart.m02*chart.m20<0;int rank=layers.BinarySearch(f.layer);int group=piece.side==0?(piece.cap?1:0):(piece.cap?2:3);
                     int layer=away>0?layers[0]+group*count+(flipped?count-1-rank:rank):layers[count-1]-(group+1)*count+1+(flipped?count-1-rank:rank);
-                    trial.Add(new PaperSheet.Face(pts,layer,f.back^flipped,basis.frame,f.material*chart.inverse));
-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material));
+                    trial.Add(new PaperSheet.Face(pts,layer,f.back^flipped,basis.frame,f.material*chart.inverse,f));
+                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material,f));
             }
-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
+            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
                 var a=trial[i];var b=trial[j];if(PaperFoldTopology.SharedEdge(a,b,out var u,out var v)&&(Vector3.Distance(PaperFoldTopology.Position(a,u),PaperFoldTopology.Position(b,u))>.002f||Vector3.Distance(PaperFoldTopology.Position(a,v),PaperFoldTopology.Position(b,v))>.002f))return false;
                 var x=middle[i];var y=middle[j];if(PaperSheet.Turn.Intersects(x,y,y.frame.inverse*x.frame)||PaperSheet.Turn.Intersects(y,x,x.frame.inverse*y.frame))return false;
             }
-            if(closed){middle.Clear();foreach(var piece in pieces){var f=piece.face;var map=piece.active?Map(piece.side,piece.cap,Mathf.Sign(angle)*179.9f,out _):Matrix4x4.identity;middle.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material));}if(!PaperFlatStackOrder.Apply(trial,middle))return false;}
+            if(closed){middle.Clear();foreach(var piece in pieces){var f=piece.face;var map=piece.active?Map(piece.side,piece.cap,Mathf.Sign(angle)*179.9f,out _):Matrix4x4.identity;middle.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material,f));}if(!PaperFlatStackOrder.Apply(trial,middle))return false;}
             preview.Clear();preview.AddRange(trial);last=angle;return true;
         }
     }

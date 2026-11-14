@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "phase 1: material identity, selected-line partition and upper-only wing input",
+  "full_engine_complete": false,
+  "tests": {
+    "nested_line_variants": 20,
+    "modern_wing_sequences": 64,
+    "modern_wing_poses": 512,
+    "actual_player_cases": 3
+  },
+  "aircraft": {
+    "status": "PASS",
+    "scope": "prepared aircraft; real input wing opening only",
+    "angle": 78.0,
+    "lower_samples": 17,
+    "max_lower_displacement": 0.0,
+    "moving_samples": 17,
+    "lower_in_moving": false,
+    "session": "FlyPlyFinalBInput12"
+  }
+}

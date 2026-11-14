@@ -1,0 +1,1 @@
+id=31 label=orient-dragon screen=644x884 folds=5 phase=FirstPoint angle=-180 notice=종이를 뒤집었습니다. 보이는 면에서 같은 순서로 점을 고르세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=133773

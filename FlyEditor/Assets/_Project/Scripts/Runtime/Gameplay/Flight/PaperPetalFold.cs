@@ -21,10 +21,28 @@ namespace FlyEditor.Flight
         private int lowest=int.MaxValue,highest=int.MinValue;
         private float lastAngle=float.NaN;
         private bool continuous;
+        private bool coordinated;
+        private readonly Dictionary<PaperSheet.Face,int> supportSides=new Dictionary<PaperSheet.Face,int>();
         private readonly List<PaperSheet.Face> neutral=new List<PaperSheet.Face>();
+        private readonly List<PaperSheet.Face> rollback=new List<PaperSheet.Face>();
         internal string Failure;
         private bool? positiveClearance,negativeClearance;
         public IReadOnlyList<PaperSheet.Face> Preview=>preview;
+        internal bool Coordinated=>coordinated;
+        internal bool HingeHints;
+        internal bool MatchesHingeHints(Vector3 first,Vector3 second,float tolerance)
+        {
+            var a=Locate(first);var b=Locate(second);float squared=tolerance*tolerance;
+            return Finite(a)&&Finite(b)&&(((a-p).sqrMagnitude<=squared&&(b-q).sqrMagnitude<=squared)||((a-q).sqrMagnitude<=squared&&(b-p).sqrMagnitude<=squared));
+        }
+        internal int MotionRole(PaperSheet.Face face)
+        {
+            if(!coordinated)return 0;
+            foreach(var piece in pieces)if(ReferenceEquals(piece.face.region,face.region)){
+                if(piece.motion==Motion.Fixed)return 0;
+                return piece.motion==Motion.Centre||piece.motion==Motion.LeftUpper||piece.motion==Motion.RightUpper?1:2;
+            }return 0;
+        }
         public Vector3 Tip {get;private set;}
         public Vector3 Stop=>basis.World((p+q)*.5f,(basis.layer+.5f)*PaperSheet.Thickness);
         private PaperPetalFold(PaperSheet sheet,PaperSheet.Face basis){this.sheet=sheet;source=sheet.Faces;this.basis=basis;}
@@ -40,7 +58,7 @@ namespace FlyEditor.Flight
         public static PaperPetalFold Create(PaperSheet sheet,FoldStep step)
         {
             if(!step.adaptiveCreases || !step.customFlanks || !step.regionalPull)return null;
-            var basis=sheet.Faces[step.anchor];var plan=new PaperPetalFold(sheet,basis){continuous=step.partialPetalBacking||step.connectedPetalBacking};
+            var basis=sheet.Faces[step.anchor];var plan=new PaperPetalFold(sheet,basis){continuous=step.partialPetalBacking||step.connectedPetalBacking,coordinated=step.coordinatedSurface};
             var mt=basis.Original(step.pullTip);var mh=basis.Original(step.pullStop);
             var ml=basis.Original(step.pullLeft);var mr=basis.Original(step.pullRight);
             plan.tip=plan.Locate(mt);plan.head=plan.Locate(mh);plan.left=plan.Locate(ml);plan.right=plan.Locate(mr);
@@ -97,12 +115,18 @@ namespace FlyEditor.Flight
             }
             }
             if(!leftBuddy||!rightBuddy)return null;
-            plan.backLeft=plan.continuous?Vector2.Lerp(plan.head,plan.tip,leftRoot):plan.tip;
-            plan.backRight=plan.continuous?Vector2.Lerp(plan.head,plan.tip,rightRoot):plan.tip;
+            plan.backLeft=plan.continuous?(plan.coordinated?Vector2.LerpUnclamped(plan.head,plan.tip,leftRoot):Vector2.Lerp(plan.head,plan.tip,leftRoot)):plan.tip;
+            plan.backRight=plan.continuous?(plan.coordinated?Vector2.LerpUnclamped(plan.head,plan.tip,rightRoot):Vector2.Lerp(plan.head,plan.tip,rightRoot)):plan.tip;
+            if(plan.coordinated && !PaperHingeClosure.TrySolve(plan.tip,plan.head,plan.left,plan.right,plan.backLeft,plan.backRight,ref plan.p,ref plan.q))return null;
             foreach(var f in plan.active){
                 if(!PaperSheet.SameFrame(f,basis))return null;
                 plan.lowest=Mathf.Min(plan.lowest,f.layer);plan.highest=Mathf.Max(plan.highest,f.layer);
-                foreach(var v in f.points)if(!InTriangle(v,plan.tip,plan.left,plan.head)&&!InTriangle(v,plan.tip,plan.head,plan.right))return null;
+                foreach(var v in f.points){
+                    bool inside=InTriangle(v,plan.tip,plan.left,plan.head)||InTriangle(v,plan.tip,plan.head,plan.right);
+                    if(plan.coordinated && !plan.upper.Contains(f) && plan.supportSides.TryGetValue(f,out int side))
+                        inside=((side&1)!=0 && InTriangle(v,plan.backLeft,plan.left,plan.head))||((side&2)!=0 && InTriangle(v,plan.backRight,plan.head,plan.right));
+                    if(!inside)return null;
+                }
             }
             return plan.Build()?plan:null;
         }
@@ -135,7 +159,7 @@ namespace FlyEditor.Flight
             }
             int found=0;var spine=tip-head;
             foreach(var entry in sides){
-                var f=entry.Key;int mask=entry.Value;active.Add(f);found|=mask;
+                var f=entry.Key;int mask=entry.Value;active.Add(f);found|=mask;supportSides[f]=mask;
                 foreach(var v in f.points)if(Mathf.Abs(Cross(spine,v-head))<.001f){
                     float along=Vector2.Dot(v-head,spine)/spine.sqrMagnitude;
                     if((mask&1)!=0)leftRoot=Mathf.Max(leftRoot,along);
@@ -148,7 +172,7 @@ namespace FlyEditor.Flight
         {
             bool containsTip=false;
             foreach(var v in face.points){
-                if(!InTriangle(v,tip,left,head)&&!InTriangle(v,tip,head,right))return false;
+                if(!coordinated && !InTriangle(v,tip,left,head)&&!InTriangle(v,tip,head,right))return false;
                 containsTip|=(v-tip).sqrMagnitude<.00001f;
             }
             if(containsTip)return true;
@@ -212,6 +236,11 @@ namespace FlyEditor.Flight
             guides.Clear();foreach(var f in upper)foreach(var ends in new[]{new[]{tip,p},new[]{tip,q},new[]{p,q}}){
                 var a=ends[0];var b=ends[1];if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});
             }
+            if(coordinated)foreach(var entry in supportSides){
+                var f=entry.Key;
+                if((entry.Value&1)!=0){var a=backLeft;var b=p;if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});}
+                if((entry.Value&2)!=0){var a=backRight;var b=q;if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});}
+            }
         }
         private static Quaternion Basis(Vector3 u,Vector3 v)=>Quaternion.LookRotation(u,Vector3.Cross(u,v));
         private static Matrix4x4 Map(Vector2 a,Vector2 b,Vector2 c,Vector3 x,Vector3 y,Vector3 z)
@@ -252,9 +281,24 @@ namespace FlyEditor.Flight
         }
         public bool Pose(float angle)
         {
+            if(!coordinated)return PoseCore(angle);
             if(sheet.Faces!=source||!float.IsFinite(angle)||Mathf.Abs(angle)>180)return false;
             if(angle==lastAngle)return true;
-            if(angle==0){lastAngle=angle;preview.Clear();preview.AddRange(source);Tip=basis.World(tip,(basis.layer+.5f)*PaperSheet.Thickness);return true;}
+            float previousAngle=lastAngle;var previousTip=Tip;rollback.Clear();rollback.AddRange(preview);
+            float from=float.IsNaN(lastAngle)?0:lastAngle;
+            if(float.IsNaN(lastAngle)&&!PoseCore(0))return false;
+            while(from!=angle){
+                from=Mathf.MoveTowards(from,angle,2f);
+                if(PoseCore(from))continue;
+                preview.Clear();preview.AddRange(rollback);lastAngle=previousAngle;Tip=previousTip;return false;
+            }
+            return PoseCore(angle);
+        }
+        private bool PoseCore(float angle)
+        {
+            if(sheet.Faces!=source||!float.IsFinite(angle)||Mathf.Abs(angle)>180)return false;
+            if(angle==lastAngle)return true;
+            if(angle==0){lastAngle=angle;preview.Clear();if(coordinated)foreach(var piece in pieces)preview.Add(piece.face);else preview.AddRange(source);Tip=basis.World(tip,(basis.layer+.5f)*PaperSheet.Thickness);return true;}
             if(continuous && !CanOpen(angle>0?1:-1)){return false;}
             var axis=(V(q)-V(p)).normalized;float direction=Mathf.Sign(Vector3.Dot(Vector3.Cross(axis,V(tip-p)),Vector3.up));
             var rotation=Quaternion.AngleAxis(angle*direction,axis);var movedTip=V(p)+rotation*V(tip-p);
@@ -262,7 +306,7 @@ namespace FlyEditor.Flight
             bool atFlat=Mathf.Abs(angle)>=179.999f;
             if(atFlat){movedTip=V(Reflect(tip,p,q));movedLeft=V(Reflect(left,backLeft,p));movedRight=V(Reflect(right,backRight,q));}
             if(!Fits(tip,p,left,movedTip,V(p),movedLeft)||!Fits(tip,q,right,movedTip,V(q),movedRight)||
-               !Fits(backLeft,p,left,V(backLeft),V(p),movedLeft)||!Fits(backRight,q,right,V(backRight),V(q),movedRight))return false;
+               !Fits(backLeft,p,left,V(backLeft),V(p),movedLeft)||!Fits(backRight,q,right,V(backRight),V(q),movedRight)){Failure="rigid metric closure";return false;}
             maps[0]=Matrix4x4.identity;maps[1]=Map(tip,p,q,movedTip,V(p),V(q));
             maps[2]=Map(tip,p,left,movedTip,V(p),movedLeft);maps[3]=Map(backLeft,p,left,V(backLeft),V(p),movedLeft);
             maps[4]=Map(tip,q,right,movedTip,V(q),movedRight);maps[5]=Map(backRight,q,right,V(backRight),V(q),movedRight);
@@ -282,11 +326,11 @@ namespace FlyEditor.Flight
                     if(Mathf.Abs(PaperSheet.Area(points)-PaperSheet.Area(f.points))>.0005f)return false;
                     chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
                     bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);
-                    trial.Add(new PaperSheet.Face(points,targetLayer,back,basis.frame,f.material*chart.inverse));
-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
+                    trial.Add(new PaperSheet.Face(points,targetLayer,back,basis.frame,f.material*chart.inverse,f));
+                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
             }
             neutral.Clear();
-            if(continuous)foreach(var f in trial)neutral.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
+            if(continuous)foreach(var f in trial)neutral.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
             var contact=continuous?neutral:trial;
             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
                 var a=trial[i];var b=trial[j];
@@ -296,9 +340,9 @@ namespace FlyEditor.Flight
             }
             if(continuous && closed){
                 var flatFaces=new List<PaperSheet.Face>(trial);
-                if(!Pose(Mathf.Sign(angle)*179.9f))return false;
+                if(!PoseCore(Mathf.Sign(angle)*179.9f))return false;
                 var preceding=new List<PaperSheet.Face>(preview);
-                if(!PaperFlatStackOrder.Apply(flatFaces,preceding))return false;
+                if(!PaperFlatStackOrder.Apply(flatFaces,preceding)){Failure="flat contact ordering";return false;}
                 trial.Clear();trial.AddRange(flatFaces);
             }
             lastAngle=angle;preview.Clear();preview.AddRange(trial);Tip=basis.frame.MultiplyPoint3x4(movedTip+Vector3.up*((basis.layer+.5f)*PaperSheet.Thickness));return true;

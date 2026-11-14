@@ -1,0 +1,1 @@
+id=8 label=whole-selected screen=644x884 folds=1 phase=AdjustAngle angle=0 notice=초록색 전체가 실제로 접힙니다. 연결된 면은 박스 밖도 포함됩니다. 드래그: 각도 조절 · V: 다시 선택 scope=Stack gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=31628

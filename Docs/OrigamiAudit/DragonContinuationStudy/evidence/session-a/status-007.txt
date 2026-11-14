@@ -1,0 +1,1 @@
+id=7 label=opposite-petal-axis screen=644x884 folds=10 phase=PickSide angle=0 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=44957

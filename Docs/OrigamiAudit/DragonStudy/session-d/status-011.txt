@@ -1,0 +1,1 @@
+id=11 label=diagram-9-centre-fold screen=644x884 folds=6 phase=FirstPoint angle=180 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=96436

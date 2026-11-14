@@ -1,0 +1,1 @@
+id=6 label=restore-select screen=644x884 folds=1 phase=AdjustAngle angle=0 notice=선택한 쪽을 드래그해 접으세요. 겹친 뒤쪽 면은 선택하지 않습니다. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=18709

@@ -1,0 +1,1 @@
+id=2 label=corrected-crossing screen=644x884 folds=16 phase=AdjustAngle angle=5 notice= scope=Top gesture=Angle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=5046

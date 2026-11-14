@@ -1,0 +1,50 @@
+[
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs",
+    "sha256": "cc0551be8c554cb60d2f56d89be18fbbdff2c309ddde88316f25ae9fce4e75ef"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperPetalFold.cs",
+    "sha256": "4eb7bf2e2b945ac86c60a388884ebda775abb9da481b4e0a602a9e953d4818bc"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperCornerPull.cs",
+    "sha256": "777240dd5c6aba2d342e84248ab7e2d817a8b3e9226096c962c61771ec8796d7"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "456fcdfcf032068a3dd3ed33b9b408d8e12d9d3922358ae2918e770829fe6879"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldMesh.cs",
+    "sha256": "2740e33f1b620eb9aa905d42ccd66f979132bbf2a65125b1b5a5a31fffd2b686"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperHingeClosure.cs",
+    "sha256": "01c64a0d63e66b3b6c7b836781573174732848afa193ba08723b7af1db54e98b"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperLocalMotion.cs",
+    "sha256": "b833e4877f85d6cec1dfed4637495126f5a50eb067445720850186b632257653"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperPocketIntent.cs",
+    "sha256": "e60ecbcd4d89e331e162d71a3cb24ecaf2535e890ff6337c0619f24160ecc987"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/CoordinatedSurfaceVerification.cs",
+    "sha256": "70b684cae022dbf3a580b04bab4e9a0c5762965458be8b9b280e4a3fd7bdb9cd"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/CoordinatedPlayerReplayVerification.cs",
+    "sha256": "f9bf0dd2e366ca462cb55294ea9e999aeaeee521c82b66962619f0f17bb72eb1"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/CoordinatedSurfaceRegression.cs",
+    "sha256": "a2efc56ca4829f3df3b65e946ab348b3920886ed7d39064f4bd13add7defe679"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/CoordinatedDeliveryVerification.cs",
+    "sha256": "c9c50648453cc5ddc6dc9210dc8de580dd911d2d41a6b4e99c0b99aada03cae5"
+  }
+]

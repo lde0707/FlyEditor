@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scope": "sequential selection, material ply isolation and sampled contact regressions; no complete-model certification",
+  "fixed_causes": [
+    "stale historical ply boundary after fully opening material joints",
+    "UI tested only clicked polygon instead of validated connected material plan"
+  ],
+  "wing_sequence_operations": 256,
+  "reopened_selections": 288,
+  "sequence_poses": 2176,
+  "blocked_requests_preserved_source_and_preview": 128,
+  "selection_components": 8,
+  "actual_input": "same coordinates as pre-fix UI rejection; +78 preview cancel, +78 commit, undo, -78 commit; saved replay",
+  "full_regression": "evidence/sequence-final-regression.log",
+  "commands": {
+    "sequence": "--suite sequence-consistency; FLYEDITOR_SEQUENCE_OUT=fixtures",
+    "selection": "--suite sequence-selection; FLYEDITOR_SEQUENCE_OUT=fixtures",
+    "actual_recipe": "--suite sequence-player-replay; FLYEDITOR_SEQUENCE_PLAYER_DIR=input-after"
+  },
+  "remaining_scope": "continuous collision certification and arbitrary elastic sheet deformation are not covered",
+  "registered_module_verification": "PASS",
+  "registered_module_evidence": "module-verification/result.json"
+}

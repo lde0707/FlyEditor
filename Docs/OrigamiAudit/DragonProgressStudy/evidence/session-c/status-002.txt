@@ -1,0 +1,1 @@
+id=2 label=left-leaf-crease screen=644x884 folds=18 phase=PickSide angle=0 notice=면 선택됨 · 선이 이 면을 가로지르지 않습니다. 점 위치를 바꿔주세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=2224

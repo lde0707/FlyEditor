@@ -1,0 +1,2 @@
+id=21 label=perspective-selected screen=644x884 folds=1 phase=AdjustAngle angle=0 notice=초록색이 실제 접힐 영역입니다.
+V: 다시 선택 · Esc: 취소 scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=28231

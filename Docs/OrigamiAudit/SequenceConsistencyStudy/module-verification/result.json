@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "suite": "sequence-selection",
+  "returncode": 0,
+  "log": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\origami-sequence-consistency-2026-11-12\\module-verification\\sequence-selection.log",
+  "scope": "baseline suite only; no complete-model certification",
+  "source_sha256": "56c90719a4e572ab2ac77d5741e507c70689531180b2c9fcbd5fffa64e95caf9",
+  "project": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\validation\\WebProject",
+  "unity_version": "m_EditorVersion: 6000.5.3f1\nm_EditorVersionWithRevision: 6000.5.3f1 (c2eb47b3a2a9)"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs",
+    "sha256": "752a9c0b696ab3d3a94ca1699dfb71fa921999acac0a09df6d262b3442c1fedb"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "fee7170a7e40a7544995a8e08649f4a959d6ef9c9b27cc966b949ee40ebc7957"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/SequenceConsistencyVerification.cs",
+    "sha256": "2c69a6429f44fb0111109800cf62af0d96e616668e5de28879d3f0ef21512e59"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/SequenceSelectionVerification.cs",
+    "sha256": "265487075585f41e8ecb9c0637b7caf0ab7c4d2a6537e7ec1b2767380803d9c2"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/SequencePlayerReplayVerification.cs",
+    "sha256": "9e4c5e3cb1433ed0eec44611380adb1662dd98cbcbcf3214d7ca3502f7b5a91a"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/SequenceConsistencyRegression.cs",
+    "sha256": "5094a0567ad8f0d26b17abbee526f6113c00bfbac068e7f03fc62ec3a247ab12"
+  }
+]

@@ -1,0 +1,1 @@
+id=2 label=small-petal-free-edge screen=644x884 folds=7 phase=PickSide angle=0 notice=선택한 변을 기준선에 맞춥니다. 면을 드래그하세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=8209

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "suite": "dragon-continuation-player",
+  "returncode": 0,
+  "log": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\dragon-continuation-2026-11-12\\module-verification\\dragon-continuation-player.log",
+  "scope": "baseline suite only; no complete-model certification",
+  "source_sha256": "11266f1a744c8978899f5b4649ad575ada7d0e89313735ea073f58ab7416cc91",
+  "project": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\validation\\WebProject",
+  "unity_version": "m_EditorVersion: 6000.5.3f1\nm_EditorVersionWithRevision: 6000.5.3f1 (c2eb47b3a2a9)"
+}

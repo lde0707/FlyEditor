@@ -1,0 +1,21 @@
+{
+  "model": "Jo Nakashima Dragon (2015)",
+  "status": "FAIL",
+  "final_shape_verified": false,
+  "best_matching_checkpoint": "checkpoint-seven.json",
+  "current_block": "diagram 10-12 / nested small petal",
+  "original_input_sessions": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g"
+  ],
+  "completed_folds_at_best_checkpoint": 7,
+  "common_fix": "shared edge prefers visible face under pointer",
+  "rejected_candidate": "material-boundary petal subdivision did not resolve case; removed",
+  "note": "Later diagram steps not tested; no complete-model pass claimed.",
+  "completion_state": "INCOMPLETE"
+}

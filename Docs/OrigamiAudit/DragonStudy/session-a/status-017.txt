@@ -1,0 +1,1 @@
+id=17 label=fit-square screen=644x884 folds=4 phase=FirstPoint angle=0 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=63216

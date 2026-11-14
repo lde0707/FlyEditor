@@ -1,0 +1,1 @@
+id=8 label=committed screen=644x884 folds=8 phase=FirstPoint angle=180 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=22643

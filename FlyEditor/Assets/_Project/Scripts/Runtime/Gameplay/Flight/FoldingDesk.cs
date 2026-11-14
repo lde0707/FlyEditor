@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -11,8 +11,13 @@ namespace FlyEditor.Flight
         private enum Phase { FirstPoint, SecondPoint, LeftFlank, RightFlank, ReviewFourPoints, PickSide, AdjustAngle, PullCorner, Opening, PreparingClearance }
         private enum PickMode { Points, Face }
         private PickMode pickMode;
-        private Vector2 lastFacePick;
-        private bool hasFacePick;
+        private enum EdgeAlignState { Off, Source, Target, Preview }
+        private EdgeAlignState edgeAlignState;
+        private struct AlignmentEdge { public int face,index;public Vector2 a,b,contact; }
+        private AlignmentEdge alignSource,alignTarget,alignHover;
+        private bool alignHovered;
+        private bool PickingAlignment=>edgeAlignState==EdgeAlignState.Source || edgeAlignState==EdgeAlignState.Target;
+        private bool CanStartAlignment=>phase!=Phase.PreparingClearance && gesture==PointerGesture.Idle && (!Adjusting || (Mathf.Abs(angle)<.01f && !editing.HasValue));
         private enum Ply { Top, Bottom, Stack, Packet }
         private enum FoldDirection { Normal, Opposite }
         private FoldDirection foldDirection;
@@ -32,11 +37,20 @@ namespace FlyEditor.Flight
         private readonly List<LayerHit> layerHits=new List<LayerHit>();
         private int pinnedFace=-1,layerRank,layerCount;
         private bool explicitLayer;
+        private bool edgeMatchSelected;
+        private PaperCornerPull edgeSelection;
+        private enum SideChoiceState { None, Ready, NeedsHinges, DifferentPlanes, AxisOutside, ContactBlocked }
+        private SideChoiceState sideChoiceState;
+        private PaperSurfaceChoice surfaceChoice;
+        private enum SelectionOrigin { Side, Individual, Box }
+        private SelectionOrigin selectionOrigin;
+        private int viewRevision,hoverViewRevision=-1;
         private readonly List<int> firstPointPanels=new List<int>();
         private bool ResolvingFirstPoint=>phase==Phase.SecondPoint && firstPointPanels.Count>1;
         private Vector3 layerProbe;
-        private bool CanSwapPullEnds=>!Adjusting && first>=0 && second>=0 && leftFlank>=0 && rightFlank>=0;
-        private bool CanChangeLayer=>!Adjusting || (gesture==PointerGesture.Idle && Mathf.Abs(angle)<.01f && !editing.HasValue && pull==null && pair==null && reverse==null);
+        private bool CanSwapPullEnds=>!Adjusting && !edgeMatchSelected && first>=0 && second>=0 && leftFlank>=0 && rightFlank>=0;
+        private bool CanFlipPaper=>!Adjusting && gesture==PointerGesture.Idle;
+        private bool CanChangeLayer=>gesture!=PointerGesture.BoxSelect && gesture!=PointerGesture.LayerPress && (!Adjusting || (gesture==PointerGesture.Idle && Mathf.Abs(angle)<.01f && !editing.HasValue && pull==null && pair==null && reverse==null));
         private static readonly int[] AnglePresets={-180,-90,90,180};
         private static readonly string[] PresetLabels={"−180°","−90°","+90°","+180°"};
         private static readonly int[] ClearancePresets={45,90,135,180};
@@ -80,7 +94,7 @@ namespace FlyEditor.Flight
         private int first=-1,second=-1,hoverPoint=-1;
         private bool SelectingAxis=>phase==Phase.FirstPoint || phase==Phase.SecondPoint;
         private bool PickingPoint=>phase==Phase.FirstPoint || phase==Phase.SecondPoint || phase==Phase.LeftFlank || phase==Phase.RightFlank || phase==Phase.ReviewFourPoints;
-        private enum PointerGesture { Idle, EdgePress, Press, LayerPress, FacePress, PointPress, SecondPointPress, OpenPress, Opening, Pan, Orbit, Angle, Pull }
+        private enum PointerGesture { Idle, EdgePress, Press, LayerPress, BoxSelect, FacePress, PointPress, SecondPointPress, OpenPress, Opening, Pan, Orbit, Angle, Pull }
         private PointerGesture gesture;
         private int edgeFace=-1,edgeIndex=-1,edgeSign,edgeMotionSign;
         private PaperCornerPull edgeCandidate;
@@ -94,12 +108,23 @@ namespace FlyEditor.Flight
         private PaperSheet sheet;
         private PaperSheet.Turn turn;
         private Phase phase;
+        private Vector2 boxEnd;
+        private readonly List<int> boxFaces=new List<int>();
         private FoldStep? selected;
         private int hoverSide, hoverFlap;
         private Ply scope;
         private FoldStep? editing;
         private float dragY, dragStart, angle;
-        private float pitch,yaw,zoom,scale;
+        private float pitch,yaw,roll,zoom,scale;
+        private enum AxisView { User, Front, Back, Right, Left, Top, Bottom }
+        private AxisView axisView;
+        private static readonly string[] AxisLabels={"자유 시점","정면","뒷면","오른쪽","왼쪽","위","아래"};
+        private enum ViewRepeat { Idle, Waiting, Repeating }
+        private ViewRepeat viewRepeat;
+        private Key heldViewKey;
+        private bool heldViewCtrl,heldViewShift;
+        private float nextViewRepeat;
+        private static readonly Key[] ViewKeys={Key.Numpad1,Key.Numpad3,Key.Numpad7,Key.Numpad9,Key.Numpad5,Key.NumpadPeriod,Key.Home,Key.NumpadPlus,Key.NumpadMinus,Key.Numpad4,Key.Numpad6,Key.Numpad2,Key.Numpad8};
         private Rect viewport;
         private bool dirty=true;
         private static readonly string[] StatNames={"출발 속도","힘 · 속도 유지","하강 속도","상승력","충돌 저항"};
@@ -118,14 +143,14 @@ namespace FlyEditor.Flight
             table.gameObject.AddComponent<MeshRenderer>().sharedMaterial=material;
             camera=new GameObject("종이 작업대 카메라").AddComponent<Camera>();
             camera.transform.SetParent(table,false);camera.enabled=false;camera.orthographic=true;
-            camera.nearClipPlane=.1f;camera.farClipPlane=100;
+            camera.nearClipPlane=.1f;camera.farClipPlane=100;camera.fieldOfView=20;
             camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.92f,.94f,.92f);
             target=new RenderTexture(1280,900,24){name="접기 작업대",antiAliasing=4,filterMode=FilterMode.Bilinear};
             camera.targetTexture=target;
         }
         public void Open(FoldStep[] applied)
         {
-            sheet=applied==null || applied.Length==0 ? new PaperSheet() : PaperSheet.Replay(applied);pitch=57f;yaw=-18f;zoom=1f;panOffset=Vector3.zero;gesture=PointerGesture.Idle;
+            sheet=applied==null || applied.Length==0 ? new PaperSheet() : PaperSheet.Replay(applied);pitch=57f;yaw=-18f;roll=0;zoom=1f;axisView=AxisView.User;camera.orthographic=true;viewRepeat=ViewRepeat.Idle;panOffset=Vector3.zero;gesture=PointerGesture.Idle;
             editing=null;scope=Ply.Top;foldDirection=FoldDirection.Normal;
             table.gameObject.SetActive(true);Browse();
         }
@@ -137,9 +162,13 @@ namespace FlyEditor.Flight
         }
         private void Browse()
         {
+            edgeAlignState=EdgeAlignState.Off;alignHovered=false;
+            edgeMatchSelected=false;
+            edgeSelection=null;
+            surfaceChoice=null;sideChoiceState=SideChoiceState.None;selectionOrigin=SelectionOrigin.Side;hoverViewRevision=-1;
             CancelClearance();
             edgeFace=edgeIndex=-1;edgeSign=edgeMotionSign=0;edgeCandidate=null;
-            pickMode=PickMode.Points;hasFacePick=false;
+            pickMode=PickMode.Points;scope=Ply.Top;foldDirection=FoldDirection.Normal;
             pinnedFace=-1;layerRank=layerCount=0;layerHits.Clear();
             explicitLayer=false;firstPointPanels.Clear();
             phase=Phase.FirstPoint;first=second=hoverPoint=pressedPoint=leftFlank=rightFlank=-1;selected=null;hoverSide=hoverFlap=0;
@@ -216,17 +245,23 @@ namespace FlyEditor.Flight
         private static string Rating(float value)=>(value*100f).ToString("0.0")+"%";
         private void PositionCamera()
         {
-            hasFacePick=false;
+            viewRevision++;
             var b=sheet.SpatialBounds;
             Vector3 pivot=table.position+b.center+panOffset;
-            camera.transform.rotation=Quaternion.Euler(pitch,yaw,0);
-            camera.transform.position=pivot-camera.transform.forward*30f;
+            camera.transform.rotation=Quaternion.Euler(pitch,yaw,roll);
             camera.orthographicSize=Mathf.Max(3f,b.size.magnitude*.47f)/zoom;
-            if(pinnedFace>=0){
-                RefreshLayerStack();
-                if(!SelectingAxis && !explicitLayer && scope==Ply.Top && CanChangeLayer && layerHits.Count>0 &&
-                   !PaperSheet.SamePanel(sheet.Faces[layerHits[0].index],sheet.Faces[pinnedFace])){
-                    var visible=layerHits[0];SelectLayer(visible);explicitLayer=false;
+            float distance=camera.orthographic?30f:camera.orthographicSize/Mathf.Tan(camera.fieldOfView*.5f*Mathf.Deg2Rad);
+            camera.transform.position=pivot-camera.transform.forward*distance;
+            camera.farClipPlane=Mathf.Max(100,distance+b.extents.magnitude+20);
+            if(pinnedFace>=0)RefreshLayerStack();
+            // Rotating must not keep an invisible material leaf selected or silently
+            // move the authored line onto the new front leaf.
+            if((!Adjusting || (CanChangeLayer && Mathf.Abs(angle)<.01f)) && first>=0 && !SelectionExposed()){
+                Browse();notice="가려진 면의 선택을 해제했습니다. 보이는 면에서 점을 고르세요.";return;
+            }
+            if(edgeAlignState==EdgeAlignState.Target || (edgeAlignState==EdgeAlignState.Preview && Mathf.Abs(angle)<.01f)){
+                if(!PointVisible(new PaperSheet.FoldVertex(alignSource.face,alignSource.contact),out _)){
+                    Browse();notice="가려진 변의 선택을 해제했습니다. 보이는 변을 고르세요.";return;
                 }
             }
             Rebuild();dirty=true;
@@ -235,22 +270,41 @@ namespace FlyEditor.Flight
         {
             ResolveDisplayPoints();
             bool adjust=phase==Phase.AdjustAngle || phase==Phase.Opening;
-            builder.Build(mesh,sheet,turn,adjust?angle:0f,displayVertices,first,second,hoverPoint,phase==Phase.PickSide,hinge,pull,pair,MirrorAxis.Off,true,reverse,leftFlank,rightFlank,PickingPoint || ResolvingFirstPoint || scope==Ply.Packet || scope==Ply.Stack?-1:pinnedFace,camera.transform.forward,ResolvingFirstPoint?firstPointPanels:null,visiblePoints,pointOpacities);
+            var shownTurn=phase==Phase.PickSide && edgeMatchSelected?edgeSelection?.EdgeTurn:turn;
+            builder.Build(mesh,sheet,shownTurn,adjust?angle:0f,displayVertices,first,second,hoverPoint,phase==Phase.PickSide,hinge,pull,pair,MirrorAxis.Off,true,reverse,leftFlank,rightFlank,PickingPoint || ResolvingFirstPoint || scope==Ply.Packet || scope==Ply.Stack?-1:pinnedFace,camera.transform.forward,ResolvingFirstPoint?firstPointPanels:null,visiblePoints,pointOpacities,shownTurn==null?surfaceChoice:null,camera.orthographic?(Vector3?)null:camera.transform.position-table.position);
             dirty=true;
         }
         private bool PointVisible(PaperSheet.FoldVertex vertex,out float depth)
         {
             var face=sheet.Faces[vertex.anchor];
-            float h=(face.layer+(Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up))<0?1:0))*PaperSheet.Thickness;
+            depth=float.PositiveInfinity;
+            if(Mathf.Abs(ViewFacing(face))<.00001f)return false;
+            float h=(face.layer+(ViewFacing(face)<0?1:0))*PaperSheet.Thickness;
             var view=camera.WorldToViewportPoint(table.position+face.World(vertex.point,h));depth=view.z;
             if(depth<=camera.nearClipPlane)return false;
             sheet.PlyRange(face,vertex.point,out int bottom,out int top);
-            bool front=Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up))<0;
+            bool front=ViewFacing(face)<0;
             if(face.layer!=(front?top:bottom))return false;
             var cover=RayHit(new Vector2(view.x,view.y),out var at);
+            if(cover!=null && !PaperSheet.SamePanel(face,cover)){
+                float ch=(cover.layer+(ViewFacing(cover)<0?1:0))*PaperSheet.Thickness;
+                if(camera.WorldToViewportPoint(table.position+cover.World(at,ch)).z<depth-.001f)return false;
+            }
+            // A lower corner may project just outside the upper silhouette due
+            // to thickness. Resolve its adjacent surface as well as the exact
+            // zero-area vertex, so a hidden ply does not win that numerical gap.
+            bool boundary=false;Vector2 centre=Vector2.zero;
+            for(int i=0;i<face.points.Length;i++){
+                var a=face.points[i];var edge=face.points[(i+1)%face.points.Length]-a;centre+=a;
+                if(edge.sqrMagnitude>.000001f && Mathf.Abs(edge.x*(vertex.point.y-a.y)-edge.y*(vertex.point.x-a.x))<edge.magnitude*.0005f)boundary=true;
+            }
+            if(!boundary)return true;
+            var inset=Vector2.Lerp(vertex.point,centre/face.points.Length,.002f);
+            var inner=camera.WorldToViewportPoint(table.position+face.World(inset,h));
+            cover=RayHit(new Vector2(inner.x,inner.y),out at);
             if(cover==null || PaperSheet.SamePanel(face,cover))return true;
-            float ch=(cover.layer+(Vector3.Dot(camera.transform.forward,cover.frame.MultiplyVector(Vector3.up))<0?1:0))*PaperSheet.Thickness;
-            return camera.WorldToViewportPoint(table.position+cover.World(at,ch)).z>=depth-.001f;
+            float ih=(cover.layer+(ViewFacing(cover)<0?1:0))*PaperSheet.Thickness;
+            return camera.WorldToViewportPoint(table.position+cover.World(at,ih)).z>=inner.z-.001f;
         }
         private void UpdateInteriorVisibility()
         {
@@ -292,14 +346,14 @@ namespace FlyEditor.Flight
                         if(memberOpacity<=.0001f)continue;
                         if(locked && !PaperSheet.SamePanel(sheet.Faces[member.anchor],sheet.Faces[pinnedFace]))continue;
                         bool exposed=PointVisible(member,out float depth);
-                        if((locked || exposed) && depth<nearest){nearest=depth;representative=member;visible=true;opacity=memberOpacity;}
+                        if(exposed && depth<nearest){nearest=depth;representative=member;visible=true;opacity=memberOpacity;}
                     }
                 }else{
                     bool exposed=PointVisible(representative,out _);
-                    visible=locked?PaperSheet.SamePanel(sheet.Faces[representative.anchor],sheet.Faces[pinnedFace]):exposed;
+                    visible=exposed && (!locked || PaperSheet.SamePanel(sheet.Faces[representative.anchor],sheet.Faces[pinnedFace]));
                 }
                 bool chosen=i==first || i==second || i==leftFlank || i==rightFlank;
-                if(chosen){representative=vertices[i];visible=true;opacity=1;}
+                if(chosen){representative=vertices[i];visible=PointVisible(representative,out _);opacity=visible?1:0;}
                 displayVertices.Add(representative);visiblePoints.Add(visible);pointOpacities.Add(visible?opacity:0);
             }
         }
@@ -315,11 +369,28 @@ namespace FlyEditor.Flight
                 float t=((f.layer+(dir.y<0?1:0))*PaperSheet.Thickness-origin.y)/dir.y;
                 if(t<0 || t>=nearest)continue;
                 var p=new Vector2(origin.x+t*dir.x,origin.z+t*dir.z);
-                if(f.Contains(p)){nearest=t;point=p;hit=f;}
+                if(TryHitPoint(f,p,out var snapped)){nearest=t;point=snapped;hit=f;}
             }
             return hit;
         }
-        private bool TrySelectionAxis(int index,out FoldStep line)
+        private bool TryHitPoint(PaperSheet.Face face,Vector2 point,out Vector2 resolved)
+        {
+            resolved=point;if(face.Contains(point))return true;
+            // A projected silhouette can miss its own polygon by float error.
+            // Accept at most two display pixels, snapping to a real boundary.
+            float best=float.PositiveInfinity;
+            for(int i=0;i<face.points.Length;i++){
+                var a=face.points[i];var edge=face.points[(i+1)%face.points.Length]-a;
+                if(edge.sqrMagnitude<.00000001f)continue;
+                var q=a+edge*Mathf.Clamp01(Vector2.Dot(point-a,edge)/edge.sqrMagnitude);
+                float distance=(q-point).sqrMagnitude;if(distance<best){best=distance;resolved=q;}
+            }
+            float facing=Mathf.Abs(ViewFacing(face));
+            float tolerance=4*camera.orthographicSize/Mathf.Max(1,viewport.height)/Mathf.Max(.05f,facing);
+            return best<=tolerance*tolerance && (SurfaceScreen(face,point)-SurfaceScreen(face,resolved)).sqrMagnitude<=4;
+        }
+        private bool TrySelectionAxis(int index,out FoldStep line)=>TrySelectionAxis(index,false,out line);
+        private bool TrySelectionAxis(int index,bool project,out FoldStep line)
         {
             line=default;if(first<0 || second<0 || index<0 || index>=sheet.Faces.Count)return false;
             var hit=sheet.Faces[index];var va=vertices[first];var vb=vertices[second];
@@ -327,12 +398,16 @@ namespace FlyEditor.Flight
             var inverse=hit.frame.inverse;
             var a3=inverse.MultiplyPoint3x4(fa.World(va.point,0));
             var b3=inverse.MultiplyPoint3x4(fb.World(vb.point,0));
-            if(Mathf.Abs(a3.y)>.04f || Mathf.Abs(b3.y)>.04f)return false;
+            if(project){
+                var direction=inverse.MultiplyVector(camera.transform.forward);
+                if(Mathf.Abs(direction.y)<.00001f)return false;
+                a3-=direction*(a3.y/direction.y);b3-=direction*(b3.y/direction.y);
+            }else if(Mathf.Abs(a3.y)>.04f || Mathf.Abs(b3.y)>.04f)return false;
             var a=new Vector2(a3.x,a3.z);var b=new Vector2(b3.x,b3.z);var delta=b-a;
             if(delta.sqrMagnitude<.000001f)return false;
             var normal=new Vector2(-delta.y,delta.x).normalized;
             line=new FoldStep(CreaseFamily.Rising,0,1){anchor=index,flap=scope==Ply.Stack?0:index+1,
-                singlePanel=scope!=Ply.Stack,connectedPanel=scope!=Ply.Stack,separateFoldSides=scope!=Ply.Stack,continuousHinge=true,neutralContacts=true,compactLayers=true,creaseNormal=normal,creaseOffset=Vector2.Dot(normal,a)};
+                singlePanel=scope!=Ply.Stack,connectedPanel=scope!=Ply.Stack,separateFoldSides=scope!=Ply.Stack,materialPartition=true,vertexJoints=true,preserveSlivers=true,continuousHinge=true,neutralContacts=true,compactLayers=true,creaseNormal=normal,creaseOffset=Vector2.Dot(normal,a)};
             return true;
         }
         private bool TryFaceAxis(Vector2 uv,out FoldStep line,out Vector2 point,out int flap)
@@ -341,20 +416,105 @@ namespace FlyEditor.Flight
             if(hit==null || !TrySelectionAxis(index,out line))return false;
             line.contact=point;flap=index+1;return true;
         }
+        private bool TrySideRegion(Vector2 pos,out FoldStep line,out bool coplanar,out int hitIndex)
+        {
+            line=default;coplanar=false;hitIndex=-1;
+            var face=SelectedFace(ViewUV(pos),out var point,out hitIndex);
+            if(face==null || first<0 || second<0)return false;
+            int basis=vertices[first].anchor;
+            coplanar=TrySelectionAxis(basis,out line);
+            if(!coplanar && !TrySelectionAxis(basis,true,out line))return false;
+            var local=sheet.Faces[basis].frame.inverse.MultiplyPoint3x4(face.World(point,0));
+            line.contact=new Vector2(local.x,local.z);float distance=line.Distance(line.contact);
+            if(Mathf.Abs(distance)<.0001f)return false;
+            line.side=distance>0?1:-1;return true;
+        }
+        private void CollectSideRegion(FoldStep line)
+        {
+            if(scope!=Ply.Stack){PaperBoxSelection.Collect(sheet,camera,table.position,viewport,viewport,line,false,boxFaces);return;}
+            // Whole-side selection includes off-screen and edge-on plies too.
+            // The rectangle tool remains explicitly restricted to its rectangle.
+            boxFaces.Clear();var basis=sheet.Faces[line.anchor];
+            var normal=basis.frame.MultiplyVector(new Vector3(line.Normal.x,0,line.Normal.y));
+            var at=basis.World(line.Normal*(line.Position/line.Normal.sqrMagnitude),0);
+            for(int i=0;i<sheet.Faces.Count;i++){
+                var face=sheet.Faces[i];var local=PaperFoldTopology.WorldLine(face,at,normal);local.preserveSlivers=true;
+                bool positive=false;foreach(var p in face.points)if(local.Distance(p)*line.side>.0001f){positive=true;break;}
+                if(positive && PaperSheet.Clip(face,local,line.side)!=null)boxFaces.Add(i);
+            }
+        }
+        private bool ChooseSide(Vector2 pos,bool press)
+        {
+            if(!TrySideRegion(pos,out var line,out bool coplanar,out _))return false;
+            CollectSideRegion(line);ResolveRegion(line,coplanar,SelectionOrigin.Side,pos,press);return true;
+        }
+        private void ResolveRegion(FoldStep line,bool coplanar,SelectionOrigin origin,Vector2 pos,bool press)
+        {
+            candidate=turn=null;surfaceChoice=null;hinge.Clear();angle=0;selectionOrigin=origin;phase=Phase.PickSide;
+            if(boxFaces.Count==0){sideChoiceState=SideChoiceState.AxisOutside;notice="이쪽에서 선택할 면이 없습니다.";Rebuild();return;}
+            line.selectedFaces=boxFaces.ToArray();line.flap=0;line.singlePanel=line.connectedPanel=line.separateFoldSides=false;
+            selected=line;candidate=coplanar?sheet.Plan(line):null;turn=candidate;
+            bool blocked=turn!=null && Mathf.Abs(turn.Constrain(1))<.001f && Mathf.Abs(turn.Constrain(-1))<.001f;
+            if(blocked)turn=null;
+            sideChoiceState=!coplanar?SideChoiceState.DifferentPlanes:blocked?SideChoiceState.ContactBlocked:turn==null?SideChoiceState.NeedsHinges:SideChoiceState.Ready;
+            if(turn==null){
+                surfaceChoice=new PaperSurfaceChoice(sheet.Faces,line,boxFaces);
+                notice=!coplanar?"노란색 영역 선택됨 · 면 각도가 다릅니다.\n점 추가 [F]로 보조 접힘을 정하세요.":blocked?"노란색 영역 선택됨 · 다른 겹에 막혔습니다.\n반대 방향이나 전체 겹 [2]을 확인하세요.":"노란색 영역 선택됨 · 연결된 부분에 보조 접힘이 필요합니다.";
+            }else{
+                selected=turn.step;phase=Phase.AdjustAngle;pickMode=PickMode.Points;pinnedFace=-1;
+                foreach(var face in turn.movingFaces)if(PaperSheet.SameFrame(face,sheet.Faces[line.anchor]) && PaperSheet.Intersection(face,line,out var a,out var b))
+                    hinge.Add(new PaperSheet.Guide{line=line,a=a,b=b,layer=face.layer,face=face});
+                notice=origin==SelectionOrigin.Box?"초록색: 실제 접기 영역 · V: 다시 선택":"초록색: 선 한쪽의 선택 영역 전체\n드래그: 접기 · V: 개별/박스 선택";
+                if(press)StartFacePress(pos);
+            }
+            Rebuild();
+        }
+        private bool ChooseIndividualSide(Vector2 pos,bool press)
+        {
+            selectionOrigin=SelectionOrigin.Individual;
+            var face=SelectedFace(ViewUV(pos),out var point,out int index);
+            if(face==null)return false;
+            bool coplanar=TrySelectionAxis(index,out var line);
+            if(!coplanar && !TrySelectionAxis(index,true,out line)){
+                notice="두 점이 같은 위치로 보입니다. 시점을 조금 돌려 선의 양쪽을 선택하세요.";return false;
+            }
+            float distance=line.Distance(point);
+            if(Mathf.Abs(distance)<.0001f){notice="선 위가 아니라 접을 쪽의 면을 클릭하세요.";return false;}
+            line.side=distance>0?1:-1;line.contact=point;
+            selected=line;PinLayer(index,point);surfaceChoice=new PaperSurfaceChoice(face,line);
+            // A visible surface can contain several pieces from earlier folds.
+            // The crease may cross a connected neighbour of the clicked piece.
+            // Let the material planner validate that connection and moving side;
+            // a per-polygon intersection is not the player's selection boundary.
+            candidate=coplanar?sheet.Plan(line):null;
+            bool crosses=candidate!=null || PaperSheet.Intersection(face,line,out _,out _);
+            turn=candidate!=null && !candidate.MovesOtherPlyAt(point)?candidate:null;
+            bool contactBlocked=turn!=null && Mathf.Abs(turn.Constrain(1))<.001f && Mathf.Abs(turn.Constrain(-1))<.001f;
+            if(contactBlocked){
+                var packet=sheet.PlanContactPacket(line);
+                if(packet!=null&&packet.step.contactPacket){candidate=turn=packet;selected=packet.step;contactBlocked=false;}
+            }
+            if(contactBlocked)turn=null;
+            sideChoiceState=!coplanar?SideChoiceState.DifferentPlanes:!crosses?SideChoiceState.AxisOutside:contactBlocked?SideChoiceState.ContactBlocked:turn==null?SideChoiceState.NeedsHinges:SideChoiceState.Ready;
+            if(turn!=null){
+                surfaceChoice=null;phase=Phase.AdjustAngle;angle=0;sheet.MarkCrease(turn.step,hinge);
+                notice=turn.step.flap==0?"전체 겹: 선 한쪽의 모든 겹을 함께 접습니다.":turn.step.contactPacket?"초록: 선택한 면 · 파란 사선: 함께 접어야 하는 접촉 겹. 드래그로 접으세요.":"선택한 쪽을 드래그해 접으세요. 겹친 뒤쪽 면은 선택하지 않습니다.";
+                if(press)StartFacePress(pos);
+            }else{
+                phase=Phase.PickSide;gesture=PointerGesture.Idle;
+                notice=sideChoiceState==SideChoiceState.DifferentPlanes?"면 선택됨 · 두 점의 면 각도가 다릅니다. F로 점 2개를 추가해 함께 접으세요.":
+                    sideChoiceState==SideChoiceState.AxisOutside?"면 선택됨 · 선이 이 면을 가로지르지 않습니다. 점 위치를 바꿔주세요.":
+                    sideChoiceState==SideChoiceState.ContactBlocked?"면 선택됨 · 겹친 종이가 양쪽 방향을 막습니다. 겹을 먼저 벌리거나 선을 바꿔주세요.":
+                    "면 선택됨 · 이 연결은 한 축 접기로 계산되지 않습니다. F로 점 2개를 추가하세요.";
+            }
+            Rebuild();return true;
+        }
         private PaperSheet.Face SelectedFace(Vector2 uv,out Vector2 point,out int index)
         {
             CollectLayerHits(uv);point=default;index=-1;if(layerHits.Count==0)return null;
-            int rank=scope==Ply.Bottom?Mathf.Min(1,layerHits.Count-1):0;
-            if(!PickingPoint && explicitLayer && pinnedFace>=0){
-                rank=-1;
-                for(int i=0;i<layerHits.Count;i++){
-                    if(!PaperSheet.SamePanel(sheet.Faces[layerHits[i].index],sheet.Faces[pinnedFace]))continue;
-                    rank=i;break;
-                }
-                // An explicit layer must not silently fall through to another overlapping face.
-                if(rank<0)return null;
-            }
-            var hit=layerHits[rank];point=hit.point;index=hit.index;return sheet.Faces[index];
+            // Every new surface click resolves the nearest visible material.
+            // A previous face selection scopes its fold, not future clicks.
+            var hit=layerHits[0];point=hit.point;index=hit.index;return sheet.Faces[index];
         }
         private void CollectLayerHits(Vector2 uv)
         {
@@ -365,7 +525,7 @@ namespace FlyEditor.Flight
                 if(Mathf.Abs(direction.y)<.00001f)continue;
                 float t=((face.layer+(direction.y<0?1:0))*PaperSheet.Thickness-origin.y)/direction.y;
                 if(t<0)continue;
-                var p=new Vector2(origin.x+t*direction.x,origin.z+t*direction.z);if(!face.Contains(p))continue;
+                var p=new Vector2(origin.x+t*direction.x,origin.z+t*direction.z);if(!TryHitPoint(face,p,out p))continue;
                 bool duplicate=false;foreach(var old in layerHits)if(PaperSheet.SamePanel(face,sheet.Faces[old.index])){duplicate=true;break;}
                 if(duplicate)continue;
                 int at=layerHits.Count;while(at>0 && layerHits[at-1].depth>t)at--;
@@ -398,7 +558,7 @@ namespace FlyEditor.Flight
                 bool chosen=i==first || i==second || i==leftFlank || i==rightFlank;
                 if(ResolvingFirstPoint){if(!FirstPanelContains(face))continue;}
                 else if(!chosen && !PickingPoint && pinnedFace>=0 && scope!=Ply.Packet && scope!=Ply.Stack && !PaperSheet.SamePanel(face,sheet.Faces[pinnedFace]))continue;
-                float h=(face.layer+(Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up))<0?1:0))*PaperSheet.Thickness;
+                float h=(face.layer+(ViewFacing(face)<0?1:0))*PaperSheet.Thickness;
                 var world=table.position+face.World(vertex.point,h);
                 var v=camera.WorldToViewportPoint(world);
                 var screen=new Vector2(viewport.x+v.x*viewport.width,viewport.y+(1-v.y)*viewport.height);
@@ -416,7 +576,7 @@ namespace FlyEditor.Flight
                         // float precision. Only reject an actually nearer cover.
                         var cover=RayHit(new Vector2(v.x,v.y),out var at);
                         if(cover!=null && !PaperSheet.SamePanel(cover,face)){
-                            float ch=(cover.layer+(Vector3.Dot(camera.transform.forward,cover.frame.MultiplyVector(Vector3.up))<0?1:0))*PaperSheet.Thickness;
+                            float ch=(cover.layer+(ViewFacing(cover)<0?1:0))*PaperSheet.Thickness;
                             float cd=camera.WorldToViewportPoint(table.position+cover.World(at,ch)).z;
                             if(cd<v.z-.001f)continue;
                         }
@@ -468,7 +628,7 @@ namespace FlyEditor.Flight
                     }
                     angle=sample;
                 }
-                notice=pull.UsesClearanceSequence?"주변 겹을 정리하며 꽃잎을 접습니다.":pull.UsesRadialGather?"연결된 면을 함께 모아 접습니다.":pull.UsesPetalFold?"꼭짓점을 들어 올리며 양옆을 안으로 접습니다.":pull.UsesEdgeMatch?"가장자리를 선택한 기준선에 맞춥니다.":(pull.UsesCoupledHinges||pull.UsesExactSquash)?(Mathf.Abs(angle)<=90?"주머니를 벌리는 중입니다.":"양옆 면을 함께 눌러 펴는 중입니다."):pull.Step.flexible?"주변 면이 함께 움직입니다.":null;Rebuild();return;
+            notice=pull.UsesCoordinatedSurface?"초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면":pull.UsesClearanceSequence?"주변 겹을 정리하며 꽃잎을 접습니다.":pull.UsesRadialGather?"연결된 면을 함께 모아 접습니다.":pull.UsesPetalFold?"꼭짓점을 들어 올리며 양옆을 안으로 접습니다.":pull.UsesEdgeMatch?"가장자리를 선택한 기준선에 맞춥니다.":(pull.UsesCoupledHinges||pull.UsesExactSquash)?(Mathf.Abs(angle)<=90?"주머니를 벌리는 중입니다.":"양옆 면을 함께 눌러 펴는 중입니다."):pull.Step.flexible?"주변 면이 함께 움직입니다.":null;Rebuild();return;
             }
             requested=Mathf.Clamp(Mathf.Round(requested),-180f,180f);
             float allowed=turn.Constrain(requested);
@@ -534,19 +694,27 @@ namespace FlyEditor.Flight
             Layout();
             var keys=Keyboard.current;
             if(keys!=null && keys.escapeKey.wasPressedThisFrame){
-                if(phase!=Phase.FirstPoint)CancelAngle();else owner.CloseFolding();return;
+                if(phase!=Phase.FirstPoint || edgeAlignState!=EdgeAlignState.Off)CancelAngle();else owner.CloseFolding();return;
             }
+            if(gesture==PointerGesture.BoxSelect || gesture==PointerGesture.LayerPress){
+                var heldMouse=Mouse.current;
+                if(heldMouse!=null){var raw=heldMouse.position.ReadValue();TickPointer(heldMouse,new Vector2(raw.x,Screen.height-raw.y)/scale);}
+                if(dirty){camera.Render();dirty=false;}return;
+            }
+            if(keys!=null && keys.mKey.wasPressedThisFrame && CanStartAlignment){ToggleEdgeAlignment();return;}
+            if(keys!=null && TickViewKeys(keys))return;
+            if(keys!=null && keys.bKey.wasPressedThisFrame && CanFlipPaper){FlipPaper();return;}
             if(keys!=null && keys.tKey.wasPressedThisFrame && CanSwapPullEnds){SwapPullEnds();return;}
             if(phase==Phase.PreparingClearance){
                 TickClearance();if(dirty){camera.Render();dirty=false;}return;
             }
             if(keys!=null){
-                if(keys.vKey.wasPressedThisFrame && CanChangeLayer){ToggleFacePicking();return;}
-                if(keys.tabKey.wasPressedThisFrame && CanChangeLayer){CycleLayer();return;}
+                if(keys.fKey.wasPressedThisFrame && edgeAlignState==EdgeAlignState.Off){AddMorePoints();return;}
+                if(keys.vKey.wasPressedThisFrame && CanChangeLayer && edgeAlignState==EdgeAlignState.Off){ToggleFacePicking();return;}
                 if(keys.rKey.wasPressedThisFrame && CanReverseDirection)ReverseFoldDirection();
-                if(CanChangeLayer){
-                    if(keys.digit1Key.wasPressedThisFrame){ChoosePly(Ply.Stack);return;}
-                    if(keys.digit2Key.wasPressedThisFrame && second>=0){ChoosePly(Ply.Top);return;}
+                if(CanChangeLayer && edgeAlignState==EdgeAlignState.Off){
+                    if(keys.digit1Key.wasPressedThisFrame){ChoosePly(Ply.Top);return;}
+                    if(keys.digit2Key.wasPressedThisFrame && second>=0 && !FourPointMode){ChoosePly(Ply.Stack);return;}
                 }
                 if(Adjusting){
                     if(keys.cKey.wasPressedThisFrame && !Reversing){CloseToContact();return;}
@@ -555,13 +723,12 @@ namespace FlyEditor.Flight
                     if(gesture==PointerGesture.Idle && keys.downArrowKey.wasPressedThisFrame){SetAngle(angle-step*(AssistedClearance?InputSign:1));keyAdjustment=true;}
                     if(keyAdjustment && !keys.upArrowKey.isPressed && !keys.downArrowKey.isPressed)FinishInteraction();
                 }else{
-                    if(keys.fKey.wasPressedThisFrame){AddMorePoints();return;}
-                    if(keys.eKey.wasPressedThisFrame && phase==Phase.FirstPoint && sheet.Count>0){EditLast();return;}
+                    if(keys.eKey.wasPressedThisFrame && phase==Phase.FirstPoint && edgeAlignState==EdgeAlignState.Off && sheet.Count>0){EditLast();return;}
                     if(keys.zKey.wasPressedThisFrame && sheet.Undo())Browse();
-                    if(keys.backspaceKey.wasPressedThisFrame)RemoveLastPoint();
+                    if(keys.backspaceKey.wasPressedThisFrame){if(PickingAlignment)BeginEdgeAlignment();else RemoveLastPoint();}
                 }
                 if(keys.enterKey.wasPressedThisFrame || keys.numpadEnterKey.wasPressedThisFrame){
-                    if(phase==Phase.FirstPoint)Apply();
+                    if(phase==Phase.FirstPoint && edgeAlignState==EdgeAlignState.Off)Apply();
                     return;
                 }
             }
@@ -576,6 +743,80 @@ namespace FlyEditor.Flight
         }
 
         private Vector2 ViewUV(Vector2 pos)=>new Vector2((pos.x-viewport.x)/viewport.width,1f-(pos.y-viewport.y)/viewport.height);
+        private bool TickViewKeys(Keyboard keys)
+        {
+            if(gesture!=PointerGesture.Idle || phase==Phase.PreparingClearance){viewRepeat=ViewRepeat.Idle;return false;}
+            bool ctrl=keys.ctrlKey.isPressed,shift=keys.shiftKey.isPressed;
+            foreach(var key in ViewKeys)if(keys[key].wasPressedThisFrame){
+                NavigateView(key,ctrl,shift);
+                bool repeat=key==Key.Numpad4||key==Key.Numpad6||key==Key.Numpad2||key==Key.Numpad8||key==Key.NumpadPlus||key==Key.NumpadMinus;
+                viewRepeat=repeat?ViewRepeat.Waiting:ViewRepeat.Idle;heldViewKey=key;heldViewCtrl=ctrl;heldViewShift=shift;nextViewRepeat=Time.unscaledTime+.35f;return true;
+            }
+            if(viewRepeat==ViewRepeat.Idle)return false;
+            if(!keys[heldViewKey].isPressed||ctrl!=heldViewCtrl||shift!=heldViewShift){viewRepeat=ViewRepeat.Idle;return false;}
+            if(Time.unscaledTime<nextViewRepeat)return false;
+            viewRepeat=ViewRepeat.Repeating;nextViewRepeat=Time.unscaledTime+.09f;
+            NavigateView(heldViewKey,ctrl,shift);return true;
+        }
+        private void NavigateView(Key key,bool ctrl,bool shift)
+        {
+            if(key==Key.Numpad1||key==Key.Numpad3||key==Key.Numpad7){SnapView(key==Key.Numpad1?1:key==Key.Numpad3?3:7,ctrl);return;}
+            if(key==Key.Numpad5){camera.orthographic=!camera.orthographic;PositionCamera();return;}
+            if(key==Key.Home){FrameView(false);return;}
+            if(key==Key.NumpadPeriod){FrameView(true);return;}
+            if(key==Key.NumpadPlus||key==Key.NumpadMinus){SetZoom(zoom*(key==Key.NumpadPlus?1.2f:1f/1.2f),new Vector2(.5f,.5f));return;}
+            if(key==Key.Numpad9){
+                bool ortho=camera.orthographic;
+                if(axisView==AxisView.Front||axisView==AxisView.Back)SnapView(1,axisView==AxisView.Front);
+                else if(axisView==AxisView.Right||axisView==AxisView.Left)SnapView(3,axisView==AxisView.Right);
+                else if(axisView==AxisView.Top||axisView==AxisView.Bottom)SnapView(7,axisView==AxisView.Top);
+                else{SetViewRotation(Quaternion.AngleAxis(180,Vector3.up)*camera.transform.rotation);PositionCamera();}
+                camera.orthographic=ortho;PositionCamera();return;
+            }
+            float horizontal=key==Key.Numpad6?1:key==Key.Numpad4?-1:0;
+            float vertical=key==Key.Numpad8?1:key==Key.Numpad2?-1:0;
+            if(ctrl){
+                panOffset+=camera.orthographicSize*.16f*(horizontal*camera.transform.right+vertical*camera.transform.up);PositionCamera();return;
+            }
+            if(shift){
+                if(horizontal!=0){SetViewRotation(camera.transform.rotation*Quaternion.AngleAxis(-horizontal*15,Vector3.forward));axisView=AxisView.User;PositionCamera();}
+                return;
+            }
+            OrbitView(horizontal*15,vertical*15);
+        }
+        private void SetViewRotation(Quaternion rotation)
+        {
+            var euler=rotation.eulerAngles;pitch=euler.x;yaw=euler.y;roll=euler.z;
+        }
+        private void OrbitView(float horizontal,float vertical)
+        {
+            if(axisView!=AxisView.User)camera.orthographic=false; // Blender default Auto Perspective on leaving an axis view.
+            var rotation=Quaternion.AngleAxis(-horizontal,Vector3.up)*camera.transform.rotation;
+            rotation*=Quaternion.AngleAxis(vertical,Vector3.right);
+            SetViewRotation(rotation);axisView=AxisView.User;PositionCamera();
+        }
+        private void SnapView(int axis,bool opposite)
+        {
+            pitch=axis==7?(opposite?270:90):0;
+            yaw=axis==3?(opposite?90:270):axis==1 && opposite?180:0;roll=0;camera.orthographic=true;
+            axisView=axis==1?(opposite?AxisView.Back:AxisView.Front):axis==3?(opposite?AxisView.Left:AxisView.Right):(opposite?AxisView.Bottom:AxisView.Top);
+            PositionCamera();
+        }
+        private void FrameView(bool selection)
+        {
+            var all=sheet.SpatialBounds;var bounds=new Bounds();bool found=false;
+            void Include(Vector3 p){if(found)bounds.Encapsulate(p);else{bounds=new Bounds(p,Vector3.zero);found=true;}}
+            if(selection){
+                if(turn!=null){var rotation=turn.Rotation(Adjusting?angle:0);foreach(var face in turn.movingFaces)foreach(var p in face.points)Include(rotation.MultiplyPoint3x4(face.World(p,0)));}
+                else{
+                    void Point(int index){if(index>=0){var v=vertices[index];Include(sheet.Faces[v.anchor].World(v.point,0));}}
+                    Point(first);Point(second);Point(leftFlank);Point(rightFlank);
+                }
+            }
+            if(!found){zoom=1;panOffset=Vector3.zero;}
+            else{panOffset=bounds.center-all.center;zoom=Mathf.Clamp(Mathf.Max(3f,all.size.magnitude*.47f)/Mathf.Max(.35f,bounds.extents.magnitude*1.12f),.4f,4f);}
+            PositionCamera();
+        }
         private void SetZoom(float value,Vector2 uv)
         {
             float old=camera.orthographicSize;
@@ -593,13 +834,120 @@ namespace FlyEditor.Flight
         }
         private void Orbit(Vector2 delta)
         {
-            yaw=Mathf.Repeat(yaw+delta.x*.34f,360f);
-            pitch=Mathf.Repeat(pitch-delta.y*.24f,360f);
-            PositionCamera();
+            OrbitView(-delta.x*.34f,-delta.y*.24f);
         }
+        private void ToggleEdgeAlignment()
+        {
+            bool enable=edgeAlignState==EdgeAlignState.Off;
+            if(!enable){Browse();return;}
+            BeginEdgeAlignment();
+        }
+        private void BeginEdgeAlignment()
+        {
+            Browse();edgeAlignState=EdgeAlignState.Source;
+            notice="옮길 변 → 맞출 선 순서로 클릭하세요.";Rebuild();
+        }
+        private bool NearestAlignmentEdge(Vector2 pos,out AlignmentEdge result)
+        {
+            result=default;bool found=false;float best=9f*9f,bestDepth=float.PositiveInfinity;
+            // Coincident edges belong to both adjacent panels. Prefer the visible
+            // panel under the pointer, rather than whichever was stored first.
+            SelectedFace(ViewUV(pos),out _,out int visibleIndex);
+            for(int index=0;index<sheet.Faces.Count;index++){
+                var face=sheet.Faces[index];Vector2 centre=Vector2.zero;
+                foreach(var p in face.points)centre+=p;centre/=face.points.Length;
+                for(int i=0;i<face.points.Length;i++){
+                    var a=face.points[i];var b=face.points[(i+1)%face.points.Length];
+                    var start=EdgeScreen(face,a);var end=EdgeScreen(face,b);var delta=end-start;
+                    if(delta.sqrMagnitude<16)continue;
+                    float t=Mathf.Clamp01(Vector2.Dot(pos-start,delta)/delta.sqrMagnitude);
+                    float distance=(pos-(start+delta*t)).sqrMagnitude;
+                    if(distance>best+.01f)continue;
+                    var point=Vector2.Lerp(a,b,t);var contact=Vector2.Lerp(point,centre,.025f);
+                    if(!PointVisible(new PaperSheet.FoldVertex(index,point),out float depth) ||
+                        !PointVisible(new PaperSheet.FoldVertex(index,contact),out _))continue;
+                    if(found && Mathf.Abs(distance-best)<=.01f){
+                        bool nextUnderPointer=index==visibleIndex,previousUnderPointer=result.face==visibleIndex;
+                        if(previousUnderPointer && !nextUnderPointer)continue;
+                        if(nextUnderPointer==previousUnderPointer && depth>=bestDepth-.00001f)continue;
+                    }
+                    best=distance;bestDepth=depth;found=true;
+                    result=new AlignmentEdge{face=index,index=i,a=a,b=b,contact=contact};
+                }
+            }
+            return found;
+        }
+        private void TickEdgeAlignment(Mouse mouse,Vector2 pos,bool inside)
+        {
+            bool found=false;AlignmentEdge next=default;
+            if(inside)found=NearestAlignmentEdge(pos,out next);
+            if(alignHovered!=found || (found && (next.face!=alignHover.face || next.index!=alignHover.index))){
+                alignHovered=found;alignHover=next;Rebuild();
+            }
+            if(!mouse.leftButton.wasPressedThisFrame || !inside)return;
+            if(!found){
+                if(RayHit(ViewUV(pos),out _)==null)Browse();
+                else notice="점 사이의 변이나 중앙선을 클릭하세요.";
+                return;
+            }
+            // Keep the exact closest point from this click, not a stale hover sample.
+            if(edgeAlignState==EdgeAlignState.Source){
+                alignSource=next;edgeAlignState=EdgeAlignState.Target;alignHovered=false;
+                notice="이제 맞출 중앙선이나 변을 클릭하세요.";Rebuild();return;
+            }
+            if(TryAlignEdges(alignSource,next))alignHovered=false;
+        }
+        private bool TryAlignEdges(AlignmentEdge source,AlignmentEdge targetEdge)
+        {
+            var planned=PaperEdgeAlignment.Plan(sheet,source.face,source.a,source.b,targetEdge.face,targetEdge.a,targetEdge.b,source.contact);
+            if(planned==null){notice="이 두 변은 현재 연결 상태에서 맞출 수 없습니다. 다른 기준선을 고르세요.";return false;}
+            var normal=sheet.Faces[source.face].frame.MultiplyVector(Vector3.up);
+            int sign=Vector3.Dot(camera.transform.forward,normal)<0?1:-1;
+            var trial=new List<PaperSheet.Face>();
+            bool allowed=Mathf.Abs(planned.Constrain(sign*180)-sign*180)<.001f && sheet.TryPreviewTurn(planned,sign*180,trial);
+            if(!allowed){sign=-sign;allowed=Mathf.Abs(planned.Constrain(sign*180)-sign*180)<.001f && sheet.TryPreviewTurn(planned,sign*180,trial);}
+            if(!allowed){notice="다른 겹에 막혀 기준선까지 맞출 수 없습니다. 겹을 먼저 벌려주세요.";return false;}
+            alignSource=source;alignTarget=targetEdge;edgeAlignState=EdgeAlignState.Preview;
+            selected=planned.step;turn=planned;candidate=null;surfaceChoice=null;sideChoiceState=SideChoiceState.Ready;
+            pull=null;pair=null;reverse=null;first=second=leftFlank=rightFlank=-1;
+            edgeMotionSign=sign;angle=0;phase=Phase.AdjustAngle;gesture=PointerGesture.Idle;
+            PinLayer(source.face,source.contact);hinge.Clear();sheet.MarkCrease(planned.step,hinge);
+            notice="접는 선을 계산했습니다. C를 누르면 선택한 변이 기준선에 맞춰집니다.";Rebuild();return true;
+        }
+        private void DrawAlignmentGuides()
+        {
+            if(edgeAlignState==EdgeAlignState.Off)return;
+            if(edgeAlignState==EdgeAlignState.Target || edgeAlignState==EdgeAlignState.Preview)
+                DrawAlignmentEdge(alignSource,new Color(.69f,.48f,.23f),"옮길 변",true);
+            if(edgeAlignState==EdgeAlignState.Preview)
+                DrawAlignmentEdge(alignTarget,new Color(.33f,.51f,.66f),"맞출 선",false);
+            else if(alignHovered)
+                DrawAlignmentEdge(alignHover,edgeAlignState==EdgeAlignState.Source?new Color(.69f,.48f,.23f):new Color(.33f,.51f,.66f),edgeAlignState==EdgeAlignState.Source?"옮길 변":"맞출 선",false);
+        }
+        private void DrawAlignmentEdge(AlignmentEdge edge,Color color,string label,bool moving)
+        {
+            var face=sheet.Faces[edge.face];Vector2 a,b;
+            if(moving && edgeAlignState==EdgeAlignState.Preview && turn!=null && Mathf.Abs(angle)>.01f){
+                var rotation=turn.Rotation(angle);
+                float h=(face.layer+(ViewFacing(face)<0?1:0))*PaperSheet.Thickness;
+                var u=camera.WorldToViewportPoint(table.position+rotation.MultiplyPoint3x4(face.World(edge.a,h)));
+                var v=camera.WorldToViewportPoint(table.position+rotation.MultiplyPoint3x4(face.World(edge.b,h)));
+                a=new Vector2(viewport.x+u.x*viewport.width,viewport.y+(1-u.y)*viewport.height);
+                b=new Vector2(viewport.x+v.x*viewport.width,viewport.y+(1-v.y)*viewport.height);
+            }else{a=EdgeScreen(face,edge.a);b=EdgeScreen(face,edge.b);}
+            a-=viewport.position;b-=viewport.position;
+            GUI.BeginGroup(viewport);
+            var previous=GUI.matrix;var delta=b-a;
+            GUIUtility.RotateAroundPivot(Mathf.Atan2(delta.y,delta.x)*Mathf.Rad2Deg,a);
+            Fill(new Rect(a.x,a.y-1.5f,delta.magnitude,3),color);GUI.matrix=previous;
+            var mid=(a+b)*.5f;var box=new Rect(Mathf.Clamp(mid.x+8,0,Mathf.Max(0,viewport.width-86)),Mathf.Clamp(mid.y-26,0,Mathf.Max(0,viewport.height-25)),86,25);
+            Fill(box,new Color(.98f,.98f,.96f,.95f));var old=caption.normal.textColor;caption.normal.textColor=color;GUI.Label(box,label,caption);caption.normal.textColor=old;
+            GUI.EndGroup();
+        }
+
         private Vector2 EdgeScreen(PaperSheet.Face face,Vector2 point)
         {
-            bool front=Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up))<0;
+            bool front=ViewFacing(face)<0;
             var v=camera.WorldToViewportPoint(table.position+face.World(point,(face.layer+(front?1:0))*PaperSheet.Thickness));
             return new Vector2(viewport.x+v.x*viewport.width,viewport.y+(1-v.y)*viewport.height);
         }
@@ -642,6 +990,7 @@ namespace FlyEditor.Flight
         private void TickPointer(Mouse mouse,Vector2 pos)
         {
             bool inside=viewport.Contains(pos);
+            if(gesture==PointerGesture.BoxSelect){TickBoxSelection(mouse,pos);return;}
             // Capture the gesture until release, even outside the paper viewport.
             if(gesture==PointerGesture.Orbit){
                 if(mouse.rightButton.isPressed)Orbit(mouse.delta.ReadValue());
@@ -661,23 +1010,18 @@ namespace FlyEditor.Flight
                 if(!(middlePan?mouse.middleButton.isPressed:mouse.leftButton.isPressed))gesture=PointerGesture.Idle;
                 return;
             }
+            if(PickingAlignment){TickEdgeAlignment(mouse,pos,inside);return;}
             if(gesture==PointerGesture.EdgePress){
                 if((pos-pressPos).sqrMagnitude>25){StartPullDrag(pressPos);TickPull(mouse,pos);}
                 else if(!mouse.leftButton.isPressed)gesture=PointerGesture.Idle;
                 return;
             }
+            if(gesture==PointerGesture.BoxSelect){TickBoxSelection(mouse,pos);return;}
             if(gesture==PointerGesture.LayerPress){
                 if((pos-pressPos).sqrMagnitude>25){
-                    PickFaceAt(pressPos);
-                    if(TryFaceAxis(ViewUV(pressPos),out var line,out var point,out int flap)){
-                        line.side=line.Distance(point)>=0?1:-1;line.contact=point;
-                        var plan=sheet.Plan(line);
-                        if(plan!=null && !plan.MovesOtherPlyAt(point)){
-                            turn=plan;selected=line;phase=Phase.AdjustAngle;angle=0;
-                            BeginAngleDrag(pressPos);TickAngle(mouse,pos);return;
-                        }
-                    }
-                    gesture=PointerGesture.Idle;notice="이쪽은 다른 면과 이어져 있습니다. 전체 면으로 접거나 다른 쪽을 고르세요.";return;
+                    if(first>=0 && second>=0 && leftFlank<0){gesture=PointerGesture.BoxSelect;TickBoxSelection(mouse,pos);}
+                    else {gesture=PointerGesture.Idle;PickFaceAt(pressPos);}
+                    return;
                 }
                 if(!mouse.leftButton.isPressed){gesture=PointerGesture.Idle;if(inside)PickFaceAt(pos);}
                 return;
@@ -747,6 +1091,7 @@ namespace FlyEditor.Flight
             // Include the two/four-point and idle angle states, not just the first pair.
             if(!Adjusting || CanChangeLayer){
                 int near=NearestVertex(pos,PickingPoint?13f:6f);
+                if(phase==Phase.PickSide && near!=first && near!=second && near!=leftFlank && near!=rightFlank)near=-1;
                 if(near!=hoverPoint){hoverPoint=near;Rebuild();}
             }
             bool click=mouse.leftButton.wasPressedThisFrame;
@@ -769,19 +1114,18 @@ namespace FlyEditor.Flight
                     pressedPoint=hit;pressPos=pos;gesture=PointerGesture.SecondPointPress;return;
                 }
             }
-            if(click && phase==Phase.PickSide){
-                // After two points, a face tap must not become a third point
-                // merely because a small grid marker is nearby.
-                int hit=NearestVertex(pos,6f);
-                if(hit>=0){
-                    pressedPoint=hit;pressPos=pos;gesture=PointerGesture.PointPress;return;
-                }
-            }
+            // After two points, unselected markers belong to the surface click.
+            // F explicitly enters the third/fourth-point states.
             if(click && (PickingPoint || RayHit(ViewUV(pos),out _)==null)){
                 pressEmpty=RayHit(ViewUV(pos),out _)==null && NearestVertex(pos)<0;
                 gesture=PointerGesture.Press;pressPos=pos;return;
             }
-            if(Adjusting){if(click && (phase==Phase.AdjustAngle || turn!=null))StartFacePress(pos);else if(click)StartPullDrag(pos);return;}
+            if(Adjusting){
+                if(click && phase==Phase.AdjustAngle && CanChangeLayer && turn!=null && first>=0 && second>=0){
+                    if(selectionOrigin==SelectionOrigin.Box)StartFacePress(pos);else if(selectionOrigin==SelectionOrigin.Individual)ChooseIndividualSide(pos,true);else ChooseSide(pos,true);return;
+                }
+                if(click && (phase==Phase.AdjustAngle || turn!=null))StartFacePress(pos);else if(click)StartPullDrag(pos);return;
+            }
             if(!(click || dirty || mouse.delta.ReadValue()!=Vector2.zero) || sheet.Count>=sheet.FoldLimit)return;
             if(!PickingPoint){
                 if(scope==Ply.Packet && !FourPointMode){
@@ -795,24 +1139,18 @@ namespace FlyEditor.Flight
                     return;
                 }
                 if(selected.HasValue && selected.Value.customFlanks){if(click)BeginFourDrag(pos);return;}
+                if(click){ChooseSide(pos,true);return;}
+                if(surfaceChoice!=null)return;
                 // Resolve a straight crease from the two visible points on the
                 // clicked ply; pocket hints and old material frames are not axes.
-                float side=TryFaceAxis(ViewUV(pos),out var line,out var point,out int flap)?line.Distance(point):0f;
-                int sign=side>.035f?1:side<-.035f?-1:0;
-                bool changed=click || sign!=hoverSide || flap!=hoverFlap;
+                bool hit=TrySideRegion(pos,out var line,out bool coplanar,out int flap);
+                int sign=hit?line.side:0;
+                bool changed=sign!=hoverSide || flap!=hoverFlap || hoverViewRevision!=viewRevision;
                 if(changed){
-                    hoverSide=sign;hoverFlap=flap;line.side=sign;line.flap=scope==Ply.Stack?0:flap;
-                    line.singlePanel=scope!=Ply.Stack;line.connectedPanel=scope!=Ply.Stack;line.separateFoldSides=scope!=Ply.Stack;line.continuousHinge=true;line.neutralContacts=true;if(flap>0)line.anchor=flap-1;
-                    candidate=sign==0?null:sheet.Plan(line);
+                    hoverSide=sign;hoverFlap=flap;hoverViewRevision=viewRevision;candidate=null;
+                    if(sign!=0 && coplanar){CollectSideRegion(line);if(boxFaces.Count>0){line.selectedFaces=boxFaces.ToArray();line.flap=0;line.singlePanel=line.connectedPanel=line.separateFoldSides=false;candidate=sheet.Plan(line);}}
                 }
-                var allowed=candidate!=null && !candidate.MovesOtherPlyAt(point)?candidate:null;
-                if(changed || turn!=allowed){turn=allowed;Rebuild();}
-                if(click && turn!=null){
-                    selected=turn.step;pull=null;pair=null;reverse=null;sheet.MarkCrease(turn.step,hinge);
-                    PinLayer(turn.step.anchor,point);
-                    phase=Phase.AdjustAngle;angle=0;notice="선택한 면의 각도를 조절하세요.";StartFacePress(pos);Rebuild();
-                }else if(click)notice=candidate!=null?"이쪽은 다른 면과 이어져 있습니다. 자유롭게 움직일 쪽을 고르세요.":
-                    "이 선에서 함께 움직일 면을 만들지 못했습니다. 점 추가 [F]로 양옆 접힘을 정할 수 있습니다.";
+                if(changed || turn!=candidate){turn=candidate;Rebuild();}
             }
         }
         private void PickSurfacePoint(Vector2 pos)
@@ -829,7 +1167,7 @@ namespace FlyEditor.Flight
                 bool crossFace=PickingPoint;
                 if(ResolvingFirstPoint && !FirstPanelContains(face) ||
                    !ResolvingFirstPoint && pinnedFace>=0 && scope!=Ply.Packet && scope!=Ply.Stack && !crossFace && !PaperSheet.SamePanel(face,sheet.Faces[pinnedFace])){
-                    notice="선택한 겹 위에 점을 찍으세요. Tab: 겹 변경";return;
+                    notice="선택한 겹 위에 점을 찍으세요. 반대쪽: 종이 뒤집기 [B]";return;
                 }
                 point=SnapSurfacePoint(face,index,point);
                 if(!float.IsFinite(point.x)||!float.IsFinite(point.y)||!face.Contains(point))return;
@@ -848,9 +1186,16 @@ namespace FlyEditor.Flight
         }
         // Snap only within eight display pixels on the selected paper surface.
         // No grid is involved; alignment follows that surface when the camera rotates.
+        private float ViewFacing(PaperSheet.Face face)
+        {
+            if(camera.orthographic)return Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up));
+            Vector2 centre=Vector2.zero;foreach(var p in face.points)centre+=p;centre/=face.points.Length;
+            var ray=table.position+face.World(centre,0)-camera.transform.position;
+            return Vector3.Dot(ray.normalized,face.frame.MultiplyVector(Vector3.up));
+        }
         private Vector2 SurfaceScreen(PaperSheet.Face face,Vector2 point)
         {
-            float h=(face.layer+(Vector3.Dot(camera.transform.forward,face.frame.MultiplyVector(Vector3.up))<0?1:0))*PaperSheet.Thickness;
+            float h=(face.layer+(ViewFacing(face)<0?1:0))*PaperSheet.Thickness;
             var v=camera.WorldToViewportPoint(table.position+face.World(point,h));
             return new Vector2(viewport.x+v.x*viewport.width,viewport.y+(1-v.y)*viewport.height);
         }
@@ -910,6 +1255,10 @@ namespace FlyEditor.Flight
         }
         private void AddMorePoints()
         {
+            if(phase==Phase.AdjustAngle && turn!=null && first>=0 && second>=0 && leftFlank<0 && !editing.HasValue){
+                if(gesture!=PointerGesture.Idle || Mathf.Abs(angle)>.01f){notice="각도를 0도로 돌리거나 접기를 마친 뒤 점을 추가하세요.";return;}
+                phase=Phase.PickSide;
+            }
             if(Adjusting || phase!=Phase.PickSide || second<0 || leftFlank>=0)return;
             ClearSelectionPreview();phase=Phase.LeftFlank;AddHandleGuide(first,second);
             notice="양옆 접힘을 정할 점을 하나씩 찍으세요.";Rebuild();
@@ -966,7 +1315,14 @@ namespace FlyEditor.Flight
         {
             if((pos-pressPos).sqrMagnitude>25){
                 // Invalid four-point constraints must not fall back to opening an old hinge.
-                if(phase==Phase.ReviewFourPoints){gesture=PointerGesture.Idle;return;}
+                if(phase==Phase.ReviewFourPoints){
+                    gesture=PointerGesture.Idle;
+                    if(NearEnd(pressedPoint,second)){
+                        SwapPullEnds();
+                        if(phase==Phase.PickSide && selected.HasValue){BeginPull(first,pressPos);TickVertexDrag(mouse,pos);}
+                    }
+                    return;
+                }
                 if(NearEnd(pressedPoint,first) || NearEnd(pressedPoint,second)){
                     gesture=PointerGesture.Idle;
                     BeginVertexDrag(pressedPoint,pressPos,pos);
@@ -1064,14 +1420,14 @@ namespace FlyEditor.Flight
                 }else{reverse=null;phase=Phase.PickSide;AddHandleGuide(first,second);notice="이 묶음은 아직 뒤집을 수 없습니다. 끝점과 같은 접힘축 위의 기준점을 고르세요.";}
                 Rebuild();return;
             }
-            if(SharedVertex(a,b.anchor,out var sharedA)){
+            if(SharedVertex(a,b.anchor,out var sharedA) && PointVisible(sharedA,out _)){
                 vertices[first]=a=sharedA;
             }else if(!explicitLayer && RebindVisibleHandle(first,b.anchor)){
                 a=vertices[first];
-            }else if(SharedVertex(b,a.anchor,out var sharedB))vertices[second]=b=sharedB;
+            }else if(SharedVertex(b,a.anchor,out var sharedB) && PointVisible(sharedB,out _))vertices[second]=b=sharedB;
             int basis=scope==Ply.Stack || !explicitLayer || pinnedFace<0?a.anchor:pinnedFace;
             if(TrySelectionAxis(basis,out var line)){
-                if(scope!=Ply.Stack){PinLayer(basis,(a.point+b.point)*.5f);explicitLayer=PaperSheet.SamePanel(sheet.Faces[a.anchor],sheet.Faces[b.anchor]);}
+                if(scope!=Ply.Stack)PinLayer(basis,(a.point+b.point)*.5f);
                 SelectAxis(line);
             }
             else notice="선은 연결됐습니다. 기울어진 면을 함께 변형하려면 점 추가 [F]로 양옆 접힘을 정하세요.";
@@ -1080,6 +1436,9 @@ namespace FlyEditor.Flight
         private void ClearSelectionPreview()
         {
             CancelClearance();
+            edgeMatchSelected=false;
+            edgeSelection=null;
+            surfaceChoice=null;sideChoiceState=SideChoiceState.None;selectionOrigin=SelectionOrigin.Side;hoverViewRevision=-1;
             selected=null;candidate=turn=null;pull=null;pair=null;reverse=null;hinge.Clear();
             hoverPoint=-1;hoverSide=hoverFlap=0;angle=0;gesture=PointerGesture.Idle;
         }
@@ -1098,9 +1457,10 @@ namespace FlyEditor.Flight
             else Browse();
             PruneSurfacePoints();Rebuild();
         }
-        private Vector2 HandlePoint(int index)
+        private Vector2 HandlePoint(int index)=>HandlePoint(index,first);
+        private Vector2 HandlePoint(int index,int origin)
         {
-            var vertex=vertices[index];var basis=sheet.Faces[vertices[first].anchor];
+            var vertex=vertices[index];var basis=sheet.Faces[vertices[origin].anchor];
             var p=basis.material.inverse.MultiplyPoint3x4(sheet.Faces[vertex.anchor].Original(vertex.point));
             return new Vector2(p.x,p.z);
         }
@@ -1117,7 +1477,7 @@ namespace FlyEditor.Flight
             if(!CanSwapPullEnds)return;
             ClearSelectionPreview();
             int previous=first;first=second;second=previous;
-            if(!CompleteFourPoints())ReviewFourPoints();
+            if(!ResolveFourPoints(false))ReviewFourPoints();
         }
         private void ReviewFourPoints()
         {
@@ -1128,6 +1488,10 @@ namespace FlyEditor.Flight
         }
         private FoldStep PullScope(FoldStep step)
         {
+            step.materialPartition=true;
+            step.vertexJoints=true;
+            step.preserveSlivers=true;
+            step.coordinatedSurface=true;
             step.mirror=MirrorAxis.Off;step.compactLayers=true;
             step.flap=scope==Ply.Stack?0:step.anchor+1;
             step.regionalPull=step.customFlanks && scope!=Ply.Stack;
@@ -1135,25 +1499,47 @@ namespace FlyEditor.Flight
             step.coordinatedCreases=step.customFlanks;
             step.adaptiveCreases=step.customFlanks;
             step.continuousHinge=true;step.neutralContacts=true;
+            step.separateFoldSides=step.regionalPull;
             step.connectedPetalBacking=step.regionalPull;
             step.partialPetalBacking=step.regionalPull;
             step.singlePanel=scope!=Ply.Stack && !step.regionalPull;
             return step;
         }
-        private bool CompleteFourPoints()
+        private FoldStep FourPointStep(int start,int end)
         {
-            var tip=HandlePoint(first);var stop=HandlePoint(second);var n=new Vector2(stop.y-tip.y,tip.x-stop.x).normalized;
-            var line=new FoldStep(CreaseFamily.Rising,0,1){anchor=vertices[first].anchor,exactSquash=true,cornerPull=true,flexible=true,customFlanks=true,closeFlat=true,
-                pullTip=tip,pullStop=stop,pullLeft=HandlePoint(leftFlank),pullRight=HandlePoint(rightFlank),
-                creaseNormal=n,creaseOffset=Vector2.Dot(n,stop)};
-            line=PullScope(line);
-            var check=line;check.mirror=MirrorAxis.Off;
-            var selectedPlan=PaperCornerPull.Create(sheet,check);
+            var tip=HandlePoint(start,start);var stop=HandlePoint(end,start);var n=new Vector2(stop.y-tip.y,tip.x-stop.x).normalized;
+            return PullScope(new FoldStep(CreaseFamily.Rising,0,1){anchor=vertices[start].anchor,exactSquash=true,cornerPull=true,flexible=true,customFlanks=true,closeFlat=true,
+                pullTip=tip,pullStop=stop,pullLeft=HandlePoint(leftFlank,start),pullRight=HandlePoint(rightFlank,start),
+                creaseNormal=n,creaseOffset=Vector2.Dot(n,stop)});
+        }
+        private bool OpensTowardViewer(PaperCornerPull plan,FoldStep step)
+        {
+            if(plan==null || !plan.UsesPetalFold)return false;
+            var normal=sheet.Faces[step.anchor].frame.MultiplyVector(Vector3.up);
+            return plan.Pose(Vector3.Dot(camera.transform.forward,normal)<0?5:-5);
+        }
+        private bool CompleteFourPoints()=>ResolveFourPoints(true);
+        private bool ResolveFourPoints(bool detectMovingEnd)
+        {
+            var line=FourPointStep(first,second);
+            var selectedPlan=PaperCornerPull.Create(sheet,line);
+            // A doubled leaf has one free end. Resolve that physical end before
+            // an expensive clearance search; never select a different hidden ply.
+            if(detectMovingEnd && !OpensTowardViewer(selectedPlan,line)){
+                var alternative=FourPointStep(second,first);
+                var alternatePlan=PaperCornerPull.Create(sheet,alternative);
+                if(OpensTowardViewer(alternatePlan,alternative)){
+                    int old=first;first=second;second=old;
+                    line=alternative;selectedPlan=alternatePlan;
+                }
+            }
+            var tip=line.pullTip;
             if(selectedPlan==null){if(PaperFoldClearance.HasSpine(sheet,line)){BeginClearance(line);Rebuild();return true;}notice="중심에서 봤을 때 선의 양옆에 있는 점을 선택하세요.";return false;}
-            line=selectedPlan.Step;selected=line;
+            line=selectedPlan.Step;selected=line;edgeMatchSelected=selectedPlan.UsesEdgeMatch;
+            edgeSelection=selectedPlan.UsesEdgeMatch?selectedPlan:null;
             if(line.regionalPull)PinLayer(line.anchor,tip);
             hinge.Clear();if(!selectedPlan.MarkGuides(hinge)){AddHandleGuide(first,second);AddHandleGuide(second,leftFlank);AddHandleGuide(second,rightFlank);}
-            phase=Phase.PickSide;notice=selectedPlan.UsesRadialGather?"양쪽 면을 함께 모읍니다. 면을 드래그하세요.":selectedPlan.UsesEdgeMatch?"선택한 변을 기준선에 맞춥니다. 면을 드래그하세요.":selectedPlan.UsesPetalFold?"끝점을 들어 올리면 양옆이 안으로 접힙니다.":"움직일 꼭짓점을 끌거나 면을 드래그하세요.";
+            phase=Phase.PickSide;notice=selectedPlan.UsesCoordinatedSurface?"초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면. 면을 드래그하세요.":selectedPlan.UsesRadialGather?"양쪽 면을 함께 모읍니다. 면을 드래그하세요.":selectedPlan.UsesEdgeMatch?"선택한 변을 기준선에 맞춥니다. 면을 드래그하세요.":selectedPlan.UsesPetalFold?"끝점을 들어 올리면 양옆이 안으로 접힙니다.":"움직일 꼭짓점을 끌거나 면을 드래그하세요.";
             if(selectedPlan.UsesPetalFold && !selectedPlan.Pose(5) && !selectedPlan.Pose(-5))BeginClearance(line);
             Rebuild();return true;
         }
@@ -1182,7 +1568,7 @@ namespace FlyEditor.Flight
                 if(leftFlank<0)leftFlank=MaterialHandle(result.step.pullLeft);
                 if(rightFlank<0)rightFlank=MaterialHandle(result.step.pullRight);
                 notice="면을 드래그하면 주변 겹을 먼저 정리한 뒤 함께 접습니다. 놓으면 적용됩니다.";
-            }else {selected=fallback;notice="이 방향은 주변 겹에 막힙니다. 다른 면을 선택하거나 먼저 겹을 펼쳐주세요.";}
+            }else {selected=fallback;notice="선택한 점에서 실행 가능한 접힘 경로를 찾지 못했습니다. 같은 주머니의 시작점과 양옆 점을 확인하세요.";}
             Rebuild();
         }
         private int MaterialHandle(Vector2 local)
@@ -1207,7 +1593,7 @@ namespace FlyEditor.Flight
         private void BeginFourDrag(Vector2 pos)
         {
             var step=PullScope(selected.Value);
-            selected=step;pull=PaperCornerPull.Create(sheet,step);
+            selected=step;pull=edgeSelection!=null && edgeSelection.IsCurrent?edgeSelection:PaperCornerPull.Create(sheet,step);
             if(pair==null && pull==null){notice="네 점을 다시 선택하세요.";return;}
             if(!(pair!=null?pair.Pose(0):pull.Pose(0))){pair=null;pull=null;return;}
             candidate=turn=null;phase=Phase.AdjustAngle;angle=0;StartFacePress(pos);Rebuild();
@@ -1284,9 +1670,13 @@ namespace FlyEditor.Flight
         }
         private void BeginPull(int end,Vector2 pos)
         {
+            if(selected.HasValue && selected.Value.customFlanks && end==second){
+                SwapPullEnds();end=first;
+                if(phase!=Phase.PickSide || !selected.HasValue)return;
+            }
             var tip=vertices[end].point;var stop=vertices[end==first?second:first].point;
             var step=selected.Value;
-            if(step.customFlanks && end!=first){notice="첫 번째로 선택한 꼭짓점을 당기세요.";return;}
+            if(step.customFlanks){tip=step.pullTip;stop=step.pullStop;}
             if(scope==Ply.Stack && !step.customFlanks && !step.insideReverse){
                 var handle=vertices[end];var other=vertices[end==first?second:first];var basis=sheet.Faces[handle.anchor];
                 var local=basis.frame.inverse.MultiplyPoint3x4(sheet.Faces[other.anchor].World(other.point,0));
@@ -1371,7 +1761,7 @@ namespace FlyEditor.Flight
             var handle=vertices[index];
             sheet.OpeningTurns(handle,openingTurns,scope==Ply.Stack,true,true);
             if(openingTurns.Count==0){
-                notice="접힘선 밖의 꼭짓점을 잡으세요. 겹들이 함께 연결된 경우 전체 겹으로 벌릴 수 있습니다.";return false;
+                notice="접힘선 밖의 꼭짓점을 잡으세요. 반대쪽을 접으려면 종이를 뒤집어 보이는 면을 잡으세요.";return false;
             }
             var face=sheet.Faces[handle.anchor];
             openingHandle=face.World(handle.point,(face.layer+.5f)*PaperSheet.Thickness);
@@ -1453,41 +1843,67 @@ namespace FlyEditor.Flight
         }
         private FoldStep SelectedPly(FoldStep line)
         {
+            line.materialPartition=true;
             // The point picker already owns a concrete ply; never promote it by height.
             line.compactLayers=true;line.flap=scope==Ply.Stack?0:line.anchor+1;line.singlePanel=scope!=Ply.Stack;line.connectedPanel=scope!=Ply.Stack;line.separateFoldSides=scope!=Ply.Stack;line.continuousHinge=true;line.neutralContacts=true;return line;
         }
+        private void TickBoxSelection(Mouse mouse,Vector2 pos)
+        {
+            boxEnd=new Vector2(Mathf.Clamp(pos.x,viewport.xMin,viewport.xMax),Mathf.Clamp(pos.y,viewport.yMin,viewport.yMax));
+            if(mouse.leftButton.isPressed)return;
+            gesture=PointerGesture.Idle;SelectBox(pressPos,boxEnd);
+        }
+        private static Rect BoxRect(Vector2 a,Vector2 b)=>Rect.MinMaxRect(Mathf.Min(a.x,b.x),Mathf.Min(a.y,b.y),Mathf.Max(a.x,b.x),Mathf.Max(a.y,b.y));
+        private void DrawBoxSelection()
+        {
+            if(gesture!=PointerGesture.BoxSelect)return;
+            var r=BoxRect(pressPos,boxEnd);Fill(r,new Color(.39f,.65f,.58f,.10f));var ink=new Color(.25f,.48f,.43f,.8f);
+            Fill(new Rect(r.x,r.y,r.width,1.5f),ink);Fill(new Rect(r.x,r.yMax-1.5f,r.width,1.5f),ink);
+            Fill(new Rect(r.x,r.y,1.5f,r.height),ink);Fill(new Rect(r.xMax-1.5f,r.y,1.5f,r.height),ink);
+        }
+        private void SelectBox(Vector2 start,Vector2 end)
+        {
+            if(first<0 || second<0 || FourPointMode)return;
+            if(!TrySelectionAxis(vertices[first].anchor,out var line)){
+                notice="두 점이 서로 다른 각도의 면에 있습니다. 같은 접는 축을 먼저 정하세요.";return;
+            }
+            var basis=sheet.Faces[line.anchor];var a=SurfaceScreen(sheet.Faces[vertices[first].anchor],vertices[first].point);
+            var b=SurfaceScreen(sheet.Faces[vertices[second].anchor],vertices[second].point);var delta=b-a;
+            float Cross(Vector2 p)=>delta.x*(p.y-a.y)-delta.y*(p.x-a.x);
+            float sign=Cross(start);if(Mathf.Abs(sign)<.01f)sign=Cross(end);
+            var point=line.Normal*(line.Position/line.Normal.sqrMagnitude);
+            float positive=Cross(SurfaceScreen(basis,point+line.Normal));
+            if(Mathf.Abs(sign)<.01f || Mathf.Abs(positive)<.01f){notice="선 한쪽에서 박스를 시작하세요.";return;}
+            line.side=sign*positive>0?1:-1;
+            PaperBoxSelection.Collect(sheet,camera,table.position,viewport,BoxRect(start,end),line,scope==Ply.Stack,boxFaces);
+            ResolveRegion(line,true,SelectionOrigin.Box,end,false);
+        }
+
         private void ToggleFacePicking()
         {
             if(!CanChangeLayer || first<0 || second<0)return;
-            if(scope==Ply.Stack)ChoosePly(Ply.Top);
-            else{pickMode=pickMode==PickMode.Face?PickMode.Points:PickMode.Face;hasFacePick=false;Rebuild();}
+            pickMode=pickMode==PickMode.Face?PickMode.Points:PickMode.Face;Rebuild();
         }
         private void PickFaceAt(Vector2 pos)
         {
+            if(first>=0 && second>=0 && leftFlank<0){pickMode=PickMode.Points;ChooseIndividualSide(pos,false);return;}
             CollectLayerHits(ViewUV(pos));
             if(layerHits.Count==0){Browse();pickMode=PickMode.Face;return;}
-            int rank=0;
-            if(hasFacePick && (pos-lastFacePick).sqrMagnitude<=144f && pinnedFace>=0){
-                for(int i=0;i<layerHits.Count;i++)if(PaperSheet.SamePanel(sheet.Faces[layerHits[i].index],sheet.Faces[pinnedFace])){rank=(i+1)%layerHits.Count;break;}
-            }
-            var hit=layerHits[rank];scope=Ply.Top;SelectLayer(hit);
-            lastFacePick=pos;hasFacePick=true;pickMode=PickMode.Points;
-            notice="선은 유지됩니다. 선택한 날개를 드래그하세요. Tab: 아래 겹 선택";
+            var hit=layerHits[0];scope=Ply.Top;SelectLayer(hit);
+            pickMode=PickMode.Points;
+            notice="보이는 면과 연결된 면을 접습니다. 반대쪽은 종이 뒤집기 [B].";
             Rebuild();
         }
-        private void CycleLayer()
+        private bool SelectionExposed()
         {
-            if(!CanChangeLayer)return;
-            if(pinnedFace<0){
-                var mouse=Mouse.current;if(mouse==null)return;
-                var raw=mouse.position.ReadValue();var pos=new Vector2(raw.x,Screen.height-raw.y)/scale;
-                if(!viewport.Contains(pos))return;
-                var face=SelectedFace(ViewUV(pos),out var point,out int index);if(face==null)return;PinLayer(index,point);
-            }
-            var view=camera.WorldToViewportPoint(table.position+layerProbe);CollectLayerHits(new Vector2(view.x,view.y));
-            if(layerHits.Count<2){notice="이 위치에는 한 겹만 있습니다.";return;}
-            int current=0;for(int i=0;i<layerHits.Count;i++)if(layerHits[i].index==pinnedFace){current=i;break;}
-            SelectLayer(layerHits[(current+1)%layerHits.Count]);
+            return HandleExposed(first) && HandleExposed(second) && HandleExposed(leftFlank) && HandleExposed(rightFlank);
+        }
+        private bool HandleExposed(int index)=>index<0 || PointVisible(vertices[index],out _);
+        private void FlipPaper()
+        {
+            if(!CanFlipPaper)return;
+            SetViewRotation(camera.transform.rotation*Quaternion.AngleAxis(180,Vector3.right));axisView=AxisView.User;
+            Browse();notice="종이를 뒤집었습니다. 보이는 면에서 같은 순서로 점을 고르세요.";
         }
         // A deliberate layer selection owns the screen-space handle, even when
         // a different material corner occupies the same position in the stack.
@@ -1499,7 +1915,9 @@ namespace FlyEditor.Flight
             var local=face.frame.inverse.MultiplyPoint3x4(sheet.Faces[vertex.anchor].World(vertex.point,0));
             var point=new Vector2(local.x,local.z);
             if(Mathf.Abs(local.y)>.04f || !face.Contains(point))return false;
-            vertices[index]=new PaperSheet.FoldVertex(target,point);return true;
+            var mapped=new PaperSheet.FoldVertex(target,point);
+            if(!PointVisible(mapped,out _))return false;
+            vertices[index]=mapped;return true;
         }
         private Vector2 MapLayerPoint(int source,Vector2 p,int target)
         {
@@ -1509,6 +1927,7 @@ namespace FlyEditor.Flight
         }
         private void SelectLayer(LayerHit hit)
         {
+            edgeSelection=null;edgeMatchSelected=false;
             explicitLayer=true;firstPointPanels.Clear();
             bool adjusting=Adjusting;var previous=selected;if(scope!=Ply.Packet)scope=Ply.Top;
             candidate=turn=null;pull=null;pair=null;reverse=null;hoverSide=hoverFlap=0;angle=0;gesture=PointerGesture.Idle;
@@ -1567,30 +1986,32 @@ namespace FlyEditor.Flight
                 }else{first=second=leftFlank=rightFlank=-1;phase=Phase.FirstPoint;}
             }else phase=first>=0?Phase.SecondPoint:Phase.FirstPoint;
             PruneSurfacePoints();
-            notice="클릭 위치의 "+(layerRank+1)+" / "+layerCount+"번째 겹을 선택했습니다. Tab: 다음 겹";Rebuild();
+            notice="클릭 위치의 "+(layerRank+1)+" / "+layerCount+"번째 겹을 선택했습니다. 반대쪽: 종이 뒤집기 [B]";Rebuild();
         }
         private void ChoosePly(Ply value)
         {
             if(!CanChangeLayer)return;
-            if(value==Ply.Bottom){CycleLayer();return;}
-            if(value==Ply.Top && second<0)return;
-            scope=value;explicitLayer=false;hasFacePick=false;
+            if(value==Ply.Bottom){FlipPaper();return;}
+            if(value==Ply.Top && second<0){scope=Ply.Top;return;}
+            bool faceMode=pickMode==PickMode.Face;
+            scope=value;explicitLayer=false;
             hoverSide=hoverFlap=0;candidate=turn=null;notice=null;
             if(Adjusting)phase=Phase.PickSide;
             if(value==Ply.Stack){pinnedFace=-1;pickMode=PickMode.Points;}
-            else pickMode=PickMode.Face;
+            else pickMode=PickMode.Points;
             if(first>=0 && second>=0 && !FourPointMode){
                 if(value==Ply.Top)pinnedFace=vertices[first].anchor;
                 SelectPair();
             }else if(phase==Phase.ReviewFourPoints){if(!CompleteFourPoints())ReviewFourPoints();}
             else if(selected.HasValue && !selected.Value.customFlanks)SelectAxis(SelectedPly(selected.Value));
+            if(faceMode)pickMode=PickMode.Face;
             Rebuild();
         }
         private void Apply(){if(!owner.ApplyFold(sheet))notice=owner.Session.Research.LastError;}
         private void Layout()
         {
             scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);
-            Rect area=new Rect(36,105,Screen.width/scale-414,Screen.height/scale-185);
+            Rect area=new Rect(36,105,Screen.width/scale-414,Screen.height/scale-245);
             float aspect=(float)target.width/target.height;
             float w=Mathf.Min(area.width,area.height*aspect);
             Vector2 size=new Vector2(w,w/aspect);
@@ -1611,9 +2032,13 @@ namespace FlyEditor.Flight
             GUI.Label(new Rect(42,32,800,54),"종이접기 작업대",title);
             GUI.Label(new Rect(42,79,290,28),"용지  ·  "+(sheet.Format==PaperSize.Square?"정사각형":sheet.Format.ToString()),caption);
             if(Button(new Rect(845,37,48,40),"−",false,zoom>.401f))SetZoom(zoom/1.25f,new Vector2(.5f,.5f));
-            if(Button(new Rect(899,37,90,40),"맞춤",false,true)){zoom=1;panOffset=Vector3.zero;PositionCamera();}
+            if(Button(new Rect(899,37,90,40),"맞춤",false,true))FrameView(false);
             if(Button(new Rect(995,37,48,40),"+",false,zoom<3.999f))SetZoom(zoom*1.25f,new Vector2(.5f,.5f));
             GUI.DrawTexture(viewport,target,ScaleMode.StretchToFill);
+            GUI.Label(new Rect(viewport.x+12,viewport.y+8,100,26),AxisLabels[(int)axisView],caption);
+            GUI.Label(new Rect(viewport.x+114,viewport.y+8,100,26),camera.orthographic?"직교":"원근",caption);
+            DrawAlignmentGuides();
+            DrawBoxSelection();
             if(leftFlank>=0 || phase==Phase.LeftFlank)DrawHandleNumbers();
             float x=width-354f,w=width-x-36;
             if(phase==Phase.PreparingClearance){
@@ -1622,25 +2047,29 @@ namespace FlyEditor.Flight
                 if(Button(new Rect(width-184,35,148,42),"닫기  [Esc]",false,true))owner.CloseFolding();
                 return;
             }
-            GUI.Label(new Rect(x,105,w,42),"접을 종이",body);
-            GUI.Label(new Rect(650,37,185,40),rightFlank>=0?"4점 접기":leftFlank>=0?"3점 · 한 점 더":second>=0?"2점 접기":"꼭짓점 드래그",caption);
             float sw=(w-6)/2;
-            if(Button(new Rect(x,156,sw,40),"전체 면 [1]",scope==Ply.Stack,CanChangeLayer))ChoosePly(Ply.Stack);
-            if(Button(new Rect(x+sw+6,156,sw,40),"면 개별 [2]",scope!=Ply.Stack,CanChangeLayer && second>=0))ChoosePly(Ply.Top);
-            if(scope!=Ply.Stack && second>=0){
-                if(Button(new Rect(x,205,w*.48f,36),"면 다시 선택",pickMode==PickMode.Face,CanChangeLayer))ToggleFacePicking();
-                if(Button(new Rect(x+w*.5f,205,w*.5f,36),"다음 겹 [Tab]",false,CanChangeLayer && pinnedFace>=0))CycleLayer();
-            }else if(Button(new Rect(x,205,w,36),foldDirection==FoldDirection.Opposite?"접는 방향 반전 [R]":"접는 방향 [R]",foldDirection==FoldDirection.Opposite,CanReverseDirection))ReverseFoldDirection();
-            GUI.Label(new Rect(x,246,w,28),scope==Ply.Stack?"전체 겹 함께 접기 · 아래 겹도 포함":pinnedFace>=0?"민트색 면 · 앞에서 "+(layerRank+1)+" / "+Mathf.Max(1,layerCount)+"겹":"접을 면을 클릭하세요.",caption);
-            string help=pickMode==PickMode.Face?"그은 선은 그대로 유지됩니다. 접을 면을 클릭하거나 바로 드래그하세요.":sheet.Count==sheet.FoldLimit?"기체를 적용하거나 한 단계 되돌리세요.":
+            bool canScope=CanChangeLayer && !FourPointMode && edgeAlignState==EdgeAlignState.Off;
+            if(Button(new Rect(x,105,sw,40),"보이는 면 [1]",scope==Ply.Top,canScope))ChoosePly(Ply.Top);
+            if(Button(new Rect(x+sw+6,105,sw,40),"전체 겹 [2]",scope==Ply.Stack,canScope && second>=0))ChoosePly(Ply.Stack);
+            if(Button(new Rect(430,37,205,40),"변 맞추기 [M]",edgeAlignState!=EdgeAlignState.Off,CanStartAlignment))ToggleEdgeAlignment();
+            GUI.Label(new Rect(650,37,185,40),edgeAlignState!=EdgeAlignState.Off?"변 → 기준선 맞춤":rightFlank>=0?"4점 접기":leftFlank>=0?"3점 · 한 점 더":second>=0?"2점 접기":"꼭짓점 드래그",caption);
+            if(Button(new Rect(x,156,w,40),"종이 뒤집기 [B]",false,CanFlipPaper))FlipPaper();
+            if(Button(new Rect(x,205,sw,36),"면 선택 [V]",pickMode==PickMode.Face,CanChangeLayer && second>=0 && edgeAlignState==EdgeAlignState.Off))ToggleFacePicking();
+            if(Button(new Rect(x+sw+6,205,sw,36),"방향 반전 [R]",foldDirection==FoldDirection.Opposite,CanReverseDirection))ReverseFoldDirection();
+            GUI.Label(new Rect(x,246,w,28),scope==Ply.Stack?"가려진 아랫겹도 선택에 포함합니다.":pickMode==PickMode.Face?"개별 면 / 박스 선택 모드":selectionOrigin==SelectionOrigin.Individual?"개별 면을 선택했습니다.":selectionOrigin==SelectionOrigin.Box?"박스로 고른 면을 함께 접습니다.":"보이는 면 전체를 함께 고릅니다.",caption);
+            string help=edgeAlignState==EdgeAlignState.Source?"1. 옮길 바깥 변을 클릭하세요.\n점 사이의 선 전체를 선택합니다.":
+                edgeAlignState==EdgeAlignState.Target?"2. 맞출 중앙선이나 변을 클릭하세요.\nEsc: 취소 · Backspace: 변 다시 선택":
+                edgeAlignState==EdgeAlignState.Preview?"초록색 면이 접힙니다.\nC: 기준선에 밀착 맞추기\n드래그: 각도 조절 · Esc: 취소":pickMode==PickMode.Face?"클릭: 면 하나 · 드래그: 박스 선택\n선을 넘으면 드래그 시작 쪽 선택\n놓고 다시 드래그: 선택 영역 접기":sheet.Count==sheet.FoldLimit?"기체를 적용하거나 한 단계 되돌리세요.":
+                surfaceChoice!=null?"노란색: 면 선택 완료\n접기 제한 이유는 아래에 표시됩니다.\n다른 쪽 클릭: 선택 변경 · F: 점 추가":
                 phase==Phase.Opening?"움직이는 방향으로 접거나 벌립니다. 놓으면 적용, Esc: 취소.":
                 phase==Phase.FirstPoint?(edgeCandidate!=null?"강조된 변을 잡아 가운데로 끌면 주머니가 벌어지고 눌러 펴집니다.":"점을 찍거나 변에 마우스를 올리세요. 주머니를 펼칠 수 있는 변은 강조됩니다."):
                 phase==Phase.SecondPoint?"다른 면의 점도 선택할 수 있습니다. 두 번째 점을 찍어 선을 만드세요.":
-                phase==Phase.LeftFlank?"양옆 접힘을 정할 세 번째 점을 찍으세요.":
-                phase==Phase.RightFlank?"반대쪽 접힘 방향의 점을 선택하세요.":
+                phase==Phase.LeftFlank?"꽃잎: 양옆 점을 추가합니다.\n변 맞추기: 목표 선 위의 두 점을 추가합니다.":
+                phase==Phase.RightFlank?"꽃잎: 반대쪽 점을 선택하세요.\n변 맞추기: 목표 선 위의 다른 점을 선택하세요.":
                 phase==Phase.ReviewFourPoints?"네 점 선택됨 · 접기 조합 확인\n1 이동 · 2 기준 · 3·4 양옆\n새 점 클릭: 4번 교체":
-                phase==Phase.PickSide?(rightFlank>=0?(AssistedClearance?"면을 드래그하면 겹 정리와 접기가 이어집니다. 반대로 움직이면 되돌아갑니다.":"1 이동점을 2 기준점 쪽으로 끌어 올리세요. 막히면 1·2 바꾸기 [T]. R: 앞뒤 반전."):"면을 드래그해 접으세요. 양옆을 함께 접으려면 ‘양옆 점 찾기’을 누르세요.") :
+                phase==Phase.PickSide?(rightFlank>=0?(edgeMatchSelected?"변 1–2 → 목표 선 3–4\n면 클릭 → C: 밀착 맞추기\n면 드래그: 각도 조절":AssistedClearance?"면을 드래그하면 겹 정리와 접기가 이어집니다. 반대로 움직이면 되돌아갑니다.":"1 또는 2 끝점을 잡아 다른 끝점 쪽으로 드래그하세요. 잡은 쪽이 이동점이 됩니다."):"선 한쪽 클릭: 보이는 면 전체 선택\n드래그: 접기 · V: 개별/박스 선택") :
                 phase==Phase.PullCorner?"끝점을 끌고 놓으면 그 모양으로 접힙니다." :
+                turn!=null && turn.step.selectedFaces!=null && turn.step.selectedFaces.Length>0?"초록색: 실제 접기 영역\n드래그: 각도 · V: 다시 선택\n연결된 면도 함께 움직입니다.":
                 "드래그하거나 슬라이더로 각도를 맞추고 놓으세요.";
             GUI.Label(new Rect(x,286,w,90),help,body);
             if(Adjusting){
@@ -1659,7 +2088,7 @@ namespace FlyEditor.Flight
                     if(Button(new Rect(x+i*w/4,497,w/4-3,36),AssistedClearance?ClearanceLabels[i]:pocket?PocketPresetLabels[i]:PresetLabels[i],Mathf.Abs(angle-(AssistedClearance?InputSign*ClearancePresets[i]:AnglePresets[i]))<.5f,true)){
                         SetAngle(AssistedClearance?InputSign*ClearancePresets[i]:AnglePresets[i]);FinishInteraction();break;
                     }
-                if(!Reversing && Button(new Rect(x,544,w,38),"밀착 접기  [C]",false,true))CloseToContact();
+                if(!Reversing && Button(new Rect(x,544,w,38),edgeAlignState==EdgeAlignState.Preview?"기준선에 맞추기  [C]":"밀착 접기  [C]",false,true))CloseToContact();
             }else if(first>=0){
                 if(phase==Phase.PickSide && leftFlank<0){
                     if(Button(new Rect(x,386,w*.54f,42),"양옆 점 찾기",false,scope!=Ply.Stack && scope!=Ply.Packet))SuggestFlanks();
@@ -1668,7 +2097,7 @@ namespace FlyEditor.Flight
                     if(Button(new Rect(x,386,w*.52f,42),"1·2 바꾸기 [T]",false,true))SwapPullEnds();
                     if(Button(new Rect(x+w*.54f,386,w*.46f,42),"점 취소",false,true))RemoveLastPoint();
                 }else if(Button(new Rect(x,386,w,42),"마지막 점 취소  [Backspace]",false,true))RemoveLastPoint();
-            }else if(sheet.Count>0 && Button(new Rect(x,386,w,42),"마지막 접기 각도 수정  [E]",false,true))EditLast();
+            }else if(!PickingAlignment && sheet.Count>0 && Button(new Rect(x,386,w,42),"마지막 접기 각도 수정  [E]",false,true))EditLast();
             if(!Adjusting){
                 GUI.Label(new Rect(x,448,w,28),"기체 성능 · 기본 기체 100%",caption);
                 for(int i=0;i<StatNames.Length;i++){
@@ -1679,9 +2108,9 @@ namespace FlyEditor.Flight
             }
             if(Button(new Rect(x,height-248,w,42),"한 단계 되돌리기  [Z]",false,!Adjusting && sheet.Count>0)){sheet.Undo();Browse();}
             if(Button(new Rect(x,height-195,w,42),"새 종이",false,!Adjusting)){NewPaper();}
-            if(Button(new Rect(x,height-124,w,52),sheet.Count==0?"기본 기체 사용  [Enter]":"접은 기체 적용  [Enter]",true,phase==Phase.FirstPoint))Apply();
+            if(Button(new Rect(x,height-124,w,52),sheet.Count==0?"기본 기체 사용  [Enter]":"접은 기체 적용  [Enter]",true,phase==Phase.FirstPoint && edgeAlignState==EdgeAlignState.Off))Apply();
             if(Button(new Rect(width-184,35,148,42),"닫기  [Esc]",false,true))owner.CloseFolding();
-            GUI.Label(new Rect(40,height-61,width-430,44),"클릭: 점 찍기 · 수평/수직 보정 · 휠: 확대/축소\n드래그: 이동 · 우클릭: 360° 회전 · 각도 조절 중 이동: 휠 버튼",caption);
+            GUI.Label(new Rect(40,height-154,width-430,154),"클릭: 점 선택/해제 · 선 한쪽 클릭: 보이는 면 전체 · 놓기: 접기 적용\n우클릭 드래그: 회전 · B: 뒤집기 · 휠: 확대/축소 · 휠 버튼 드래그: 이동\n키패드 1/3/7: 정면/오른쪽/위 · Ctrl: 반대편 · 9: 반대 보기\n2/4/6/8: 회전 · Ctrl: 이동 · Shift+4/6: 화면 기울이기\n5: 원근/직교 · +/−: 확대/축소 · .: 선택 맞춤 · Home: 전체 맞춤\nM: 변 맞추기 · F: 점 추가 · V: 박스/면 선택 · 1/2: 겹 범위\n접기 중 C: 밀착 · R: 방향 반전 · ↑↓: 1° (Shift: 5°)\nBackspace: 점 취소 · Z: 되돌리기 · Enter: 기체 적용 · Esc: 취소/닫기",caption);
             if(notice!=null)GUI.Label(new Rect(x,height-69,w,63),notice,caption);
         }
         private void DrawHandleNumbers()
@@ -1692,9 +2121,11 @@ namespace FlyEditor.Flight
                 if(index<0 || index>=vertices.Count)continue;
                 var vertex=vertices[index];var face=sheet.Faces[vertex.anchor];
                 var at=SurfaceScreen(face,vertex.point);if(!viewport.Contains(at))continue;
-                float labelWidth=slot<2?76:24;
+                float labelWidth=edgeMatchSelected?104:slot<2?76:24;
                 var box=new Rect(Mathf.Clamp(at.x+8,viewport.x,viewport.xMax-labelWidth),Mathf.Clamp(at.y-28,viewport.y,viewport.yMax-24),labelWidth,24);
-                Fill(box,new Color(.96f,.98f,.96f,.95f));GUI.Label(box,slot==0?"1 이동":slot==1?"2 기준":slot==2?"3":"4",pointLabel);
+                string label=edgeMatchSelected?(slot==0?"1 공통점":slot==1?"2 가장자리":slot==2?"3 목표선":"4 목표선"):
+                    slot==0?"1 이동":slot==1?"2 기준":slot==2?"3":"4";
+                Fill(box,new Color(.96f,.98f,.96f,.95f));GUI.Label(box,label,pointLabel);
             }
         }
         private bool Button(Rect rect,string label,bool selectedButton,bool enabled)

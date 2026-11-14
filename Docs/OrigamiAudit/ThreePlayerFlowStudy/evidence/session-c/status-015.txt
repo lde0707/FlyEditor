@@ -1,0 +1,1 @@
+id=15 label=diagonal-commit screen=644x884 folds=3 phase=FirstPoint angle=78 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=14291

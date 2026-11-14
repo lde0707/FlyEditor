@@ -1,0 +1,1 @@
+id=8 label=top-wing-drag screen=644x884 folds=1 phase=AdjustAngle angle=104 notice= scope=Top gesture=Angle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=32368

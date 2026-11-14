@@ -5,6 +5,21 @@ namespace FlyEditor.Flight
     // Material-space adjacency is independent of screen overlap and layer number.
     internal static class PaperFoldTopology
     {
+        // Round trips through reflected charts can differ by a few float ULPs.
+        // Compare the actual mapping on both polygons and its tangents. This
+        // never merges vertices or changes chart values; callers must separately
+        // require a real material seam and a compatible spatial frame.
+        internal static bool MaterialChartsMatch(PaperSheet.Face a,PaperSheet.Face b)
+        {
+            if(a.material==b.material)return true;
+            const float squaredTolerance=1e-8f;
+            var x=a.material.MultiplyVector(Vector3.right)-b.material.MultiplyVector(Vector3.right);
+            var z=a.material.MultiplyVector(Vector3.forward)-b.material.MultiplyVector(Vector3.forward);
+            if(x.sqrMagnitude>squaredTolerance||z.sqrMagnitude>squaredTolerance)return false;
+            foreach(var p in a.points)if((a.Original(p)-b.Original(p)).sqrMagnitude>squaredTolerance)return false;
+            foreach(var p in b.points)if((a.Original(p)-b.Original(p)).sqrMagnitude>squaredTolerance)return false;
+            return true;
+        }
         public static bool SharedEdge(PaperSheet.Face a,PaperSheet.Face b,out Vector3 start,out Vector3 end)
         {
             start=end=default;

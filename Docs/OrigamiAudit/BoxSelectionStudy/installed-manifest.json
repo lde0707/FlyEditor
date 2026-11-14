@@ -1,0 +1,42 @@
+[
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "3a3450233869f52877fcfda43c72f8a2afec3384b21ec49255a231185c0c7315"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs",
+    "sha256": "20ee96031370fc4ed6e0b80145ff464cc7377bce638ce0356ff93d4819520855"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldMesh.cs",
+    "sha256": "df1ddf95d43cacf9323553c8920ef0328dd74f512127f649ab4ff222d71ecf09"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSurfaceChoice.cs",
+    "sha256": "eb6ff6f38ba915825de183ec4829dbca59d2399678fdba321c243bb63bfb9949"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperBoxSelection.cs",
+    "sha256": "aadc6d850b1ed479459f1142dd583f79e76323198c72d3a374d5a4e239bdaa76"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperBoxSelection.cs.meta",
+    "sha256": "43b333479b1931a6f61295014be89f266e74c67adf47d2a2ce5d0f22e2cab865"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs",
+    "sha256": "32bd55c0affac7636eb8786f7e043a2033fc46742b601f2708800384e058d531"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs.meta",
+    "sha256": "2d29287e8eaed40030662c9858b6579ffbd8b751a778758cfeed18ec8382e468"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BoxSelectionPlayerVerification.cs",
+    "sha256": "fd4ff9ea2cc1f0d3e7d50bba103b6d226d4b9baa3890355fa0fc89550d7cbc5f"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BoxSelectionPlayerVerification.cs.meta",
+    "sha256": "a2cb0e4050b8f3996d8fd4ef2ba1dcba3321aeb4dfa2179bff7e3dcd9aae6a77"
+  }
+]

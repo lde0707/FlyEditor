@@ -22,7 +22,7 @@ public static class SavedPetalInteractionVerification {
  // Highlighted corner: click 10 display pixels outside the silhouette.
  Call("PickSurfacePoint",corners[1]+Vector2.right*10);
  Check((int)Get("rightFlank")>=0,"highlighted fourth corner must remain selected");
- if(swap){Call("SwapPullEnds");Check(sheet.Count==4,"swap must not commit or mutate paper");}
+ if(swap){Call("SwapPullEnds");Call("SwapPullEnds");Check(sheet.Count==4,"swap must not commit or mutate paper");}
  Check(Get("phase").ToString()=="PickSide","valid four-point state: "+Get("phase"));
  var step=(FoldStep)Get("selected");var plan=PaperCornerPull.Create(sheet,step);Check(plan!=null&&plan.UsesPetalFold,"petal recognition");int sign=back?-1:1;
  Check(plan.TryMove(0,sign*180,out var reached)&&Mathf.Abs(reached)==180,"full opening");

@@ -1,0 +1,194 @@
+{
+    "points": [
+        {
+            "id": 0,
+            "anchor": 0,
+            "layer": 0,
+            "x": 301.491455078125,
+            "y": 788.508544921875,
+            "materialX": 0.0,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 1,
+            "anchor": 0,
+            "layer": 0,
+            "x": 470.7457275390625,
+            "y": 788.508544921875,
+            "materialX": 2.75,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 2,
+            "anchor": 0,
+            "layer": 0,
+            "x": 640.0,
+            "y": 788.508544921875,
+            "materialX": 5.5,
+            "materialY": 0.0,
+            "first": false,
+            "second": true
+        },
+        {
+            "id": 3,
+            "anchor": 0,
+            "layer": 0,
+            "x": 809.2542114257813,
+            "y": 788.508544921875,
+            "materialX": 8.25,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 4,
+            "anchor": 0,
+            "layer": 0,
+            "x": 978.508544921875,
+            "y": 788.508544921875,
+            "materialX": 11.0,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 5,
+            "anchor": 0,
+            "layer": 0,
+            "x": 978.508544921875,
+            "y": 619.2543334960938,
+            "materialX": 11.0,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 6,
+            "anchor": 0,
+            "layer": 0,
+            "x": 978.508544921875,
+            "y": 450.0,
+            "materialX": 11.0,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 7,
+            "anchor": 0,
+            "layer": 0,
+            "x": 978.508544921875,
+            "y": 280.7457580566406,
+            "materialX": 11.0,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 8,
+            "anchor": 0,
+            "layer": 0,
+            "x": 978.508544921875,
+            "y": 111.491455078125,
+            "materialX": 11.0,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 9,
+            "anchor": 0,
+            "layer": 0,
+            "x": 809.2542114257813,
+            "y": 111.491455078125,
+            "materialX": 8.25,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 10,
+            "anchor": 0,
+            "layer": 0,
+            "x": 640.0,
+            "y": 111.491455078125,
+            "materialX": 5.5,
+            "materialY": 11.0,
+            "first": true,
+            "second": false
+        },
+        {
+            "id": 11,
+            "anchor": 0,
+            "layer": 0,
+            "x": 470.7457275390625,
+            "y": 111.491455078125,
+            "materialX": 2.75,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 12,
+            "anchor": 0,
+            "layer": 0,
+            "x": 301.491455078125,
+            "y": 111.491455078125,
+            "materialX": 0.0,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 13,
+            "anchor": 0,
+            "layer": 0,
+            "x": 301.491455078125,
+            "y": 280.7457580566406,
+            "materialX": 0.0,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 14,
+            "anchor": 0,
+            "layer": 0,
+            "x": 301.491455078125,
+            "y": 450.0,
+            "materialX": 0.0,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 15,
+            "anchor": 0,
+            "layer": 0,
+            "x": 301.491455078125,
+            "y": 619.2543334960938,
+            "materialX": 0.0,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 16,
+            "anchor": 0,
+            "layer": 0,
+            "x": 640.0,
+            "y": 450.0,
+            "materialX": 5.5,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        }
+    ],
+    "pitch": 90.0,
+    "yaw": 0.0,
+    "side": "Ready"
+}

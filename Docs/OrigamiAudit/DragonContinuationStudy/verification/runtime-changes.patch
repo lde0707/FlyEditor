@@ -1,0 +1,133 @@
+--- before/PaperFoldTopology.cs
++++ after/PaperFoldTopology.cs
+@@ -5,6 +5,21 @@
+     // Material-space adjacency is independent of screen overlap and layer number.
+     internal static class PaperFoldTopology
+     {
++        // Round trips through reflected charts can differ by a few float ULPs.
++        // Compare the actual mapping on both polygons and its tangents. This
++        // never merges vertices or changes chart values; callers must separately
++        // require a real material seam and a compatible spatial frame.
++        internal static bool MaterialChartsMatch(PaperSheet.Face a,PaperSheet.Face b)
++        {
++            if(a.material==b.material)return true;
++            const float squaredTolerance=1e-8f;
++            var x=a.material.MultiplyVector(Vector3.right)-b.material.MultiplyVector(Vector3.right);
++            var z=a.material.MultiplyVector(Vector3.forward)-b.material.MultiplyVector(Vector3.forward);
++            if(x.sqrMagnitude>squaredTolerance||z.sqrMagnitude>squaredTolerance)return false;
++            foreach(var p in a.points)if((a.Original(p)-b.Original(p)).sqrMagnitude>squaredTolerance)return false;
++            foreach(var p in b.points)if((a.Original(p)-b.Original(p)).sqrMagnitude>squaredTolerance)return false;
++            return true;
++        }
+         public static bool SharedEdge(PaperSheet.Face a,PaperSheet.Face b,out Vector3 start,out Vector3 end)
+         {
+             start=end=default;
+--- before/PaperPocketIntent.cs
++++ after/PaperPocketIntent.cs
+@@ -39,7 +39,7 @@
+             if(!request.coordinatedSurface||!request.customFlanks||!request.regionalPull)return null;
+             var basis=sheet.Faces[request.anchor];var group=new List<PaperSheet.Face>{basis};var seen=new HashSet<PaperSheet.Face>{basis};
+             for(int i=0;i<group.Count;i++)foreach(var face in sheet.Faces){
+-                if(seen.Contains(face)||!PaperSheet.SameFrame(face,basis)||face.material!=basis.material)continue;
++                if(seen.Contains(face)||!PaperSheet.SameFrame(face,basis)||!PaperFoldTopology.MaterialChartsMatch(face,basis))continue;
+                 if(PaperFoldTopology.SharedEdge(group[i],face,out _,out _)){seen.Add(face);group.Add(face);}
+             }
+             var leftHint=basis.Original(request.pullLeft);var rightHint=basis.Original(request.pullRight);bool hasLeft=false,hasRight=false;
+--- before/PaperSheet.cs
++++ after/PaperSheet.cs
+@@ -46,6 +46,7 @@
+         public bool connectedPanel;
+         public bool separateFoldSides; // Keep the two sides of the latest flat fold independently selectable.
+         public bool materialPartition; // New input uses recorded rigid material boundaries, including four-handle edge matches.
++        public bool contactPacket; // Explicitly recorded minimal contact closure after both single-leaf directions are blocked.
+         public bool opening; // Existing-seam rotation; sweep contact while unstacking.
+         public MirrorAxis mirror;
+         public Vector2 contact;
+@@ -203,6 +204,8 @@
+             internal readonly List<Face> source;
+             public readonly List<Face> fixedFaces=new List<Face>(), movingFaces=new List<Face>();
+             internal bool hasFoldSideScope;
++            internal List<Face> primaryMovingFaces;
++            internal int MotionRole(Face face)=>primaryMovingFaces==null||primaryMovingFaces.Contains(face)?1:2;
+             private float upLimit=-1,downLimit=-1;
+             private List<Face> neutralMoving,neutralFixed;
+             private static List<Face> Neutral(List<Face> faces){var list=new List<Face>(faces.Count);foreach(var f in faces)list.Add(new Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(Thickness*.5f)),f.material,f));return list;}
+@@ -730,6 +733,7 @@
+         }
+         public Turn Plan(FoldStep step)
+         {
++            if(step.contactPacket)return PlanContactPacket(step);
+             var turn=Plan(step,false);
+             // A previous fold partitions material into moved and untouched sets.
+             // The untouched set can contain several unrelated flaps. If seeding
+@@ -737,6 +741,40 @@
+             // Keep the same ownership boundary and every material-joint check:
+             // this must never turn a failed fold into a tear or carry another leaf.
+             return turn ?? Plan(step,true);
++        }
++        // A trapped leaf may need its touching packet to turn with it. Never
++        // enlarge an ordinary independently movable wing. The closure is limited
++        // to this crease side and real material joints or adjacent shell contact.
++        public Turn PlanContactPacket(FoldStep step)
++        {
++            step.contactPacket=false;
++            if(!step.materialPartition||!step.continuousHinge||!step.neutralContacts||step.flap<=0)return null;
++            var single=Plan(step);
++            if(single==null)return null;
++            if(Mathf.Abs(single.Constrain(1))>.001f||Mathf.Abs(single.Constrain(-1))>.001f)return single;
++            var all=step;all.flap=0;all.singlePanel=all.connectedPanel=all.separateFoldSides=false;
++            var complete=Plan(all);if(complete==null)return null;
++            var pieces=complete.movingFaces;var included=new bool[pieces.Count];var primary=new bool[pieces.Count];
++            var queue=new Queue<int>();
++            for(int i=0;i<pieces.Count;i++)if(primary[i]=included[i]=MovedMaterial(pieces[i],single.movingFaces))queue.Enqueue(i);
++            if(queue.Count==0)return null;
++            var basis=faces[step.anchor];
++            while(queue.Count>0){int i=queue.Dequeue();var a=pieces[i];
++                for(int j=0;j<pieces.Count;j++){
++                    if(included[j])continue;var b=pieces[j];
++                    bool contact=SameFrame(a,b)&&Math.Abs(a.layer-b.layer)==1&&Turn.Overlap(a,b);
++                    if(!contact&&!Joined(a,b,step,basis))continue;
++                    included[j]=true;queue.Enqueue(j);
++                }
++            }
++            step.contactPacket=true;var turn=new Turn(step,complete.top,complete.bottom,faces){hasFoldSideScope=true,primaryMovingFaces=new List<Face>()};
++            turn.fixedFaces.AddRange(complete.fixedFaces);bool extra=false;
++            for(int i=0;i<pieces.Count;i++){
++                if(!included[i]){turn.fixedFaces.Add(pieces[i]);continue;}
++                turn.movingFaces.Add(pieces[i]);if(primary[i])turn.primaryMovingFaces.Add(pieces[i]);else extra=true;
++            }
++            if(!extra||turn.fixedFaces.Count==0)return null;
++            return Mathf.Abs(turn.Constrain(1))>.001f||Mathf.Abs(turn.Constrain(-1))>.001f?turn:null;
+         }
+         private Turn Plan(FoldStep step,bool pickedComponent)
+         {
+--- before/FoldingDesk.cs
++++ after/FoldingDesk.cs
+@@ -419,11 +419,15 @@
+             bool crosses=candidate!=null || PaperSheet.Intersection(face,line,out _,out _);
+             turn=candidate!=null && !candidate.MovesOtherPlyAt(point)?candidate:null;
+             bool contactBlocked=turn!=null && Mathf.Abs(turn.Constrain(1))<.001f && Mathf.Abs(turn.Constrain(-1))<.001f;
++            if(contactBlocked){
++                var packet=sheet.PlanContactPacket(line);
++                if(packet!=null&&packet.step.contactPacket){candidate=turn=packet;selected=packet.step;contactBlocked=false;}
++            }
+             if(contactBlocked)turn=null;
+             sideChoiceState=!coplanar?SideChoiceState.DifferentPlanes:!crosses?SideChoiceState.AxisOutside:contactBlocked?SideChoiceState.ContactBlocked:turn==null?SideChoiceState.NeedsHinges:SideChoiceState.Ready;
+             if(turn!=null){
+                 surfaceChoice=null;phase=Phase.AdjustAngle;angle=0;sheet.MarkCrease(turn.step,hinge);
+-                notice="선택한 쪽을 드래그해 접으세요. 겹친 뒤쪽 면은 선택하지 않습니다.";
++                notice=turn.step.contactPacket?"초록: 선택한 면 · 파란 사선: 함께 접어야 하는 접촉 겹. 드래그로 접으세요.":"선택한 쪽을 드래그해 접으세요. 겹친 뒤쪽 면은 선택하지 않습니다.";
+                 if(press)StartFacePress(pos);
+             }else{
+                 phase=Phase.PickSide;gesture=PointerGesture.Idle;
+--- before/FoldMesh.cs
++++ after/FoldMesh.cs
+@@ -67,7 +67,7 @@
+                 outlinePeers=turn.fixedFaces;
+                 foreach(var f in turn.fixedFaces)Surface(f,false,false);
+                 outlinePeers=turn.movingFaces;
+-                foreach(var f in turn.movingFaces)Surface(f,true,workbench);
++                foreach(var f in turn.movingFaces)Surface(f,true,workbench&&turn.MotionRole(f)==1,motionRole:workbench?turn.MotionRole(f):0);
+             }
+             if(turn==null && reverse==null && pull==null && pair==null && points!=null && first>=0 && second>=0 && (hinge==null || hinge.Count==0 || selectedPanel>=0)){
+                 var va=points[first];var vb=points[second];var fa=sheet.Faces[va.anchor];var fb=sheet.Faces[vb.anchor];

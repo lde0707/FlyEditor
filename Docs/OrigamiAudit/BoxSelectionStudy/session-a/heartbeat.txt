@@ -1,0 +1,1 @@
+playing=True paused=False compiling=False frame=52532 action=19 command=

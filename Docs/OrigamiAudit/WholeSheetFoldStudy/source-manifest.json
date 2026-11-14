@@ -1,0 +1,10 @@
+[
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "3e038bd2aab9cfcf689241f280516ae00168d9669e64b2ba50585870349687da"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs",
+    "sha256": "280f22f8abcf5a51ec900cf4f7375ebee9ebc58ca77afe80da04c73c6b683623"
+  }
+]

@@ -1,0 +1,1 @@
+id=28 label=true-petal-face screen=644x884 folds=4 phase=AdjustAngle angle=0 notice=끝점을 들어 올리면 양옆이 안으로 접힙니다. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=120431

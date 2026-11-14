@@ -1,0 +1,1 @@
+id=1 label=reopen screen=644x884 folds=5 phase=FirstPoint angle=0 notice= scope=Top gesture=Idle edge=2 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=472

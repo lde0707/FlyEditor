@@ -14,6 +14,7 @@ namespace FlyEditor.Flight
         private float lastAngle=float.NaN;
         private readonly List<PaperSheet.Face> preview=new List<PaperSheet.Face>(),trial=new List<PaperSheet.Face>();
         public IReadOnlyList<PaperSheet.Face> Preview=>preview;
+        internal PaperSheet.Turn Turn=>turn;
         public Vector3 Tip {get;private set;}
         public Vector3 Stop {get;private set;}
         private PaperEdgeMatchFold(PaperSheet sheet,PaperSheet.Turn turn,PaperSheet.Face basis,Vector2 handle)
@@ -40,6 +41,14 @@ namespace FlyEditor.Flight
             if(dot>.999f||dot<-.99f)return null;
             var axis=(edge+target).normalized;var n=new Vector2(-axis.y,axis.x);
             var line=new FoldStep{anchor=step.anchor,flap=step.continuousHinge?step.flap:step.anchor+1,continuousHinge=step.continuousHinge,neutralContacts=step.neutralContacts,compactLayers=step.compactLayers,connectedPanel=step.continuousHinge,creaseNormal=n,creaseOffset=Vector2.Dot(n,a),side=Vector2.Dot(n,b-a)>0?1:-1};
+            // Keep the selected leaf boundary when converting four handles into
+            // a bisector. Older recipes retain their original selection policy.
+            line.singlePanel=step.separateFoldSides && line.flap>0;
+            line.separateFoldSides=step.separateFoldSides;
+            line.materialPartition=step.materialPartition;
+            line.vertexJoints=step.vertexJoints;
+            line.preserveSlivers=step.preserveSlivers;
+            line.contact=(a+b)*.5f;
             var turn=sheet.Plan(line);if(turn==null)return null;
             var plan=new PaperEdgeMatchFold(sheet,turn,basis,b){Stop=basis.World(a,step.continuousHinge?0:(basis.layer+.5f)*PaperSheet.Thickness)};
             return plan;
@@ -64,7 +73,7 @@ namespace FlyEditor.Flight
             foreach(var f in turn.movingFaces){
                 if(Mathf.Abs(angle)==180 && PaperSheet.SameFrame(f,basis))
                     preview.Add(PaperSheet.ReflectFlat(f,turn.step,angle>0?2*turn.top+1-f.layer:2*turn.bottom-1-f.layer));
-                else preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material));
+                else preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material,f));
             }
             lastAngle=angle;Tip=rotation.MultiplyPoint3x4(basis.World(handle,(basis.layer+.5f)*PaperSheet.Thickness));return true;
         }

@@ -1,0 +1,1 @@
+id=7 label=blocked-after-reload screen=644x884 folds=1 phase=AdjustAngle angle=0 notice=다른 면에 닿았습니다. 반대 방향으로 접거나 다른 겹을 선택하세요. scope=Top gesture=Angle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=18832

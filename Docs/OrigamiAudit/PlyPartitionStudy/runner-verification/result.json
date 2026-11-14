@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "suite": "ply-partition",
+  "returncode": 0,
+  "log": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\origami-ply-partition-2026-11-12\\runner-verification\\ply-partition.log",
+  "scope": "baseline suite only; no complete-model certification",
+  "source_sha256": "cbddf4090d0b14d2bc0e3d2fa3e3881be693cccb8b0cc7f4323c134525e08caa",
+  "project": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\validation\\WebProject",
+  "unity_version": "m_EditorVersion: 6000.5.3f1\nm_EditorVersionWithRevision: 6000.5.3f1 (c2eb47b3a2a9)"
+}

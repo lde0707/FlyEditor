@@ -1,0 +1,1 @@
+id=6 label=opening screen=644x884 folds=7 phase=AdjustAngle angle=78 notice=초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면 scope=Top gesture=Angle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=19535

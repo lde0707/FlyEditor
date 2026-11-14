@@ -1,0 +1,549 @@
+{
+  "version": 1,
+  "techniques": [
+    {
+      "id": "straight",
+      "name": "직선 산·골 접기",
+      "existing_tests": [
+        "PaperFoldingVerification",
+        "ConnectedFoldVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "edge-match",
+      "name": "점·변·선 정렬",
+      "existing_tests": [
+        "EdgeAlignmentVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "layers",
+      "name": "독립 겹·연결된 날개",
+      "existing_tests": [
+        "WingSideVerification",
+        "RearLeafSelectionVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "squash",
+      "name": "주머니 벌리기·눌러 펴기",
+      "existing_tests": [
+        "PocketFoldingVerification",
+        "EdgePocketVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "petal",
+      "name": "꽃잎 접기·반대편 반복",
+      "existing_tests": [
+        "PetalFoldingVerification",
+        "VisiblePetalInteractionVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "reverse-inside",
+      "name": "안쪽 뒤집기",
+      "existing_tests": [
+        "ReverseDirectionVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "reverse-outside",
+      "name": "바깥쪽 뒤집기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "rabbit-ear",
+      "name": "토끼귀·이중 토끼귀",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "crimp",
+      "name": "단 접기·복합 뒤집기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "sink-open",
+      "name": "열린 가라앉히기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "sink-closed",
+      "name": "닫힌 가라앉히기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "unsink",
+      "name": "가라앉힌 면 꺼내기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "spread-squash",
+      "name": "겹 펼쳐 눌러 펴기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "pleat",
+      "name": "연속 주름·아코디언",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "twist",
+      "name": "비틀어 모으기·나선",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "collapse",
+      "name": "다중 축 동시 붕괴·모으기",
+      "existing_tests": [
+        "RadialGatherVerification",
+        "PacketFoldingVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "lock",
+      "name": "끼워 고정·주머니 삽입",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "inflate",
+      "name": "입체 펼치기·부풀리기",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "curve",
+      "name": "곡선 접기·곡면 성형",
+      "existing_tests": [],
+      "status": "unverified"
+    },
+    {
+      "id": "contact",
+      "name": "겹 충돌·두께·접촉 경로",
+      "existing_tests": [
+        "ClearanceCommonVerification",
+        "JetEdgeVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "input",
+      "name": "보이는 겹·공유점·회전·줌",
+      "existing_tests": [
+        "ConsistentCraneSelectionVerification",
+        "FixedFoldViewVerification"
+      ],
+      "status": "partial"
+    },
+    {
+      "id": "persistence",
+      "name": "재생·되돌리기·컴파일 후 보존",
+      "existing_tests": [],
+      "status": "unverified"
+    }
+  ],
+  "models": [
+    {
+      "id": "aircraft",
+      "name": "한 장 비행기·복잡한 제트",
+      "techniques": [
+        "edge-match",
+        "layers",
+        "straight",
+        "contact"
+      ],
+      "reference": null,
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "crane",
+      "name": "학·새",
+      "techniques": [
+        "squash",
+        "petal",
+        "reverse-inside",
+        "layers"
+      ],
+      "reference": null,
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "lily",
+      "name": "백합·입체 꽃",
+      "techniques": [
+        "squash",
+        "petal",
+        "spread-squash",
+        "inflate"
+      ],
+      "reference": null,
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "dragon",
+      "name": "드래곤",
+      "techniques": [
+        "petal",
+        "reverse-inside",
+        "reverse-outside",
+        "crimp",
+        "layers"
+      ],
+      "reference": "https://jonakashima.com.br/wp-content/uploads/2015/07/Dragon-Jo-Nakashima.pdf",
+      "status": "partial",
+      "single_sheet_verified": false,
+      "last_run": {
+        "status": "FAIL",
+        "completed_model": false,
+        "checkpoint_folds": 7,
+        "blocked_operation": "nested small petal (diagram 10-12)",
+        "evidence": "Docs/OrigamiAudit/DragonStudy/기록.md"
+      }
+    },
+    {
+      "id": "insect",
+      "name": "곤충·사마귀형",
+      "techniques": [
+        "rabbit-ear",
+        "sink-open",
+        "sink-closed",
+        "collapse",
+        "layers",
+        "contact"
+      ],
+      "reference": "https://langorigami.com/artwork/praying-mantis-opus-416/",
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "rose",
+      "name": "장미·나선 꽃",
+      "techniques": [
+        "twist",
+        "collapse",
+        "curve",
+        "layers"
+      ],
+      "reference": "https://langorigami.com/crease-patterns/",
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "box",
+      "name": "잠금 상자·입체 용기",
+      "techniques": [
+        "lock",
+        "inflate",
+        "straight",
+        "contact"
+      ],
+      "reference": null,
+      "status": "unverified",
+      "single_sheet_verified": false
+    },
+    {
+      "id": "tessellation",
+      "name": "한 장 반복 주름 구조",
+      "techniques": [
+        "pleat",
+        "twist",
+        "collapse",
+        "contact"
+      ],
+      "reference": null,
+      "status": "unverified",
+      "single_sheet_verified": false
+    }
+  ],
+  "variation_axes": {
+    "view": [
+      "top",
+      "bottom",
+      "oblique",
+      "edge-on"
+    ],
+    "orientation_degrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "crease_angle_degrees": [
+      -180,
+      -179,
+      -90,
+      -3,
+      0,
+      3,
+      90,
+      179,
+      180
+    ],
+    "layers": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "endpoint_order": [
+      "forward",
+      "reverse"
+    ],
+    "selection": [
+      "points",
+      "edges",
+      "face"
+    ],
+    "source_state": [
+      "fresh",
+      "partially-folded",
+      "fully-flat-stack",
+      "reopened"
+    ],
+    "sequence": [
+      "left-first",
+      "right-first",
+      "undo-redo",
+      "save-reload"
+    ]
+  },
+  "suites": [
+    {
+      "id": "core",
+      "method": "FlyEditor.Editor.OrigamiTechniqueBaseline.Run",
+      "pass_marker": "[OrigamiTechniqueBaseline] PASS",
+      "techniques": [
+        "straight",
+        "squash",
+        "petal",
+        "reverse-inside",
+        "layers",
+        "contact"
+      ]
+    },
+    {
+      "id": "dragon-shared",
+      "method": "SharedEdgeSelectionVerification.Run",
+      "pass_marker": "[SharedEdge] PASS",
+      "techniques": [
+        "input"
+      ],
+      "required_environment": [
+        "FLYEDITOR_PLAYER_RECIPE"
+      ]
+    },
+    {
+      "id": "ply-partition",
+      "method": "FlyEditor.Editor.PlyPartitionVerification.Run",
+      "pass_marker": "[PlyPartition] PASS four-handle book",
+      "techniques": [
+        "layers",
+        "straight",
+        "input",
+        "contact"
+      ]
+    },
+    {
+      "id": "coordinated-surface",
+      "method": "FlyEditor.Editor.CoordinatedSurfaceVerification.Run",
+      "pass_marker": "[CoordinatedSurface] PASS 64",
+      "techniques": [
+        "squash",
+        "petal",
+        "layers",
+        "contact",
+        "input"
+      ],
+      "required_environment": [
+        "FLYEDITOR_COMPLEX_ROOT"
+      ]
+    },
+    {
+      "id": "coordinated-player-replay",
+      "method": "CoordinatedPlayerReplayVerification.Run",
+      "pass_marker": "[CoordinatedPlayerReplay] PASS",
+      "techniques": [
+        "petal",
+        "input",
+        "layers"
+      ],
+      "required_environment": [
+        "FLYEDITOR_COMPLEX_PLAYER_RECIPE"
+      ]
+    },
+    {
+      "id": "sequence-consistency",
+      "method": "SequenceConsistencyVerification.Run",
+      "pass_marker": "[SequenceConsistency] PASS operations=256",
+      "techniques": [
+        "layers",
+        "straight",
+        "contact"
+      ],
+      "required_environment": [
+        "FLYEDITOR_SEQUENCE_OUT"
+      ]
+    },
+    {
+      "id": "sequence-selection",
+      "method": "SequenceSelectionVerification.Run",
+      "pass_marker": "[SequenceSelection] PASS 8",
+      "techniques": [
+        "layers",
+        "input"
+      ],
+      "required_environment": [
+        "FLYEDITOR_SEQUENCE_OUT"
+      ]
+    },
+    {
+      "id": "sequence-player-replay",
+      "method": "SequencePlayerReplayVerification.Run",
+      "pass_marker": "[SequencePlayer] PASS",
+      "techniques": [
+        "layers",
+        "input",
+        "straight"
+      ],
+      "required_environment": [
+        "FLYEDITOR_SEQUENCE_PLAYER_DIR"
+      ]
+    },
+    {
+      "id": "three-player-flows",
+      "method": "ThreePlayerFlowVerification.Run",
+      "pass_marker": "[ThreePlayerFlows] PASS flows=3",
+      "techniques": [
+        "layers",
+        "straight",
+        "contact",
+        "input"
+      ],
+      "required_environment": [
+        "FLYEDITOR_THREE_PLAYER_ROOT"
+      ]
+    },
+    {
+      "id": "dragon-material-chart",
+      "method": "MaterialChartContinuationVerification.Run",
+      "pass_marker": "[MaterialChart] PASS 12",
+      "techniques": [
+        "petal",
+        "layers",
+        "input"
+      ],
+      "required_environment": [
+        "FLYEDITOR_DRAGON_CONTINUE_ROOT"
+      ]
+    },
+    {
+      "id": "contact-packet",
+      "method": "ContactPacketVerification.Run",
+      "pass_marker": "[ContactPacket] PASS 6",
+      "techniques": [
+        "layers",
+        "contact",
+        "straight"
+      ],
+      "required_environment": [
+        "FLYEDITOR_DRAGON_CONTINUE_ROOT"
+      ]
+    },
+    {
+      "id": "dragon-continuation-player",
+      "method": "DragonContinuationPlayerVerification.Run",
+      "pass_marker": "[DragonPlayer] PASS actual 8-to-14",
+      "techniques": [
+        "petal",
+        "layers",
+        "input",
+        "contact"
+      ],
+      "required_environment": [
+        "FLYEDITOR_DRAGON_PLAYER_ROOT"
+      ]
+    }
+  ],
+  "oracles": [
+    "material_area",
+    "material_seams",
+    "stationary_layer_positions",
+    "selected_region_equals_motion",
+    "swept_collision",
+    "edge_target_error",
+    "replay_equivalence",
+    "undo_equivalence",
+    "visible_input_selection",
+    "final_shape_and_landmarks",
+    "actual_player_input",
+    "saved_state_survives_reload"
+  ],
+  "sources": [
+    "https://origamiusa.org/difficulty",
+    "https://langorigami.com/crease-patterns/",
+    "https://jonakashima.com.br/wp-content/uploads/2015/07/Dragon-Jo-Nakashima.pdf"
+  ],
+  "last_shared_edge_regression": {
+    "status": "PASS",
+    "cases": 12,
+    "evidence": "Docs/OrigamiAudit/DragonStudy/final-regression.log"
+  },
+  "last_coordinated_surface_regression": {
+    "status": "PASS",
+    "scope": "bounded material-supported pocket and auxiliary hinges",
+    "metric_proportions": 18,
+    "ordinary_operations": 16,
+    "ordinary_poses": 128,
+    "environment_cases": 64,
+    "environment_poses": 832,
+    "actual_input": "same four points as historical failure; 180 degree commit and replay",
+    "complete_model": false,
+    "evidence": "Docs/OrigamiAudit/CoordinatedSurfaceStudy/기록.md"
+  },
+  "last_sequence_consistency_regression": {
+    "status": "PASS",
+    "reproducible_causes": 2,
+    "operations": 256,
+    "reopened_selections": 288,
+    "blocked_requests": 128,
+    "complete_model": false,
+    "evidence": "Docs/OrigamiAudit/SequenceConsistencyStudy/원인과-해결.md"
+  },
+  "last_three_player_flow_regression": {
+    "status": "PASS",
+    "actual_flows": 3,
+    "actual_cold_restarts": 2,
+    "saved_state_replays": 64,
+    "new_runtime_defect_reproduced": false,
+    "evidence": "Docs/OrigamiAudit/ThreePlayerFlowStudy/원인과-해결.md"
+  },
+  "last_dragon_continuation_regression": {
+    "status": "PASS",
+    "initial_history": 8,
+    "final_history": 14,
+    "complete_model": false,
+    "new_common_causes": 2,
+    "evidence": "Docs/OrigamiAudit/DragonContinuationStudy/원인과-해결.md"
+  }
+}

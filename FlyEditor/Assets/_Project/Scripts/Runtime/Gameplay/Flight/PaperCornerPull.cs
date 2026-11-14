@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlyEditor.Flight
@@ -10,7 +10,7 @@ namespace FlyEditor.Flight
     {
         public const float Limit=75f, FlexibleLimit=170f;
         public static float LimitFor(FoldStep step)=>step.closeFlat?180f:step.flexible?FlexibleLimit:Limit;
-        public float AngleLimit=>closingFan?rays[4]:LimitFor(Step);
+        public float AngleLimit=>localMotion!=null?localMotion.AngleLimit:closingFan?rays[4]:LimitFor(Step);
         private readonly float[] rays={-145,-65,0,65,145,215};
         private sealed class Node
         {
@@ -29,6 +29,7 @@ namespace FlyEditor.Flight
         private readonly List<Joint> joints=new List<Joint>();
         private bool coupled;
         private PaperPetalFold petal;
+        private PaperLocalMotion localMotion;
         private PaperClearanceSequence clearance;
         private PaperPocketSquash squash;
         private PaperRadialGather gather;
@@ -69,15 +70,20 @@ namespace FlyEditor.Flight
         public bool IsCurrent=>original==Source.Faces;
         public bool UsesCoupledHinges=>coupled;
         public bool UsesEdgeMatch=>match!=null;
+        internal PaperSheet.Turn EdgeTurn=>match?.Turn;
         public bool UsesRadialGather=>gather!=null;
         public bool UsesExactSquash=>squash!=null;
-        public bool UsesPetalFold=>petal!=null || clearance!=null;
+        public bool UsesPetalFold=>localMotion!=null || petal!=null || clearance!=null;
+        public bool UsesCoordinatedSurface=>localMotion!=null || petal!=null && petal.Coordinated;
+        public bool ResolvedHingeHints=>localMotion!=null?localMotion.HingeHints:petal!=null&&petal.HingeHints;
+        public string LastFailure=>localMotion?.Failure??petal?.Failure??jointFailure;
+        internal int MotionRole(PaperSheet.Face face)=>localMotion!=null?localMotion.MotionRole(face):petal?.MotionRole(face)??0;
         public bool UsesClearanceSequence=>clearance!=null;
-        public bool MarkGuides(List<PaperSheet.Guide> guides){if(clearance!=null){guides.Clear();return true;}if(squash!=null){squash.MarkGuides(guides);return true;}if(gather!=null){gather.MarkGuides(guides);return true;}if(match!=null){match.MarkGuides(guides);return true;}if(petal==null)return false;petal.MarkGuides(guides);return true;}
-        public IReadOnlyList<PaperSheet.Face> Preview=>clearance!=null?clearance.Preview:squash!=null?squash.Preview:gather!=null?gather.Preview:match!=null?match.Preview:petal!=null?petal.Preview:preview;
+        public bool MarkGuides(List<PaperSheet.Guide> guides){if(localMotion!=null){localMotion.MarkGuides(guides);return true;}if(clearance!=null){guides.Clear();return true;}if(squash!=null){squash.MarkGuides(guides);return true;}if(gather!=null){gather.MarkGuides(guides);return true;}if(match!=null){match.MarkGuides(guides);return true;}if(petal==null)return false;petal.MarkGuides(guides);return true;}
+        public IReadOnlyList<PaperSheet.Face> Preview=>localMotion!=null?localMotion.Preview:clearance!=null?clearance.Preview:squash!=null?squash.Preview:gather!=null?gather.Preview:match!=null?match.Preview:petal!=null?petal.Preview:preview;
         public Vector3 Tip { get; private set; }
 
-        public Vector3 Stop=>clearance!=null?clearance.Stop:squash!=null?squash.Stop:gather!=null?gather.Stop:match!=null?match.Stop:petal!=null?petal.Stop:pivot;
+        public Vector3 Stop=>localMotion!=null?localMotion.Stop:clearance!=null?clearance.Stop:squash!=null?squash.Stop:gather!=null?gather.Stop:match!=null?match.Stop:petal!=null?petal.Stop:pivot;
 
         private PaperCornerPull(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis)
         {
@@ -174,10 +180,17 @@ namespace FlyEditor.Flight
             foreach(var face in original){topLayer=Mathf.Max(topLayer,face.layer);bottomLayer=Mathf.Min(bottomLayer,face.layer);}
         }
         public static PaperCornerPull Create(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis=MirrorAxis.Off)
+            =>Create(sheet,step,pinnedAxis,false);
+        internal static PaperCornerPull CreateCanonical(PaperSheet sheet,FoldStep step)=>Create(sheet,step,MirrorAxis.Off,true);
+        private static PaperCornerPull Create(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis,bool canonical)
         {
             if(!step.cornerPull || sheet.Count>=sheet.FoldLimit || step.anchor<0 || step.anchor>=sheet.Faces.Count ||
                 (step.flap!=0 && step.flap!=step.anchor+1) || !Finite(step.pullTip) || !Finite(step.pullStop))return null;
             var face=sheet.Faces[step.anchor];
+            if(!canonical && pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && face.frame!=Matrix4x4.identity){
+                var local=PaperLocalMotion.Create(sheet,step);
+                if(local!=null)return new PaperCornerPull(sheet,local.Step,pinnedAxis){localMotion=local};
+            }
             if(!face.Contains(step.pullTip) || (!step.flexible && !sheet.ContainsPanelPoint(face,step.pullStop)) ||
                (step.pullTip-step.pullStop).sqrMagnitude<.01f)return null;
             var p=face.Original(step.pullTip);
@@ -186,6 +199,11 @@ namespace FlyEditor.Flight
             if(step.clearance!=null && step.clearance.Length>0){plan.clearance=PaperClearanceSequence.Create(sheet,step);return plan.clearance!=null?plan:null;}
             if(pinnedAxis==MirrorAxis.Off && (plan.gather=PaperRadialGather.Create(sheet,step))!=null)return plan;
             if(pinnedAxis==MirrorAxis.Off && (plan.squash=PaperPocketSquash.Create(sheet,step))!=null)return plan;
+            // A handle inside the mouth segment describes a lift, not a unique
+            // target ray for edge alignment. Resolve its material support graph.
+            if(pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && MouthLift(sheet,step) &&
+                (plan.petal=PaperPetalFold.Create(sheet,step))!=null)return plan;
+            if(pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && (plan.petal=PaperPocketIntent.Resolve(sheet,step))!=null)return plan;
             if(pinnedAxis==MirrorAxis.Off && (plan.match=PaperEdgeMatchFold.Create(sheet,step))!=null)return plan;
             if(pinnedAxis==MirrorAxis.Off && (plan.petal=PaperPetalFold.Create(sheet,step))!=null)return plan;
             // A surface click can lie just beside a real material junction. Resolve
@@ -221,6 +239,12 @@ namespace FlyEditor.Flight
             return result;
         }
         private static bool Finite(Vector2 p)=>!float.IsNaN(p.x) && !float.IsNaN(p.y) && !float.IsInfinity(p.x) && !float.IsInfinity(p.y);
+        private static bool MouthLift(PaperSheet sheet,FoldStep step)
+        {
+            var face=sheet.Faces[step.anchor];var a=face.Original(step.pullTip);var l=face.Original(step.pullLeft);var r=face.Original(step.pullRight);
+            var edge=r-l;return edge.sqrMagnitude>.0001f && Vector3.Dot(a-l,a-r)<-.0001f &&
+                Vector3.Cross(edge.normalized,a-l).sqrMagnitude<.0001f;
+        }
         private Vector2 Ray(float degrees)
         {
             float angle=degrees*Mathf.Deg2Rad;
@@ -269,7 +293,7 @@ namespace FlyEditor.Flight
                         for(int j=0;j<part.points.Length;j++){
                             var poly=new[]{centre,part.points[j],part.points[(j+1)%part.points.Length]};
                             if(PaperSheet.Area(poly)>.0001f)
-                                AddPanel(new PaperSheet.Face(poly,part.layer,part.back,part.frame,part.material),i);
+                                AddPanel(new PaperSheet.Face(poly,part.layer,part.back,part.frame,part.material,part,true),i);
                         }
                     }else AddPanel(part,i);
                     area+=PaperSheet.Area(part.points);
@@ -519,7 +543,7 @@ namespace FlyEditor.Flight
                 float h=(layer+.5f)*PaperSheet.Thickness;
                 var separation=flatStack?basis.frame.MultiplyVector(Vector3.up)*h:Vector3.zero;
                 var offset=target+separation-rotation*new Vector3(f.points[0].x,h,f.points[0].y);
-                var moved=new PaperSheet.Face(f.points,layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material);
+                var moved=new PaperSheet.Face(f.points,layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material,f);
                 var inv=f.material.inverse;
                 foreach(int id in panel.nodes){var p=inv.MultiplyPoint3x4(nodes[id].material);
                     float residual=(moved.World(new Vector2(p.x,p.z),h)-separation-nodes[id].position).magnitude;
@@ -657,7 +681,7 @@ namespace FlyEditor.Flight
             }
             chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
             bool back=face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);
-            return new PaperSheet.Face(points,layer,back,target,face.material*chart.inverse);
+            return new PaperSheet.Face(points,layer,back,target,face.material*chart.inverse,face);
         }
         private bool PoseClosingFan(float angle)
         {
@@ -679,7 +703,7 @@ namespace FlyEditor.Flight
                     float flipped=Vector3.Dot(q*up,up)>=0?1:-1;
                     float idealHeight=oldHeight+flipped*(h-oldHeight);
                     frame=Matrix4x4.Translate(up*(((layer+.5f)*PaperSheet.Thickness-idealHeight)*press))*frame;
-                    trial.Add(closed?Rebase(f,frame,basis.frame,layer):new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
+                    trial.Add(closed?Rebase(f,frame,basis.frame,layer):new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
                 }else{
                     // Stop at the first meeting of the two central faces. Continuing
                     // to 180 here would push the left and right pleats through each other.
@@ -687,7 +711,7 @@ namespace FlyEditor.Flight
                     frame=Matrix4x4.Translate(contactNormal*(side*PaperSheet.Thickness*.5f*press))*frame;
                     if(closed && (panel.sector==1 || panel.sector==2) && (original.Count==1 || (Step.regionalPull && selectedFaces.Count==1)))
                         trial.Add(Rebase(f,frame,contactFrame,2-panel.sector));
-                    else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
+                    else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
                 }
             }
             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
@@ -736,6 +760,7 @@ namespace FlyEditor.Flight
         }
         public bool Pose(float angle)
         {
+            if(localMotion!=null){if(!localMotion.Pose(angle))return false;Tip=localMotion.Tip;return true;}
             if(clearance!=null){if(!clearance.Pose(angle))return false;Tip=clearance.Tip;return true;}
             if(squash!=null){if(!squash.Pose(angle))return false;Tip=squash.Tip;return true;}
             if(gather!=null){if(!gather.Pose(angle))return false;Tip=gather.Tip;return true;}
@@ -761,7 +786,7 @@ namespace FlyEditor.Flight
                 foreach(var panel in panels){
                     var q=rotations[panel.sector];var f=panel.face;
                     var pose=Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame;
-                    preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,pose,f.material));
+                    preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,pose,f.material,f));
                 }
                 Tip=pivot+foldedRays[2]*reach;
                 previewAngle=angle;return true;
@@ -816,7 +841,7 @@ namespace FlyEditor.Flight
                     Quaternion.Inverse(Basis(new Vector3(u.x,0,u.y),new Vector3(v.x,0,v.y)));
                 float h=(f.layer+.5f)*PaperSheet.Thickness;
                 var offset=target-rotation*new Vector3(f.points[0].x,h,f.points[0].y);
-                var moved=new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material);
+                var moved=new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material,f);
                 var inv=f.material.inverse;
                 foreach(int id in panel.nodes){
                     var p=inv.MultiplyPoint3x4(nodes[id].material);

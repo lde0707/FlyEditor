@@ -1,0 +1,172 @@
+{
+    "points": [
+        {
+            "id": 33,
+            "anchor": 4,
+            "layer": 7,
+            "x": 1085.918212890625,
+            "y": 275.8580017089844,
+            "materialX": 11.0,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 34,
+            "anchor": 4,
+            "layer": 7,
+            "x": 875.7103881835938,
+            "y": 362.9290771484375,
+            "materialX": 8.25,
+            "materialY": 6.639087677001953,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 35,
+            "anchor": 4,
+            "layer": 7,
+            "x": 665.5025024414063,
+            "y": 450.0,
+            "materialX": 5.5,
+            "materialY": 7.778174877166748,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 36,
+            "anchor": 4,
+            "layer": 7,
+            "x": 455.2946472167969,
+            "y": 537.0709228515625,
+            "materialX": 2.75,
+            "materialY": 8.917262077331543,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 37,
+            "anchor": 4,
+            "layer": 7,
+            "x": 245.0867462158203,
+            "y": 624.1419067382813,
+            "materialX": 0.0,
+            "materialY": 10.056349754333496,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 38,
+            "anchor": 4,
+            "layer": 7,
+            "x": 245.0867462158203,
+            "y": 537.0709228515625,
+            "materialX": 0.0,
+            "materialY": 8.917262077331543,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 39,
+            "anchor": 4,
+            "layer": 7,
+            "x": 245.0867462158203,
+            "y": 450.0,
+            "materialX": 0.0,
+            "materialY": 7.778174877166748,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 40,
+            "anchor": 4,
+            "layer": 7,
+            "x": 245.0867462158203,
+            "y": 362.9290771484375,
+            "materialX": 0.0,
+            "materialY": 6.639087677001953,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 41,
+            "anchor": 4,
+            "layer": 7,
+            "x": 245.0867462158203,
+            "y": 275.8580017089844,
+            "materialX": 0.0,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 42,
+            "anchor": 4,
+            "layer": 7,
+            "x": 455.2946472167969,
+            "y": 275.8580017089844,
+            "materialX": 2.75,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 43,
+            "anchor": 4,
+            "layer": 7,
+            "x": 665.5025024414063,
+            "y": 275.8580017089844,
+            "materialX": 5.5,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 44,
+            "anchor": 4,
+            "layer": 7,
+            "x": 875.7103881835938,
+            "y": 275.8580017089844,
+            "materialX": 8.25,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 61,
+            "anchor": 6,
+            "layer": 4,
+            "x": 194.08177185058595,
+            "y": 573.136962890625,
+            "materialX": 2.937178749107261e-7,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 62,
+            "anchor": 6,
+            "layer": 4,
+            "x": 219.584228515625,
+            "y": 598.6395263671875,
+            "materialX": 1.70839726365557e-7,
+            "materialY": 10.52817440032959,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 102,
+            "anchor": 4,
+            "layer": 7,
+            "x": 525.3638916015625,
+            "y": 391.9526672363281,
+            "materialX": 3.6666665077209474,
+            "materialY": 7.018783092498779,
+            "first": false,
+            "second": false
+        }
+    ],
+    "pitch": 90.0,
+    "yaw": 0.0,
+    "side": "None"
+}

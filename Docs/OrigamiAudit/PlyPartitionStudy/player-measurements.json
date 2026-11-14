@@ -1,0 +1,22 @@
+[
+  {
+    "before": 7,
+    "preview": 8,
+    "after": 9,
+    "angle": 104.0,
+    "fixed_samples": 5,
+    "max_lower_displacement": 0.0,
+    "moving_samples": 5,
+    "lower_in_moving": false
+  },
+  {
+    "before": 11,
+    "preview": 12,
+    "after": 13,
+    "angle": 78.0,
+    "fixed_samples": 5,
+    "max_lower_displacement": 0.0,
+    "moving_samples": 5,
+    "lower_in_moving": false
+  }
+]

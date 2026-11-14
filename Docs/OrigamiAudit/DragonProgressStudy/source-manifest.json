@@ -1,0 +1,34 @@
+[
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs",
+    "sha256": "bf74ef863febb38cb1f3c3c8b584189b9aed452892fb6c1d85229bd036d80663"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "9a454958fb8e4415cb2f80083b10c3998115d9332da0a304abee79f1a79ba400"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperEdgeMatchFold.cs",
+    "sha256": "d9877469b79947698c002ce2d87b634203d040127d635c449905a22b0d94de00"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperEdgeAlignment.cs",
+    "sha256": "f2f2b669a780991f20faba9ba2aa0063a9e7ddb6f8354990475b76946b636d0d"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/FragmentBranchVerification.cs",
+    "sha256": "4cda28717ac6f12cdf8e4ba99c133ce387b184d3aa23aadf2f406776390f5564"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/PaperContainmentVerification.cs",
+    "sha256": "60678b3037a1593f0b86c04e0d4c4acca3081b748924ce34fed5a74a8fa40c48"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/MaterialVertexJointVerification.cs",
+    "sha256": "c4ff5eae5bdfbf8f3a94d8ed0c37ba4ceee8d3d7ed9944544aad31571c30ff8d"
+  },
+  {
+    "path": "FlyEditor/Assets/_Project/Scripts/Editor/SliverClippingVerification.cs",
+    "sha256": "13671dc1d1d7f373d78ce1fb0cb6515b08ba9a9dd7a575e4552cb8bfbf8a9184"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "rigid_transitions": [
+    {
+      "session": "a",
+      "selected": 3,
+      "committed": 4,
+      "moving": {
+        "samples": 56,
+        "max_neutral_error": 1.7405485105777248e-05
+      },
+      "fixed": {
+        "samples": 126,
+        "max_neutral_error": 1.7871927628937116e-05
+      }
+    },
+    {
+      "session": "b",
+      "selected": 9,
+      "committed": 10,
+      "moving": {
+        "samples": 84,
+        "max_neutral_error": 1.0878531349260442e-05
+      },
+      "fixed": {
+        "samples": 240,
+        "max_neutral_error": 2.4555325533033192e-05
+      }
+    },
+    {
+      "session": "c",
+      "selected": 3,
+      "committed": 5,
+      "moving": {
+        "samples": 84,
+        "max_neutral_error": 2.474612394168546e-05
+      },
+      "fixed": {
+        "samples": 348,
+        "max_neutral_error": 1.3992230468809741e-05
+      }
+    },
+    {
+      "session": "c",
+      "selected": 6,
+      "committed": 7,
+      "moving": {
+        "samples": 84,
+        "max_neutral_error": 2.4624038493327327e-05
+      },
+      "fixed": {
+        "samples": 348,
+        "max_neutral_error": 1.3992230468809741e-05
+      }
+    }
+  ],
+  "failed_attempt_unchanged": {
+    "samples": 196,
+    "max_neutral_error": 1.790497235332024e-05
+  },
+  "packet_round_trip": {
+    "samples": 324,
+    "max_neutral_error": 2.5091731153960893e-05
+  },
+  "actual_cold_reload": {
+    "samples": 432,
+    "max_neutral_error": 2.4796556196772884e-05
+  },
+  "coordinated_fixed_material": {
+    "samples": 120,
+    "max_neutral_error": 6.686758763532555e-07
+  },
+  "coordinated_preview_commit": {
+    "samples": 144,
+    "max_neutral_error": 6.686758763532555e-07
+  },
+  "original_handle_coordinate_deltas": {
+    "pullTip": 0.0,
+    "pullStop": 0.0,
+    "pullLeft": 5.960464477539062e-07,
+    "pullRight": 0.0
+  },
+  "fold_history": {
+    "initial": 8,
+    "before_fix": 10,
+    "opposite_petal": 11,
+    "front_flap": 12,
+    "packet_contact": 13,
+    "packet_reopened": 14
+  },
+  "complete_model": false,
+  "material_neutral_surface_only": true
+}

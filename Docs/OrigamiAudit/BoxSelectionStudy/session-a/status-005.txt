@@ -1,0 +1,1 @@
+id=5 label=visible-folded screen=644x884 folds=2 phase=FirstPoint angle=26 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=18809

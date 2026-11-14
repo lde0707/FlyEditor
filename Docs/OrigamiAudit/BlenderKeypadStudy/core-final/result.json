@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "suite": "core",
+  "returncode": 0,
+  "log": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\blender-view-2026-11-13\\core-final\\core.log",
+  "scope": "baseline suite only; no complete-model certification",
+  "source_sha256": "bde6002b25b2ea4109934586652e5915d304df9459e8b5bd632e7c89272ae262",
+  "project": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\validation\\WebProject",
+  "unity_version": "m_EditorVersion: 6000.5.3f1\nm_EditorVersionWithRevision: 6000.5.3f1 (c2eb47b3a2a9)"
+}

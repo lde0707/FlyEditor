@@ -1,0 +1,556 @@
+--- before/FoldingDesk.cs
++++ after/FoldingDesk.cs
+@@ -390,7 +390,7 @@
+             if(delta.sqrMagnitude<.000001f)return false;
+             var normal=new Vector2(-delta.y,delta.x).normalized;
+             line=new FoldStep(CreaseFamily.Rising,0,1){anchor=index,flap=scope==Ply.Stack?0:index+1,
+-                singlePanel=scope!=Ply.Stack,connectedPanel=scope!=Ply.Stack,separateFoldSides=scope!=Ply.Stack,continuousHinge=true,neutralContacts=true,compactLayers=true,creaseNormal=normal,creaseOffset=Vector2.Dot(normal,a)};
++                singlePanel=scope!=Ply.Stack,connectedPanel=scope!=Ply.Stack,separateFoldSides=scope!=Ply.Stack,materialPartition=true,continuousHinge=true,neutralContacts=true,compactLayers=true,creaseNormal=normal,creaseOffset=Vector2.Dot(normal,a)};
+             return true;
+         }
+         private bool TryFaceAxis(Vector2 uv,out FoldStep line,out Vector2 point,out int flap)
+@@ -1346,6 +1346,7 @@
+         }
+         private FoldStep PullScope(FoldStep step)
+         {
++            step.materialPartition=true;
+             step.mirror=MirrorAxis.Off;step.compactLayers=true;
+             step.flap=scope==Ply.Stack?0:step.anchor+1;
+             step.regionalPull=step.customFlanks && scope!=Ply.Stack;
+@@ -1697,6 +1698,7 @@
+         }
+         private FoldStep SelectedPly(FoldStep line)
+         {
++            line.materialPartition=true;
+             // The point picker already owns a concrete ply; never promote it by height.
+             line.compactLayers=true;line.flap=scope==Ply.Stack?0:line.anchor+1;line.singlePanel=scope!=Ply.Stack;line.connectedPanel=scope!=Ply.Stack;line.separateFoldSides=scope!=Ply.Stack;line.continuousHinge=true;line.neutralContacts=true;return line;
+         }
+--- before/PaperClearanceSequence.cs
++++ after/PaperClearanceSequence.cs
+@@ -50,7 +50,7 @@
+                     float degrees=Mathf.Sign(turn.step.degrees)*remaining;
+                     if(Mathf.Abs(turn.Constrain(degrees)-degrees)>.001f)return false;
+                     preview.AddRange(turn.fixedFaces);var rotation=turn.Rotation(degrees);
+-                    foreach(var f in turn.movingFaces)preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material));
++                    foreach(var f in turn.movingFaces)preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material,f));
+                     ToWorld();return true;
+                 }
+                 remaining-=length;
+@@ -62,7 +62,7 @@
+         {
+             for(int i=0;i<preview.Count;i++){
+                 var f=preview[i];var world=f.frame==Matrix4x4.identity?reference:reference*f.frame;
+-                preview[i]=new PaperSheet.Face(f.points,f.layer,f.back,world,f.material);
++                preview[i]=new PaperSheet.Face(f.points,f.layer,f.back,world,f.material,f);
+             }UpdateHandles();
+         }
+         private Vector3 Locate(Vector3 material)
+--- before/PaperCornerPull.cs
++++ after/PaperCornerPull.cs
+@@ -270,7 +270,7 @@
+                         for(int j=0;j<part.points.Length;j++){
+                             var poly=new[]{centre,part.points[j],part.points[(j+1)%part.points.Length]};
+                             if(PaperSheet.Area(poly)>.0001f)
+-                                AddPanel(new PaperSheet.Face(poly,part.layer,part.back,part.frame,part.material),i);
++                                AddPanel(new PaperSheet.Face(poly,part.layer,part.back,part.frame,part.material,part,true),i);
+                         }
+                     }else AddPanel(part,i);
+                     area+=PaperSheet.Area(part.points);
+@@ -520,7 +520,7 @@
+                 float h=(layer+.5f)*PaperSheet.Thickness;
+                 var separation=flatStack?basis.frame.MultiplyVector(Vector3.up)*h:Vector3.zero;
+                 var offset=target+separation-rotation*new Vector3(f.points[0].x,h,f.points[0].y);
+-                var moved=new PaperSheet.Face(f.points,layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material);
++                var moved=new PaperSheet.Face(f.points,layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material,f);
+                 var inv=f.material.inverse;
+                 foreach(int id in panel.nodes){var p=inv.MultiplyPoint3x4(nodes[id].material);
+                     float residual=(moved.World(new Vector2(p.x,p.z),h)-separation-nodes[id].position).magnitude;
+@@ -658,7 +658,7 @@
+             }
+             chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
+             bool back=face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);
+-            return new PaperSheet.Face(points,layer,back,target,face.material*chart.inverse);
++            return new PaperSheet.Face(points,layer,back,target,face.material*chart.inverse,face);
+         }
+         private bool PoseClosingFan(float angle)
+         {
+@@ -680,7 +680,7 @@
+                     float flipped=Vector3.Dot(q*up,up)>=0?1:-1;
+                     float idealHeight=oldHeight+flipped*(h-oldHeight);
+                     frame=Matrix4x4.Translate(up*(((layer+.5f)*PaperSheet.Thickness-idealHeight)*press))*frame;
+-                    trial.Add(closed?Rebase(f,frame,basis.frame,layer):new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
++                    trial.Add(closed?Rebase(f,frame,basis.frame,layer):new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
+                 }else{
+                     // Stop at the first meeting of the two central faces. Continuing
+                     // to 180 here would push the left and right pleats through each other.
+@@ -688,7 +688,7 @@
+                     frame=Matrix4x4.Translate(contactNormal*(side*PaperSheet.Thickness*.5f*press))*frame;
+                     if(closed && (panel.sector==1 || panel.sector==2) && (original.Count==1 || (Step.regionalPull && selectedFaces.Count==1)))
+                         trial.Add(Rebase(f,frame,contactFrame,2-panel.sector));
+-                    else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
++                    else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
+                 }
+             }
+             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
+@@ -762,7 +762,7 @@
+                 foreach(var panel in panels){
+                     var q=rotations[panel.sector];var f=panel.face;
+                     var pose=Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame;
+-                    preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,pose,f.material));
++                    preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,pose,f.material,f));
+                 }
+                 Tip=pivot+foldedRays[2]*reach;
+                 previewAngle=angle;return true;
+@@ -817,7 +817,7 @@
+                     Quaternion.Inverse(Basis(new Vector3(u.x,0,u.y),new Vector3(v.x,0,v.y)));
+                 float h=(f.layer+.5f)*PaperSheet.Thickness;
+                 var offset=target-rotation*new Vector3(f.points[0].x,h,f.points[0].y);
+-                var moved=new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material);
++                var moved=new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(offset,rotation,Vector3.one),f.material,f);
+                 var inv=f.material.inverse;
+                 foreach(int id in panel.nodes){
+                     var p=inv.MultiplyPoint3x4(nodes[id].material);
+--- before/PaperEdgeAlignment.cs
++++ after/PaperEdgeAlignment.cs
+@@ -41,7 +41,7 @@
+             float distance=Vector2.Dot(n,(a+b)*.5f)-offset;
+             if(Mathf.Abs(distance)<.0001f)return null;
+             var step=new FoldStep{anchor=source,flap=source+1,creaseNormal=n,creaseOffset=offset,side=distance>0?1:-1,
+-                singlePanel=true,connectedPanel=true,separateFoldSides=true,continuousHinge=true,neutralContacts=true,compactLayers=true,contact=contact};
++                singlePanel=true,connectedPanel=true,separateFoldSides=true,materialPartition=true,continuousHinge=true,neutralContacts=true,compactLayers=true,contact=contact};
+             if(step.Distance(contact)*step.side<=0)return null;
+             return sheet.Plan(step);
+         }
+--- before/PaperEdgeMatchFold.cs
++++ after/PaperEdgeMatchFold.cs
+@@ -45,6 +45,7 @@
+             // a bisector. Older recipes retain their original selection policy.
+             line.singlePanel=step.separateFoldSides && line.flap>0;
+             line.separateFoldSides=step.separateFoldSides;
++            line.materialPartition=step.materialPartition;
+             line.contact=(a+b)*.5f;
+             var turn=sheet.Plan(line);if(turn==null)return null;
+             var plan=new PaperEdgeMatchFold(sheet,turn,basis,b){Stop=basis.World(a,step.continuousHinge?0:(basis.layer+.5f)*PaperSheet.Thickness)};
+@@ -70,7 +71,7 @@
+             foreach(var f in turn.movingFaces){
+                 if(Mathf.Abs(angle)==180 && PaperSheet.SameFrame(f,basis))
+                     preview.Add(PaperSheet.ReflectFlat(f,turn.step,angle>0?2*turn.top+1-f.layer:2*turn.bottom-1-f.layer));
+-                else preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material));
++                else preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material,f));
+             }
+             lastAngle=angle;Tip=rotation.MultiplyPoint3x4(basis.World(handle,(basis.layer+.5f)*PaperSheet.Thickness));return true;
+         }
+--- before/PaperFlatStackOrder.cs
++++ after/PaperFlatStackOrder.cs
+@@ -35,7 +35,7 @@
+             var queue=new Queue<int>();for(int i=0;i<count;i++)if(incoming[i]==0)queue.Enqueue(i);
+             int visited=0;while(queue.Count>0){int a=queue.Dequeue();visited++;foreach(int b in edges[a]){level[b]=Mathf.Max(level[b],level[a]+1);if(--incoming[b]==0)queue.Enqueue(b);}}
+             if(visited!=count)return false;
+-            for(int i=0;i<count;i++){var f=flat[i];flat[i]=new PaperSheet.Face(f.points,level[i],f.back,f.frame,f.material);}return true;
++            for(int i=0;i<count;i++){var f=flat[i];flat[i]=new PaperSheet.Face(f.points,level[i],f.back,f.frame,f.material,f);}return true;
+         }
+         private static float Height(PaperSheet.Face flat,PaperSheet.Face near,Vector2 point,Matrix4x4 frame)
+         {
+--- before/PaperInsideReverse.cs
++++ after/PaperInsideReverse.cs
+@@ -108,7 +108,7 @@
+         }
+         private static Quaternion Basis(Vector3 u,Vector3 v)=>Quaternion.LookRotation(u,Vector3.Cross(u,v));
+         private static PaperSheet.Face Rotate(PaperSheet.Face f,Vector3 pivot,Quaternion q)=>
+-            new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame,f.material);
++            new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame,f.material,f);
+ 
+         public bool Pose(float progressDegrees)
+         {
+@@ -134,7 +134,7 @@
+                     int outward=leaf.source.layer>leaves[1-i].source.layer?1:-1;
+                     if(stacked && progressDegrees==180f){
+                         // Put both returned caps between the two exterior plies.
+-                        trial.Add(new PaperSheet.Face(leaf.body.points,f.layer+outward,f.back,f.frame,f.material));
++                        trial.Add(new PaperSheet.Face(leaf.body.points,f.layer+outward,f.back,f.frame,f.material,leaf.body));
+                         trial.Add(PaperSheet.ReflectFlat(leaf.tip,MakeFlank(leaf),f.layer));
+                         continue;
+                     }
+@@ -145,7 +145,7 @@
+                     var exterior=Rotate(leaf.body,leaf.pivot,body);
+                     if(stacked && t>transition){
+                         var offset=f.frame.MultiplyVector(Vector3.up)*(outward*PaperSheet.Thickness*(t-transition)/(1-transition));
+-                        exterior=new PaperSheet.Face(exterior.points,f.layer,f.back,Matrix4x4.Translate(offset)*exterior.frame,f.material);
++                        exterior=new PaperSheet.Face(exterior.points,f.layer,f.back,Matrix4x4.Translate(offset)*exterior.frame,f.material,exterior);
+                     }
+                     trial.Add(exterior);
+                     trial.Add(Rotate(leaf.tip,leaf.pivot,cap));
+--- before/PaperPacketReverse.cs
++++ after/PaperPacketReverse.cs
+@@ -217,15 +217,15 @@
+                     if(hierarchical)group=p.side==0?2*maxDepth+1-depth:depth;
+                     if(!side0Above)group=(hierarchical?2*maxDepth+1:3)-group;
+                     int layer=group*layers.Count+((hierarchical?depth%2==1:p.cap)?layers.Count-1-rank:rank);
+-                    trial.Add(new PaperSheet.Face(points,layer,face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),basis.frame,face.material*chart.inverse));
+-                }else trial.Add(new PaperSheet.Face(face.points,p.startLayer,face.back,frame,face.material));
++                    trial.Add(new PaperSheet.Face(points,layer,face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),basis.frame,face.material*chart.inverse,face));
++                }else trial.Add(new PaperSheet.Face(face.points,p.startLayer,face.back,frame,face.material,face));
+             }
+             if(angle==0)foreach(var face in trial)foreach(var point in face.points){
+                 if(!Locate(source,face.Original(point),out var old,out _)||Vector3.Distance(old,face.World(point,0))>.002f)return false;
+             }
+             // Neutral-surface contact, consistent with coordinated multi-ply folds.
+             // Shell layer order is separate from rigid zero-radius hinge geometry.
+-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
++            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
+             for(int i=0;i<middle.Count;i++)for(int j=0;j<i;j++){
+                 var a=middle[i];var b=middle[j];if(PaperSheet.Turn.Intersects(a,b,b.frame.inverse*a.frame)||PaperSheet.Turn.Intersects(b,a,a.frame.inverse*b.frame))return false;
+             }
+--- before/PaperPetalFold.cs
++++ after/PaperPetalFold.cs
+@@ -282,11 +282,11 @@
+                     if(Mathf.Abs(PaperSheet.Area(points)-PaperSheet.Area(f.points))>.0005f)return false;
+                     chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
+                     bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);
+-                    trial.Add(new PaperSheet.Face(points,targetLayer,back,basis.frame,f.material*chart.inverse));
+-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material));
++                    trial.Add(new PaperSheet.Face(points,targetLayer,back,basis.frame,f.material*chart.inverse,f));
++                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,frame,f.material,f));
+             }
+             neutral.Clear();
+-            if(continuous)foreach(var f in trial)neutral.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
++            if(continuous)foreach(var f in trial)neutral.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
+             var contact=continuous?neutral:trial;
+             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
+                 var a=trial[i];var b=trial[j];
+--- before/PaperPocketSquash.cs
++++ after/PaperPocketSquash.cs
+@@ -74,15 +74,15 @@
+                 if(closed){var chart=basis.frame.inverse*map*f.frame;var pts=new Vector2[f.points.Length];for(int i=0;i<pts.Length;i++){var v=chart.MultiplyPoint3x4(new Vector3(f.points[i].x,0,f.points[i].y));if(Mathf.Abs(v.y)>.002f)return false;pts[i]=new Vector2(v.x,v.z);}
+                     chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;bool flipped=chart.m00*chart.m22-chart.m02*chart.m20<0;int rank=layers.BinarySearch(f.layer);int group=piece.side==0?(piece.cap?1:0):(piece.cap?2:3);
+                     int layer=away>0?layers[0]+group*count+(flipped?count-1-rank:rank):layers[count-1]-(group+1)*count+1+(flipped?count-1-rank:rank);
+-                    trial.Add(new PaperSheet.Face(pts,layer,f.back^flipped,basis.frame,f.material*chart.inverse));
+-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material));
++                    trial.Add(new PaperSheet.Face(pts,layer,f.back^flipped,basis.frame,f.material*chart.inverse,f));
++                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material,f));
+             }
+-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
++            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
+             for(int i=0;i<trial.Count;i++)for(int j=0;j<i;j++){
+                 var a=trial[i];var b=trial[j];if(PaperFoldTopology.SharedEdge(a,b,out var u,out var v)&&(Vector3.Distance(PaperFoldTopology.Position(a,u),PaperFoldTopology.Position(b,u))>.002f||Vector3.Distance(PaperFoldTopology.Position(a,v),PaperFoldTopology.Position(b,v))>.002f))return false;
+                 var x=middle[i];var y=middle[j];if(PaperSheet.Turn.Intersects(x,y,y.frame.inverse*x.frame)||PaperSheet.Turn.Intersects(y,x,x.frame.inverse*y.frame))return false;
+             }
+-            if(closed){middle.Clear();foreach(var piece in pieces){var f=piece.face;var map=piece.active?Map(piece.side,piece.cap,Mathf.Sign(angle)*179.9f,out _):Matrix4x4.identity;middle.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material));}if(!PaperFlatStackOrder.Apply(trial,middle))return false;}
++            if(closed){middle.Clear();foreach(var piece in pieces){var f=piece.face;var map=piece.active?Map(piece.side,piece.cap,Mathf.Sign(angle)*179.9f,out _):Matrix4x4.identity;middle.Add(new PaperSheet.Face(f.points,f.layer,f.back,map*f.frame,f.material,f));}if(!PaperFlatStackOrder.Apply(trial,middle))return false;}
+             preview.Clear();preview.AddRange(trial);last=angle;return true;
+         }
+     }
+--- before/PaperRadialGather.cs
++++ after/PaperRadialGather.cs
+@@ -90,15 +90,15 @@
+                 int layer=group*layers.Count+(up?rank:layers.Count-1-rank);
+                 if(closed){var points=new Vector2[f.points.Length];for(int i=0;i<points.Length;i++){var p=map.MultiplyPoint3x4(new Vector3(f.points[i].x,0,f.points[i].y));if(Mathf.Abs(p.y)>.001f)return false;points[i]=new Vector2(p.x,p.z);}
+                     var chart=map;chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
+-                    bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);trial.Add(new PaperSheet.Face(points,layer,back,basis.frame,f.material*chart.inverse));
+-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,basis.frame*map,f.material));
++                    bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);trial.Add(new PaperSheet.Face(points,layer,back,basis.frame,f.material*chart.inverse,f));
++                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,basis.frame*map,f.material,f));
+             }
+             // All plies are explicitly selected and follow the same crease field.
+             // Solve the paper midsurfaces; shell thickness at a mathematical
+             // zero-radius hinge otherwise reports a false crossing of its plies.
+             // Finished shell order is assigned per wedge, reversing the packet
+             // whenever that wedge turns over. This does not affect unselected plies.
+-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
++            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
+             for(int i=0;i<middle.Count;i++)for(int j=0;j<i;j++){var p=middle[i];var q=middle[j];if(PaperSheet.Turn.Intersects(p,q,q.frame.inverse*p.frame)||PaperSheet.Turn.Intersects(q,p,p.frame.inverse*q.frame))return false;}
+             foreach(var seam in seams){
+                 var p=trial[seam.a];var q=trial[seam.b];
+--- before/PaperSheet.cs
++++ after/PaperSheet.cs
+@@ -44,6 +44,7 @@
+         // New selections follow the material-connected side of the crease, not every overlapping ply.
+         public bool connectedPanel;
+         public bool separateFoldSides; // Keep the two sides of the latest flat fold independently selectable.
++        public bool materialPartition; // New input uses recorded rigid material boundaries, including four-handle edge matches.
+         public bool opening; // Existing-seam rotation; sweep contact while unstacking.
+         public MirrorAxis mirror;
+         public Vector2 contact;
+@@ -75,9 +76,12 @@
+             public readonly int layer;
+             public readonly bool back;
+             public readonly Matrix4x4 frame, material;
++            internal readonly PaperMaterialRegion region;
++            public long MaterialRegionId=>region.id;
+             public Face(Vector2[] points,int layer,bool back) : this(points,layer,back,Matrix4x4.identity,Matrix4x4.identity){}
+-            internal Face(Vector2[] points,int layer,bool back,Matrix4x4 frame,Matrix4x4 material)
+-            { this.points=points;this.layer=layer;this.back=back;this.frame=frame;this.material=material; }
++            internal Face(Vector2[] points,int layer,bool back,Matrix4x4 frame,Matrix4x4 material,Face source=null,bool split=false)
++            { this.points=points;this.layer=layer;this.back=back;this.frame=frame;this.material=material;
++                region=source==null?new PaperMaterialRegion():split?new PaperMaterialRegion(source.region):source.region; }
+             public Vector3 World(Vector2 p,float h)=>frame.MultiplyPoint3x4(new Vector3(p.x,h,p.y));
+             internal Vector3 Original(Vector2 p)=>material.MultiplyPoint3x4(new Vector3(p.x,0,p.y));
+             public bool Contains(Vector2 p)
+@@ -99,6 +103,22 @@
+             public readonly int anchor;
+             public readonly Vector2 point;
+             public FoldVertex(int anchor,Vector2 point){this.anchor=anchor;this.point=point;}
++        }
++        public readonly struct SurfacePoint
++        {
++            internal readonly PaperMaterialRegion region;
++            public readonly Vector2 material;
++            internal SurfacePoint(Face face,Vector2 point){region=face.region;var p=face.Original(point);material=new Vector2(p.x,p.z);}
++        }
++        public SurfacePoint CaptureSurface(FoldVertex vertex)=>new SurfacePoint(faces[vertex.anchor],vertex.point);
++        public bool TryResolveSurface(SurfacePoint handle,out FoldVertex vertex)
++        {
++            for(int i=0;i<faces.Count;i++){
++                var f=faces[i];if(!f.region.Related(handle.region))continue;
++                var point=PaperFoldTopology.Local(f,new Vector3(handle.material.x,0,handle.material.y));
++                if(f.Contains(point)){vertex=new FoldVertex(i,point);return true;}
++            }
++            vertex=default;return false;
+         }
+         public void CollectVertices(List<FoldVertex> result)
+         {
+@@ -183,7 +203,7 @@
+             internal bool hasFoldSideScope;
+             private float upLimit=-1,downLimit=-1;
+             private List<Face> neutralMoving,neutralFixed;
+-            private static List<Face> Neutral(List<Face> faces){var list=new List<Face>(faces.Count);foreach(var f in faces)list.Add(new Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(Thickness*.5f)),f.material));return list;}
++            private static List<Face> Neutral(List<Face> faces){var list=new List<Face>(faces.Count);foreach(var f in faces)list.Add(new Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(Thickness*.5f)),f.material,f));return list;}
+             internal Turn(FoldStep step,int top,int bottom,List<Face> source)
+             {this.step=step;this.top=top;this.bottom=bottom;this.source=source;frame=source[step.anchor].frame;}
+             // A connected return fold may bring the opposite ply with it. Do not
+@@ -344,7 +364,8 @@
+             var copy=new PaperSheet(Format){faces=new List<Face>(faces)};
+             copy.steps.AddRange(steps);
+             var snapshots=history.ToArray();var movements=movingHistory.ToArray();
+-            for(int i=snapshots.Length-1;i>=0;i--){copy.history.Push(snapshots[i]);copy.movingHistory.Push(movements[i]);}
++            var boundaries=plyHistory.ToArray();
++            for(int i=snapshots.Length-1;i>=0;i--){copy.history.Push(snapshots[i]);copy.movingHistory.Push(movements[i]);copy.plyHistory.Push(boundaries[i]);}
+             return copy;
+         }
+         internal PaperSheet LocalPlanningCopy(Matrix4x4 reference)
+@@ -352,33 +373,44 @@
+             var copy=PlanningCopy();var inverse=reference.inverse;
+             for(int i=0;i<copy.faces.Count;i++){
+                 var f=copy.faces[i];var local=f.frame==reference?Matrix4x4.identity:inverse*f.frame;
+-                copy.faces[i]=new Face(f.points,f.layer,f.back,local,f.material);
++                copy.faces[i]=new Face(f.points,f.layer,f.back,local,f.material,f);
+             }return copy;
+         }
+         private readonly Stack<List<Face>> history=new Stack<List<Face>>();
+         private readonly Stack<List<Face>> movingHistory=new Stack<List<Face>>();
++        // Records describe the executed rigid motion, independently of the UI
++        // operation that produced it. Four-point edge matching is a rigid fold too.
++        private sealed class PlyBoundary
++        {
++            internal readonly Vector3 axis;
++            internal readonly List<Face> moved;
++            internal PlyBoundary(Turn turn){axis=turn.frame.MultiplyVector(new Vector3(-turn.step.Normal.y,0,turn.step.Normal.x)).normalized;moved=new List<Face>(turn.movingFaces);}
++        }
++        private readonly Stack<PlyBoundary> plyHistory=new Stack<PlyBoundary>();
+         private readonly List<FoldStep> steps=new List<FoldStep>();
+         private List<Face> partitionSource;
+         private bool[] foldPartition;
+         private int partitionAnchor=-1;
+         private Vector3 partitionAxis;
+         private bool crossFoldBranch;
++        private bool partitionMaterialPolicy;
+         // Recover leaf ownership from a completed flat fold. Near-parallel
+         // returns retain that leaf; transverse folds use the picked branch.
+         private bool[] LastFoldPartition(FoldStep request)
+         {
+             var picked=faces[request.anchor];
+             var requestedAxis=picked.frame.MultiplyVector(new Vector3(-request.Normal.y,0,request.Normal.x)).normalized;
+-            if(partitionSource==faces && partitionAnchor==request.anchor && Vector3.Cross(partitionAxis,requestedAxis).sqrMagnitude<.000001f)return foldPartition;
+-            partitionSource=faces;partitionAnchor=request.anchor;partitionAxis=requestedAxis;foldPartition=null;crossFoldBranch=false;
++            if(partitionMaterialPolicy==request.materialPartition && partitionSource==faces && partitionAnchor==request.anchor && Vector3.Cross(partitionAxis,requestedAxis).sqrMagnitude<.000001f)return foldPartition;
++            partitionMaterialPolicy=request.materialPartition;partitionSource=faces;partitionAnchor=request.anchor;partitionAxis=requestedAxis;foldPartition=null;crossFoldBranch=false;
+             Vector2 centre=Vector2.zero;foreach(var q in picked.points)centre+=q;centre/=picked.points.Length;
+             var pickedMaterial=picked.Original(centre);
+             int index=steps.Count-1,historyIndex=0;var movements=movingHistory.ToArray();
++            var boundaries=request.materialPartition?plyHistory.ToArray():null;
+             IReadOnlyList<Face> completed=faces;
+             foreach(var snapshot in history){
+-                var previous=steps[index--];var movedPieces=movements[historyIndex++];
++                var previous=steps[index--];var boundary=boundaries==null?null:boundaries[historyIndex];var movedPieces=boundary==null?movements[historyIndex]:boundary.moved;historyIndex++;
+                 var folded=completed;completed=snapshot;
+-                if(previous.cornerPull || previous.insideReverse || previous.mirror!=MirrorAxis.Off ||
++                if((boundary==null && (previous.cornerPull || previous.insideReverse || previous.mirror!=MirrorAxis.Off)) ||
+                     movedPieces==null || (previous.degrees!=0 && Mathf.Abs(previous.degrees)!=180))continue;
+                 // Require an actual overlapping pair at the time of that fold.
+                 // Use its completed snapshot so opening the first wing doesn't
+@@ -387,10 +419,10 @@
+                 bool packet=false;
+                 foreach(var leaf in folded){
+                     if(!leaf.Contains(PaperFoldTopology.Local(leaf,pickedMaterial)))continue;
+-                    bool owner=MovedMaterial(leaf,movedPieces);
++                    bool owner=MovedMaterial(leaf,movedPieces,request.materialPartition);
+                     foreach(var other in folded)
+                         if(SameFrame(leaf,other) && Turn.Overlap(leaf,other) &&
+-                            owner!=MovedMaterial(other,movedPieces)){packet=true;break;}
++                            owner!=MovedMaterial(other,movedPieces,request.materialPartition)){packet=true;break;}
+                     if(packet)break;
+                 }
+                 if(!packet)continue;
+@@ -398,20 +430,23 @@
+                 // connected halves form one flap, rather than two independently
+                 // opened leaves. Follow only the picked material component in that
+                 // case. Near-parallel return folds retain their leaf ownership.
+-                var oldAxis=snapshot[previous.anchor].frame.MultiplyVector(new Vector3(-previous.Normal.y,0,previous.Normal.x)).normalized;
++                var oldAxis=boundary!=null?boundary.axis:snapshot[previous.anchor].frame.MultiplyVector(new Vector3(-previous.Normal.y,0,previous.Normal.x)).normalized;
+                 if(Mathf.Abs(Vector3.Dot(oldAxis,requestedAxis))<.70710678f){crossFoldBranch=true;return null;}
+                 var ownership=new bool[faces.Count];int members=0;
+-                for(int i=0;i<faces.Count;i++)if(ownership[i]=MovedMaterial(faces[i],movedPieces))members++;
++                for(int i=0;i<faces.Count;i++)if(ownership[i]=MovedMaterial(faces[i],movedPieces,request.materialPartition))members++;
+                 if(members==0 || members==faces.Count)continue;
+                 foldPartition=ownership;break;
+             }
+             return foldPartition;
+         }
+-        private static bool MovedMaterial(Face face,IReadOnlyList<Face> movedPieces)
++        private static bool MovedMaterial(Face face,IReadOnlyList<Face> movedPieces,bool provenance=false)
+         {
+             Vector2 centre=Vector2.zero;foreach(var q in face.points)centre+=q;centre/=face.points.Length;
+             var material=face.Original(centre);
+-            foreach(var moved in movedPieces)if(moved.Contains(PaperFoldTopology.Local(moved,material)))return true;
++            foreach(var moved in movedPieces){
++                if(provenance){if(face.region.DescendsFrom(moved.region))return true;if(!face.region.Related(moved.region))continue;}
++                if(moved.Contains(PaperFoldTopology.Local(moved,material)))return true;
++            }
+             return false;
+         }
+ 
+@@ -589,7 +624,9 @@
+                 if(d>=-Epsilon)polygon.Add(p);
+                 if((d>Epsilon && e< -Epsilon)||(d< -Epsilon && e>Epsilon))polygon.Add(Vector2.Lerp(p,q,d/(d-e)));
+             }
+-            return polygon.Count>=3 && Area(polygon)>Epsilon ? new Face(polygon.ToArray(),face.layer,face.back,face.frame,face.material) : null;
++            if(polygon.Count<3 || Area(polygon)<=Epsilon)return null;
++            bool positive=false,negative=false;foreach(var p in face.points){float d=step.Distance(p);positive|=d>Epsilon;negative|=d< -Epsilon;}
++            return new Face(polygon.ToArray(),face.layer,face.back,face.frame,face.material,face,positive&&negative);
+         }
+         public static float Area(IReadOnlyList<Vector2> polygon)
+         {
+@@ -638,7 +675,7 @@
+                 float distance=Vector2.Dot(n,handle.point-a);
+                 if(Mathf.Abs(distance)<.01f || !HasMaterialJoint(face,a,b))continue;
+                 var step=new FoldStep(CreaseFamily.Rising,0,distance>0?1:-1){
+-                    anchor=handle.anchor,flap=wholeStack?0:handle.anchor+1,singlePanel=!wholeStack,connectedPanel=separateSides&&!wholeStack,separateFoldSides=separateSides&&!wholeStack,opening=true,continuousHinge=continuous,neutralContacts=continuous,compactLayers=continuous,
++                    anchor=handle.anchor,flap=wholeStack?0:handle.anchor+1,singlePanel=!wholeStack,connectedPanel=separateSides&&!wholeStack,separateFoldSides=separateSides&&!wholeStack,materialPartition=separateSides,opening=true,continuousHinge=continuous,neutralContacts=continuous,compactLayers=continuous,
+                     creaseNormal=n,creaseOffset=Vector2.Dot(n,a),contact=handle.point};
+                 var planned=Plan(step);
+                 if(planned==null){step.singlePanel=false;planned=Plan(step);}
+@@ -689,7 +726,7 @@
+             // A branch hinge must cross the picked panel, not only a remote body panel.
+             bool branch=step.separateFoldSides && step.flap>0 && crossFoldBranch;
+             if(branch && !Intersection(basis,step,out _,out _))return null;
+-            var owners=scope!=null?new List<int>():null;
++            var owners=new List<int>();
+             int top=basis.layer,bottom=top;
+             var parts=new List<Face>();var sides=new List<int>();var seeds=new Queue<int>();
+             bool hinge=false;
+@@ -724,7 +761,15 @@
+             }
+             var turn=new Turn(step,top,bottom,faces){hasFoldSideScope=scope!=null || branch};
+             for(int i=0;i<parts.Count;i++)if(moving[i])turn.movingFaces.Add(parts[i]);
+-            if(step.connectedPanel){
++            if(step.materialPartition){
++                // Retain exact source ownership after clipping. Never recover a
++                // piece's owner by comparing its pose, layer or overlap area.
++                for(int source=0;source<faces.Count;source++){
++                    bool touched=false;for(int i=0;i<parts.Count;i++)if(owners[i]==source && moving[i]){touched=true;break;}
++                    if(!touched){turn.fixedFaces.Add(faces[source]);continue;}
++                    for(int i=0;i<parts.Count;i++)if(owners[i]==source && !moving[i])turn.fixedFaces.Add(parts[i]);
++                }
++            }else if(step.connectedPanel){
+                 foreach(var original in faces){
+                     bool touched=false;
+                     foreach(var moved in turn.movingFaces)if(SamePanel(original,moved) && Turn.Overlap(original,moved)){touched=true;break;}
+@@ -743,7 +788,7 @@
+             var next=new List<Face>();
+             if(!TryPreviewTurn(turn,degrees,next))return false;
+             var saved=turn.step;saved.degrees=degrees;saved.paper=Format;
+-            return Commit(next,saved,turn.movingFaces);
++            return Commit(next,saved,turn.movingFaces,turn);
+         }
+         // The live preview and commit share the exact geometry and flat-stack order.
+         // Callers retain their last valid preview if contact prevents the trial.
+@@ -765,16 +810,16 @@
+                         if(Mathf.Abs(chart.m10)>.00001f || Mathf.Abs(chart.m12)>.00001f || Mathf.Abs(chart.m13)>.00001f)continue;
+                         var points=new Vector2[f.points.Length];for(int k=0;k<points.Length;k++){var v=chart.MultiplyPoint3x4(new Vector3(f.points[k].x,0,f.points[k].y));points[k]=new Vector2(v.x,v.z);}
+                         chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
+-                        merged=new Face(points,f.layer,f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),stationary.frame,f.material*chart.inverse);break;
++                        merged=new Face(points,f.layer,f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),stationary.frame,f.material*chart.inverse,f);break;
+                     }
+-                    next.Add(merged??new Face(f.points,f.layer,f.back,moved,f.material));
++                    next.Add(merged??new Face(f.points,f.layer,f.back,moved,f.material,f));
+                 }
+             }
+             // At zero the original layer order is already correct. Sampling an
+             // artificial approach from the opposite side can invert a flat stack.
+             if(turn.step.neutralContacts && degrees!=0f){
+                 bool flatContact=false;for(int i=turn.fixedFaces.Count;i<next.Count;i++)foreach(var fixedFace in turn.fixedFaces)flatContact|=SameFrame(next[i],fixedFace);
+-                if(flatContact){var before=new List<Face>(turn.fixedFaces);var approaching=turn.Rotation(degrees-Mathf.Sign(degrees)*.1f);foreach(var f in turn.movingFaces)before.Add(new Face(f.points,f.layer,f.back,approaching*f.frame,f.material));if(!PaperFlatStackOrder.Apply(next,before))return false;}
++                if(flatContact){var before=new List<Face>(turn.fixedFaces);var approaching=turn.Rotation(degrees-Mathf.Sign(degrees)*.1f);foreach(var f in turn.movingFaces)before.Add(new Face(f.points,f.layer,f.back,approaching*f.frame,f.material,f));if(!PaperFlatStackOrder.Apply(next,before))return false;}
+             }
+             return true;
+         }
+@@ -786,14 +831,14 @@
+             mirror.m03=k*line.Position*n.x;mirror.m23=k*line.Position*n.y;
+             var points=new Vector2[f.points.Length];
+             for(int i=0;i<points.Length;i++)points[i]=f.points[i]-k*line.Distance(f.points[i])*n;
+-            return new Face(points,layer,!f.back,f.frame,f.material*mirror);
++            return new Face(points,layer,!f.back,f.frame,f.material*mirror,f);
+         }
+         public bool FinishPull(PaperCornerPull pull,float degrees)
+         {
+             if(pull==null || pull.Source!=this || !pull.IsCurrent || Count>=FoldLimit ||
+                 Mathf.Abs(degrees)<1f || !pull.Pose(degrees))return false;
+             var saved=pull.Step;saved.paper=Format;saved.degrees=degrees;
+-            return Commit(new List<Face>(pull.Preview),saved);
++            return Commit(new List<Face>(pull.Preview),saved,pull.EdgeTurn?.movingFaces,pull.EdgeTurn);
+         }
+         public bool FinishReverse(PaperInsideReverse fold,float degrees)
+         {
+@@ -807,7 +852,7 @@
+             var saved=pair.Step;saved.paper=Format;saved.degrees=degrees;
+             return Commit(new List<Face>(pair.Preview),saved);
+         }
+-        private bool Commit(List<Face> next,FoldStep saved,List<Face> moved=null)
++        private bool Commit(List<Face> next,FoldStep saved,List<Face> moved=null,Turn rigid=null)
+         {
+             // Flat stacks use an ordering, not exponentially growing empty slots.
+             // Only new recipes opt in, so old material anchors replay unchanged.
+@@ -825,7 +870,7 @@
+                         done[j]=true;ids.Add(j);if(!layers.Contains(next[j].layer))layers.Add(next[j].layer);
+                     }
+                     layers.Sort();foreach(int j in ids){var f=next[j];int layer=layers.BinarySearch(f.layer);
+-                        if(layer!=f.layer)next[j]=new Face(f.points,layer,f.back,f.frame,f.material);
++                        if(layer!=f.layer)next[j]=new Face(f.points,layer,f.back,f.frame,f.material,f);
+                     }
+                 }
+             }else if(saved.compactLayers && next.Count>0){
+@@ -833,11 +878,13 @@
+                 if(flat){
+                     var layers=new List<int>();foreach(var f in next)if(!layers.Contains(f.layer))layers.Add(f.layer);layers.Sort();
+                     for(int i=0;i<next.Count;i++){var f=next[i];int layer=layers[0]+layers.BinarySearch(f.layer);
+-                        if(layer!=f.layer)next[i]=new Face(f.points,layer,f.back,f.frame,f.material);
++                        if(layer!=f.layer)next[i]=new Face(f.points,layer,f.back,f.frame,f.material,f);
+                     }
+                 }
+             }
+-            history.Push(faces);movingHistory.Push(moved==null?null:new List<Face>(moved));faces=next;steps.Add(saved);peakPlies=0;return true;
++            history.Push(faces);movingHistory.Push(moved==null?null:new List<Face>(moved));
++            plyHistory.Push(rigid!=null && Mathf.Abs(saved.degrees)==180?new PlyBoundary(rigid):null);
++            faces=next;steps.Add(saved);peakPlies=0;return true;
+         }
+         public bool ApplyStep(FoldStep step)
+         {
+@@ -849,7 +896,7 @@
+         public bool Undo()
+         {
+             if(history.Count==0)return false;
+-            faces=history.Pop();movingHistory.Pop();steps.RemoveAt(steps.Count-1);peakPlies=0;return true;
++            faces=history.Pop();movingHistory.Pop();plyHistory.Pop();steps.RemoveAt(steps.Count-1);peakPlies=0;return true;
+         }
+         public static PaperSheet Replay(FoldStep[] recipe)
+         {

@@ -1,0 +1,1 @@
+id=3 label=quit screen=644x884 folds=5 phase=FirstPoint angle=0 notice=이 두 변은 현재 연결 상태에서 맞출 수 없습니다. 다른 기준선을 고르세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=23519

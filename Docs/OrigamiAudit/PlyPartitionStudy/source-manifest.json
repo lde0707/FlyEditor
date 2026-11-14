@@ -1,0 +1,37 @@
+{
+  "scope": "runtime material identity, executed rigid ply boundaries, selected-line partition, top-wing-only actual input",
+  "full_folding_engine_complete": false,
+  "sources": {
+    "Runtime/Gameplay/Flight/FoldingDesk.cs": "cd34875d3ecffd19caad8617e9cf0c94e49d4e9da73246b710ff1214cadbd36a",
+    "Runtime/Gameplay/Flight/PaperClearanceSequence.cs": "43f82114fee9e4568f8c171a714bf4673de7c757af1751dbcf8630daa49ac944",
+    "Runtime/Gameplay/Flight/PaperCornerPull.cs": "acf259df1dfe117a4596bfdf34af20ffed42870980a3dc1c7424995880d823ba",
+    "Runtime/Gameplay/Flight/PaperEdgeAlignment.cs": "3b441fade46adf6c6bd25541771c903142c2a4695b87371afc851a2937c6115e",
+    "Runtime/Gameplay/Flight/PaperEdgeMatchFold.cs": "b9367a0ce67292cbfda4dbca97ff90db46c3b46b30b65dd58f0ccc4b434bb353",
+    "Runtime/Gameplay/Flight/PaperFlatStackOrder.cs": "e9f4ccd037f5c01d3803703c841235934d75a2cab94032a77eb64b7024f24278",
+    "Runtime/Gameplay/Flight/PaperInsideReverse.cs": "cc787c7e719b2df17fac3470e73449d92f26680a45ad15433ba426bdeee3fbb1",
+    "Runtime/Gameplay/Flight/PaperPacketReverse.cs": "a27041aaf431e0d5717930694a3bc5ce6a01910f36981373eb3263f216228c94",
+    "Runtime/Gameplay/Flight/PaperPetalFold.cs": "0559ba59c55a41a867e06fae0d4b83a34fcd1e673c00916daae3f51d0629dc3b",
+    "Runtime/Gameplay/Flight/PaperPocketSquash.cs": "b3729d283d13a10ba62d52f627d7d2c5ae2937d43082970b1fa444a47736d947",
+    "Runtime/Gameplay/Flight/PaperRadialGather.cs": "52a7508673b4b332fda8762aabf9b2533a2f72dee6ade31a0683836b3f250573",
+    "Runtime/Gameplay/Flight/PaperSheet.cs": "9add51c34be7422d210ae092ce680298f8fc2c115d270b0a60cc797d5e7e76f4",
+    "Runtime/Gameplay/Flight/PaperMaterialRegion.cs": "6e6acf6a236f388903b6e646a4a9881c0cc2f4b7d5a1a2c7bb8a125d2c90417a",
+    "Editor/PlyPartitionVerification.cs": "8281795d595b7e801423bcdd896b982560efd0af91c45852be659377a5192be2",
+    "Editor/PlyPartitionRegression.cs": "c389410001b0f13f105ccad7bcce8ad9faba195f30fc741606e940316cf25baf",
+    "Editor/OrigamiTechniqueBaseline.cs": "112b5afa3716d7cef35bfae3a978924fc35c275852593b8f6f86e35d045a409c"
+  },
+  "tests": {
+    "nested_lines": 20,
+    "modern_wing_sequences": 64,
+    "modern_wing_poses": 512,
+    "simple_preview_poses": 8
+  },
+  "player": {
+    "rectangle_from_new_sheet": true,
+    "aircraft_setup": "prepared five-fold recipe; only subsequent selection/wing drag counted as player input"
+  },
+  "limitations": [
+    "runtime region IDs are not persistent snapshot IDs",
+    "single-axis incompatible requests remain blocked; coordinated bending is a later phase",
+    "no performance improvement claim"
+  ]
+}

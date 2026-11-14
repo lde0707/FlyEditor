@@ -1,0 +1,1 @@
+id=11 label=back-view screen=644x884 folds=3 phase=FirstPoint angle=180 notice= scope=Top gesture=Idle edge=0 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=36869

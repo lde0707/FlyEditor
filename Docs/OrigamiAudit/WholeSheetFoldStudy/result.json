@@ -1,0 +1,9 @@
+{
+  "similar_shape_reproduction": "PASS",
+  "actual_input_red_green": "PASS",
+  "whole_fold_degrees": 180,
+  "safe_default": "Top",
+  "exact_user_recipe": "NOT_OBTAINED",
+  "user_progress_modified": false,
+  "box_selection_implemented": false
+}

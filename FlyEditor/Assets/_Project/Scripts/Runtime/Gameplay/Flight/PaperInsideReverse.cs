@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlyEditor.Flight
@@ -108,7 +108,7 @@ namespace FlyEditor.Flight
         }
         private static Quaternion Basis(Vector3 u,Vector3 v)=>Quaternion.LookRotation(u,Vector3.Cross(u,v));
         private static PaperSheet.Face Rotate(PaperSheet.Face f,Vector3 pivot,Quaternion q)=>
-            new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame,f.material);
+            new PaperSheet.Face(f.points,f.layer,f.back,Matrix4x4.TRS(pivot-q*pivot,q,Vector3.one)*f.frame,f.material,f);
 
         public bool Pose(float progressDegrees)
         {
@@ -134,7 +134,7 @@ namespace FlyEditor.Flight
                     int outward=leaf.source.layer>leaves[1-i].source.layer?1:-1;
                     if(stacked && progressDegrees==180f){
                         // Put both returned caps between the two exterior plies.
-                        trial.Add(new PaperSheet.Face(leaf.body.points,f.layer+outward,f.back,f.frame,f.material));
+                        trial.Add(new PaperSheet.Face(leaf.body.points,f.layer+outward,f.back,f.frame,f.material,leaf.body));
                         trial.Add(PaperSheet.ReflectFlat(leaf.tip,MakeFlank(leaf),f.layer));
                         continue;
                     }
@@ -145,7 +145,7 @@ namespace FlyEditor.Flight
                     var exterior=Rotate(leaf.body,leaf.pivot,body);
                     if(stacked && t>transition){
                         var offset=f.frame.MultiplyVector(Vector3.up)*(outward*PaperSheet.Thickness*(t-transition)/(1-transition));
-                        exterior=new PaperSheet.Face(exterior.points,f.layer,f.back,Matrix4x4.Translate(offset)*exterior.frame,f.material);
+                        exterior=new PaperSheet.Face(exterior.points,f.layer,f.back,Matrix4x4.Translate(offset)*exterior.frame,f.material,exterior);
                     }
                     trial.Add(exterior);
                     trial.Add(Rotate(leaf.tip,leaf.pivot,cap));

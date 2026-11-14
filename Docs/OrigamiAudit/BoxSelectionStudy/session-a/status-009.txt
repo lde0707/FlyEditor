@@ -1,0 +1,1 @@
+id=9 label=whole-drag screen=644x884 folds=1 phase=AdjustAngle angle=26 notice= scope=Stack gesture=Angle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=33625

@@ -35,7 +35,7 @@ namespace FlyEditor.Flight
             var queue=new Queue<int>();for(int i=0;i<count;i++)if(incoming[i]==0)queue.Enqueue(i);
             int visited=0;while(queue.Count>0){int a=queue.Dequeue();visited++;foreach(int b in edges[a]){level[b]=Mathf.Max(level[b],level[a]+1);if(--incoming[b]==0)queue.Enqueue(b);}}
             if(visited!=count)return false;
-            for(int i=0;i<count;i++){var f=flat[i];flat[i]=new PaperSheet.Face(f.points,level[i],f.back,f.frame,f.material);}return true;
+            for(int i=0;i<count;i++){var f=flat[i];flat[i]=new PaperSheet.Face(f.points,level[i],f.back,f.frame,f.material,f);}return true;
         }
         private static float Height(PaperSheet.Face flat,PaperSheet.Face near,Vector2 point,Matrix4x4 frame)
         {

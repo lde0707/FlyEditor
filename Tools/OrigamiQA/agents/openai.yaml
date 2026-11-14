@@ -1,0 +1,4 @@
+interface:
+  display_name: "FlyEditor 종이접기 검증"
+  short_description: "접기 기술·겹·조작·저장 오류를 재현하고 공통 엔진 회귀를 검증합니다"
+  default_prompt: "$flyeditor-origami-qa로 종이접기 오류를 재현하고 기술별 회귀 검증을 수행해줘."

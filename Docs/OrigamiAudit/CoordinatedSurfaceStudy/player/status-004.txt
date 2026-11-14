@@ -1,0 +1,1 @@
+id=4 label=former-junction-handles screen=644x884 folds=7 phase=PickSide angle=0 notice=초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면. 면을 드래그하세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=4434

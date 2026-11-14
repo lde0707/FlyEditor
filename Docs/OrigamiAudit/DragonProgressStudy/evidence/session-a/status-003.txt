@@ -1,0 +1,1 @@
+id=3 label=reverse-tip-drag screen=644x884 folds=14 phase=PickSide angle=0 notice=종이 가장자리의 끝점을 잡고 면 안쪽 점을 향해 당기세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=3091

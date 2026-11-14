@@ -1,0 +1,1 @@
+id=14 label=diagram-10-small-petal-points screen=644x884 folds=7 phase=PreparingClearance angle=0 notice=주변 겹이 걸리지 않는 접힘 경로를 찾는 중입니다. Esc: 취소 scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=121089

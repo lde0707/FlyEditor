@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "actual_player_flows": 3,
+  "actual_committed_transition_checks": 11,
+  "fixed_cancel_undo_checks": 13,
+  "actual_highlight_mesh_checks": 14,
+  "neutral_material_samples_unity": 644,
+  "saved_input_replays": 64,
+  "actual_cold_restart_checks": 2,
+  "runtime_engine_modified": false,
+  "reason": "no new engine defect reproduced in the specified three flows",
+  "excluded": [
+    "first diagnostic session-a",
+    "session-b commands 22-27",
+    "New Paper IMGUI button automatic-click success"
+  ],
+  "scope": "selected three player flows; no complete-model or continuous-collision certification",
+  "reproduction": "FLYEDITOR_THREE_PLAYER_ROOT=<report>/evidence; --suite three-player-flows",
+  "registered_module_execution": "PASS",
+  "registered_module_evidence": "module-verification/result.json"
+}

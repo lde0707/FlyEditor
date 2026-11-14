@@ -1,0 +1,53 @@
+--- before/PaperSheet.cs
++++ after/PaperSheet.cs
+@@ -428,6 +428,10 @@
+                     if(packet)break;
+                 }
+                 if(!packet)continue;
++                // A historical stack is no longer a leaf boundary after its
++                // material joint has been fully opened. Keeping that scope
++                // would reject a new crease crossing the now continuous sheet.
++                if(request.materialPartition && UnfoldedBoundary(movedPieces))continue;
+                 // A transverse branch fold crosses an earlier book fold. Its two
+                 // connected halves form one flap, rather than two independently
+                 // opened leaves. Follow only the picked material component in that
+@@ -440,6 +444,22 @@
+                 foldPartition=ownership;break;
+             }
+             return foldPartition;
++        }
++        private bool UnfoldedBoundary(IReadOnlyList<Face> movedPieces)
++        {
++            var owned=new bool[faces.Count];for(int i=0;i<faces.Count;i++)owned[i]=MovedMaterial(faces[i],movedPieces,true);
++            bool joined=false;
++            for(int i=0;i<faces.Count;i++)for(int j=0;j<i;j++){
++                if(owned[i]==owned[j] || !PaperFoldTopology.SharedEdge(faces[i],faces[j],out var start,out var end))continue;
++                joined=true;var a=faces[i].frame*faces[i].material.inverse;var b=faces[j].frame*faces[j].material.inverse;
++                // Compare original-paper tangents, not chart orientation,
++                // back/front flags, layer indices or coincident screen points.
++                if((a.MultiplyVector(Vector3.right)-b.MultiplyVector(Vector3.right)).sqrMagnitude>1e-8f ||
++                   (a.MultiplyVector(Vector3.forward)-b.MultiplyVector(Vector3.forward)).sqrMagnitude>1e-8f ||
++                   (a.MultiplyPoint3x4(start)-b.MultiplyPoint3x4(start)).sqrMagnitude>1e-6f ||
++                   (a.MultiplyPoint3x4(end)-b.MultiplyPoint3x4(end)).sqrMagnitude>1e-6f)return false;
++            }
++            return joined;
+         }
+         private static bool MovedMaterial(Face face,IReadOnlyList<Face> movedPieces,bool provenance=false)
+         {
+--- before/FoldingDesk.cs
++++ after/FoldingDesk.cs
+@@ -411,8 +411,12 @@
+             if(Mathf.Abs(distance)<.0001f){notice="선 위가 아니라 접을 쪽의 면을 클릭하세요.";return false;}
+             line.side=distance>0?1:-1;line.contact=point;
+             selected=line;PinLayer(index,point);surfaceChoice=new PaperSurfaceChoice(face,line);
+-            bool crosses=PaperSheet.Intersection(face,line,out _,out _);
+-            candidate=coplanar && crosses?sheet.Plan(line):null;
++            // A visible surface can contain several pieces from earlier folds.
++            // The crease may cross a connected neighbour of the clicked piece.
++            // Let the material planner validate that connection and moving side;
++            // a per-polygon intersection is not the player's selection boundary.
++            candidate=coplanar?sheet.Plan(line):null;
++            bool crosses=candidate!=null || PaperSheet.Intersection(face,line,out _,out _);
+             turn=candidate!=null && !candidate.MovesOtherPlyAt(point)?candidate:null;
+             bool contactBlocked=turn!=null && Mathf.Abs(turn.Constrain(1))<.001f && Mathf.Abs(turn.Constrain(-1))<.001f;
+             if(contactBlocked)turn=null;

@@ -1,0 +1,677 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.3f1 (c2eb47b3a2a9) revision 12774215'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0" at "2026-11-13T03:05:17.4882073Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 32164 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T03:05:17Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Unity.exe
+-batchmode
+-force-d3d11
+-projectPath
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+-executeMethod
+VisibleSidePlayerVerification.Run
+-logFile
+C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\.four-system\..\output\validation\unity-four-system-visible-side-delivery.log
+Successfully changed project path to: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject
+C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [71192]  Target information:
+
+Player connection [71192]  * "[IP] 10.107.2.142 [Port] 55505 [Flags] 2 [Guid] 1431702279 [EditorId] 1431702279 [Version] 1048832 [Id] WindowsEditor(7,doeon07) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [71192] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [71192] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-doun0"
+[Licensing::IpcConnector] LicenseClient-doun0 channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3" at "2026-11-13T03:05:18.5124173Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 17972, path: "C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              c16115d956bc439a9ab2e6e543ecb066
+  Correlation Id:          602d1ddb44a76000c98e057fe57fb74a
+  External correlation Id: 6909163593055261330
+  Machine Id:              YvDvKs+GecMwzKpRjRcVzYtBbgs=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-doun0-6000.5.3" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-doun0-6000.5.3-notifications" at "2026-11-13T03:05:18.521664Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568939546096-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.04s
+[Package Manager] Connected to IPC stream "Upm-76660" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.3f1 (c2eb47b3a2a9)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 130T GPU (16GB) (ID=0x7d51)
+    Vendor:   Intel
+    VRAM:     18333 MB
+    Driver:   32.0.101.6737
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56660
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005145 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.327 seconds
+Domain Reload Profiling: 880ms
+	BeginReloadAssembly (170ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (85ms)
+	LoadAllAssembliesAndSetupDomain (278ms)
+		LoadAssemblies (146ms)
+		AnalyzeDomain (194ms)
+			TypeCache.Refresh (192ms)
+				TypeCache.ScanAssembly (177ms)
+	FinalizeReload (330ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (73ms)
+			ProcessInitializeOnLoadAttributes (80ms)
+			ProcessInitializeOnLoadMethodAttributes (106ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 57 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.13 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ai.navigation@42d896194035)
+    com.unity.collab-proxy@2.12.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.19.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.inputsystem@21a28c3a6c83)
+    com.unity.timeline@1.8.12 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.timeline@8cd8509afae5)
+    com.unity.visualscripting@1.9.11 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.visualscripting@8bed5ad90189)
+    com.unity.searcher@4.9.4 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.29 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.burst@6bb9aca3ef38)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.render-pipelines.universal@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal@276396f56b3f)
+    com.unity.test-framework@1.7.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.ugui@2.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ugui@377fd60ad87b)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+    com.unity.render-pipelines.core@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.core@0733e3164aa3)
+    com.unity.shadergraph@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.shadergraph@8aa9acb51790)
+    com.unity.render-pipelines.universal-config@17.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.render-pipelines.universal-config@fdda01c80fe3)
+    com.unity.collections@6.5.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.collections@a43cabe808ca)
+    com.unity.mathematics@1.4.0 (location: C:\Users\doun0\OneDrive\Documents\ChatGPT\FlyEditor\output\validation\WebProject\Library\PackageCache\com.unity.mathematics@981956d94fb6)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+DisplayProgressbar: Compiling Scripts
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\netcorerun\netcorerun.exe "C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aE.dag.json" "Library/Bee/1900b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+ExitCode: 4 Duration: 0s279ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aE-inputdata.json
+*** Tundra requires additional run (0.23 seconds), 0 items updated, 609 evaluated
+ExitCode: 0 Duration: 0s896ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject
+ExitCode: 0 Duration: 3s454ms
+Finished compiling graph: 919 nodes, 17532 flattened edges (14666 ToBuild, 140 ToUse), maximum node priority 967
+[475/915    0s] WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.rsp
+[721/915    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[911/915    2s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\_Project\Scripts\Editor\LilyFanProbe.cs(8,368): warning CS0219: The variable 'touches' is assigned but its value is never used
+
+Assets\_Project\Scripts\Editor\CoordinatedFoldProbe.cs(5,31): warning CS0414: The field 'CoordinatedFoldProbe.F' is assigned but its value is never used
+
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+[912/915    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 140 defines and 360 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[913/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[914/915    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (3.37 seconds), 6 items updated, 915 evaluated
+Assets\_Project\Scripts\Editor\LilyFanProbe.cs(8,368): warning CS0219: The variable 'touches' is assigned but its value is never used
+Assets\_Project\Scripts\Editor\CoordinatedFoldProbe.cs(5,31): warning CS0414: The field 'CoordinatedFoldProbe.F' is assigned but its value is never used
+Assets\_Project\Scripts\Editor\CraneCurrentAudit.cs(26,46): warning CS0414: The field 'CraneCurrentAudit.Hidden' is assigned but its value is never used
+AssetDatabase: script compilation time: 5.178951s
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 2.95 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 4.09 ms, found 4 plugins.
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.962 seconds
+Domain Reload Profiling: 4199ms
+	BeginReloadAssembly (340ms)
+		DisableScriptedObjects (24ms)
+		CreateAndSetChildDomain (140ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (92ms)
+	LoadAllAssembliesAndSetupDomain (782ms)
+		LoadAssemblies (541ms)
+		AnalyzeDomain (214ms)
+			TypeCache.Refresh (153ms)
+				TypeCache.ScanAssembly (141ms)
+			BuildScriptInfoCaches (53ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (2963ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (70ms)
+			ProcessInitializeOnLoadAttributes (2380ms)
+			ProcessInitializeOnLoadMethodAttributes (179ms)
+			AfterProcessingInitializeOnLoad (19ms)
+		AwakeInstancesAfterBackupRestoration (25ms)
+Starting new worker id: 0 with log in C:/Users/doun0/OneDrive/Documents/ChatGPT/FlyEditor/output/validation/WebProject/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 3.71 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=e45331f1837916a42a03b53ffc4436dc): Total: 10.701 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=3615 ms
+		Asset DB Callback time: managed=414 ms, native=39 ms
+		Scripting: domain reloads=1, domain reload time=1358 ms, compile time=5180 ms, other=91 ms
+		Project Asset Count: scripts=1347, non-scripts=3452
+		Asset File Changes: new=1, changed=2, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 29.352ms
+	ApplyChangesToAssetFolders: 1.074ms
+	Scan: 258.421ms
+	Collect global state as custom dependencies: 2.878ms
+	OnSourceAssetsModified: 0.710ms
+	CategorizeScriptCompilationAssets: 43.207ms
+	ProcessAssetsWithTransientArtifactChanges: 75.171ms
+	CategorizeAssets: 42.651ms
+	CompileScripts: 5180.114ms
+	ImportOutOfDateAssets: 3029.507ms (2981.983ms without children)
+		UnloadImportedAssets: 0.657ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.487ms
+		ImportSchedulerStart: 46.334ms
+	PostProcessAllAssets: 421.257ms
+		VCAutoAddAssetPostprocess 5.817ms
+		XRBuildSystem.XRAssetImported 1.982ms
+		VersionControlSettings.HiddenFilePostprocess 0.240ms
+		MonoPostProcessAllAssets: 412.521ms
+			SyncVS.PostprocessSyncProject 239.915ms
+			AssetPostprocessor.OnPostprocessAllAssets 103.506ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 15.848ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 9.588ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 5.233ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.649ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.595ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.416ms
+			AssetChangedListener.OnPostprocessAllAssets 1.102ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.008ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.818ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.804ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.645ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.588ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.518ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 0.318ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.293ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.281ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.266ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.255ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.250ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.241ms
+			AssetEvents.OnPostprocessAllAssets 0.215ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.202ms
+			PostProcessor.OnPostprocessAllAssets 0.180ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.174ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.133ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.129ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.123ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.118ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.103ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.088ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.065ms
+	PostAssetChangesProfiler: 7.058ms
+	UnloadStreamsBegin: 2.566ms
+	PersistCurrentRevisions: 0.133ms
+	GenerateScriptTypeHashes: 1.272ms
+	GenerateScriptTypeSerializationHashes: 2.143ms
+	Untracked: 1598.314ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Scanning for USB devices : 1.184ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-FlyEditor
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6716 unused Assets / (3.9 MB). Loaded Objects now: 7618.
+Memory consumption went from 416.7 MB to 412.7 MB.
+Total: 19.510700 ms (FindLiveObjects: 0.860500 ms CreateObjectMapping: 3.168800 ms MarkObjects: 5.899300 ms  DeleteObjects: 9.575700 ms)
+
+[VisibleSide] PASS 73 cases / 320 poses: blue/white click equivalence, 4 rotations, reversed endpoints, ortho/perspective; visible/whole and both book views, exact moving highlight, hidden ply fixed, contacts/seams/JSON/replay/undo; V individual retained.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+VisibleSideSelectionVerification:Test () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:41)
+VisibleSideSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:48)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs Line: 41)
+
+접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+VisibleSideSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:6)
+VisibleSideSelectionVerification:Dispose () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:10)
+VisibleSideSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:48)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+겹친 종이: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+VisibleSideSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:6)
+VisibleSideSelectionVerification:Dispose () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:10)
+VisibleSideSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:48)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+종이접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+VisibleSideSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:6)
+VisibleSideSelectionVerification:Dispose () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:10)
+VisibleSideSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/VisibleSideSelectionVerification.cs:48)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+[WingSide] PASS 64 rotated basic/narrow parallel and tapered wing sequences, 3968 poses; either wing first, opposite material unchanged, contacts, area, all seams, replay, undo, planning-copy history.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.WingSideVerification:Run () (at Assets/_Project/Scripts/Editor/WingSideVerification.cs:70)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:77)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/WingSideVerification.cs Line: 70)
+
+[WingSide] PASS reproduced legacy opposite-wing leak; crossing scope rejected; legacy individual body fold supported.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.WingSideVerification:Run () (at Assets/_Project/Scripts/Editor/WingSideVerification.cs:71)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:77)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/WingSideVerification.cs Line: 71)
+
+Worker ready: AssetImportWorkerHW0 0
+[WingSide] PASS 16 full-180 tapered wing sequences followed by opposite wing; fixed material, seams and replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FlyEditor.Editor.WingSideVerification:RunFlat () (at Assets/_Project/Scripts/Editor/WingSideVerification.cs:41)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:77)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/WingSideVerification.cs Line: 41)
+
+[BoxSelection] PASS 42 cases; 196 poses; visible/whole, both views, 4 rotations, reverse drag, multiple faces, exact green area, hidden material fixed, contacts, seams, JSON/replay/undo, cancel and empty.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:79)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs Line: 79)
+
+접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BoxSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:7)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:80)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+겹친 종이: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BoxSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:7)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:80)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+종이접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BoxSelectionVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:7)
+BoxSelectionVerification:Verify () (at Assets/_Project/Scripts/Editor/BoxSelectionVerification.cs:80)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+[BlenderFoldView] PASS 4 perspective selection/fold cases and near-plane clipping; visible/whole, angled camera, hidden material, seams and replay.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BlenderFoldViewVerification:PerspectiveSelection () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:32)
+BlenderFoldViewVerification:Verify () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:54)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs Line: 32)
+
+[BlenderFoldView] PASS projection, six canonical views, axis/user opposites, correct orbit directions, auto-perspective, Ctrl pan, Shift roll, zoom and selected/all framing.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BlenderFoldViewVerification:Verify () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:55)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs Line: 55)
+
+접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BlenderFoldViewVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:7)
+BlenderFoldViewVerification:Verify () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:56)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+겹친 종이: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BlenderFoldViewVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:7)
+BlenderFoldViewVerification:Verify () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:56)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+종이접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+BlenderFoldViewVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:7)
+BlenderFoldViewVerification:Verify () (at Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs:56)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+[WholeSheetFold] PASS 8 basic/narrow and rotated planes; 48 whole-stack poses; API scope, all crease-side plies, area/seams, replay/undo and return to visible leaf. Real keyboard/mouse proof is separate.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+WholeSheetFoldVerification:Verify () (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:22)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs Line: 22)
+
+접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+WholeSheetFoldVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:7)
+WholeSheetFoldVerification:Verify () (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:23)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+겹친 종이: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+WholeSheetFoldVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:7)
+WholeSheetFoldVerification:Verify () (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:23)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+종이접기 작업대: Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnityEngine.Object:Destroy (UnityEngine.Object)
+FlyEditor.Flight.FoldingDesk:Dispose () (at Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs:161)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+WholeSheetFoldVerification:Call (string,object[]) (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:7)
+WholeSheetFoldVerification:Verify () (at Assets/_Project/Scripts/Editor/WholeSheetFoldVerification.cs:23)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+[Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs line 161]
+
+[VisibleSidePlayer] PASS 16 actual-input captures: oblique cross-panel line, blue/white hover and click select identical regions, exact rendered green/moving material, 26 degree fold with fixed other side, V individual/box preserved, undo/cancel, isolated save and all replays. Similar multi-panel reproduction, not the exact unsaved attachment state.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+VisibleSidePlayerVerification:Verify () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:24)
+VisibleSidePlayerVerification:Run () (at Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs:26)
+
+(Filename: Assets/_Project/Scripts/Editor/VisibleSidePlayerVerification.cs Line: 24)
+
+MonoPathRemapper: Attempts to remap: 24573; Successful remaps: 2
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-doun0-6000.5.3 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794539138100,"processId":76660,"allocatedMemory":16914423,"memoryLabels":[{"Default":204614},{"Permanent":15516},{"NewDelete":66155},{"Thread":4197640},{"Manager":33669},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":852633},{"Material":24},{"GfxDevice":55328},{"Animation":952},{"Audio":1544},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":952},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1574452},{"BaseObject":1621960},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":1032},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":21251},{"StaticString":3808},{"Utility":2673510},{"Curl":2696},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":8680},{"WebRequest":12505},{"VR":47114},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":552},{"Hierarchy":1176},{"UIElements":72},{"CoreStats":13688},{"Identifiers":6768},{"Gui":128},{"EditorUtility":112129},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4870620},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":38905},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3480},{"Windowing":456},{"Licensing":664},{"AssetReference":32},{"IPCStream":32}]}

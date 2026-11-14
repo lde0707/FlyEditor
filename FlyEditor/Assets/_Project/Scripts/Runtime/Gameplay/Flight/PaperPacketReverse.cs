@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 namespace FlyEditor.Flight
 {
@@ -217,15 +217,15 @@ namespace FlyEditor.Flight
                     if(hierarchical)group=p.side==0?2*maxDepth+1-depth:depth;
                     if(!side0Above)group=(hierarchical?2*maxDepth+1:3)-group;
                     int layer=group*layers.Count+((hierarchical?depth%2==1:p.cap)?layers.Count-1-rank:rank);
-                    trial.Add(new PaperSheet.Face(points,layer,face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),basis.frame,face.material*chart.inverse));
-                }else trial.Add(new PaperSheet.Face(face.points,p.startLayer,face.back,frame,face.material));
+                    trial.Add(new PaperSheet.Face(points,layer,face.back^(chart.m00*chart.m22-chart.m02*chart.m20<0),basis.frame,face.material*chart.inverse,face));
+                }else trial.Add(new PaperSheet.Face(face.points,p.startLayer,face.back,frame,face.material,face));
             }
             if(angle==0)foreach(var face in trial)foreach(var point in face.points){
                 if(!Locate(source,face.Original(point),out var old,out _)||Vector3.Distance(old,face.World(point,0))>.002f)return false;
             }
             // Neutral-surface contact, consistent with coordinated multi-ply folds.
             // Shell layer order is separate from rigid zero-radius hinge geometry.
-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
+            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
             for(int i=0;i<middle.Count;i++)for(int j=0;j<i;j++){
                 var a=middle[i];var b=middle[j];if(PaperSheet.Turn.Intersects(a,b,b.frame.inverse*a.frame)||PaperSheet.Turn.Intersects(b,a,a.frame.inverse*b.frame))return false;
             }

@@ -1,0 +1,1 @@
+id=4 label=small-kite-right-select screen=644x884 folds=8 phase=AdjustAngle angle=0 notice=접는 선을 계산했습니다. C를 누르면 선택한 변이 기준선에 맞춰집니다. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=21738

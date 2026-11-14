@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "prepared aircraft; real input wing opening only",
+  "angle": 78.0,
+  "lower_samples": 17,
+  "max_lower_displacement": 0.0,
+  "moving_samples": 17,
+  "lower_in_moving": false,
+  "session": "FlyPlyFinalBInput12"
+}

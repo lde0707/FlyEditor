@@ -1,0 +1,1 @@
+id=3 label=band-drag screen=644x884 folds=14 phase=PullCorner angle=0 notice=종이가 맞닿는 지점입니다. 양옆 접힘 위치를 바꿔보세요. scope=Top gesture=Pull edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=10160

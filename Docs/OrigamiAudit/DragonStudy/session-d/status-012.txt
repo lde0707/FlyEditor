@@ -1,0 +1,1 @@
+id=12 label=diagram-9-flatten-pocket screen=644x884 folds=6 phase=PullCorner angle=0 notice=변을 가운데로 끌면 주머니를 벌린 뒤 눌러 폅니다. 반대로 끌면 되돌아갑니다. scope=Top gesture=Idle edge=1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=107422

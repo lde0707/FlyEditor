@@ -1,0 +1,30 @@
+[
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "4f5ab0b322cc9bae2d878449384c2e23fc72f03138892aad6d7700de5d5579c7"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldMesh.cs",
+    "sha256": "bc457014bf89e1a528d7fcbd6526b8d5a55a7db8b327fc0fbd8676b662b01799"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperBoxSelection.cs",
+    "sha256": "8f02f92f3f48b704e440d68598ab7e211fa700b386b21d92195d71a503d8338a"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs",
+    "sha256": "c863fd8ce23a78e40fd6598478501147b5f0b6b8f391eda1f6b898e6f8cc7e61"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BlenderFoldViewVerification.cs.meta",
+    "sha256": "26d028b9499bf581395990713390276c33074cef70df6bc8b60a7997e594a3c0"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BlenderViewPlayerVerification.cs",
+    "sha256": "034054c85ec9c579c3d788d991409f27942d57cd596779addde8fd06db6122b9"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Editor/BlenderViewPlayerVerification.cs.meta",
+    "sha256": "39dcf57d7ec189bbf9b761a52c9df63fd84286289af2a79d7f09bee539ac7931"
+  }
+]

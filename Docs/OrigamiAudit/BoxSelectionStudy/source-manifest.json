@@ -1,0 +1,22 @@
+[
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldingDesk.cs",
+    "sha256": "3a3450233869f52877fcfda43c72f8a2afec3384b21ec49255a231185c0c7315"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSheet.cs",
+    "sha256": "20ee96031370fc4ed6e0b80145ff464cc7377bce638ce0356ff93d4819520855"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/FoldMesh.cs",
+    "sha256": "df1ddf95d43cacf9323553c8920ef0328dd74f512127f649ab4ff222d71ecf09"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperSurfaceChoice.cs",
+    "sha256": "eb6ff6f38ba915825de183ec4829dbca59d2399678fdba321c243bb63bfb9949"
+  },
+  {
+    "file": "FlyEditor/Assets/_Project/Scripts/Runtime/Gameplay/Flight/PaperBoxSelection.cs",
+    "sha256": "aadc6d850b1ed479459f1142dd583f79e76323198c72d3a374d5a4e239bdaa76"
+  }
+]

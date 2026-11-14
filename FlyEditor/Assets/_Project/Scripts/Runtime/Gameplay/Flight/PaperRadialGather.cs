@@ -90,15 +90,15 @@ namespace FlyEditor.Flight
                 int layer=group*layers.Count+(up?rank:layers.Count-1-rank);
                 if(closed){var points=new Vector2[f.points.Length];for(int i=0;i<points.Length;i++){var p=map.MultiplyPoint3x4(new Vector3(f.points[i].x,0,f.points[i].y));if(Mathf.Abs(p.y)>.001f)return false;points[i]=new Vector2(p.x,p.z);}
                     var chart=map;chart.m01=chart.m10=chart.m12=chart.m21=chart.m13=0;chart.m11=1;
-                    bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);trial.Add(new PaperSheet.Face(points,layer,back,basis.frame,f.material*chart.inverse));
-                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,basis.frame*map,f.material));
+                    bool back=f.back^(chart.m00*chart.m22-chart.m02*chart.m20<0);trial.Add(new PaperSheet.Face(points,layer,back,basis.frame,f.material*chart.inverse,f));
+                }else trial.Add(new PaperSheet.Face(f.points,f.layer,f.back,basis.frame*map,f.material,f));
             }
             // All plies are explicitly selected and follow the same crease field.
             // Solve the paper midsurfaces; shell thickness at a mathematical
             // zero-radius hinge otherwise reports a false crossing of its plies.
             // Finished shell order is assigned per wedge, reversing the packet
             // whenever that wedge turns over. This does not affect unselected plies.
-            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material));
+            middle.Clear();foreach(var f in trial)middle.Add(new PaperSheet.Face(f.points,0,f.back,f.frame*Matrix4x4.Translate(-Vector3.up*(PaperSheet.Thickness*.5f)),f.material,f));
             for(int i=0;i<middle.Count;i++)for(int j=0;j<i;j++){var p=middle[i];var q=middle[j];if(PaperSheet.Turn.Intersects(p,q,q.frame.inverse*p.frame)||PaperSheet.Turn.Intersects(q,p,p.frame.inverse*q.frame))return false;}
             foreach(var seam in seams){
                 var p=trial[seam.a];var q=trial[seam.b];

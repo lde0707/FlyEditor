@@ -1,0 +1,338 @@
+--- before/PaperSheet.cs
++++ after/PaperSheet.cs
+@@ -27,6 +27,7 @@
+         public bool continuousHinge; // New connected folds pivot on their material seam.
+         public Vector2 packetTipMaterial,packetStopMaterial;
+         public bool coordinatedCreases;
++        public bool coordinatedSurface; // Versioned support-panel closure derived from material hinges and four handles.
+         public bool connectedPetalBacking; // Follow fragmented return panels through material adjacency.
+         public bool partialPetalBacking; // New petals can carry return flaps ending before the tip.
+         public bool exactSquash; // Versioned closed-pocket solver for coincident flank handles.
+@@ -79,7 +80,8 @@
+             internal readonly PaperMaterialRegion region;
+             public long MaterialRegionId=>region.id;
+             public Face(Vector2[] points,int layer,bool back) : this(points,layer,back,Matrix4x4.identity,Matrix4x4.identity){}
+-            internal Face(Vector2[] points,int layer,bool back,Matrix4x4 frame,Matrix4x4 material,Face source=null,bool split=false)
++            internal Face(Vector2[] points,int layer,bool back,Matrix4x4 frame,Matrix4x4 material) : this(points,layer,back,frame,material,null,false){}
++            internal Face(Vector2[] points,int layer,bool back,Matrix4x4 frame,Matrix4x4 material,Face source,bool split=false)
+             { this.points=points;this.layer=layer;this.back=back;this.frame=frame;this.material=material;
+                 region=source==null?new PaperMaterialRegion():split?new PaperMaterialRegion(source.region):source.region; }
+             public Vector3 World(Vector2 p,float h)=>frame.MultiplyPoint3x4(new Vector3(p.x,h,p.y));
+--- before/PaperPetalFold.cs
++++ after/PaperPetalFold.cs
+@@ -21,10 +21,28 @@
+         private int lowest=int.MaxValue,highest=int.MinValue;
+         private float lastAngle=float.NaN;
+         private bool continuous;
++        private bool coordinated;
++        private readonly Dictionary<PaperSheet.Face,int> supportSides=new Dictionary<PaperSheet.Face,int>();
+         private readonly List<PaperSheet.Face> neutral=new List<PaperSheet.Face>();
++        private readonly List<PaperSheet.Face> rollback=new List<PaperSheet.Face>();
+         internal string Failure;
+         private bool? positiveClearance,negativeClearance;
+         public IReadOnlyList<PaperSheet.Face> Preview=>preview;
++        internal bool Coordinated=>coordinated;
++        internal bool HingeHints;
++        internal bool MatchesHingeHints(Vector3 first,Vector3 second,float tolerance)
++        {
++            var a=Locate(first);var b=Locate(second);float squared=tolerance*tolerance;
++            return Finite(a)&&Finite(b)&&(((a-p).sqrMagnitude<=squared&&(b-q).sqrMagnitude<=squared)||((a-q).sqrMagnitude<=squared&&(b-p).sqrMagnitude<=squared));
++        }
++        internal int MotionRole(PaperSheet.Face face)
++        {
++            if(!coordinated)return 0;
++            foreach(var piece in pieces)if(ReferenceEquals(piece.face.region,face.region)){
++                if(piece.motion==Motion.Fixed)return 0;
++                return piece.motion==Motion.Centre||piece.motion==Motion.LeftUpper||piece.motion==Motion.RightUpper?1:2;
++            }return 0;
++        }
+         public Vector3 Tip {get;private set;}
+         public Vector3 Stop=>basis.World((p+q)*.5f,(basis.layer+.5f)*PaperSheet.Thickness);
+         private PaperPetalFold(PaperSheet sheet,PaperSheet.Face basis){this.sheet=sheet;source=sheet.Faces;this.basis=basis;}
+@@ -40,7 +58,7 @@
+         public static PaperPetalFold Create(PaperSheet sheet,FoldStep step)
+         {
+             if(!step.adaptiveCreases || !step.customFlanks || !step.regionalPull)return null;
+-            var basis=sheet.Faces[step.anchor];var plan=new PaperPetalFold(sheet,basis){continuous=step.partialPetalBacking||step.connectedPetalBacking};
++            var basis=sheet.Faces[step.anchor];var plan=new PaperPetalFold(sheet,basis){continuous=step.partialPetalBacking||step.connectedPetalBacking,coordinated=step.coordinatedSurface};
+             var mt=basis.Original(step.pullTip);var mh=basis.Original(step.pullStop);
+             var ml=basis.Original(step.pullLeft);var mr=basis.Original(step.pullRight);
+             plan.tip=plan.Locate(mt);plan.head=plan.Locate(mh);plan.left=plan.Locate(ml);plan.right=plan.Locate(mr);
+@@ -97,12 +115,18 @@
+             }
+             }
+             if(!leftBuddy||!rightBuddy)return null;
+-            plan.backLeft=plan.continuous?Vector2.Lerp(plan.head,plan.tip,leftRoot):plan.tip;
+-            plan.backRight=plan.continuous?Vector2.Lerp(plan.head,plan.tip,rightRoot):plan.tip;
++            plan.backLeft=plan.continuous?(plan.coordinated?Vector2.LerpUnclamped(plan.head,plan.tip,leftRoot):Vector2.Lerp(plan.head,plan.tip,leftRoot)):plan.tip;
++            plan.backRight=plan.continuous?(plan.coordinated?Vector2.LerpUnclamped(plan.head,plan.tip,rightRoot):Vector2.Lerp(plan.head,plan.tip,rightRoot)):plan.tip;
++            if(plan.coordinated && !PaperHingeClosure.TrySolve(plan.tip,plan.head,plan.left,plan.right,plan.backLeft,plan.backRight,ref plan.p,ref plan.q))return null;
+             foreach(var f in plan.active){
+                 if(!PaperSheet.SameFrame(f,basis))return null;
+                 plan.lowest=Mathf.Min(plan.lowest,f.layer);plan.highest=Mathf.Max(plan.highest,f.layer);
+-                foreach(var v in f.points)if(!InTriangle(v,plan.tip,plan.left,plan.head)&&!InTriangle(v,plan.tip,plan.head,plan.right))return null;
++                foreach(var v in f.points){
++                    bool inside=InTriangle(v,plan.tip,plan.left,plan.head)||InTriangle(v,plan.tip,plan.head,plan.right);
++                    if(plan.coordinated && !plan.upper.Contains(f) && plan.supportSides.TryGetValue(f,out int side))
++                        inside=((side&1)!=0 && InTriangle(v,plan.backLeft,plan.left,plan.head))||((side&2)!=0 && InTriangle(v,plan.backRight,plan.head,plan.right));
++                    if(!inside)return null;
++                }
+             }
+             return plan.Build()?plan:null;
+         }
+@@ -135,7 +159,7 @@
+             }
+             int found=0;var spine=tip-head;
+             foreach(var entry in sides){
+-                var f=entry.Key;int mask=entry.Value;active.Add(f);found|=mask;
++                var f=entry.Key;int mask=entry.Value;active.Add(f);found|=mask;supportSides[f]=mask;
+                 foreach(var v in f.points)if(Mathf.Abs(Cross(spine,v-head))<.001f){
+                     float along=Vector2.Dot(v-head,spine)/spine.sqrMagnitude;
+                     if((mask&1)!=0)leftRoot=Mathf.Max(leftRoot,along);
+@@ -148,7 +172,7 @@
+         {
+             bool containsTip=false;
+             foreach(var v in face.points){
+-                if(!InTriangle(v,tip,left,head)&&!InTriangle(v,tip,head,right))return false;
++                if(!coordinated && !InTriangle(v,tip,left,head)&&!InTriangle(v,tip,head,right))return false;
+                 containsTip|=(v-tip).sqrMagnitude<.00001f;
+             }
+             if(containsTip)return true;
+@@ -212,6 +236,11 @@
+             guides.Clear();foreach(var f in upper)foreach(var ends in new[]{new[]{tip,p},new[]{tip,q},new[]{p,q}}){
+                 var a=ends[0];var b=ends[1];if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});
+             }
++            if(coordinated)foreach(var entry in supportSides){
++                var f=entry.Key;
++                if((entry.Value&1)!=0){var a=backLeft;var b=p;if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});}
++                if((entry.Value&2)!=0){var a=backRight;var b=q;if(PaperSheet.Trim(f,ref a,ref b))guides.Add(new PaperSheet.Guide{face=f,layer=f.layer,a=a,b=b});}
++            }
+         }
+         private static Quaternion Basis(Vector3 u,Vector3 v)=>Quaternion.LookRotation(u,Vector3.Cross(u,v));
+         private static Matrix4x4 Map(Vector2 a,Vector2 b,Vector2 c,Vector3 x,Vector3 y,Vector3 z)
+@@ -252,9 +281,24 @@
+         }
+         public bool Pose(float angle)
+         {
++            if(!coordinated)return PoseCore(angle);
+             if(sheet.Faces!=source||!float.IsFinite(angle)||Mathf.Abs(angle)>180)return false;
+             if(angle==lastAngle)return true;
+-            if(angle==0){lastAngle=angle;preview.Clear();preview.AddRange(source);Tip=basis.World(tip,(basis.layer+.5f)*PaperSheet.Thickness);return true;}
++            float previousAngle=lastAngle;var previousTip=Tip;rollback.Clear();rollback.AddRange(preview);
++            float from=float.IsNaN(lastAngle)?0:lastAngle;
++            if(float.IsNaN(lastAngle)&&!PoseCore(0))return false;
++            while(from!=angle){
++                from=Mathf.MoveTowards(from,angle,2f);
++                if(PoseCore(from))continue;
++                preview.Clear();preview.AddRange(rollback);lastAngle=previousAngle;Tip=previousTip;return false;
++            }
++            return PoseCore(angle);
++        }
++        private bool PoseCore(float angle)
++        {
++            if(sheet.Faces!=source||!float.IsFinite(angle)||Mathf.Abs(angle)>180)return false;
++            if(angle==lastAngle)return true;
++            if(angle==0){lastAngle=angle;preview.Clear();if(coordinated)foreach(var piece in pieces)preview.Add(piece.face);else preview.AddRange(source);Tip=basis.World(tip,(basis.layer+.5f)*PaperSheet.Thickness);return true;}
+             if(continuous && !CanOpen(angle>0?1:-1)){return false;}
+             var axis=(V(q)-V(p)).normalized;float direction=Mathf.Sign(Vector3.Dot(Vector3.Cross(axis,V(tip-p)),Vector3.up));
+             var rotation=Quaternion.AngleAxis(angle*direction,axis);var movedTip=V(p)+rotation*V(tip-p);
+@@ -262,7 +306,7 @@
+             bool atFlat=Mathf.Abs(angle)>=179.999f;
+             if(atFlat){movedTip=V(Reflect(tip,p,q));movedLeft=V(Reflect(left,backLeft,p));movedRight=V(Reflect(right,backRight,q));}
+             if(!Fits(tip,p,left,movedTip,V(p),movedLeft)||!Fits(tip,q,right,movedTip,V(q),movedRight)||
+-               !Fits(backLeft,p,left,V(backLeft),V(p),movedLeft)||!Fits(backRight,q,right,V(backRight),V(q),movedRight))return false;
++               !Fits(backLeft,p,left,V(backLeft),V(p),movedLeft)||!Fits(backRight,q,right,V(backRight),V(q),movedRight)){Failure="rigid metric closure";return false;}
+             maps[0]=Matrix4x4.identity;maps[1]=Map(tip,p,q,movedTip,V(p),V(q));
+             maps[2]=Map(tip,p,left,movedTip,V(p),movedLeft);maps[3]=Map(backLeft,p,left,V(backLeft),V(p),movedLeft);
+             maps[4]=Map(tip,q,right,movedTip,V(q),movedRight);maps[5]=Map(backRight,q,right,V(backRight),V(q),movedRight);
+@@ -296,9 +340,9 @@
+             }
+             if(continuous && closed){
+                 var flatFaces=new List<PaperSheet.Face>(trial);
+-                if(!Pose(Mathf.Sign(angle)*179.9f))return false;
++                if(!PoseCore(Mathf.Sign(angle)*179.9f))return false;
+                 var preceding=new List<PaperSheet.Face>(preview);
+-                if(!PaperFlatStackOrder.Apply(flatFaces,preceding))return false;
++                if(!PaperFlatStackOrder.Apply(flatFaces,preceding)){Failure="flat contact ordering";return false;}
+                 trial.Clear();trial.AddRange(flatFaces);
+             }
+             lastAngle=angle;preview.Clear();preview.AddRange(trial);Tip=basis.frame.MultiplyPoint3x4(movedTip+Vector3.up*((basis.layer+.5f)*PaperSheet.Thickness));return true;
+--- before/PaperCornerPull.cs
++++ after/PaperCornerPull.cs
+@@ -10,7 +10,7 @@
+     {
+         public const float Limit=75f, FlexibleLimit=170f;
+         public static float LimitFor(FoldStep step)=>step.closeFlat?180f:step.flexible?FlexibleLimit:Limit;
+-        public float AngleLimit=>closingFan?rays[4]:LimitFor(Step);
++        public float AngleLimit=>localMotion!=null?localMotion.AngleLimit:closingFan?rays[4]:LimitFor(Step);
+         private readonly float[] rays={-145,-65,0,65,145,215};
+         private sealed class Node
+         {
+@@ -29,6 +29,7 @@
+         private readonly List<Joint> joints=new List<Joint>();
+         private bool coupled;
+         private PaperPetalFold petal;
++        private PaperLocalMotion localMotion;
+         private PaperClearanceSequence clearance;
+         private PaperPocketSquash squash;
+         private PaperRadialGather gather;
+@@ -72,13 +73,17 @@
+         internal PaperSheet.Turn EdgeTurn=>match?.Turn;
+         public bool UsesRadialGather=>gather!=null;
+         public bool UsesExactSquash=>squash!=null;
+-        public bool UsesPetalFold=>petal!=null || clearance!=null;
++        public bool UsesPetalFold=>localMotion!=null || petal!=null || clearance!=null;
++        public bool UsesCoordinatedSurface=>localMotion!=null || petal!=null && petal.Coordinated;
++        public bool ResolvedHingeHints=>localMotion!=null?localMotion.HingeHints:petal!=null&&petal.HingeHints;
++        public string LastFailure=>localMotion?.Failure??petal?.Failure??jointFailure;
++        internal int MotionRole(PaperSheet.Face face)=>localMotion!=null?localMotion.MotionRole(face):petal?.MotionRole(face)??0;
+         public bool UsesClearanceSequence=>clearance!=null;
+-        public bool MarkGuides(List<PaperSheet.Guide> guides){if(clearance!=null){guides.Clear();return true;}if(squash!=null){squash.MarkGuides(guides);return true;}if(gather!=null){gather.MarkGuides(guides);return true;}if(match!=null){match.MarkGuides(guides);return true;}if(petal==null)return false;petal.MarkGuides(guides);return true;}
+-        public IReadOnlyList<PaperSheet.Face> Preview=>clearance!=null?clearance.Preview:squash!=null?squash.Preview:gather!=null?gather.Preview:match!=null?match.Preview:petal!=null?petal.Preview:preview;
++        public bool MarkGuides(List<PaperSheet.Guide> guides){if(localMotion!=null){localMotion.MarkGuides(guides);return true;}if(clearance!=null){guides.Clear();return true;}if(squash!=null){squash.MarkGuides(guides);return true;}if(gather!=null){gather.MarkGuides(guides);return true;}if(match!=null){match.MarkGuides(guides);return true;}if(petal==null)return false;petal.MarkGuides(guides);return true;}
++        public IReadOnlyList<PaperSheet.Face> Preview=>localMotion!=null?localMotion.Preview:clearance!=null?clearance.Preview:squash!=null?squash.Preview:gather!=null?gather.Preview:match!=null?match.Preview:petal!=null?petal.Preview:preview;
+         public Vector3 Tip { get; private set; }
+ 
+-        public Vector3 Stop=>clearance!=null?clearance.Stop:squash!=null?squash.Stop:gather!=null?gather.Stop:match!=null?match.Stop:petal!=null?petal.Stop:pivot;
++        public Vector3 Stop=>localMotion!=null?localMotion.Stop:clearance!=null?clearance.Stop:squash!=null?squash.Stop:gather!=null?gather.Stop:match!=null?match.Stop:petal!=null?petal.Stop:pivot;
+ 
+         private PaperCornerPull(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis)
+         {
+@@ -175,10 +180,17 @@
+             foreach(var face in original){topLayer=Mathf.Max(topLayer,face.layer);bottomLayer=Mathf.Min(bottomLayer,face.layer);}
+         }
+         public static PaperCornerPull Create(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis=MirrorAxis.Off)
++            =>Create(sheet,step,pinnedAxis,false);
++        internal static PaperCornerPull CreateCanonical(PaperSheet sheet,FoldStep step)=>Create(sheet,step,MirrorAxis.Off,true);
++        private static PaperCornerPull Create(PaperSheet sheet,FoldStep step,MirrorAxis pinnedAxis,bool canonical)
+         {
+             if(!step.cornerPull || sheet.Count>=sheet.FoldLimit || step.anchor<0 || step.anchor>=sheet.Faces.Count ||
+                 (step.flap!=0 && step.flap!=step.anchor+1) || !Finite(step.pullTip) || !Finite(step.pullStop))return null;
+             var face=sheet.Faces[step.anchor];
++            if(!canonical && pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && face.frame!=Matrix4x4.identity){
++                var local=PaperLocalMotion.Create(sheet,step);
++                if(local!=null)return new PaperCornerPull(sheet,local.Step,pinnedAxis){localMotion=local};
++            }
+             if(!face.Contains(step.pullTip) || (!step.flexible && !sheet.ContainsPanelPoint(face,step.pullStop)) ||
+                (step.pullTip-step.pullStop).sqrMagnitude<.01f)return null;
+             var p=face.Original(step.pullTip);
+@@ -187,6 +199,11 @@
+             if(step.clearance!=null && step.clearance.Length>0){plan.clearance=PaperClearanceSequence.Create(sheet,step);return plan.clearance!=null?plan:null;}
+             if(pinnedAxis==MirrorAxis.Off && (plan.gather=PaperRadialGather.Create(sheet,step))!=null)return plan;
+             if(pinnedAxis==MirrorAxis.Off && (plan.squash=PaperPocketSquash.Create(sheet,step))!=null)return plan;
++            // A handle inside the mouth segment describes a lift, not a unique
++            // target ray for edge alignment. Resolve its material support graph.
++            if(pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && MouthLift(sheet,step) &&
++                (plan.petal=PaperPetalFold.Create(sheet,step))!=null)return plan;
++            if(pinnedAxis==MirrorAxis.Off && step.coordinatedSurface && (plan.petal=PaperPocketIntent.Resolve(sheet,step))!=null)return plan;
+             if(pinnedAxis==MirrorAxis.Off && (plan.match=PaperEdgeMatchFold.Create(sheet,step))!=null)return plan;
+             if(pinnedAxis==MirrorAxis.Off && (plan.petal=PaperPetalFold.Create(sheet,step))!=null)return plan;
+             // A surface click can lie just beside a real material junction. Resolve
+@@ -222,6 +239,12 @@
+             return result;
+         }
+         private static bool Finite(Vector2 p)=>!float.IsNaN(p.x) && !float.IsNaN(p.y) && !float.IsInfinity(p.x) && !float.IsInfinity(p.y);
++        private static bool MouthLift(PaperSheet sheet,FoldStep step)
++        {
++            var face=sheet.Faces[step.anchor];var a=face.Original(step.pullTip);var l=face.Original(step.pullLeft);var r=face.Original(step.pullRight);
++            var edge=r-l;return edge.sqrMagnitude>.0001f && Vector3.Dot(a-l,a-r)<-.0001f &&
++                Vector3.Cross(edge.normalized,a-l).sqrMagnitude<.0001f;
++        }
+         private Vector2 Ray(float degrees)
+         {
+             float angle=degrees*Mathf.Deg2Rad;
+@@ -737,6 +760,7 @@
+         }
+         public bool Pose(float angle)
+         {
++            if(localMotion!=null){if(!localMotion.Pose(angle))return false;Tip=localMotion.Tip;return true;}
+             if(clearance!=null){if(!clearance.Pose(angle))return false;Tip=clearance.Tip;return true;}
+             if(squash!=null){if(!squash.Pose(angle))return false;Tip=squash.Tip;return true;}
+             if(gather!=null){if(!gather.Pose(angle))return false;Tip=gather.Tip;return true;}
+--- before/FoldingDesk.cs
++++ after/FoldingDesk.cs
+@@ -549,7 +549,7 @@
+                     }
+                     angle=sample;
+                 }
+-                notice=pull.UsesClearanceSequence?"주변 겹을 정리하며 꽃잎을 접습니다.":pull.UsesRadialGather?"연결된 면을 함께 모아 접습니다.":pull.UsesPetalFold?"꼭짓점을 들어 올리며 양옆을 안으로 접습니다.":pull.UsesEdgeMatch?"가장자리를 선택한 기준선에 맞춥니다.":(pull.UsesCoupledHinges||pull.UsesExactSquash)?(Mathf.Abs(angle)<=90?"주머니를 벌리는 중입니다.":"양옆 면을 함께 눌러 펴는 중입니다."):pull.Step.flexible?"주변 면이 함께 움직입니다.":null;Rebuild();return;
++            notice=pull.UsesCoordinatedSurface?"초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면":pull.UsesClearanceSequence?"주변 겹을 정리하며 꽃잎을 접습니다.":pull.UsesRadialGather?"연결된 면을 함께 모아 접습니다.":pull.UsesPetalFold?"꼭짓점을 들어 올리며 양옆을 안으로 접습니다.":pull.UsesEdgeMatch?"가장자리를 선택한 기준선에 맞춥니다.":(pull.UsesCoupledHinges||pull.UsesExactSquash)?(Mathf.Abs(angle)<=90?"주머니를 벌리는 중입니다.":"양옆 면을 함께 눌러 펴는 중입니다."):pull.Step.flexible?"주변 면이 함께 움직입니다.":null;Rebuild();return;
+             }
+             requested=Mathf.Clamp(Mathf.Round(requested),-180f,180f);
+             float allowed=turn.Constrain(requested);
+@@ -1347,6 +1347,7 @@
+         private FoldStep PullScope(FoldStep step)
+         {
+             step.materialPartition=true;
++            step.coordinatedSurface=true;
+             step.mirror=MirrorAxis.Off;step.compactLayers=true;
+             step.flap=scope==Ply.Stack?0:step.anchor+1;
+             step.regionalPull=step.customFlanks && scope!=Ply.Stack;
+@@ -1394,7 +1395,7 @@
+             edgeSelection=selectedPlan.UsesEdgeMatch?selectedPlan:null;
+             if(line.regionalPull)PinLayer(line.anchor,tip);
+             hinge.Clear();if(!selectedPlan.MarkGuides(hinge)){AddHandleGuide(first,second);AddHandleGuide(second,leftFlank);AddHandleGuide(second,rightFlank);}
+-            phase=Phase.PickSide;notice=selectedPlan.UsesRadialGather?"양쪽 면을 함께 모읍니다. 면을 드래그하세요.":selectedPlan.UsesEdgeMatch?"선택한 변을 기준선에 맞춥니다. 면을 드래그하세요.":selectedPlan.UsesPetalFold?"끝점을 들어 올리면 양옆이 안으로 접힙니다.":"움직일 꼭짓점을 끌거나 면을 드래그하세요.";
++            phase=Phase.PickSide;notice=selectedPlan.UsesCoordinatedSurface?"초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면. 면을 드래그하세요.":selectedPlan.UsesRadialGather?"양쪽 면을 함께 모읍니다. 면을 드래그하세요.":selectedPlan.UsesEdgeMatch?"선택한 변을 기준선에 맞춥니다. 면을 드래그하세요.":selectedPlan.UsesPetalFold?"끝점을 들어 올리면 양옆이 안으로 접힙니다.":"움직일 꼭짓점을 끌거나 면을 드래그하세요.";
+             if(selectedPlan.UsesPetalFold && !selectedPlan.Pose(5) && !selectedPlan.Pose(-5))BeginClearance(line);
+             Rebuild();return true;
+         }
+@@ -1423,7 +1424,7 @@
+                 if(leftFlank<0)leftFlank=MaterialHandle(result.step.pullLeft);
+                 if(rightFlank<0)rightFlank=MaterialHandle(result.step.pullRight);
+                 notice="면을 드래그하면 주변 겹을 먼저 정리한 뒤 함께 접습니다. 놓으면 적용됩니다.";
+-            }else {selected=fallback;notice="이 방향은 주변 겹에 막힙니다. 다른 면을 선택하거나 먼저 겹을 펼쳐주세요.";}
++            }else {selected=fallback;notice="선택한 점에서 실행 가능한 접힘 경로를 찾지 못했습니다. 같은 주머니의 시작점과 양옆 점을 확인하세요.";}
+             Rebuild();
+         }
+         private int MaterialHandle(Vector2 local)
+--- before/FoldMesh.cs
++++ after/FoldMesh.cs
+@@ -41,8 +41,8 @@
+             }else if(pull!=null){
+                 outlinePeers=pull.Preview;
+                 var edgeTurn=pull.EdgeTurn;
+-                for(int i=0;i<pull.Preview.Count;i++)Surface(pull.Preview[i],false,workbench && edgeTurn!=null && i>=edgeTurn.fixedFaces.Count);
+-                if(edgeTurn!=null){
++                for(int i=0;i<pull.Preview.Count;i++)Surface(pull.Preview[i],false,workbench && edgeTurn!=null && i>=edgeTurn.fixedFaces.Count,motionRole:workbench?pull.MotionRole(pull.Preview[i]):0);
++                if(edgeTurn!=null || pull.UsesCoordinatedSurface){
+                     // Draw the computed hinge, not the four constraint edges.
+                     if(hinge!=null)foreach(var mark in hinge)MaterialStripe(pull.Preview,mark.face.Original(mark.a),mark.face.Original(mark.b));
+                 }else{
+@@ -207,7 +207,7 @@
+             foreach(var part in turn.movingFaces)if(PaperSheet.SamePanel(face,part) && part.Contains(point))return true;
+             return false;
+         }
+-        private void Surface(PaperSheet.Face f,bool moving,bool highlight,Vector3 displayOffset=default,bool pending=false)
++        private void Surface(PaperSheet.Face f,bool moving,bool highlight,Vector3 displayOffset=default,bool pending=false,int motionRole=0)
+         {
+             faceFrame=Matrix4x4.Translate(displayOffset)*f.frame;
+             float bottom=f.layer*PaperSheet.Thickness,top=bottom+PaperSheet.Thickness;
+@@ -215,6 +215,8 @@
+             Color a=(f.back?Back:Front)*(.78f+.22f*tilt),b=(f.back?Front:Back)*(.78f+.22f*tilt);
+             if(moving){float shade=1f-.18f*sine;a*=shade;b*=shade;}
+             if(highlight){a=new Color(.62f,.83f,.73f);b=a;}
++            if(motionRole==1){a=new Color(.62f,.83f,.73f);b=a;}
++            if(motionRole==2){a=new Color(.72f,.82f,.89f);b=a;}
+             if(pending){a=new Color(.90f,.79f,.58f);b=a;}
+             var p=f.points;
+             for(int i=1;i<p.Length-1;i++)
+@@ -232,6 +234,18 @@
+                 Vector2 shift=new Vector2(-(v-u).y,(v-u).x).normalized*.027f*(f.back?-1f:1f);
+                 Quad(Vertex(u,top+.0006f,moving),Vertex(v,top+.0006f,moving),
+                     Vertex(v+shift,top+.0006f,moving),Vertex(u+shift,top+.0006f,moving),Edge);
++            }
++            if(motionRole==2)SupportHatch(f,top,bottom,moving);
++        }
++        private void SupportHatch(PaperSheet.Face face,float top,float bottom,bool moving)
++        {
++            float lo=float.PositiveInfinity,hi=float.NegativeInfinity,start=float.PositiveInfinity,end=float.NegativeInfinity;
++            foreach(var p in face.points){lo=Mathf.Min(lo,p.x-p.y);hi=Mathf.Max(hi,p.x-p.y);start=Mathf.Min(start,p.x+p.y);end=Mathf.Max(end,p.x+p.y);}
++            var side=new Vector2(.012f,-.012f);var color=new Color(.48f,.64f,.74f);
++            for(float offset=Mathf.Ceil(lo/.65f)*.65f;offset<hi;offset+=.65f){
++                var a=new Vector2((offset+start-1)*.5f,(start-1-offset)*.5f);var b=new Vector2((offset+end+1)*.5f,(end+1-offset)*.5f);if(!PaperSheet.Trim(face,ref a,ref b))continue;
++                Quad(Vertex(a-side,top+.002f,moving),Vertex(b-side,top+.002f,moving),Vertex(b+side,top+.002f,moving),Vertex(a+side,top+.002f,moving),color);
++                Quad(Vertex(a-side,bottom-.002f,moving),Vertex(b-side,bottom-.002f,moving),Vertex(b+side,bottom-.002f,moving),Vertex(a+side,bottom-.002f,moving),color);
+             }
+         }
+         // Subtle opaque strokes: tint toward the paper rather than using

@@ -1,0 +1,1 @@
+id=22 label=petal-route screen=644x884 folds=4 phase=PickSide angle=0 notice=이 방향은 주변 겹에 막힙니다. 다른 면을 선택하거나 먼저 겹을 펼쳐주세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=89153

@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "suite": "coordinated-player-replay",
+  "returncode": 1,
+  "log": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\origami-coordinated-fold-2026-11-12\\runner-verification\\coordinated-player-replay.log",
+  "scope": "baseline suite only; no complete-model certification",
+  "source_sha256": "bc732efd13cbb6bbeaf6bf2f6d16a8179a71809a46b63ba9e464bb13a48ba2a2",
+  "project": "C:\\Users\\doun0\\OneDrive\\Documents\\ChatGPT\\FlyEditor\\output\\validation\\WebProject",
+  "unity_version": "m_EditorVersion: 6000.5.3f1\nm_EditorVersionWithRevision: 6000.5.3f1 (c2eb47b3a2a9)"
+}

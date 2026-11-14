@@ -1,0 +1,1 @@
+id=2 label=shared-source screen=644x884 folds=5 phase=FirstPoint angle=0 notice=이제 맞출 중앙선이나 변을 클릭하세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=7422

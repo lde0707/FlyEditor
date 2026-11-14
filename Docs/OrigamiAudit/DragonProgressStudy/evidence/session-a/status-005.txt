@@ -1,0 +1,1 @@
+id=5 label=reverse-four-drag screen=644x884 folds=14 phase=ReviewFourPoints angle=0 notice=네 점은 선택됐지만 이 조합으로 접을 수 없습니다. 1 이동점과 2 기준점을 바꾸거나 선택한 겹을 확인하세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=12530

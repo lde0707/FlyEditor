@@ -1,0 +1,238 @@
+{
+    "points": [
+        {
+            "id": 0,
+            "anchor": 0,
+            "layer": 1,
+            "x": 734.771240234375,
+            "y": 825.3992309570313,
+            "materialX": 5.5,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 1,
+            "anchor": 0,
+            "layer": 1,
+            "x": 640.9215087890625,
+            "y": 825.3992309570313,
+            "materialX": 6.875,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 2,
+            "anchor": 0,
+            "layer": 1,
+            "x": 547.0716552734375,
+            "y": 825.3992309570313,
+            "materialX": 8.25,
+            "materialY": 0.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 3,
+            "anchor": 0,
+            "layer": 1,
+            "x": 547.0716552734375,
+            "y": 637.6995849609375,
+            "materialX": 8.25,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 4,
+            "anchor": 0,
+            "layer": 1,
+            "x": 547.0716552734375,
+            "y": 450.0,
+            "materialX": 8.25,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 5,
+            "anchor": 0,
+            "layer": 1,
+            "x": 547.0716552734375,
+            "y": 262.3005065917969,
+            "materialX": 8.25,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 6,
+            "anchor": 0,
+            "layer": 1,
+            "x": 547.0716552734375,
+            "y": 74.60084533691406,
+            "materialX": 8.25,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 7,
+            "anchor": 0,
+            "layer": 1,
+            "x": 640.9215087890625,
+            "y": 74.60084533691406,
+            "materialX": 6.875,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 8,
+            "anchor": 0,
+            "layer": 1,
+            "x": 734.771240234375,
+            "y": 74.60084533691406,
+            "materialX": 5.5,
+            "materialY": 11.0,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 9,
+            "anchor": 0,
+            "layer": 1,
+            "x": 734.771240234375,
+            "y": 262.3005065917969,
+            "materialX": 5.5,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 10,
+            "anchor": 0,
+            "layer": 1,
+            "x": 734.771240234375,
+            "y": 450.0,
+            "materialX": 5.5,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 11,
+            "anchor": 0,
+            "layer": 1,
+            "x": 734.771240234375,
+            "y": 637.6995849609375,
+            "materialX": 5.5,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 30,
+            "anchor": 0,
+            "layer": 1,
+            "x": 640.9215087890625,
+            "y": 450.0,
+            "materialX": 6.875,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 31,
+            "anchor": 0,
+            "layer": 1,
+            "x": 593.99658203125,
+            "y": 637.6995849609375,
+            "materialX": 7.5625,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 32,
+            "anchor": 0,
+            "layer": 1,
+            "x": 640.9215087890625,
+            "y": 637.6995849609375,
+            "materialX": 6.875,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 33,
+            "anchor": 0,
+            "layer": 1,
+            "x": 687.8463745117188,
+            "y": 637.6995849609375,
+            "materialX": 6.1875,
+            "materialY": 2.75,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 34,
+            "anchor": 0,
+            "layer": 1,
+            "x": 593.99658203125,
+            "y": 450.0,
+            "materialX": 7.5625,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 35,
+            "anchor": 0,
+            "layer": 1,
+            "x": 687.8463745117188,
+            "y": 450.0,
+            "materialX": 6.1875,
+            "materialY": 5.5,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 36,
+            "anchor": 0,
+            "layer": 1,
+            "x": 593.99658203125,
+            "y": 262.3005065917969,
+            "materialX": 7.5625,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 37,
+            "anchor": 0,
+            "layer": 1,
+            "x": 640.9215087890625,
+            "y": 262.3005065917969,
+            "materialX": 6.875,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        },
+        {
+            "id": 38,
+            "anchor": 0,
+            "layer": 1,
+            "x": 687.8463745117188,
+            "y": 262.3005065917969,
+            "materialX": 6.1875,
+            "materialY": 8.25,
+            "first": false,
+            "second": false
+        }
+    ],
+    "pitch": 90.0,
+    "yaw": 0.0,
+    "side": "None"
+}

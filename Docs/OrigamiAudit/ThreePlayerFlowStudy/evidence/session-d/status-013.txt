@@ -1,0 +1,1 @@
+id=13 label=repeat-flat-contact screen=644x884 folds=2 phase=FirstPoint angle=180 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=24770

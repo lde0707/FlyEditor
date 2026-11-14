@@ -1,0 +1,1 @@
+id=3 label=tip-contact-packet screen=644x884 folds=12 phase=AdjustAngle angle=0 notice=초록: 선택한 면 · 파란 사선: 함께 접어야 하는 접촉 겹. 드래그로 접으세요. scope=Top gesture=Idle edge=2 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=2164

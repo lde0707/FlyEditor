@@ -1,0 +1,12 @@
+{
+  "current_case": "PASS",
+  "prior_regressions": "PASS",
+  "completed_diagram_step": 16,
+  "complete_model": false,
+  "next_step": 17,
+  "next_step_status": "NOT_RETESTED_AFTER_CURRENT_FIX_USER_REQUESTED_STOP",
+  "actual_player_retest": "session-e",
+  "historical_negative": "session-b/10",
+  "user_progress_modified": false,
+  "stopped_after_current_case": true
+}

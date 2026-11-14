@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "continued actual player folding and two common-engine fixes",
+  "initial_fold_history": 8,
+  "final_fold_history": 14,
+  "fold_unfold_verification_actions": 2,
+  "complete_model": false,
+  "new_common_fixes": [
+    "material chart comparison on connected fragments after float round trips",
+    "contact-connected packet closure only after both independent directions are blocked"
+  ],
+  "material_chart_variants": 12,
+  "material_chart_poses": 144,
+  "contact_packet_variants": 6,
+  "contact_packet_poses": 84,
+  "independent_wing_guards": 16,
+  "actual_player_state_replays": 38,
+  "old_player_flow_state_replays": 64,
+  "old_regression": "PASS",
+  "source": "https://jonakashima.com.br/wp-content/uploads/2015/07/Dragon-Jo-Nakashima.pdf",
+  "fixture_root_env": "FLYEDITOR_DRAGON_CONTINUE_ROOT=<report>/fixtures",
+  "player_root_env": "FLYEDITOR_DRAGON_PLAYER_ROOT=<report>/evidence",
+  "installed_module_verification": "PASS",
+  "installed_module_evidence": "module-verification/result.json"
+}

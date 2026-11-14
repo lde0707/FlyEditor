@@ -1,0 +1,1 @@
+{"id": 6, "label": "quit", "actions": [{"kind": "wait", "x": 0.0, "y": 0.0, "scroll": 0.0, "down": false, "key": "", "wait": 0.20000000298023224}], "quit": true}

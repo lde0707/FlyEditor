@@ -1,0 +1,308 @@
+{
+  "status": "PASS",
+  "transitions": [
+    {
+      "session": "b",
+      "selected": 3,
+      "committed": 4,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 6.735557395310443e-16
+      },
+      "fixed": {
+        "samples": 9,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "b",
+      "selected": 11,
+      "committed": 12,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 3.3677786976552215e-16
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "b",
+      "selected": 13,
+      "committed": 15,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 1.264405455326821e-07
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 1.0536712127723508e-07
+      }
+    },
+    {
+      "session": "b",
+      "selected": 17,
+      "committed": 19,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 6.743495761743046e-07
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 2.1073424255447017e-07
+      }
+    },
+    {
+      "session": "c",
+      "selected": 3,
+      "committed": 4,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 6.735557395310443e-16
+      },
+      "fixed": {
+        "samples": 9,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "c",
+      "selected": 5,
+      "committed": 6,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 6.735557395310443e-16
+      },
+      "fixed": {
+        "samples": 9,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "c",
+      "selected": 8,
+      "committed": 10,
+      "moving": {
+        "samples": 18,
+        "max_neutral_error": 4.440399199279981e-07
+      },
+      "fixed": {
+        "samples": 9,
+        "max_neutral_error": 9.541398640621973e-08
+      }
+    },
+    {
+      "session": "c",
+      "selected": 13,
+      "committed": 15,
+      "moving": {
+        "samples": 16,
+        "max_neutral_error": 6.239230233975514e-07
+      },
+      "fixed": {
+        "samples": 16,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "d",
+      "selected": 6,
+      "committed": 11,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 1.6805126216837795e-07
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 9.541398640621973e-08
+      }
+    },
+    {
+      "session": "d",
+      "selected": 6,
+      "committed": 13,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 3.3677786976552215e-16
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 0
+      }
+    },
+    {
+      "session": "e",
+      "selected": 7,
+      "committed": 8,
+      "moving": {
+        "samples": 9,
+        "max_neutral_error": 1.264405455326821e-07
+      },
+      "fixed": {
+        "samples": 18,
+        "max_neutral_error": 1.0536712127723508e-07
+      }
+    }
+  ],
+  "cancel_undo_checks": [
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 1.4224732503009818e-16
+    },
+    {
+      "samples": 18,
+      "max_neutral_error": 0
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 0
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 0
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 0
+    }
+  ],
+  "actual_reload_checks": [
+    {
+      "samples": 27,
+      "max_neutral_error": 2.1073424255447017e-07
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 2.1073424255447017e-07
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 0
+    },
+    {
+      "samples": 27,
+      "max_neutral_error": 1.0536712127723508e-07
+    }
+  ],
+  "rendered_selection_checks": [
+    {
+      "session": "b",
+      "id": 3,
+      "rendered_green_area": 121.0,
+      "expected_double_surface_area": 121.0
+    },
+    {
+      "session": "b",
+      "id": 6,
+      "rendered_green_area": 60.5,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "b",
+      "id": 9,
+      "rendered_green_area": 60.49999763135738,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "b",
+      "id": 11,
+      "rendered_green_area": 60.5,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "b",
+      "id": 13,
+      "rendered_green_area": 60.4999987597439,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "b",
+      "id": 17,
+      "rendered_green_area": 120.99999789386752,
+      "expected_double_surface_area": 121.0
+    },
+    {
+      "session": "c",
+      "id": 8,
+      "rendered_green_area": 181.5,
+      "expected_double_surface_area": 181.5
+    },
+    {
+      "session": "c",
+      "id": 13,
+      "rendered_green_area": 121.0,
+      "expected_double_surface_area": 121.0
+    },
+    {
+      "session": "d",
+      "id": 6,
+      "rendered_green_area": 60.5,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "d",
+      "id": 9,
+      "rendered_green_area": 60.49999763135738,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "e",
+      "id": 2,
+      "rendered_green_area": 60.4999987597439,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "e",
+      "id": 3,
+      "rendered_green_area": 60.49999833136823,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "e",
+      "id": 5,
+      "rendered_green_area": 60.5,
+      "expected_double_surface_area": 60.5
+    },
+    {
+      "session": "e",
+      "id": 7,
+      "rendered_green_area": 60.49999833136823,
+      "expected_double_surface_area": 60.5
+    }
+  ],
+  "material_units_tolerance": 0.003,
+  "physical_shell_offset_excluded": true
+}

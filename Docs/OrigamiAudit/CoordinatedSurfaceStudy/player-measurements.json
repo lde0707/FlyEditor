@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "solver": "coordinated",
+  "hinge_hints": true,
+  "primary_samples": 16,
+  "support_samples": 8,
+  "steps": [
+    {
+      "command": 6,
+      "angle": 78.0,
+      "fixed_samples": 80,
+      "max_fixed_material_displacement": 0.0,
+      "max_fixed_shell_offset_change": 0.0
+    },
+    {
+      "command": 7,
+      "angle": 180.0,
+      "fixed_samples": 80,
+      "max_fixed_material_displacement": 0.0,
+      "max_fixed_shell_offset_change": 0.018000001087784767
+    },
+    {
+      "command": 8,
+      "angle": 180.0,
+      "fixed_samples": 80,
+      "max_fixed_material_displacement": 0.0,
+      "max_fixed_shell_offset_change": 0.018000001087784767
+    }
+  ],
+  "measurement": "material neutral surfaces; separate shell layer offsets recorded"
+}

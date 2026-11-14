@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "coordinated pocket with material supports and auxiliary hinges",
+  "model_complete": false,
+  "model_fold_count_before": 7,
+  "model_fold_count_after": 8,
+  "actual_input_old_coordinate_deltas": {
+    "pullTip": 0.0,
+    "pullStop": 0.0,
+    "pullLeft": 0.0,
+    "pullRight": 0.0
+  },
+  "actual_input_angles": [
+    0,
+    78,
+    180
+  ],
+  "independent_metric_proportions": 18,
+  "ordinary_pocket_operations": 16,
+  "ordinary_pocket_poses": 128,
+  "environment_cases": 64,
+  "environment_poses": 832,
+  "regression_log": "logs/unity-four-system-complex-delivery.log",
+  "limits": [
+    "bounded four-point pocket family; not arbitrary elastic sheets",
+    "2-degree sampled collision path; not full continuous collision proof",
+    "flat shell-layer repack offset 0.018; neutral fixed material motion 0",
+    "whole dragon remains partial; latency not certified"
+  ],
+  "module_runner_status": "PASS",
+  "module_runner_evidence": "runner-verification-final/result.json"
+}

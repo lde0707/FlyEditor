@@ -1,0 +1,1 @@
+id=12 label=back-pocket-selected screen=644x884 folds=3 phase=SecondPoint angle=180 notice= scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse frame=39432

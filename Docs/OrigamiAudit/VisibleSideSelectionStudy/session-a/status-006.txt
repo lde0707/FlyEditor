@@ -1,0 +1,2 @@
+id=6 label=white-selected screen=644x884 folds=2 phase=AdjustAngle angle=0 notice=초록색: 선 한쪽의 선택 영역 전체
+드래그: 접기 · V: 개별/박스 선택 scope=Top gesture=Idle edge=2 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=38550

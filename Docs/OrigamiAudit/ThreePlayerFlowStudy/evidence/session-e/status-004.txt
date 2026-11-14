@@ -1,0 +1,1 @@
+id=4 label=return-to-contact screen=644x884 folds=2 phase=Opening angle=1 notice= scope=Top gesture=Opening edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=27622

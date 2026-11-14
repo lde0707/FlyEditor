@@ -50,7 +50,7 @@ namespace FlyEditor.Flight
                     float degrees=Mathf.Sign(turn.step.degrees)*remaining;
                     if(Mathf.Abs(turn.Constrain(degrees)-degrees)>.001f)return false;
                     preview.AddRange(turn.fixedFaces);var rotation=turn.Rotation(degrees);
-                    foreach(var f in turn.movingFaces)preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material));
+                    foreach(var f in turn.movingFaces)preview.Add(new PaperSheet.Face(f.points,f.layer,f.back,rotation*f.frame,f.material,f));
                     ToWorld();return true;
                 }
                 remaining-=length;
@@ -62,7 +62,7 @@ namespace FlyEditor.Flight
         {
             for(int i=0;i<preview.Count;i++){
                 var f=preview[i];var world=f.frame==Matrix4x4.identity?reference:reference*f.frame;
-                preview[i]=new PaperSheet.Face(f.points,f.layer,f.back,world,f.material);
+                preview[i]=new PaperSheet.Face(f.points,f.layer,f.back,world,f.material,f);
             }UpdateHandles();
         }
         private Vector3 Locate(Vector3 material)

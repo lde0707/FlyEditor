@@ -1,0 +1,1 @@
+id=3 label=same-flanks screen=644x884 folds=10 phase=PickSide angle=0 notice=초록: 직접 접기 · 파란 사선: 함께 움직이는 지지면. 면을 드래그하세요. scope=Top gesture=Idle edge=-1 model=Ready focus=True mouse=(0.00, 0.00) current=Mouse controlled=True left=False frame=6683
