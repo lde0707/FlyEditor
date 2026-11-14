@@ -3,7 +3,7 @@
 <!-- WINDOWS-RELEASE-START -->
 ## Windows에서 바로 플레이
 
-**[FlyEditor · Windows 실행 파일 다운로드](https://github.com/lde0707/FlyEditor/releases/tag/portfolio-windows-2026-11-14)**
+**[FlyEditor · Windows 실행 파일 다운로드](https://github.com/lde0707/portfolio-game-builds/releases/tag/flyeditor-2026-11-14)**
 
 종이를 접어 비행체를 만들고 비행·연구를 이어가는 개발 중 프로젝트.
 
